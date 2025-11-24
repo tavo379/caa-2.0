@@ -1,0 +1,62 @@
+---
+interface Props {
+    title: string;
+    desc: string;
+    cta: string;
+    lang: string;
+}
+
+const { title, desc, cta, lang } = Astro.props;
+---
+
+<section class="contact-home">
+    <div class="container">
+        <h2>{title}</h2>
+        <p>{desc}</p>
+        <a href={`/${lang}/contact`} class="btn">{cta}</a>
+    </div>
+</section>
+
+<style>
+    .contact-home {
+        padding: 5rem 1rem;
+        background-color: #3b82f6;
+        color: white;
+        text-align: center;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+
+    p {
+        font-size: 1.25rem;
+        margin-bottom: 2.5rem;
+        opacity: 0.9;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 1rem 2.5rem;
+        background-color: white;
+        color: #3b82f6;
+        text-decoration: none;
+        border-radius: 0.375rem;
+        font-weight: 700;
+        font-size: 1.125rem;
+        transition:
+            transform 0.2s,
+            box-shadow 0.2s;
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+</style>

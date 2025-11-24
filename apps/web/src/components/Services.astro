@@ -1,0 +1,89 @@
+---
+interface Props {
+    title: string;
+    shopifyTitle: string;
+    shopifyDesc: string;
+    hubspotTitle: string;
+    hubspotDesc: string;
+    webTitle: string;
+    webDesc: string;
+}
+
+const {
+    title,
+    shopifyTitle,
+    shopifyDesc,
+    hubspotTitle,
+    hubspotDesc,
+    webTitle,
+    webDesc,
+} = Astro.props;
+---
+
+<section class="services" id="servicios">
+    <div class="container">
+        <h2>{title}</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>{shopifyTitle}</h3>
+                <p>{shopifyDesc}</p>
+            </div>
+            <div class="card">
+                <h3>{hubspotTitle}</h3>
+                <p>{hubspotDesc}</p>
+            </div>
+            <div class="card">
+                <h3>{webTitle}</h3>
+                <p>{webDesc}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .services {
+        padding: 5rem 1rem;
+        background-color: #f8fafc;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    h2 {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+        color: #0f172a;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+    }
+
+    .card {
+        background: white;
+        padding: 2rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+    }
+
+    h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: #0f172a;
+    }
+
+    p {
+        color: #475569;
+        line-height: 1.6;
+    }
+</style>

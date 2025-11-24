@@ -1,0 +1,355 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { ui } from "../../i18n/ui";
+
+const lang = "en";
+const t = ui[lang];
+
+const title = "Services — Cacao & Avocado";
+const description = "Nearshore Shopify and HubSpot Solutions for US companies.";
+---
+
+<Layout title={title} description={description} lang={lang}>
+    <!-- Hero Section -->
+    <section class="hero-services">
+        <div class="container">
+            <h1>{t["services.hero.title"]}</h1>
+            <p class="subtitle">{t["services.hero.subtitle"]}</p>
+        </div>
+    </section>
+
+    <!-- Why Nearshore Section -->
+    <section class="why-nearshore">
+        <div class="container">
+            <h2>{t["services.why.title"]}</h2>
+            <div class="grid-3">
+                <div class="benefit-card">
+                    <div class="icon">🕐</div>
+                    <h3>{t["services.why.timezone"]}</h3>
+                    <p>{t["services.why.timezone.desc"]}</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="icon">💬</div>
+                    <h3>{t["services.why.bilingual"]}</h3>
+                    <p>{t["services.why.bilingual.desc"]}</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="icon">💰</div>
+                    <h3>{t["services.why.cost"]}</h3>
+                    <p>{t["services.why.cost.desc"]}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shopify Services -->
+    <section class="service-detail shopify-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>{t["services.shopify.hero"]}</h2>
+                <p class="intro">{t["services.shopify.intro"]}</p>
+            </div>
+
+            <div class="services-list">
+                <div class="service-item">
+                    <h3>{t["services.shopify.custom.title"]}</h3>
+                    <p>{t["services.shopify.custom.desc"]}</p>
+                    <ul class="features">
+                        <li>Shopify Plus & Headless Commerce</li>
+                        <li>Custom Themes with Liquid & React</li>
+                        <li>Third-Party API Integrations</li>
+                        <li>Migrations from other platforms</li>
+                    </ul>
+                </div>
+
+                <div class="service-item">
+                    <h3>{t["services.shopify.cro.title"]}</h3>
+                    <p>{t["services.shopify.cro.desc"]}</p>
+                    <ul class="features">
+                        <li>A/B Testing & Behavioral Analysis</li>
+                        <li>Checkout Optimization</li>
+                        <li>Data-Driven UX/UI Improvements</li>
+                        <li>Retention Strategies</li>
+                    </ul>
+                </div>
+
+                <div class="service-item">
+                    <h3>{t["services.shopify.ai.title"]}</h3>
+                    <p>{t["services.shopify.ai.desc"]}</p>
+                    <ul class="features">
+                        <li>ML-Powered Recommendation Engines</li>
+                        <li>24/7 Intelligent Chatbots</li>
+                        <li>Predictive Segmentation</li>
+                        <li>Campaign Automation</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HubSpot Services -->
+    <section class="service-detail hubspot-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>{t["services.hubspot.hero"]}</h2>
+                <p class="intro">{t["services.hubspot.intro"]}</p>
+            </div>
+
+            <div class="services-list">
+                <div class="service-item">
+                    <h3>{t["services.hubspot.revops.title"]}</h3>
+                    <p>{t["services.hubspot.revops.desc"]}</p>
+                    <ul class="features">
+                        <li>Sales, Marketing & Service Alignment</li>
+                        <li>Unified Revenue Dashboards</li>
+                        <li>Cross-Team Process Automation</li>
+                        <li>Data Governance & Reporting</li>
+                    </ul>
+                </div>
+
+                <div class="service-item">
+                    <h3>{t["services.hubspot.crm.title"]}</h3>
+                    <p>{t["services.hubspot.crm.desc"]}</p>
+                    <ul class="features">
+                        <li>CRM Implementation & Migration</li>
+                        <li>Custom Pipelines & Deal Stages</li>
+                        <li>ERP, POS, and App Integrations</li>
+                        <li>Custom Objects & Properties</li>
+                    </ul>
+                </div>
+
+                <div class="service-item">
+                    <h3>{t["services.hubspot.automation.title"]}</h3>
+                    <p>{t["services.hubspot.automation.desc"]}</p>
+                    <ul class="features">
+                        <li>Multi-Channel Nurture Workflows</li>
+                        <li>Predictive Lead Scoring</li>
+                        <li>Email Sequences & Drip Campaigns</li>
+                        <li>Attribution Reporting</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>{t["services.cta.title"]}</h2>
+            <p>{t["services.cta.desc"]}</p>
+            <a href={`/${lang}/contact`} class="btn-primary"
+                >{t["services.cta.button"]}</a
+            >
+        </div>
+    </section>
+</Layout>
+
+<style>
+    /* Hero */
+    .hero-services {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        color: white;
+        padding: 6rem 1rem 4rem;
+        text-align: center;
+    }
+
+    .hero-services h1 {
+        font-size: 3rem;
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+    }
+
+    .hero-services .subtitle {
+        font-size: 1.25rem;
+        color: #cbd5e1;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    /* Container */
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
+
+    /* Why Nearshore */
+    .why-nearshore {
+        padding: 5rem 1rem;
+        background-color: #f8fafc;
+    }
+
+    .why-nearshore h2 {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+        color: #0f172a;
+    }
+
+    .grid-3 {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+    }
+
+    .benefit-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    .benefit-card .icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .benefit-card h3 {
+        font-size: 1.5rem;
+        color: #0f172a;
+        margin-bottom: 0.75rem;
+    }
+
+    .benefit-card p {
+        color: #64748b;
+        line-height: 1.6;
+    }
+
+    /* Service Details */
+    .service-detail {
+        padding: 5rem 1rem;
+    }
+
+    .shopify-section {
+        background-color: white;
+    }
+
+    .hubspot-section {
+        background-color: #f8fafc;
+    }
+
+    .section-header {
+        text-align: center;
+        margin-bottom: 4rem;
+    }
+
+    .section-header h2 {
+        font-size: 2.5rem;
+        color: #0f172a;
+        margin-bottom: 1rem;
+    }
+
+    .section-header .intro {
+        font-size: 1.125rem;
+        color: #64748b;
+    }
+
+    .services-list {
+        display: grid;
+        gap: 3rem;
+    }
+
+    .service-item {
+        background: white;
+        padding: 2.5rem;
+        border-radius: 0.5rem;
+        border-left: 4px solid #3b82f6;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    .hubspot-section .service-item {
+        border-left-color: #f97316;
+    }
+
+    .service-item h3 {
+        font-size: 1.75rem;
+        color: #0f172a;
+        margin-bottom: 1rem;
+    }
+
+    .service-item > p {
+        color: #475569;
+        margin-bottom: 1.5rem;
+        font-size: 1.125rem;
+        line-height: 1.7;
+    }
+
+    .service-item .features {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 0.75rem;
+    }
+
+    .service-item .features li {
+        padding-left: 1.5rem;
+        position: relative;
+        color: #64748b;
+    }
+
+    .service-item .features li::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: #3b82f6;
+        font-weight: bold;
+    }
+
+    .hubspot-section .service-item .features li::before {
+        color: #f97316;
+    }
+
+    /* CTA */
+    .cta-section {
+        background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+        color: white;
+        padding: 5rem 1rem;
+        text-align: center;
+    }
+
+    .cta-section h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .cta-section p {
+        font-size: 1.25rem;
+        margin-bottom: 2.5rem;
+        opacity: 0.95;
+    }
+
+    .btn-primary {
+        display: inline-block;
+        padding: 1rem 2.5rem;
+        background-color: white;
+        color: #3b82f6;
+        text-decoration: none;
+        border-radius: 0.375rem;
+        font-weight: 700;
+        font-size: 1.125rem;
+        transition:
+            transform 0.2s,
+            box-shadow 0.2s;
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+
+    @media (max-width: 768px) {
+        .hero-services h1 {
+            font-size: 2rem;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+        }
+
+        .service-item h3 {
+            font-size: 1.5rem;
+        }
+    }
+</style>

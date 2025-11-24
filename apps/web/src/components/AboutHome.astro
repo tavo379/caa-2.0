@@ -1,0 +1,56 @@
+---
+interface Props {
+    title: string;
+    desc: string;
+    linkText: string;
+    lang: string;
+}
+
+const { title, desc, linkText, lang } = Astro.props;
+---
+
+<section class="about-home">
+    <div class="container">
+        <div class="content">
+            <h2>{title}</h2>
+            <p>{desc}</p>
+            <a href={`/${lang}/about`} class="link">{linkText} &rarr;</a>
+        </div>
+    </div>
+</section>
+
+<style>
+    .about-home {
+        padding: 5rem 1rem;
+        background-color: white;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+        color: #0f172a;
+    }
+
+    p {
+        font-size: 1.125rem;
+        color: #475569;
+        margin-bottom: 2rem;
+        line-height: 1.8;
+    }
+
+    .link {
+        color: #3b82f6;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    .link:hover {
+        text-decoration: underline;
+    }
+</style>

@@ -1,0 +1,57 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Hero from "../../components/Hero.astro";
+import Services from "../../components/Services.astro";
+import AboutHome from "../../components/AboutHome.astro";
+import ProjectsHome from "../../components/ProjectsHome.astro";
+import ContactHome from "../../components/ContactHome.astro";
+import { ui } from "../../i18n/ui";
+
+const lang = "en";
+const t = ui[lang];
+
+const title = "Cacao & Avocado — Shopify & HubSpot Agency";
+const description =
+    "Shopify and HubSpot experts. Custom web development, e-commerce, and marketing automation.";
+---
+
+<Layout title={title} description={description} lang={lang}>
+    <main>
+        <Hero
+            title={t["hero.title"]}
+            subtitle={t["hero.subtitle"]}
+            ctaPrimary={t["hero.cta.primary"]}
+            ctaSecondary={t["hero.cta.secondary"]}
+            lang={lang}
+        />
+        <Services
+            title={t["services.title"]}
+            shopifyTitle={t["services.shopify.title"]}
+            shopifyDesc={t["services.shopify.desc"]}
+            hubspotTitle={t["services.hubspot.title"]}
+            hubspotDesc={t["services.hubspot.desc"]}
+            webTitle={t["services.web.title"]}
+            webDesc={t["services.web.desc"]}
+        />
+        <AboutHome
+            title={t["about.title"]}
+            desc={t["about.desc"]}
+            linkText={t["about.link"]}
+            lang={lang}
+        />
+        <ProjectsHome
+            title={t["projects.title"]}
+            intro={t["projects.intro"]}
+            viewAll={t["projects.viewAll"]}
+            viewProject={t["projects.viewProject"]}
+            empty={t["projects.empty"]}
+            lang={lang}
+        />
+        <ContactHome
+            title={t["contact.title"]}
+            desc={t["contact.desc"]}
+            cta={t["contact.cta"]}
+            lang={lang}
+        />
+    </main>
+</Layout>
