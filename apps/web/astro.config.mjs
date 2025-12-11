@@ -8,7 +8,7 @@ const root = fileURLToPath(new URL(".", import.meta.url));
 const env = loadEnv(process.env.NODE_ENV ?? "development", root, "");
 
 export default defineConfig({
-  site: "http://localhost:4321",
+  site: env.SITE_URL || "http://localhost:4321",
   output: "static",
   integrations: [
     sanity({
