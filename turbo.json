@@ -13,6 +13,13 @@
       "outputs": [
         "dist/**",
         ".astro/**"
+      ],
+      "env": [
+        "SANITY_PROJECT_ID",
+        "SANITY_DATASET",
+        "SANITY_API_VERSION",
+        "SANITY_USE_CDN",
+        "SITE_URL"
       ]
     },
     "lint": {
