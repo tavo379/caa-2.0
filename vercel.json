@@ -2,7 +2,7 @@
     "$schema": "https://openapi.vercel.sh/vercel.json",
     "buildCommand": "npx turbo run build --filter=apps-web",
     "devCommand": "cd apps/web && npm run dev",
-    "installCommand": "npm install",
+    "installCommand": "npm ci --workspaces",
     "framework": null,
     "outputDirectory": "apps/web/dist"
 }
