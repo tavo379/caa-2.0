@@ -1,0 +1,458 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import CTABlock from "../../../components/CTABlock.astro";
+
+const lang = "en";
+const title =
+    "Web Development & CMS | HubSpot CMS, Landing Pages & Corporate Sites | Cacao & Avocado";
+const description =
+    "HubSpot CMS development, high-converting landing pages, and corporate websites. Performance-first web development with 85+ Lighthouse scores. Modern stack, clean code, fast delivery.";
+---
+
+<Layout title={title} description={description} lang={lang}>
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Web Development Built For Performance & Conversion</h1>
+                <p class="subtitle">
+                    We build corporate websites, landing pages, and HubSpot CMS
+                    sites that convert. Every site ships with 85+ Lighthouse
+                    scores, semantic SEO, and content workflows that scale with
+                    your team.
+                </p>
+                <p class="metrics">
+                    85+ avg Lighthouse score | <2s load time | 100+ pages
+                    launched
+                </p>
+                <div class="cta-group">
+                    <a href={`/${lang}/contact`} class="btn btn-primary"
+                        >Schedule Consultation</a
+                    >
+                    <a href={`/${lang}/projects`} class="btn btn-secondary"
+                        >View Our Work</a
+                    >
+                </div>
+            </div>
+        </section>
+
+        <section class="services-intro">
+            <div class="container">
+                <h2>What We Build</h2>
+                <p class="intro-text">
+                    Three core web development services. Built for performance,
+                    designed for conversion, optimized for search.
+                </p>
+            </div>
+        </section>
+
+        <!-- Service 1: HubSpot CMS -->
+        <section class="service-detail">
+            <div class="container">
+                <div class="service-card">
+                    <h3>HubSpot CMS Development</h3>
+
+                    <div class="service-section">
+                        <h4>What it is:</h4>
+                        <p>
+                            Custom HubSpot CMS websites with drag-and-drop
+                            editing for your marketing team. We build modular
+                            themes, custom modules, and integrated forms/CTAs so
+                            your team can create landing pages and content
+                            without developer dependencies.
+                        </p>
+                    </div>
+
+                    <div class="service-section">
+                        <h4>Ideal for:</h4>
+                        <ul>
+                            <li>
+                                Companies already using HubSpot for
+                                CRM/marketing
+                            </li>
+                            <li>
+                                Marketing teams needing content agility (launch
+                                pages quickly)
+                            </li>
+                            <li>
+                                Brands wanting unified analytics (website + CRM
+                                data in one place)
+                            </li>
+                            <li>
+                                B2B companies needing lead capture and
+                                attribution tracking
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="service-section">
+                        <h4>Tech Stack:</h4>
+                        <div class="tech-pills">
+                            <span>HubSpot CMS</span>
+                            <span>HubL</span>
+                            <span>JavaScript</span>
+                            <span>CSS</span>
+                            <span>Smart Content</span>
+                        </div>
+                    </div>
+
+                    <div class="pricing-box">
+                        <div class="pricing-item">
+                            <span class="label">Timeline:</span>
+                            <span class="value">5-7 weeks</span>
+                        </div>
+                        <div class="pricing-item">
+                            <span class="label">Investment:</span>
+                            <span class="value">$15,000 - $35,000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Service 2: Landing Pages -->
+        <section class="service-detail alt">
+            <div class="container">
+                <div class="service-card">
+                    <h3>High-Converting Landing Pages</h3>
+
+                    <div class="service-section">
+                        <h4>What it is:</h4>
+                        <p>
+                            Standalone landing pages built for paid ads, product
+                            launches, or lead generation. We design for one
+                            goal: conversion. A/B testing setup, performance
+                            optimization (target <1.5s load), and campaign
+                            tracking.
+                        </p>
+                    </div>
+
+                    <div class="service-section">
+                        <h4>Ideal for:</h4>
+                        <ul>
+                            <li>
+                                Companies running paid ads (Google, Meta,
+                                LinkedIn)
+                            </li>
+                            <li>
+                                Product launches needing dedicated campaign
+                                sites
+                            </li>
+                            <li>
+                                Lead generation campaigns (ebooks, webinars,
+                                demos)
+                            </li>
+                            <li>
+                                Teams wanting fast iteration (build, test,
+                                optimize)
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="pricing-box">
+                        <div class="pricing-item">
+                            <span class="label">Timeline:</span>
+                            <span class="value">2-3 weeks per page</span>
+                        </div>
+                        <div class="pricing-item">
+                            <span class="label">Investment:</span>
+                            <span class="value">$3,000 - $8,000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Service 3: Corporate Websites -->
+        <section class="service-detail">
+            <div class="container">
+                <div class="service-card">
+                    <h3>Corporate Websites & Platforms</h3>
+
+                    <div class="service-section">
+                        <h4>What it is:</h4>
+                        <p>
+                            Full corporate websites built with modern frameworks
+                            (Astro, Next.js, Sanity CMS). Multi-page sites with
+                            blog, case studies, team pages, and resource
+                            centers. SEO-optimized, performance-first.
+                        </p>
+                    </div>
+
+                    <div class="service-section">
+                        <h4>Ideal for:</h4>
+                        <ul>
+                            <li>
+                                Companies needing complete web presence (10+
+                                pages)
+                            </li>
+                            <li>Brands outgrowing WordPress or legacy CMS</li>
+                            <li>
+                                Teams wanting modern stack (React, headless CMS,
+                                CI/CD)
+                            </li>
+                            <li>
+                                International companies needing multi-language
+                                sites
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="service-section">
+                        <h4>Tech Stack:</h4>
+                        <div class="tech-pills">
+                            <span>Astro</span>
+                            <span>Next.js</span>
+                            <span>React</span>
+                            <span>Sanity CMS</span>
+                            <span>Vercel</span>
+                        </div>
+                    </div>
+
+                    <div class="pricing-box">
+                        <div class="pricing-item">
+                            <span class="label">Timeline:</span>
+                            <span class="value">10-14 weeks</span>
+                        </div>
+                        <div class="pricing-item">
+                            <span class="label">Investment:</span>
+                            <span class="value">$25,000 - $60,000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <CTABlock
+            title="Let's Build Something Fast & Conversion-Focused"
+            subtitle="Whether you need a landing page next week or a complete corporate site, we'll provide a detailed scope, timeline, and fixed-price proposal within 48 hours."
+            primaryButtonText="Schedule Consultation"
+            primaryButtonLink={`/${lang}/contact`}
+            secondaryButtonText="View Case Studies"
+            secondaryButtonLink={`/${lang}/projects`}
+        />
+    </main>
+</Layout>
+
+<style>
+    .hero {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        color: white;
+        padding: 6rem 1rem 4rem;
+        text-align: center;
+    }
+
+    .hero h1 {
+        font-size: 3rem;
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+    }
+
+    .hero .subtitle {
+        font-size: 1.25rem;
+        color: #cbd5e1;
+        max-width: 900px;
+        margin: 0 auto 1rem;
+        line-height: 1.7;
+    }
+
+    .hero .metrics {
+        font-size: 0.95rem;
+        color: #94a3b8;
+        margin-bottom: 2.5rem;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
+
+    .cta-group {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 1rem 2rem;
+        border-radius: 0.375rem;
+        text-decoration: none;
+        font-weight: 700;
+        transition: all 0.2s;
+    }
+
+    .btn-primary {
+        background-color: #3b82f6;
+        color: white;
+    }
+
+    .btn-primary:hover {
+        background-color: #2563eb;
+    }
+
+    .btn-secondary {
+        background-color: transparent;
+        border: 2px solid white;
+        color: white;
+    }
+
+    .services-intro {
+        padding: 5rem 1rem 3rem;
+        background-color: #f8fafc;
+        text-align: center;
+    }
+
+    .services-intro h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        color: #0f172a;
+    }
+
+    .intro-text {
+        font-size: 1.125rem;
+        color: #64748b;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .service-detail {
+        padding: 4rem 1rem;
+        background-color: #f8fafc;
+    }
+
+    .service-detail.alt {
+        background-color: white;
+    }
+
+    .service-card {
+        background: white;
+        padding: 3rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .service-detail.alt .service-card {
+        background: #f8fafc;
+    }
+
+    .service-card h3 {
+        font-size: 2rem;
+        color: #0f172a;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 3px solid #3b82f6;
+    }
+
+    .service-section {
+        margin-bottom: 2rem;
+    }
+
+    .service-section h4 {
+        font-size: 1.25rem;
+        color: #0f172a;
+        margin-bottom: 0.75rem;
+    }
+
+    .service-section p {
+        color: #475569;
+        line-height: 1.7;
+        font-size: 1.05rem;
+    }
+
+    .service-section ul {
+        list-style: none;
+        padding: 0;
+        margin: 0.5rem 0;
+    }
+
+    .service-section li {
+        padding: 0.5rem 0 0.5rem 1.5rem;
+        position: relative;
+        color: #475569;
+        line-height: 1.6;
+    }
+
+    .service-section li::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: #3b82f6;
+        font-weight: bold;
+    }
+
+    .tech-pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+    }
+
+    .tech-pills span {
+        background-color: #e0e7ff;
+        color: #3730a3;
+        padding: 0.5rem 1rem;
+        border-radius: 0.25rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+    }
+
+    .pricing-box {
+        display: flex;
+        gap: 2rem;
+        margin-top: 2rem;
+        padding: 1.5rem;
+        background-color: #f1f5f9;
+        border-radius: 0.5rem;
+        border-left: 4px solid #3b82f6;
+    }
+
+    .service-detail.alt .pricing-box {
+        background-color: #e2e8f0;
+    }
+
+    .pricing-item {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .pricing-item .label {
+        font-size: 0.875rem;
+        color: #64748b;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .pricing-item .value {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #0f172a;
+    }
+
+    @media (max-width: 768px) {
+        .hero h1 {
+            font-size: 2rem;
+        }
+
+        .services-intro h2 {
+            font-size: 2rem;
+        }
+
+        .service-card {
+            padding: 2rem 1.5rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+        }
+
+        .pricing-box {
+            flex-direction: column;
+            gap: 1rem;
+        }
+    }
+</style>

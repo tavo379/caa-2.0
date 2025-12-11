@@ -1,0 +1,121 @@
+---
+interface Props {
+    title?: string;
+    subtitle?: string;
+}
+
+const {
+    title = "Technologies We Work With",
+    subtitle = "Our multi-specialty approach means we can architect complete solutions, not just pieces. These are the platforms and frameworks we deploy daily.",
+} = Astro.props;
+
+const techStack = [
+    { name: "Shopify Plus", category: "ecommerce" },
+    { name: "Hydrogen", category: "ecommerce" },
+    { name: "Remix", category: "ecommerce" },
+    { name: "React Native", category: "ecommerce" },
+    { name: "HubSpot", category: "cms" },
+    { name: "Astro", category: "cms" },
+    { name: "Next.js", category: "cms" },
+    { name: "React", category: "cms" },
+    { name: "HubSpot CRM", category: "automation" },
+    { name: "Salesforce", category: "automation" },
+    { name: "Vercel", category: "infrastructure" },
+    { name: "Cloudflare", category: "infrastructure" },
+];
+---
+
+<section class="tech-stack">
+    <div class="container">
+        <h2>{title}</h2>
+        <p class="subtitle">{subtitle}</p>
+        <div class="tech-grid">
+            {
+                techStack.map((tech) => (
+                    <div class="tech-item" data-category={tech.category}>
+                        <span>{tech.name}</span>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>
+
+<style>
+    .tech-stack {
+        padding: 5rem 1rem;
+        background-color: white;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    h2 {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        color: #0f172a;
+    }
+
+    .subtitle {
+        text-align: center;
+        font-size: 1.125rem;
+        color: #64748b;
+        max-width: 800px;
+        margin: 0 auto 3rem;
+        line-height: 1.7;
+    }
+
+    .tech-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .tech-item {
+        padding: 1.5rem 1rem;
+        text-align: center;
+        border: 1px solid #e2e8f0;
+        border-radius: 0.5rem;
+        background-color: #f8fafc;
+        transition: all 0.2s;
+        cursor: default;
+    }
+
+    .tech-item:hover {
+        background-color: white;
+        border-color: #3b82f6;
+        box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.1);
+    }
+
+    .tech-item span {
+        font-weight: 600;
+        color: #475569;
+        font-size: 0.95rem;
+    }
+
+    .tech-item:hover span {
+        color: #3b82f6;
+    }
+
+    @media (max-width: 768px) {
+        h2 {
+            font-size: 2rem;
+        }
+
+        .tech-grid {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .tech-item {
+            padding: 1rem 0.5rem;
+        }
+
+        .tech-item span {
+            font-size: 0.875rem;
+        }
+    }
+</style>

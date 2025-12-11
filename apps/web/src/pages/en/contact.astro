@@ -1,21 +1,412 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 
-const title = "Contact — Cacao & Avocado";
-const description = "Get in touch with us.";
+const lang = "en";
+const title =
+    "Contact | Schedule a Call or Send Project Details | Cacao & Avocado";
+const description =
+    "Get in touch for e-commerce engineering, web development, or HubSpot automation. 24-hour response time. Based in Medellín, EST/CST compatible. English & Spanish.";
 ---
 
-<Layout title={title} description={description} lang="en">
-    <main class="container mx-auto px-4 py-12">
-        <h1 class="text-4xl font-bold mb-6">Contact</h1>
-        <p class="text-lg mb-4">We are building this page. Come back soon.</p>
-        <p class="mb-4">
-            Email us at: <a
-                href="mailto:hola@cacaoavocado.com"
-                class="text-blue-600">hola@cacaoavocado.com</a>
-        </p>
-        <a href="/en" class="text-blue-600 hover:underline"
-            >&larr; Back to home</a
-        >
+<Layout title={title} description={description} lang={lang}>
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Let's Talk About Your Project</h1>
+                <p class="subtitle">
+                    Schedule a quick call or send us your project details. We
+                    typically respond within 24 hours with a technical approach
+                    and ballpark estimate — no sales pitch, just engineering
+                    perspective.
+                </p>
+            </div>
+        </section>
+
+        <section class="contact-options">
+            <div class="container">
+                <p class="intro">Choose how you'd like to connect:</p>
+
+                <div class="grid-2">
+                    <div class="option-card">
+                        <h3>Schedule a Discovery Call</h3>
+                        <p>
+                            30-minute video call to discuss your project, answer
+                            technical questions, and explore if we're a good
+                            fit. No commitment required.
+                        </p>
+                        <ul>
+                            <li>Technical discussion (not a sales pitch)</li>
+                            <li>Ballpark timeline and cost estimate</li>
+                            <li>Next steps if we move forward</li>
+                        </ul>
+                        <a
+                            href="https://calendly.com/cacaoandavocado"
+                            class="btn btn-primary"
+                            target="_blank">Schedule on Calendly →</a
+                        >
+                    </div>
+
+                    <div class="option-card">
+                        <h3>Send Project Details</h3>
+                        <p>
+                            Prefer to write it out? Tell us about your project
+                            and we'll respond within 24 hours.
+                        </p>
+                        <form class="contact-form" name="contact" netlify>
+                            <input
+                                type="text"
+                                name="name"
+                                placeholder="Your name*"
+                                required
+                            />
+                            <input
+                                type="email"
+                                name="email"
+                                placeholder="you@company.com*"
+                                required
+                            />
+                            <input
+                                type="text"
+                                name="company"
+                                placeholder="Company name (optional)"
+                            />
+                            <select name="service" required>
+                                <option value="">Service needed*</option>
+                                <option>E-commerce Engineering</option>
+                                <option>Web Development & CMS</option>
+                                <option>HubSpot CRM & Automation</option>
+                                <option>Multiple Services</option>
+                                <option>Not sure yet</option>
+                            </select>
+                            <select name="budget" required>
+                                <option value="">Budget range*</option>
+                                <option>Under $10k</option>
+                                <option>$10k - $25k</option>
+                                <option>$25k - $50k</option>
+                                <option>$50k - $100k</option>
+                                <option>$100k+</option>
+                                <option>Need help estimating</option>
+                            </select>
+                            <textarea
+                                name="description"
+                                rows="6"
+                                placeholder="Tell us about your project: goals, challenges, timeline...*"
+                                required></textarea>
+                            <select name="timeline">
+                                <option value="">Timeline (optional)</option>
+                                <option>ASAP (1-2 weeks)</option>
+                                <option>1-2 months</option>
+                                <option>2-3 months</option>
+                                <option>Flexible / Just exploring</option>
+                            </select>
+                            <button type="submit" class="btn btn-primary"
+                                >Send Project Brief</button
+                            >
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-info">
+            <div class="container">
+                <h3>Or Reach Us Directly</h3>
+                <div class="info-grid">
+                    <div><strong>Email:</strong> hello@cacaoandavocado.co</div>
+                    <div><strong>Based in:</strong> Medellín, Colombia</div>
+                    <div>
+                        <strong>Timezone:</strong> GMT-5 (EST/CST compatible)
+                    </div>
+                    <div><strong>Languages:</strong> English & Spanish</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq">
+            <div class="container">
+                <h2>Common Questions</h2>
+                <div class="faq-list">
+                    <details>
+                        <summary>How long does a typical project take?</summary>
+                        <p>It depends on scope, but here are averages:</p>
+                        <ul>
+                            <li><strong>Landing pages:</strong> 2-3 weeks</li>
+                            <li>
+                                <strong>HubSpot CRM implementation:</strong> 4-6
+                                weeks
+                            </li>
+                            <li>
+                                <strong>Headless Shopify migration:</strong> 8-12
+                                weeks
+                            </li>
+                            <li>
+                                <strong>Complete corporate site:</strong> 10-14 weeks
+                            </li>
+                            <li>
+                                <strong>React Native mobile app:</strong> 10-14 weeks
+                            </li>
+                        </ul>
+                        <p>
+                            We provide exact timelines in our proposal after
+                            scoping your project.
+                        </p>
+                    </details>
+
+                    <details>
+                        <summary>What's your minimum project size?</summary>
+                        <p>
+                            $5,000 for standalone projects. For ongoing work, we
+                            offer retainers starting at $2,000/month.
+                        </p>
+                    </details>
+
+                    <details>
+                        <summary
+                            >Do you work with startups or only established
+                            brands?</summary
+                        >
+                        <p>
+                            Both. We work with early-stage startups (pre-seed to
+                            Series A) and established brands ($1M+ revenue).
+                            What matters is alignment: if you value code
+                            quality, transparent communication, and
+                            business-driven engineering, we're a good fit.
+                        </p>
+                    </details>
+
+                    <details>
+                        <summary
+                            >Can you maintain our site after launch?</summary
+                        >
+                        <p>
+                            Yes. We offer post-launch retainers starting at
+                            $2,000/month. All projects include 30 days of
+                            support after launch (included in project cost).
+                        </p>
+                    </details>
+                </div>
+            </div>
+        </section>
     </main>
 </Layout>
+
+<style>
+    .hero {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        color: white;
+        padding: 6rem 1rem 4rem;
+        text-align: center;
+    }
+
+    .hero h1 {
+        font-size: 3rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .hero .subtitle {
+        font-size: 1.25rem;
+        color: #cbd5e1;
+        max-width: 800px;
+        margin: 0 auto;
+        line-height: 1.7;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
+
+    .contact-options {
+        padding: 5rem 1rem;
+        background-color: #f8fafc;
+    }
+
+    .intro {
+        text-align: center;
+        font-size: 1.125rem;
+        color: #64748b;
+        margin-bottom: 3rem;
+    }
+
+    .grid-2 {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 2rem;
+    }
+
+    .option-card {
+        background: white;
+        padding: 2.5rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    .option-card h3 {
+        font-size: 1.75rem;
+        color: #0f172a;
+        margin-bottom: 1rem;
+    }
+
+    .option-card p {
+        color: #475569;
+        margin-bottom: 1.5rem;
+        line-height: 1.7;
+    }
+
+    .option-card ul {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 2rem;
+    }
+
+    .option-card li {
+        padding: 0.5rem 0 0.5rem 1.5rem;
+        position: relative;
+        color: #64748b;
+    }
+
+    .option-card li::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: #3b82f6;
+        font-weight: bold;
+    }
+
+    .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .contact-form input,
+    .contact-form select,
+    .contact-form textarea {
+        padding: 0.75rem;
+        border: 1px sold #cbd5e1;
+        border-radius: 0.375rem;
+        font-size: 1rem;
+        font-family: inherit;
+    }
+
+    .contact-form textarea {
+        resize: vertical;
+        min-height: 120px;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 1rem 2rem;
+        border-radius: 0.375rem;
+        text-decoration: none;
+        font-weight: 700;
+        text-align: center;
+        transition: all 0.2s;
+        border: none;
+        cursor: pointer;
+    }
+
+    .btn-primary {
+        background-color: #3b82f6;
+        color: white;
+    }
+
+    .btn-primary:hover {
+        background-color: #2563eb;
+        transform: translateY(-2px);
+    }
+
+    .contact-info {
+        padding: 4rem 1rem;
+        background-color: white;
+        text-align: center;
+    }
+
+    .contact-info h3 {
+        font-size: 1.75rem;
+        margin-bottom: 2rem;
+        color: #0f172a;
+    }
+
+    .info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .info-grid div {
+        color: #475569;
+    }
+
+    .faq {
+        padding: 5rem 1rem;
+        background-color: #f8fafc;
+    }
+
+    .faq h2 {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+        color: #0f172a;
+    }
+
+    .faq-list {
+        max-width: 800px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    details {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+        cursor: pointer;
+    }
+
+    summary {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #0f172a;
+        list-style: none;
+        position: relative;
+        padding-right: 2rem;
+    }
+
+    summary::after {
+        content: "+";
+        position: absolute;
+        right: 0;
+        font-size: 1.5rem;
+        color: #3b82f6;
+    }
+
+    details[open] summary::after {
+        content: "−";
+    }
+
+    details p,
+    details ul {
+        margin-top: 1rem;
+        color: #475569;
+        line-height: 1.7;
+    }
+
+    @media (max-width: 768px) {
+        .hero h1 {
+            font-size: 2rem;
+        }
+
+        .grid-2 {
+            grid-template-columns: 1fr;
+        }
+
+        .faq h2 {
+            font-size: 2rem;
+        }
+    }
+</style>

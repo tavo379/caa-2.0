@@ -9,20 +9,28 @@ const navItems = [
     { label: t["nav.home"], href: `/${lang}` },
     {
         label: t["nav.services"],
-        href: `/${lang}#${lang === "en" ? "services" : "servicios"}`,
+        href: `/${lang}/${lang === "en" ? "services" : "servicios"}`,
     },
     {
         label: t["nav.projects"],
         href: `/${lang}/${lang === "en" ? "projects" : "proyectos"}`,
     },
-    { label: t["nav.about"], href: `/${lang}/about` },
-    { label: t["nav.contact"], href: `/${lang}/contact` },
+    {
+        label: t["nav.about"],
+        href: `/${lang}/${lang === "en" ? "about" : "nosotros"}`,
+    },
+    {
+        label: t["nav.contact"],
+        href: `/${lang}/${lang === "en" ? "contact" : "contacto"}`,
+    },
 ];
 ---
 
 <header class="site-header">
     <div class="container">
-        <a href={`/${lang}`} class="logo"> Cacao & Avocado </a>
+        <a href={`/${lang}`} class="logo">
+            <img src="/caa-logo.svg" alt="Cacao & Avocado" />
+        </a>
 
         <nav class="main-nav">
             <ul>
@@ -70,10 +78,18 @@ const navItems = [
     }
 
     .logo {
-        font-weight: 800;
-        font-size: 1.5rem;
-        color: #0f172a;
+        display: flex;
+        align-items: center;
         text-decoration: none;
+    }
+
+    .logo img {
+        height: 40px;
+        width: auto;
+        image-rendering: auto;
+        shape-rendering: geometricPrecision;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
     }
 
     .main-nav ul {

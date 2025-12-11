@@ -1,16 +1,281 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import CTABlock from "../../components/CTABlock.astro";
 
-const title = "About Us — Cacao & Avocado";
-const description = "Learn more about our agency and team.";
+const lang = "en";
+const title = "About | Senior Commerce Engineers | Cacao & Avocado";
+const description =
+    "11+ years building Shopify Plus, headless commerce, and HubSpot automation. Senior engineers only. Medellín-based, EST/CST compatible. Former BairesDev, Globant, Zemoga.";
 ---
 
-<Layout title={title} description={description} lang="en">
-    <main class="container mx-auto px-4 py-12">
-        <h1 class="text-4xl font-bold mb-6">About Us</h1>
-        <p class="text-lg mb-4">We are building this page. Come back soon.</p>
-        <a href="/en" class="text-blue-600 hover:underline"
-            >&larr; Back to home</a
-        >
+<Layout title={title} description={description} lang={lang}>
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Senior Engineers Who Understand Commerce</h1>
+                <p class="subtitle">
+                    We build high-performance commerce infrastructure and growth
+                    systems for ambitious brands. No junior devs, no account
+                    managers, no handoffs — just 11+ years of technical depth
+                    applied directly to your business challenges.
+                </p>
+                <p class="location">
+                    Based in Medellín, operating in your timezone, speaking your
+                    language.
+                </p>
+            </div>
+        </section>
+
+        <section class="story">
+            <div class="container">
+                <h2>How Cacao & Avocado Started</h2>
+                <p>
+                    After 11+ years at BairesDev, Globant, and Zemoga — shipping
+                    e-commerce projects for Disney, Walmart, and multinational
+                    finance platforms — we saw the same problem repeatedly:
+                    agencies overpromise, vendors undercommunicate, and clients
+                    get stuck with technical debt from junior teams learning on
+                    their dime.
+                </p>
+                <p>
+                    Cacao & Avocado was founded to solve this: senior-level
+                    engineering only, direct communication with the people
+                    writing code, and business-driven solutions over vanity
+                    metrics. We're not a 50-person agency. We're a boutique
+                    engineering firm that treats every project like it's our own
+                    business.
+                </p>
+                <p>
+                    Our name? Cacao and avocado — two of Colombia's best
+                    exports, just like our engineering. We combine deep
+                    technical expertise (the richness of cacao) with practical,
+                    growth-focused solutions (the versatility of avocado).
+                </p>
+            </div>
+        </section>
+
+        <section class="principles">
+            <div class="container">
+                <h2>How We Operate</h2>
+                <p class="intro">
+                    Four principles that guide every project we ship.
+                </p>
+
+                <div class="grid-2">
+                    <div class="principle-card">
+                        <h3>⚡ Performance First</h3>
+                        <p>
+                            Speed is a feature, not a nice-to-have. Every site
+                            we ship targets 85+ Lighthouse scores and
+                            sub-2-second load times. We optimize images,
+                            lazy-load components, eliminate render-blocking
+                            scripts, and continuously monitor Core Web Vitals.
+                            Fast sites convert better.
+                        </p>
+                    </div>
+
+                    <div class="principle-card">
+                        <h3>💬 Transparent Communication</h3>
+                        <p>
+                            No black-box development. You get daily Slack
+                            updates, weekly demos, and access to our project
+                            board. We explain technical decisions in plain
+                            English and involve you in architecture choices.
+                            Typical response time: under 2 hours during business
+                            hours.
+                        </p>
+                    </div>
+
+                    <div class="principle-card">
+                        <h3>🎯 Business-Driven Engineering</h3>
+                        <p>
+                            We don't build for engineering's sake — we build to
+                            move business metrics. Every project starts with:
+                            what's the goal? Then we architect the technical
+                            solution. Code is the means, not the end.
+                        </p>
+                    </div>
+
+                    <div class="principle-card">
+                        <h3>✅ No Technical Debt</h3>
+                        <p>
+                            We write maintainable, well-documented code with
+                            consistent patterns. No shortcuts, no "we'll fix it
+                            later." Every project includes documentation,
+                            testing, and handoff. We build for the long term.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="work-philosophy">
+            <div class="container">
+                <h2>Our Work Philosophy</h2>
+                <p>
+                    We operate 100% remote-first, with core hours aligned to
+                    EST/CST (9am-5pm your time). Based in Medellín, Colombia, we
+                    offer the nearshore advantage: same-day communication,
+                    overlapping work hours, and cultural alignment with US
+                    clients — without the offshore delays or language barriers.
+                </p>
+                <p>
+                    Our typical project: Agile 2-week sprints, weekly demos via
+                    Zoom or Loom, Slack for daily communication, and shared
+                    project boards. You'll always know what we're building, when
+                    it ships, and why we made specific technical decisions.
+                </p>
+                <p>
+                    <strong>We work best with:</strong> CTOs and technical founders
+                    who value code quality, marketing leaders tired of slow agencies,
+                    and e-commerce directors who need performance improvements with
+                    measurable ROI.
+                </p>
+            </div>
+        </section>
+
+        <CTABlock
+            title="Work With Us"
+            subtitle="Whether you need a full commerce build or technical consulting on your current stack, we'd love to talk. No sales pitch — just two senior engineers discussing your project."
+            primaryButtonText="Schedule 30-Min Call"
+            primaryButtonLink={`/${lang}/contact`}
+            secondaryButtonText="Email Us"
+            secondaryButtonLink="mailto:hello@cacaoandavocado.co"
+        />
     </main>
 </Layout>
+
+<style>
+    .hero {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        color: white;
+        padding: 6rem 1rem 4rem;
+        text-align: center;
+    }
+
+    .hero h1 {
+        font-size: 3rem;
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+    }
+
+    .hero .subtitle {
+        font-size: 1.25rem;
+        color: #cbd5e1;
+        max-width: 900px;
+        margin: 0 auto 1rem;
+        line-height: 1.7;
+    }
+
+    .hero .location {
+        color: #94a3b8;
+        font-size: 1.05rem;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
+
+    .story {
+        padding: 5rem 1rem;
+        background-color: #f8fafc;
+    }
+
+    .story h2 {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+        color: #0f172a;
+        text-align: center;
+    }
+
+    .story p {
+        max-width: 800px;
+        margin: 0 auto 1.5rem;
+        font-size: 1.125rem;
+        color: #475569;
+        line-height: 1.8;
+    }
+
+    .principles {
+        padding: 5rem 1rem;
+        background-color: white;
+    }
+
+    .principles h2 {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        color: #0f172a;
+    }
+
+    .principles .intro {
+        text-align: center;
+        font-size: 1.125rem;
+        color: #64748b;
+        margin-bottom: 3rem;
+    }
+
+    .grid-2 {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    .principle-card {
+        background: #f8fafc;
+        padding: 2rem;
+        border-radius: 0.5rem;
+        border-left: 4px solid #3b82f6;
+    }
+
+    .principle-card h3 {
+        font-size: 1.5rem;
+        color: #0f172a;
+        margin-bottom: 1rem;
+    }
+
+    .principle-card p {
+        color: #64748b;
+        line-height: 1.7;
+    }
+
+    .work-philosophy {
+        padding: 5rem 1rem;
+        background-color: #f8fafc;
+    }
+
+    .work-philosophy h2 {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+        color: #0f172a;
+        text-align: center;
+    }
+
+    .work-philosophy p {
+        max-width: 800px;
+        margin: 0 auto 1.5rem;
+        font-size: 1.125rem;
+        color: #475569;
+        line-height: 1.8;
+    }
+
+    @media (max-width: 768px) {
+        .hero h1 {
+            font-size: 2rem;
+        }
+
+        .story h2,
+        .principles h2,
+        .work-philosophy h2 {
+            font-size: 2rem;
+        }
+
+        .grid-2 {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

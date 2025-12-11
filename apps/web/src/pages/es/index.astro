@@ -2,56 +2,69 @@
 import Layout from "../../layouts/Layout.astro";
 import Hero from "../../components/Hero.astro";
 import Services from "../../components/Services.astro";
-import AboutHome from "../../components/AboutHome.astro";
 import ProjectsHome from "../../components/ProjectsHome.astro";
-import ContactHome from "../../components/ContactHome.astro";
+import MetricsSection from "../../components/MetricsSection.astro";
+import TechStack from "../../components/TechStack.astro";
+import CTABlock from "../../components/CTABlock.astro";
 import { ui } from "../../i18n/ui";
 
 const lang = "es";
 const t = ui[lang];
 
-const title = "Cacao & Avocado — Agencia Shopify & HubSpot";
+const title =
+    "Cacao & Avocado | Ingeniería de Comercio Full-Stack | Expertos en Shopify Plus y HubSpot";
 const description =
-    "Expertos en Shopify y HubSpot. Desarrollo web a medida, e-commerce y automatización de marketing.";
+    "Ingeniería de e-commerce, Shopify headless y automatización HubSpot para marcas ambiciosas. 11+ años construyendo infraestructura de comercio de alto rendimiento. Basados en Medellín, compatibles con EST/CST.";
 ---
 
 <Layout title={title} description={description} lang={lang}>
     <main>
         <Hero
-            title={t["hero.title"]}
-            subtitle={t["hero.subtitle"]}
-            ctaPrimary={t["hero.cta.primary"]}
-            ctaSecondary={t["hero.cta.secondary"]}
+            title="Ingeniería de Comercio Full-Stack Que Escala Con Tu Negocio"
+            subtitle="Construimos infraestructura de e-commerce de alto rendimiento y sistemas de crecimiento para marcas ambiciosas. Desde arquitecturas headless de Shopify hasta automatización de HubSpot que realmente convierte, combinamos experiencia técnica profunda con ingeniería impulsada por el negocio."
+            ctaPrimary="Agenda una Consulta"
+            ctaSecondary="Ver Nuestro Trabajo"
             lang={lang}
         />
         <Services
             title={t["services.title"]}
-            shopifyTitle={t["services.shopify.title"]}
-            shopifyDesc={t["services.shopify.desc"]}
-            hubspotTitle={t["services.hubspot.title"]}
-            hubspotDesc={t["services.hubspot.desc"]}
-            webTitle={t["services.web.title"]}
-            webDesc={t["services.web.desc"]}
-        />
-        <AboutHome
-            title={t["about.title"]}
-            desc={t["about.desc"]}
-            linkText={t["about.link"]}
-            lang={lang}
+            shopifyTitle="Ingeniería E-commerce"
+            shopifyDesc="Arquitecturas headless de Shopify, migraciones de extensibilidad de checkout y aplicaciones móviles React Native. Hemos optimizado tiendas que procesan $50M+ anualmente con tiempos de carga <2s y mejoras de checkout del 40%+."
+            hubspotTitle="CRM y Automatización HubSpot"
+            hubspotDesc="Implementaciones completas de HubSpot, automatización de marketing e integraciones de sistemas (Shopify, Salesforce, APIs personalizadas). Hemos desplegado 50+ automatizaciones que ahorran 20+ horas semanales y aumentan la precisión de atribución en 60%."
+            webTitle="Desarrollo Web y CMS"
+            webDesc="Sitios HubSpot CMS, landing pages de alta conversión y plataformas web corporativas construidas para rendimiento y SEO. Código limpio, puntuaciones Lighthouse 85+, y flujos de contenido que escalan con tu equipo."
         />
         <ProjectsHome
             title={t["projects.title"]}
-            intro={t["projects.intro"]}
+            intro="Trabajo seleccionado en optimización de e-commerce, migraciones headless y proyectos de ingeniería de crecimiento."
             viewAll={t["projects.viewAll"]}
             viewProject={t["projects.viewProject"]}
             empty={t["projects.empty"]}
             lang={lang}
         />
-        <ContactHome
-            title={t["contact.title"]}
-            desc={t["contact.desc"]}
-            cta={t["contact.cta"]}
-            lang={lang}
+        <MetricsSection
+            title="Impacto Comprobado"
+            metric1Number="11+"
+            metric1Label="Años Construyendo Infraestructura de Comercio"
+            metric2Number="$150M+"
+            metric2Label="GMV Anual Gestionado"
+            metric3Number="85+"
+            metric3Label="Puntuación Lighthouse Promedio"
+            metric4Number="40%"
+            metric4Label="Mejora Promedio en Checkout"
+        />
+        <TechStack
+            title="Tecnologías Con Las Que Trabajamos"
+            subtitle="Nuestro enfoque multi-especialidad significa que podemos arquitectar soluciones completas, no solo piezas. Estas son las plataformas y frameworks que desplegamos diariamente."
+        />
+        <CTABlock
+            title="¿Listo Para Escalar Tu Infraestructura de Comercio?"
+            subtitle="Auditamos tu configuración actual — gratis, sin compromiso. Identificaremos cuellos de botella, oportunidades de optimización y proporcionaremos una hoja de ruta técnica en 48 horas."
+            primaryButtonText="Agenda una Llamada de 30 Min"
+            primaryButtonLink={`/${lang}/contacto`}
+            secondaryButtonText="Ver Nuestro Trabajo"
+            secondaryButtonLink={`/${lang}/proyectos`}
         />
     </main>
 </Layout>

@@ -1,295 +1,419 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import { ui } from "../../i18n/ui";
+import CTABlock from "../../components/CTABlock.astro";
 
 const lang = "en";
-const t = ui[lang];
-
-const title = "Services — Cacao & Avocado";
-const description = "Nearshore Shopify and HubSpot Solutions for US companies.";
+const title =
+    "Services | E-commerce Engineering, Web Development & HubSpot | Cacao & Avocado";
+const description =
+    "Shopify Plus development, headless commerce, HubSpot CRM, and marketing automation. Full-stack commerce engineering for growth-focused brands. Medellín-based, EST/CST compatible.";
 ---
 
 <Layout title={title} description={description} lang={lang}>
-    <!-- Hero Section -->
-    <section class="hero-services">
-        <div class="container">
-            <h1>{t["services.hero.title"]}</h1>
-            <p class="subtitle">{t["services.hero.subtitle"]}</p>
-        </div>
-    </section>
-
-    <!-- Why Nearshore Section -->
-    <section class="why-nearshore">
-        <div class="container">
-            <h2>{t["services.why.title"]}</h2>
-            <div class="grid-3">
-                <div class="benefit-card">
-                    <div class="icon">🕐</div>
-                    <h3>{t["services.why.timezone"]}</h3>
-                    <p>{t["services.why.timezone.desc"]}</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="icon">💬</div>
-                    <h3>{t["services.why.bilingual"]}</h3>
-                    <p>{t["services.why.bilingual.desc"]}</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="icon">💰</div>
-                    <h3>{t["services.why.cost"]}</h3>
-                    <p>{t["services.why.cost.desc"]}</p>
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>Commerce Engineering For Growth-Focused Brands</h1>
+                <p class="subtitle">
+                    We don't just build websites — we architect commerce
+                    infrastructure that scales. Whether you need a headless
+                    Shopify migration, HubSpot automation, or a complete growth
+                    stack, we combine 11+ years of technical depth with
+                    business-driven engineering.
+                </p>
+                <p class="supporting">
+                    No agencies. No account managers. Direct access to senior
+                    engineers who've shipped for Disney, Walmart, and 50+
+                    e-commerce brands.
+                </p>
+                <div class="cta-group">
+                    <a href={`/${lang}/contact`} class="btn btn-primary"
+                        >Schedule Free Technical Audit</a
+                    >
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Shopify Services -->
-    <section class="service-detail shopify-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>{t["services.shopify.hero"]}</h2>
-                <p class="intro">{t["services.shopify.intro"]}</p>
+        <!-- Service Cards -->
+        <section class="services-grid">
+            <div class="container">
+                <h2>Our Services</h2>
+                <p class="intro">
+                    Three core specialties. One integrated team.
+                </p>
+
+                <div class="grid-3">
+                    <a
+                        href={`/${lang}/services/ecommerce-engineering`}
+                        class="service-card"
+                    >
+                        <div class="icon">🛍️</div>
+                        <h3>E-commerce Engineering</h3>
+                        <p class="desc">
+                            Headless architectures, checkout optimization, and
+                            mobile apps for Shopify Plus brands processing $1M+
+                            monthly. We migrate, optimize, and scale
+                            high-traffic stores.
+                        </p>
+                        <ul class="benefits">
+                            <li>
+                                Headless Shopify (Hydrogen, Remix, Storefront
+                                API)
+                            </li>
+                            <li>
+                                Checkout extensibility migrations for faster,
+                                custom checkouts
+                            </li>
+                            <li>
+                                React Native mobile apps with Shopify
+                                integration
+                            </li>
+                        </ul>
+                        <div class="tech-pills">
+                            <span>Shopify Plus</span>
+                            <span>Hydrogen</span>
+                            <span>React Native</span>
+                            <span>Remix</span>
+                        </div>
+                        <span class="cta-link"
+                            >Explore E-commerce Services →</span
+                        >
+                    </a>
+
+                    <a
+                        href={`/${lang}/services/web-development`}
+                        class="service-card"
+                    >
+                        <div class="icon">💻</div>
+                        <h3>Web Development & CMS</h3>
+                        <p class="desc">
+                            High-performance corporate sites, landing pages, and
+                            HubSpot CMS implementations. Built for conversion,
+                            optimized for SEO, designed to scale with your
+                            content team.
+                        </p>
+                        <ul class="benefits">
+                            <li>HubSpot CMS development with custom modules</li>
+                            <li>
+                                Landing pages that convert (A/B tested,
+                                performance-optimized)
+                            </li>
+                            <li>
+                                Corporate websites with 85+ Lighthouse scores
+                            </li>
+                        </ul>
+                        <div class="tech-pills">
+                            <span>HubSpot CMS</span>
+                            <span>Astro</span>
+                            <span>Next.js</span>
+                            <span>React</span>
+                        </div>
+                        <span class="cta-link">Explore Web Development →</span>
+                    </a>
+
+                    <a
+                        href={`/${lang}/services/hubspot-automation`}
+                        class="service-card"
+                    >
+                        <div class="icon">⚡</div>
+                        <h3>HubSpot CRM & Automation</h3>
+                        <p class="desc">
+                            Complete HubSpot implementations, marketing
+                            automation workflows, and system integrations. We've
+                            deployed 50+ automations saving teams 20+ hours
+                            weekly.
+                        </p>
+                        <ul class="benefits">
+                            <li>
+                                HubSpot CRM setup and migration (Salesforce,
+                                custom systems)
+                            </li>
+                            <li>
+                                Marketing automation (lead scoring, nurture
+                                campaigns, attribution)
+                            </li>
+                            <li>
+                                System integrations (Shopify, payment
+                                processors, APIs)
+                            </li>
+                        </ul>
+                        <div class="tech-pills">
+                            <span>HubSpot</span>
+                            <span>API Integration</span>
+                            <span>Salesforce</span>
+                            <span>Shopify</span>
+                        </div>
+                        <span class="cta-link">Explore HubSpot Services →</span>
+                    </a>
+                </div>
             </div>
+        </section>
 
-            <div class="services-list">
-                <div class="service-item">
-                    <h3>{t["services.shopify.custom.title"]}</h3>
-                    <p>{t["services.shopify.custom.desc"]}</p>
-                    <ul class="features">
-                        <li>Shopify Plus & Headless Commerce</li>
-                        <li>Custom Themes with Liquid & React</li>
-                        <li>Third-Party API Integrations</li>
-                        <li>Migrations from other platforms</li>
-                    </ul>
-                </div>
+        <!-- Why Work With Us -->
+        <section class="why-us">
+            <div class="container">
+                <h2>Why Work With Us</h2>
+                <p class="intro">
+                    Most agencies are specialized in one area. We're
+                    multi-disciplinary by design — which means we can architect
+                    your entire growth stack, not just pieces of it.
+                </p>
 
-                <div class="service-item">
-                    <h3>{t["services.shopify.cro.title"]}</h3>
-                    <p>{t["services.shopify.cro.desc"]}</p>
-                    <ul class="features">
-                        <li>A/B Testing & Behavioral Analysis</li>
-                        <li>Checkout Optimization</li>
-                        <li>Data-Driven UX/UI Improvements</li>
-                        <li>Retention Strategies</li>
-                    </ul>
-                </div>
+                <div class="grid-3">
+                    <div class="benefit-card">
+                        <div class="icon">🎯</div>
+                        <h3>Senior-Level Engineering Only</h3>
+                        <p>
+                            No junior devs learning on your dime. Our team has
+                            11+ years each, with experience at BairesDev,
+                            Globant, and Zemoga. We've shipped for Disney,
+                            Walmart, and multinational finance platforms
+                            processing millions in transactions daily.
+                        </p>
+                    </div>
 
-                <div class="service-item">
-                    <h3>{t["services.shopify.ai.title"]}</h3>
-                    <p>{t["services.shopify.ai.desc"]}</p>
-                    <ul class="features">
-                        <li>ML-Powered Recommendation Engines</li>
-                        <li>24/7 Intelligent Chatbots</li>
-                        <li>Predictive Segmentation</li>
-                        <li>Campaign Automation</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+                    <div class="benefit-card">
+                        <div class="icon">🔧</div>
+                        <h3>Full-Stack Commerce Expertise</h3>
+                        <p>
+                            We don't just do front-end, or just Shopify, or just
+                            marketing automation. We architect complete
+                            solutions: headless storefronts connected to HubSpot
+                            CRMs, with automated workflows and performance
+                            monitoring. One team, zero handoffs.
+                        </p>
+                    </div>
 
-    <!-- HubSpot Services -->
-    <section class="service-detail hubspot-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>{t["services.hubspot.hero"]}</h2>
-                <p class="intro">{t["services.hubspot.intro"]}</p>
-            </div>
-
-            <div class="services-list">
-                <div class="service-item">
-                    <h3>{t["services.hubspot.revops.title"]}</h3>
-                    <p>{t["services.hubspot.revops.desc"]}</p>
-                    <ul class="features">
-                        <li>Sales, Marketing & Service Alignment</li>
-                        <li>Unified Revenue Dashboards</li>
-                        <li>Cross-Team Process Automation</li>
-                        <li>Data Governance & Reporting</li>
-                    </ul>
-                </div>
-
-                <div class="service-item">
-                    <h3>{t["services.hubspot.crm.title"]}</h3>
-                    <p>{t["services.hubspot.crm.desc"]}</p>
-                    <ul class="features">
-                        <li>CRM Implementation & Migration</li>
-                        <li>Custom Pipelines & Deal Stages</li>
-                        <li>ERP, POS, and App Integrations</li>
-                        <li>Custom Objects & Properties</li>
-                    </ul>
-                </div>
-
-                <div class="service-item">
-                    <h3>{t["services.hubspot.automation.title"]}</h3>
-                    <p>{t["services.hubspot.automation.desc"]}</p>
-                    <ul class="features">
-                        <li>Multi-Channel Nurture Workflows</li>
-                        <li>Predictive Lead Scoring</li>
-                        <li>Email Sequences & Drip Campaigns</li>
-                        <li>Attribution Reporting</li>
-                    </ul>
+                    <div class="benefit-card">
+                        <div class="icon">🌎</div>
+                        <h3>Your Timezone, Your Language</h3>
+                        <p>
+                            Based in Medellín, Colombia with full EST/CST
+                            overlap. Fluent English and Spanish. Daily standups,
+                            Slack/email responsiveness within 2 hours, and clear
+                            technical documentation. We work like an in-house
+                            team, not an offshore vendor.
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="container">
-            <h2>{t["services.cta.title"]}</h2>
-            <p>{t["services.cta.desc"]}</p>
-            <a href={`/${lang}/contact`} class="btn-primary"
-                >{t["services.cta.button"]}</a
-            >
-        </div>
-    </section>
+        <!-- Our Process -->
+        <section class="process">
+            <div class="container">
+                <h2>How We Work</h2>
+                <p class="intro">
+                    Every project is different, but our approach is consistent:
+                    understand the business goal first, then architect the
+                    technical solution.
+                </p>
+
+                <div class="process-steps">
+                    <div class="step">
+                        <div class="step-number">01</div>
+                        <h3>Discovery & Technical Audit</h3>
+                        <p>
+                            We start with a deep dive into your current setup:
+                            codebase review, performance analysis, conversion
+                            funnel audit, and tech stack assessment. Goal:
+                            identify bottlenecks and quick wins.
+                        </p>
+                        <span class="duration">3-5 days</span>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">02</div>
+                        <h3>Solution Architecture</h3>
+                        <p>
+                            Detailed technical proposal with architecture
+                            diagrams, migration plan, timeline, and milestones.
+                            You'll know exactly what we're building, why, and
+                            when it ships.
+                        </p>
+                        <span class="duration">5-7 days</span>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">03</div>
+                        <h3>Build & Iterate</h3>
+                        <p>
+                            Agile sprints with weekly demos. Continuous testing
+                            (performance, accessibility, cross-browser). Slack
+                            channel for daily updates. You see progress in
+                            real-time, not at month-end.
+                        </p>
+                        <span class="duration"
+                            >4-12 weeks (depending on scope)</span
+                        >
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">04</div>
+                        <h3>Launch & 30-Day Support</h3>
+                        <p>
+                            Coordinated deployment, monitoring setup, and 30
+                            days of included support for tweaks and
+                            optimization. We don't disappear at launch — we
+                            ensure the system performs as designed.
+                        </p>
+                        <span class="duration">Ongoing</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <CTABlock
+            title="Let's Scope Your Project"
+            subtitle="Schedule a 30-minute call to discuss your needs. We'll provide a ballpark estimate and technical approach — no sales pitch, just engineering perspective."
+            primaryButtonText="Schedule Discovery Call"
+            primaryButtonLink={`/${lang}/contact`}
+            secondaryButtonText="Send Project Brief"
+            secondaryButtonLink={`/${lang}/contact`}
+        />
+    </main>
 </Layout>
 
 <style>
     /* Hero */
-    .hero-services {
+    .hero {
         background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
         color: white;
         padding: 6rem 1rem 4rem;
         text-align: center;
     }
 
-    .hero-services h1 {
+    .hero h1 {
         font-size: 3rem;
         margin-bottom: 1.5rem;
         line-height: 1.2;
     }
 
-    .hero-services .subtitle {
+    .hero .subtitle {
         font-size: 1.25rem;
         color: #cbd5e1;
-        max-width: 800px;
-        margin: 0 auto;
+        max-width: 900px;
+        margin: 0 auto 1rem;
+        line-height: 1.7;
     }
 
-    /* Container */
+    .hero .supporting {
+        font-size: 1.05rem;
+        color: #94a3b8;
+        max-width: 800px;
+        margin: 0 auto 2.5rem;
+    }
+
     .container {
         max-width: 1200px;
         margin: 0 auto;
         padding: 0 1rem;
     }
 
-    /* Why Nearshore */
-    .why-nearshore {
+    .cta-group {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 1rem 2rem;
+        border-radius: 0.375rem;
+        text-decoration: none;
+        font-weight: 700;
+        transition: all 0.2s;
+    }
+
+    .btn-primary {
+        background-color: #3b82f6;
+        color: white;
+    }
+
+    .btn-primary:hover {
+        background-color: #2563eb;
+        transform: translateY(-2px);
+    }
+
+    /* Services Grid */
+    .services-grid {
         padding: 5rem 1rem;
         background-color: #f8fafc;
     }
 
-    .why-nearshore h2 {
+    .services-grid h2 {
         text-align: center;
         font-size: 2.5rem;
-        margin-bottom: 3rem;
+        margin-bottom: 1rem;
         color: #0f172a;
+    }
+
+    .services-grid .intro {
+        text-align: center;
+        font-size: 1.125rem;
+        color: #64748b;
+        margin-bottom: 3rem;
     }
 
     .grid-3 {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
         gap: 2rem;
     }
 
-    .benefit-card {
-        background: white;
-        padding: 2rem;
-        border-radius: 0.5rem;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        text-align: center;
-    }
-
-    .benefit-card .icon {
-        font-size: 3rem;
-        margin-bottom: 1rem;
-    }
-
-    .benefit-card h3 {
-        font-size: 1.5rem;
-        color: #0f172a;
-        margin-bottom: 0.75rem;
-    }
-
-    .benefit-card p {
-        color: #64748b;
-        line-height: 1.6;
-    }
-
-    /* Service Details */
-    .service-detail {
-        padding: 5rem 1rem;
-    }
-
-    .shopify-section {
-        background-color: white;
-    }
-
-    .hubspot-section {
-        background-color: #f8fafc;
-    }
-
-    .section-header {
-        text-align: center;
-        margin-bottom: 4rem;
-    }
-
-    .section-header h2 {
-        font-size: 2.5rem;
-        color: #0f172a;
-        margin-bottom: 1rem;
-    }
-
-    .section-header .intro {
-        font-size: 1.125rem;
-        color: #64748b;
-    }
-
-    .services-list {
-        display: grid;
-        gap: 3rem;
-    }
-
-    .service-item {
+    .service-card {
         background: white;
         padding: 2.5rem;
         border-radius: 0.5rem;
-        border-left: 4px solid #3b82f6;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        border: 2px solid transparent;
+        transition: all 0.3s;
+        text-decoration: none;
+        color: inherit;
+        display: flex;
+        flex-direction: column;
     }
 
-    .hubspot-section .service-item {
-        border-left-color: #f97316;
+    .service-card:hover {
+        border-color: #3b82f6;
+        box-shadow: 0 8px 16px rgba(59, 130, 246, 0.15);
+        transform: translateY(-4px);
     }
 
-    .service-item h3 {
+    .service-card .icon {
+        font-size: 3rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .service-card h3 {
         font-size: 1.75rem;
         color: #0f172a;
         margin-bottom: 1rem;
     }
 
-    .service-item > p {
+    .service-card .desc {
         color: #475569;
-        margin-bottom: 1.5rem;
-        font-size: 1.125rem;
         line-height: 1.7;
+        margin-bottom: 1.5rem;
     }
 
-    .service-item .features {
+    .service-card .benefits {
         list-style: none;
         padding: 0;
-        margin: 0;
-        display: grid;
-        gap: 0.75rem;
+        margin: 0 0 1.5rem 0;
     }
 
-    .service-item .features li {
-        padding-left: 1.5rem;
+    .service-card .benefits li {
+        padding: 0.5rem 0 0.5rem 1.5rem;
         position: relative;
         color: #64748b;
+        font-size: 0.95rem;
+        line-height: 1.6;
     }
 
-    .service-item .features li::before {
+    .service-card .benefits li::before {
         content: "✓";
         position: absolute;
         left: 0;
@@ -297,59 +421,151 @@ const description = "Nearshore Shopify and HubSpot Solutions for US companies.";
         font-weight: bold;
     }
 
-    .hubspot-section .service-item .features li::before {
-        color: #f97316;
+    .service-card .tech-pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
     }
 
-    /* CTA */
-    .cta-section {
-        background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-        color: white;
+    .service-card .tech-pills span {
+        background-color: #e0e7ff;
+        color: #3730a3;
+        padding: 0.375rem 0.75rem;
+        border-radius: 0.25rem;
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+
+    .service-card .cta-link {
+        color: #3b82f6;
+        font-weight: 600;
+        margin-top: auto;
+        transition: color 0.2s;
+    }
+
+    .service-card:hover .cta-link {
+        color: #2563eb;
+    }
+
+    /* Why Us */
+    .why-us {
         padding: 5rem 1rem;
-        text-align: center;
+        background-color: white;
     }
 
-    .cta-section h2 {
+    .why-us h2 {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        color: #0f172a;
+    }
+
+    .why-us .intro {
+        text-align: center;
+        font-size: 1.125rem;
+        color: #64748b;
+        max-width: 800px;
+        margin: 0 auto 3rem;
+    }
+
+    .benefit-card {
+        text-align: center;
+        padding: 2rem;
+    }
+
+    .benefit-card .icon {
         font-size: 2.5rem;
         margin-bottom: 1rem;
     }
 
-    .cta-section p {
-        font-size: 1.25rem;
-        margin-bottom: 2.5rem;
-        opacity: 0.95;
+    .benefit-card h3 {
+        font-size: 1.5rem;
+        color: #0f172a;
+        margin-bottom: 1rem;
     }
 
-    .btn-primary {
-        display: inline-block;
-        padding: 1rem 2.5rem;
-        background-color: white;
-        color: #3b82f6;
-        text-decoration: none;
-        border-radius: 0.375rem;
-        font-weight: 700;
+    .benefit-card p {
+        color: #64748b;
+        line-height: 1.7;
+    }
+
+    /* Process */
+    .process {
+        padding: 5rem 1rem;
+        background-color: #f8fafc;
+    }
+
+    .process h2 {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        color: #0f172a;
+    }
+
+    .process .intro {
+        text-align: center;
         font-size: 1.125rem;
-        transition:
-            transform 0.2s,
-            box-shadow 0.2s;
+        color: #64748b;
+        max-width: 800px;
+        margin: 0 auto 4rem;
     }
 
-    .btn-primary:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    .process-steps {
+        display: grid;
+        gap: 2rem;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .step {
+        background: white;
+        padding: 2.5rem;
+        border-radius: 0.5rem;
+        border-left: 4px solid #3b82f6;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    .step-number {
+        display: inline-block;
+        background: #3b82f6;
+        color: white;
+        font-weight: 700;
+        font-size: 1.25rem;
+        padding: 0.5rem 1rem;
+        border-radius: 0.25rem;
+        margin-bottom: 1rem;
+    }
+
+    .step h3 {
+        font-size: 1.5rem;
+        color: #0f172a;
+        margin-bottom: 1rem;
+    }
+
+    .step p {
+        color: #475569;
+        line-height: 1.7;
+        margin-bottom: 1rem;
+    }
+
+    .step .duration {
+        display: inline-block;
+        background-color: #f1f5f9;
+        color: #64748b;
+        padding: 0.375rem 0.75rem;
+        border-radius: 0.25rem;
+        font-size: 0.875rem;
+        font-weight: 600;
     }
 
     @media (max-width: 768px) {
-        .hero-services h1 {
+        .hero h1 {
             font-size: 2rem;
         }
 
-        .section-header h2 {
+        .services-grid h2,
+        .why-us h2,
+        .process h2 {
             font-size: 2rem;
         }
-
-        .service-item h3 {
-            font-size: 1.5rem;
-        }
-    }
-</style>

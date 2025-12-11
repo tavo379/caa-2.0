@@ -1,0 +1,111 @@
+---
+interface Props {
+    metric1Number: string;
+    metric1Label: string;
+    metric2Number: string;
+    metric2Label: string;
+    metric3Number: string;
+    metric3Label: string;
+    metric4Number: string;
+    metric4Label: string;
+    title?: string;
+}
+
+const {
+    metric1Number,
+    metric1Label,
+    metric2Number,
+    metric2Label,
+    metric3Number,
+    metric3Label,
+    metric4Number,
+    metric4Label,
+    title = "Proven Impact",
+} = Astro.props;
+---
+
+<section class="metrics-section">
+    <div class="container">
+        <h2>{title}</h2>
+        <div class="metrics-grid">
+            <div class="metric">
+                <div class="number">{metric1Number}</div>
+                <div class="label">{metric1Label}</div>
+            </div>
+            <div class="metric">
+                <div class="number">{metric2Number}</div>
+                <div class="label">{metric2Label}</div>
+            </div>
+            <div class="metric">
+                <div class="number">{metric3Number}</div>
+                <div class="label">{metric3Label}</div>
+            </div>
+            <div class="metric">
+                <div class="number">{metric4Number}</div>
+                <div class="label">{metric4Label}</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .metrics-section {
+        padding: 5rem 1rem;
+        background-color: #f8fafc;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    h2 {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+        color: #0f172a;
+    }
+
+    .metrics-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+    }
+
+    .metric {
+        text-align: center;
+        padding: 2rem;
+    }
+
+    .number {
+        font-size: 3.5rem;
+        font-weight: 700;
+        color: #3b82f6;
+        margin-bottom: 0.5rem;
+        line-height: 1;
+    }
+
+    .label {
+        font-size: 1.125rem;
+        color: #64748b;
+        line-height: 1.5;
+    }
+
+    @media (max-width: 768px) {
+        h2 {
+            font-size: 2rem;
+        }
+
+        .metrics-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .number {
+            font-size: 2.5rem;
+        }
+
+        .label {
+            font-size: 1rem;
+        }
+    }
+</style>

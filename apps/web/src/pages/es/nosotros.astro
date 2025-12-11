@@ -1,0 +1,234 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CTABlock from "../../components/CTABlock.astro";
+
+const lang = "es";
+const title = "Nosotros | Ingenieros Senior de Comercio | Cacao & Avocado";
+const description =
+    "11+ años construyendo Shopify Plus, comercio headless y automatización HubSpot. Solo ingenieros senior. Basados en Medellín, compatibles EST/CST.";
+---
+
+<Layout title={title} description={description} lang={lang}>
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Ingenieros Senior Que Entienden el Comercio</h1>
+                <p class="subtitle">
+                    Construimos infraestructura de comercio de alto rendimiento
+                    y sistemas de crecimiento para marcas ambiciosas. Sin
+                    desarrolladores junior, sin gerentes de cuenta, sin handoffs
+                    — solo 11+ años de profundidad técnica aplicada directamente
+                    a tus desafíos de negocio.
+                </p>
+                <p class="location">
+                    Basados en Medellín, operando en tu zona horaria, hablando
+                    tu idioma.
+                </p>
+            </div>
+        </section>
+
+        <section class="story">
+            <div class="container">
+                <h2>Cómo Comenzó Cacao & Avocado</h2>
+                <p>
+                    Después de 11+ años en BairesDev, Globant y Zemoga —
+                    enviando proyectos de e-commerce para Disney, Walmart y
+                    plataformas financieras multinacionales — vimos el mismo
+                    problema repetidamente: las agencias prometen de más, los
+                    proveedores sub-comunican, y los clientes quedan atrapados
+                    con deuda técnica de equipos junior aprendiendo a su costa.
+                </p>
+                <p>
+                    Cacao & Avocado se fundó para resolver esto: ingeniería de
+                    nivel senior solamente, comunicación directa con las
+                    personas que escriben el código, y soluciones impulsadas por
+                    el negocio sobre métricas de vanidad. No somos una agencia
+                    de 50 personas. Somos una firma boutique de ingeniería que
+                    trata cada proyecto como si fuera nuestro propio negocio.
+                </p>
+            </div>
+        </section>
+
+        <section class="principles">
+            <div class="container">
+                <h2>Cómo Operamos</h2>
+                <p class="intro">
+                    Cuatro principios que guían cada proyecto que entregamos.
+                </p>
+
+                <div class="grid-2">
+                    <div class="principle-card">
+                        <h3>⚡ Rendimiento Primero</h3>
+                        <p>
+                            La velocidad es una característica, no un extra.
+                            Cada sitio que entregamos apunta a puntuaciones
+                            Lighthouse 85+ y tiempos de carga sub-2 segundos.
+                            Optimizamos imágenes, cargamos componentes de forma
+                            lazy, eliminamos scripts que bloquean la
+                            renderización y monitoreamos continuamente Core Web
+                            Vitals. Los sitios rápidos convierten mejor.
+                        </p>
+                    </div>
+
+                    <div class="principle-card">
+                        <h3>💬 Comunicación Transparente</h3>
+                        <p>
+                            Sin desarrollo en caja negra. Obtienes
+                            actualizaciones diarias en Slack, demos semanales y
+                            acceso a nuestro tablero de proyecto. Explicamos
+                            decisiones técnicas en inglés simple y te
+                            involucramos en elecciones de arquitectura. Tiempo
+                            de respuesta típico: menos de 2 horas en horario
+                            laboral.
+                        </p>
+                    </div>
+
+                    <div class="principle-card">
+                        <h3>🎯 Ingeniería Impulsada por el Negocio</h3>
+                        <p>
+                            No construimos por el bien de la ingeniería —
+                            construimos para mover métricas de negocio. Cada
+                            proyecto comienza con: ¿cuál es el objetivo? Luego
+                            arquitecturamos la solución técnica. El código es el
+                            medio, no el fin.
+                        </p>
+                    </div>
+
+                    <div class="principle-card">
+                        <h3>✅ Sin Deuda Técnica</h3>
+                        <p>
+                            Escribimos código mantenible y bien documentado con
+                            patrones consistentes. Sin atajos, sin "lo
+                            arreglaremos después". Cada proyecto incluye
+                            documentación, pruebas y traspaso. Construimos para
+                            el largo plazo.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <CTABlock
+            title="Trabaja Con Nosotros"
+            subtitle="Ya sea que necesites una construcción comercial completa o consultoría técnica sobre tu stack actual, nos encantaría hablar. Sin discurso de ventas — solo dos ingenieros senior discutiendo tu proyecto."
+            primaryButtonText="Agenda Llamada de 30 Min"
+            primaryButtonLink={`/${lang}/contacto`}
+            secondaryButtonText="Envíanos un Email"
+            secondaryButtonLink="mailto:hello@cacaoandavocado.co"
+        />
+    </main>
+</Layout>
+
+<style>
+    .hero {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        color: white;
+        padding: 6rem 1rem 4rem;
+        text-align: center;
+    }
+
+    .hero h1 {
+        font-size: 3rem;
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+    }
+
+    .hero .subtitle {
+        font-size: 1.25rem;
+        color: #cbd5e1;
+        max-width: 900px;
+        margin: 0 auto 1rem;
+        line-height: 1.7;
+    }
+
+    .hero .location {
+        color: #94a3b8;
+        font-size: 1.05rem;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
+
+    .story {
+        padding: 5rem 1rem;
+        background-color: #f8fafc;
+    }
+
+    .story h2 {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+        color: #0f172a;
+        text-align: center;
+    }
+
+    .story p {
+        max-width: 800px;
+        margin: 0 auto 1.5rem;
+        font-size: 1.125rem;
+        color: #475569;
+        line-height: 1.8;
+    }
+
+    .principles {
+        padding: 5rem 1rem;
+        background-color: white;
+    }
+
+    .principles h2 {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        color: #0f172a;
+    }
+
+    .principles .intro {
+        text-align: center;
+        font-size: 1.125rem;
+        color: #64748b;
+        margin-bottom: 3rem;
+    }
+
+    .grid-2 {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    .principle-card {
+        background: #f8fafc;
+        padding: 2rem;
+        border-radius: 0.5rem;
+        border-left: 4px solid #3b82f6;
+    }
+
+    .principle-card h3 {
+        font-size: 1.5rem;
+        color: #0f172a;
+        margin-bottom: 1rem;
+    }
+
+    .principle-card p {
+        color: #64748b;
+        line-height: 1.7;
+    }
+
+    @media (max-width: 768px) {
+        .hero h1 {
+            font-size: 2rem;
+        }
+
+        .story h2,
+        .principles h2 {
+            font-size: 2rem;
+        }
+
+        .grid-2 {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

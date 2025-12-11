@@ -1,0 +1,580 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import CTABlock from "../../../components/CTABlock.astro";
+
+const lang = "en";
+const title =
+    "E-commerce Engineering | Headless Shopify, Checkout Optimization & Mobile Apps | Cacao & Avocado";
+const description =
+    "Headless Shopify development, checkout extensibility migrations, React Native mobile apps, and CRO. E-commerce engineering for high-growth DTC brands. 85+ Lighthouse scores, 40% checkout improvements.";
+---
+
+<Layout title={title} description={description} lang={lang}>
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>E-commerce Engineering That Scales Revenue</h1>
+                <p class="subtitle">
+                    We build and optimize high-performance Shopify Plus
+                    infrastructure for brands doing $1M+ monthly. From headless
+                    migrations to checkout extensibility and React Native mobile
+                    apps, we combine commerce expertise with senior-level
+                    engineering.
+                </p>
+                <p class="metrics">
+                    50+ stores optimized | $150M+ GMV managed | 85+ avg
+                    Lighthouse score
+                </p>
+                <div class="cta-group">
+                    <a href={`/${lang}/contact`} class="btn btn-primary"
+                        >Schedule Technical Consultation</a
+                    >
+                    <a href={`/${lang}/projects`} class="btn btn-secondary"
+                        >View Case Studies</a
+                    >
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Overview -->
+        <section class="services-intro">
+            <div class="container">
+                <h2>What We Build</h2>
+                <p class="intro-text">
+                    Four core e-commerce engineering services. Choose one, or
+                    combine them for a complete commerce transformation.
+                </p>
+            </div>
+        </section>
+
+        <!-- Service 1: Headless Architecture -->
+        <section class="service-detail">
+            <div class="container">
+                <div class="service-card">
+                    <h3>Headless Shopify Architecture</h3>
+
+                    <div class="service-section">
+                        <h4>What it is:</h4>
+                        <p>
+                            Custom storefronts built with Hydrogen, Remix, or
+                            Next.js, powered by Shopify's Storefront API.
+                            Complete design freedom, sub-2-second load times,
+                            and enterprise-grade performance. We handle the full
+                            migration: data, SEO preservation, checkout
+                            integration, and analytics setup.
+                        </p>
+                    </div>
+
+                    <div class="service-section">
+                        <h4>Ideal for:</h4>
+                        <ul>
+                            <li>
+                                Brands outgrowing Shopify themes ($500K+ monthly
+                                revenue)
+                            </li>
+                            <li>
+                                Companies needing custom UX (subscriptions, B2B,
+                                complex catalogs)
+                            </li>
+                            <li>
+                                Teams wanting to own their front-end without
+                                Shopify's Liquid limitations
+                            </li>
+                            <li>
+                                International brands requiring multi-language,
+                                multi-currency storefronts
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="service-section">
+                        <h4>Tech Stack:</h4>
+                        <div class="tech-pills">
+                            <span>Hydrogen</span>
+                            <span>Remix</span>
+                            <span>Next.js</span>
+                            <span>Storefront API</span>
+                            <span>GraphQL</span>
+                            <span>Oxygen</span>
+                            <span>Vercel</span>
+                        </div>
+                    </div>
+
+                    <div class="service-section">
+                        <h4>Process:</h4>
+                        <ul class="process-list">
+                            <li>
+                                <strong>Phase 1:</strong> Architecture design and
+                                API setup (1-2 weeks)
+                            </li>
+                            <li>
+                                <strong>Phase 2:</strong> Component library and core
+                                pages (3-4 weeks)
+                            </li>
+                            <li>
+                                <strong>Phase 3:</strong> Product catalog, cart,
+                                checkout integration (2-3 weeks)
+                            </li>
+                            <li>
+                                <strong>Phase 4:</strong> Testing, SEO migration,
+                                launch (1-2 weeks)
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="pricing-box">
+                        <div class="pricing-item">
+                            <span class="label">Timeline:</span>
+                            <span class="value">8-12 weeks</span>
+                        </div>
+                        <div class="pricing-item">
+                            <span class="label">Investment:</span>
+                            <span class="value">$30,000 - $60,000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Service 2: Checkout Extensibility -->
+        <section class="service-detail alt">
+            <div class="container">
+                <div class="service-card">
+                    <h3>Checkout Extensibility & Optimization</h3>
+
+                    <div class="service-section">
+                        <h4>What it is:</h4>
+                        <p>
+                            Migration from checkout.liquid to Shopify's new
+                            Checkout Extensibility framework. Add custom fields,
+                            upsells, trust badges, and shipping logic directly
+                            in checkout — without compromising performance. We
+                            audit your current checkout, identify conversion
+                            leaks, and rebuild using native extensions and
+                            Functions API.
+                        </p>
+                    </div>
+
+                    <div class="service-section">
+                        <h4>Ideal for:</h4>
+                        <ul>
+                            <li>
+                                Stores losing sales to slow or cluttered
+                                checkouts
+                            </li>
+                            <li>
+                                Brands needing custom checkout logic (gift
+                                options, B2B fields, subscriptions)
+                            </li>
+                            <li>
+                                Companies with checkout.liquid customizations
+                                that need modernization
+                            </li>
+                            <li>
+                                Teams wanting faster checkouts without
+                                third-party scripts
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="service-section">
+                        <h4>Tech Stack:</h4>
+                        <div class="tech-pills">
+                            <span>Checkout UI Extensions</span>
+                            <span>Shopify Functions</span>
+                            <span>React</span>
+                            <span>TypeScript</span>
+                            <span>GraphQL</span>
+                        </div>
+                    </div>
+
+                    <div class="pricing-box">
+                        <div class="pricing-item">
+                            <span class="label">Timeline:</span>
+                            <span class="value">4-6 weeks</span>
+                        </div>
+                        <div class="pricing-item">
+                            <span class="label">Investment:</span>
+                            <span class="value">$12,000 - $25,000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Service 3: React Native Apps -->
+        <section class="service-detail">
+            <div class="container">
+                <div class="service-card">
+                    <h3>React Native Mobile Commerce Apps</h3>
+
+                    <div class="service-section">
+                        <h4>What it is:</h4>
+                        <p>
+                            Native iOS and Android apps with full Shopify
+                            integration: product browsing, cart, checkout
+                            (Shopify native or custom), order tracking, and push
+                            notifications. Built with React Native for code
+                            sharing and faster development. Perfect for brands
+                            wanting app-exclusive products, loyalty programs, or
+                            superior mobile UX.
+                        </p>
+                    </div>
+
+                    <div class="service-section">
+                        <h4>Ideal for:</h4>
+                        <ul>
+                            <li>
+                                DTC brands with high mobile traffic (60%+ of
+                                sales)
+                            </li>
+                            <li>
+                                Companies launching loyalty or subscription
+                                programs
+                            </li>
+                            <li>
+                                Brands wanting app-exclusive launches or early
+                                access
+                            </li>
+                            <li>
+                                Teams needing offline browsing or AR/VR product
+                                views
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="service-section">
+                        <h4>Tech Stack:</h4>
+                        <div class="tech-pills">
+                            <span>React Native</span>
+                            <span>Shopify Mobile Buy SDK</span>
+                            <span>Storefront API</span>
+                            <span>Firebase</span>
+                            <span>Push Notifications</span>
+                        </div>
+                    </div>
+
+                    <div class="pricing-box">
+                        <div class="pricing-item">
+                            <span class="label">Timeline:</span>
+                            <span class="value">10-14 weeks</span>
+                        </div>
+                        <div class="pricing-item">
+                            <span class="label">Investment:</span>
+                            <span class="value">$40,000 - $75,000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Service 4: Performance Optimization -->
+        <section class="service-detail alt">
+            <div class="container">
+                <div class="service-card">
+                    <h3>Performance & Conversion Rate Optimization</h3>
+
+                    <div class="service-section">
+                        <h4>What it is:</h4>
+                        <p>
+                            Technical CRO focused on speed, Core Web Vitals, and
+                            conversion funnel optimization. We audit your
+                            store's performance, identify bottlenecks (slow
+                            scripts, render-blocking resources, heavy images),
+                            and implement fixes. Combined with conversion
+                            analysis: heatmaps, session recordings, and A/B
+                            testing.
+                        </p>
+                    </div>
+
+                    <div class="service-section">
+                        <h4>Ideal for:</h4>
+                        <ul>
+                            <li>Stores with Lighthouse scores below 70</li>
+                            <li>
+                                High-traffic sites with slow load times (3+
+                                seconds)
+                            </li>
+                            <li>Brands with high bounce rates on mobile</li>
+                            <li>
+                                Teams launching paid ads and needing better
+                                landing page performance
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="service-section">
+                        <h4>Tech Stack:</h4>
+                        <div class="tech-pills">
+                            <span>Lighthouse</span>
+                            <span>WebPageTest</span>
+                            <span>Google Analytics 4</span>
+                            <span>Hotjar</span>
+                            <span>Optimizely</span>
+                            <span>Cloudflare</span>
+                        </div>
+                    </div>
+
+                    <div class="pricing-box">
+                        <div class="pricing-item">
+                            <span class="label">Timeline:</span>
+                            <span class="value">4-6 weeks</span>
+                        </div>
+                        <div class="pricing-item">
+                            <span class="label">Investment:</span>
+                            <span class="value">$8,000 - $18,000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <CTABlock
+            title="Ready to Scale Your Store's Infrastructure?"
+            subtitle="Let's start with a free technical audit. We'll analyze your current setup, identify optimization opportunities, and provide a roadmap with estimated ROI."
+            primaryButtonText="Schedule Free Audit"
+            primaryButtonLink={`/${lang}/contact`}
+            secondaryButtonText="View Case Studies"
+            secondaryButtonLink={`/${lang}/projects`}
+        />
+    </main>
+</Layout>
+
+<style>
+    /* Hero */
+    .hero {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        color: white;
+        padding: 6rem 1rem 4rem;
+        text-align: center;
+    }
+
+    .hero h1 {
+        font-size: 3rem;
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+    }
+
+    .hero .subtitle {
+        font-size: 1.25rem;
+        color: #cbd5e1;
+        max-width: 900px;
+        margin: 0 auto 1rem;
+        line-height: 1.7;
+    }
+
+    .hero .metrics {
+        font-size: 0.95rem;
+        color: #94a3b8;
+        margin-bottom: 2.5rem;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
+
+    .cta-group {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 1rem 2rem;
+        border-radius: 0.375rem;
+        text-decoration: none;
+        font-weight: 700;
+        transition: all 0.2s;
+    }
+
+    .btn-primary {
+        background-color: #3b82f6;
+        color: white;
+    }
+
+    .btn-primary:hover {
+        background-color: #2563eb;
+        transform: translateY(-2px);
+        box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.3);
+    }
+
+    .btn-secondary {
+        background-color: transparent;
+        border: 2px solid white;
+        color: white;
+    }
+
+    .btn-secondary:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Services Intro */
+    .services-intro {
+        padding: 5rem 1rem 3rem;
+        background-color: #f8fafc;
+        text-align: center;
+    }
+
+    .services-intro h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        color: #0f172a;
+    }
+
+    .intro-text {
+        font-size: 1.125rem;
+        color: #64748b;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    /* Service Detail */
+    .service-detail {
+        padding: 4rem 1rem;
+        background-color: #f8fafc;
+    }
+
+    .service-detail.alt {
+        background-color: white;
+    }
+
+    .service-card {
+        background: white;
+        padding: 3rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .service-detail.alt .service-card {
+        background: #f8fafc;
+    }
+
+    .service-card h3 {
+        font-size: 2rem;
+        color: #0f172a;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 3px solid #3b82f6;
+    }
+
+    .service-section {
+        margin-bottom: 2rem;
+    }
+
+    .service-section h4 {
+        font-size: 1.25rem;
+        color: #0f172a;
+        margin-bottom: 0.75rem;
+    }
+
+    .service-section p {
+        color: #475569;
+        line-height: 1.7;
+        font-size: 1.05rem;
+    }
+
+    .service-section ul {
+        list-style: none;
+        padding: 0;
+        margin: 0.5rem 0;
+    }
+
+    .service-section li {
+        padding: 0.5rem 0 0.5rem 1.5rem;
+        position: relative;
+        color: #475569;
+        line-height: 1.6;
+    }
+
+    .service-section li::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: #3b82f6;
+        font-weight: bold;
+    }
+
+    .process-list li {
+        margin-bottom: 0.5rem;
+    }
+
+    .tech-pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+    }
+
+    .tech-pills span {
+        background-color: #e0e7ff;
+        color: #3730a3;
+        padding: 0.5rem 1rem;
+        border-radius: 0.25rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+    }
+
+    .pricing-box {
+        display: flex;
+        gap: 2rem;
+        margin-top: 2rem;
+        padding: 1.5rem;
+        background-color: #f1f5f9;
+        border-radius: 0.5rem;
+        border-left: 4px solid #3b82f6;
+    }
+
+    .service-detail.alt .pricing-box {
+        background-color: #e2e8f0;
+    }
+
+    .pricing-item {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .pricing-item .label {
+        font-size: 0.875rem;
+        color: #64748b;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .pricing-item .value {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #0f172a;
+    }
+
+    @media (max-width: 768px) {
+        .hero h1 {
+            font-size: 2rem;
+        }
+
+        .services-intro h2 {
+            font-size: 2rem;
+        }
+
+        .service-card {
+            padding: 2rem 1.5rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+        }
+
+        .pricing-box {
+            flex-direction: column;
+            gap: 1rem;
+        }
+    }
+</style>
