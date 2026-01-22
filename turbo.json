@@ -19,7 +19,11 @@
         "SANITY_DATASET",
         "SANITY_API_VERSION",
         "SANITY_USE_CDN",
-        "SITE_URL"
+        "SITE_URL",
+        "NEXT_PUBLIC_SUPABASE_URL",
+        "NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY",
+        "RESEND_API_KEY",
+        "NEXT_PUBLIC_APP_URL"
       ]
     },
     "lint": {
