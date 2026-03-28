@@ -111,30 +111,13 @@ const techStack = [
     .carousel-track {
         display: flex;
         width: max-content;
-        animation: marquee 32s linear infinite;
-        will-change: transform;
     }
 
-    .carousel-wrapper:hover .carousel-track {
-        animation-play-state: paused;
-    }
-
-    /*
-     * LOOP SEAMLESS: cada set tiene gap interno + padding-right igual al gap.
-     * El padding-right crea el espacio entre el último item del set y el primero
-     * del siguiente set — idéntico al espacio entre items dentro del set.
-     * Así -50% = exactamente la anchura de un set completo. Sin saltos.
-     */
     .carousel-set {
         display: flex;
         align-items: center;
         gap: 3.5rem;
         padding-right: 3.5rem;
-    }
-
-    @keyframes marquee {
-        from { transform: translateX(0); }
-        to   { transform: translateX(-50%); }
     }
 
     .carousel-item {
@@ -172,3 +155,34 @@ const techStack = [
         }
     }
 </style>
+
+<script>
+    const wrapper = document.querySelector<HTMLElement>('.carousel-wrapper')!;
+    const track   = document.querySelector<HTMLElement>('.carousel-track')!;
+    const set1    = document.querySelector<HTMLElement>('.carousel-set')!;
+
+    // Velocidad en píxeles por frame (60 fps ≈ 30 px/s)
+    const SPEED = 0.5;
+
+    let x = 0;
+    let paused = false;
+
+    wrapper.addEventListener('mouseenter', () => { paused = true; });
+    wrapper.addEventListener('mouseleave', () => { paused = false; });
+
+    function tick() {
+        if (!paused) {
+            x -= SPEED;
+            // Cuando hemos recorrido exactamente el ancho de un set, reseteamos
+            // a 0 — la posición 0 y -setWidth se ven idénticas porque ambos sets son iguales
+            const setWidth = set1.offsetWidth;
+            if (x <= -setWidth) {
+                x += setWidth;
+            }
+            track.style.transform = `translateX(${x}px)`;
+        }
+        requestAnimationFrame(tick);
+    }
+
+    requestAnimationFrame(tick);
+</script>

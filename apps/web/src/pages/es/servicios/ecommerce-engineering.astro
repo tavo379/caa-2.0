@@ -1,0 +1,349 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import CTABlock from "../../../components/CTABlock.astro";
+
+const lang = "es";
+const title =
+    "Ingeniería E-commerce | Shopify Headless, Optimización de Checkout y Apps Móviles | Cacao & Avocado";
+const description =
+    "Desarrollo Shopify headless, migraciones a Checkout Extensibility, apps móviles React Native y CRO. Ingeniería e-commerce para marcas DTC de alto crecimiento. Puntuaciones Lighthouse 85+, mejoras de checkout del 40%.";
+---
+
+<Layout title={title} description={description} lang={lang}>
+    <main>
+        <!-- Hero -->
+        <section class="ds-page-hero">
+            <div class="ds-container">
+                <h1 class="ds-h1">Ingeniería E-commerce que Escala Ingresos</h1>
+                <p class="ds-body-lg">
+                    Construimos y optimizamos infraestructura Shopify Plus de
+                    alto rendimiento para marcas con más de $1M mensual. Desde
+                    migraciones headless hasta Checkout Extensibility y apps
+                    móviles React Native, combinamos experiencia en comercio con
+                    ingeniería de nivel senior.
+                </p>
+                <p class="ds-body metrics-line">
+                    50+ tiendas optimizadas · $150M+ GMV gestionado · 85+ puntuación Lighthouse promedio
+                </p>
+                <div class="ds-btn-group">
+                    <a href={`/${lang}/contacto`} class="ds-btn ds-btn--primary">
+                        Agendar Consulta Técnica
+                        <span class="ds-btn__dot" aria-hidden="true">●</span>
+                    </a>
+                    <a href={`/${lang}/proyectos`} class="ds-btn ds-btn--outline">
+                        Ver Casos de Estudio
+                        <span class="ds-btn__dot" aria-hidden="true">→</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resumen de servicios -->
+        <section class="ds-section ds-section--subtle ds-section--border-b">
+            <div class="ds-container">
+                <span class="ds-label">Qué Construimos</span>
+                <h2 class="ds-h2 section-title">
+                    Cuatro servicios centrales de ingeniería e-commerce. Elige uno o combínalos para una transformación comercial completa.
+                </h2>
+            </div>
+        </section>
+
+        <!-- Servicio 1: Headless -->
+        <section class="ds-section ds-section--border-b">
+            <div class="ds-container service-block">
+                <h3 class="ds-h3 service-title">Arquitectura Shopify Headless</h3>
+                <div class="service-body">
+                    <div class="service-subsection">
+                        <p class="subsection-label">Qué es</p>
+                        <p class="ds-body">
+                            Storefronts personalizados construidos con Hydrogen,
+                            Remix o Next.js, impulsados por la Storefront API de
+                            Shopify. Libertad de diseño completa, tiempos de
+                            carga menores a 2 segundos y rendimiento
+                            enterprise. Manejamos la migración completa: datos,
+                            preservación de SEO, integración de checkout y
+                            configuración de analítica.
+                        </p>
+                    </div>
+                    <div class="service-subsection">
+                        <p class="subsection-label">Ideal para</p>
+                        <ul class="ds-check-list">
+                            <li>Marcas que superaron los temas de Shopify ($500K+ mensual en ingresos)</li>
+                            <li>Empresas que necesitan UX personalizado (suscripciones, B2B, catálogos complejos)</li>
+                            <li>Equipos que quieren ser dueños de su front-end sin las limitaciones de Liquid</li>
+                            <li>Marcas internacionales que requieren storefronts multi-idioma y multi-moneda</li>
+                        </ul>
+                    </div>
+                    <div class="service-subsection">
+                        <p class="subsection-label">Proceso</p>
+                        <ul class="ds-check-list">
+                            <li><strong>Fase 1:</strong> Diseño de arquitectura y configuración de API (1–2 semanas)</li>
+                            <li><strong>Fase 2:</strong> Librería de componentes y páginas principales (3–4 semanas)</li>
+                            <li><strong>Fase 3:</strong> Catálogo de productos, carrito e integración de checkout (2–3 semanas)</li>
+                            <li><strong>Fase 4:</strong> Pruebas, migración SEO, lanzamiento (1–2 semanas)</li>
+                        </ul>
+                    </div>
+                    <div class="ds-pill-group">
+                        <span class="ds-pill">Hydrogen</span>
+                        <span class="ds-pill">Remix</span>
+                        <span class="ds-pill">Next.js</span>
+                        <span class="ds-pill">Storefront API</span>
+                        <span class="ds-pill">GraphQL</span>
+                        <span class="ds-pill">Oxygen</span>
+                        <span class="ds-pill">Vercel</span>
+                    </div>
+                    <div class="pricing-box">
+                        <div class="pricing-item">
+                            <span class="pricing-label">Timeline</span>
+                            <span class="pricing-value">8–12 semanas</span>
+                        </div>
+                        <div class="pricing-item">
+                            <span class="pricing-label">Inversión</span>
+                            <span class="pricing-value">$30,000 – $60,000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Servicio 2: Checkout -->
+        <section class="ds-section ds-section--subtle ds-section--border-b">
+            <div class="ds-container service-block">
+                <h3 class="ds-h3 service-title">Checkout Extensibility y Optimización</h3>
+                <div class="service-body">
+                    <div class="service-subsection">
+                        <p class="subsection-label">Qué es</p>
+                        <p class="ds-body">
+                            Migración de checkout.liquid al nuevo framework de
+                            Checkout Extensibility de Shopify. Agrega campos
+                            personalizados, upsells, badges de confianza y
+                            lógica de envío directamente en el checkout — sin
+                            comprometer el rendimiento. Auditamos tu checkout
+                            actual, identificamos fugas de conversión y
+                            reconstruimos usando extensiones nativas y
+                            Functions API.
+                        </p>
+                    </div>
+                    <div class="service-subsection">
+                        <p class="subsection-label">Ideal para</p>
+                        <ul class="ds-check-list">
+                            <li>Tiendas que pierden ventas por checkouts lentos o confusos</li>
+                            <li>Marcas que necesitan lógica de checkout personalizada (opciones de regalo, campos B2B, suscripciones)</li>
+                            <li>Empresas con personalizaciones de checkout.liquid que necesitan modernización</li>
+                            <li>Equipos que quieren checkouts más rápidos sin scripts de terceros</li>
+                        </ul>
+                    </div>
+                    <div class="ds-pill-group">
+                        <span class="ds-pill">Checkout UI Extensions</span>
+                        <span class="ds-pill">Shopify Functions</span>
+                        <span class="ds-pill">React</span>
+                        <span class="ds-pill">TypeScript</span>
+                        <span class="ds-pill">GraphQL</span>
+                    </div>
+                    <div class="pricing-box">
+                        <div class="pricing-item">
+                            <span class="pricing-label">Timeline</span>
+                            <span class="pricing-value">4–6 semanas</span>
+                        </div>
+                        <div class="pricing-item">
+                            <span class="pricing-label">Inversión</span>
+                            <span class="pricing-value">$12,000 – $25,000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Servicio 3: React Native -->
+        <section class="ds-section ds-section--border-b">
+            <div class="ds-container service-block">
+                <h3 class="ds-h3 service-title">Apps Móviles de Comercio con React Native</h3>
+                <div class="service-body">
+                    <div class="service-subsection">
+                        <p class="subsection-label">Qué es</p>
+                        <p class="ds-body">
+                            Apps nativas para iOS y Android con integración
+                            completa de Shopify: navegación de productos,
+                            carrito, checkout (nativo de Shopify o
+                            personalizado), seguimiento de pedidos y
+                            notificaciones push. Construidas con React Native
+                            para compartir código y desarrollo más rápido.
+                            Perfectas para marcas que quieren productos
+                            exclusivos para app, programas de lealtad o UX
+                            móvil superior.
+                        </p>
+                    </div>
+                    <div class="service-subsection">
+                        <p class="subsection-label">Ideal para</p>
+                        <ul class="ds-check-list">
+                            <li>Marcas DTC con alto tráfico móvil (60%+ de ventas)</li>
+                            <li>Empresas que lanzan programas de lealtad o suscripción</li>
+                            <li>Marcas que quieren lanzamientos exclusivos para app o acceso anticipado</li>
+                            <li>Equipos que necesitan navegación offline o vistas de productos AR/VR</li>
+                        </ul>
+                    </div>
+                    <div class="ds-pill-group">
+                        <span class="ds-pill">React Native</span>
+                        <span class="ds-pill">Shopify Mobile Buy SDK</span>
+                        <span class="ds-pill">Storefront API</span>
+                        <span class="ds-pill">Firebase</span>
+                        <span class="ds-pill">Push Notifications</span>
+                    </div>
+                    <div class="pricing-box">
+                        <div class="pricing-item">
+                            <span class="pricing-label">Timeline</span>
+                            <span class="pricing-value">10–14 semanas</span>
+                        </div>
+                        <div class="pricing-item">
+                            <span class="pricing-label">Inversión</span>
+                            <span class="pricing-value">$40,000 – $75,000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Servicio 4: CRO -->
+        <section class="ds-section ds-section--subtle ds-section--border-b">
+            <div class="ds-container service-block">
+                <h3 class="ds-h3 service-title">Rendimiento y Optimización de Tasa de Conversión</h3>
+                <div class="service-body">
+                    <div class="service-subsection">
+                        <p class="subsection-label">Qué es</p>
+                        <p class="ds-body">
+                            CRO técnico enfocado en velocidad, Core Web Vitals y
+                            optimización del embudo de conversión. Auditamos el
+                            rendimiento de tu tienda, identificamos cuellos de
+                            botella (scripts lentos, recursos que bloquean el
+                            render, imágenes pesadas) e implementamos
+                            soluciones. Combinado con análisis de conversión:
+                            heatmaps, grabaciones de sesiones y pruebas A/B.
+                        </p>
+                    </div>
+                    <div class="service-subsection">
+                        <p class="subsection-label">Ideal para</p>
+                        <ul class="ds-check-list">
+                            <li>Tiendas con puntuaciones Lighthouse por debajo de 70</li>
+                            <li>Sitios de alto tráfico con tiempos de carga lentos (más de 3 segundos)</li>
+                            <li>Marcas con altas tasas de rebote en móvil</li>
+                            <li>Equipos que lanzan anuncios pagos y necesitan mejor rendimiento en landing pages</li>
+                        </ul>
+                    </div>
+                    <div class="ds-pill-group">
+                        <span class="ds-pill">Lighthouse</span>
+                        <span class="ds-pill">WebPageTest</span>
+                        <span class="ds-pill">Google Analytics 4</span>
+                        <span class="ds-pill">Hotjar</span>
+                        <span class="ds-pill">Optimizely</span>
+                        <span class="ds-pill">Cloudflare</span>
+                    </div>
+                    <div class="pricing-box">
+                        <div class="pricing-item">
+                            <span class="pricing-label">Timeline</span>
+                            <span class="pricing-value">4–6 semanas</span>
+                        </div>
+                        <div class="pricing-item">
+                            <span class="pricing-label">Inversión</span>
+                            <span class="pricing-value">$8,000 – $18,000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <CTABlock
+            title="¿Listo para Escalar la Infraestructura de Tu Tienda?"
+            subtitle="Empecemos con una auditoría técnica gratuita. Analizaremos tu configuración actual, identificaremos oportunidades de optimización y proporcionaremos una hoja de ruta con ROI estimado."
+            primaryButtonText="Agendar Auditoría Gratuita"
+            primaryButtonLink={`/${lang}/contacto`}
+            secondaryButtonText="Ver Casos de Estudio"
+            secondaryButtonLink={`/${lang}/proyectos`}
+        />
+    </main>
+</Layout>
+
+<style>
+    .metrics-line {
+        color: var(--fg-muted);
+        margin-bottom: var(--space-8);
+    }
+
+    .section-title {
+        margin-bottom: 0;
+        font-weight: var(--font-normal);
+        color: var(--fg-muted);
+        font-size: var(--text-lg);
+        font-family: var(--font-body);
+        max-width: 700px;
+    }
+
+    .service-block {
+        max-width: 900px;
+    }
+
+    .service-title {
+        margin-bottom: var(--space-8);
+        padding-bottom: var(--space-5);
+        border-bottom: 1px solid var(--border);
+    }
+
+    .service-body {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-6);
+    }
+
+    .service-subsection {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-3);
+    }
+
+    .subsection-label {
+        font-family: var(--font-display);
+        font-size: var(--text-sm);
+        font-weight: var(--font-semibold);
+        color: var(--fg-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+    }
+
+    .pricing-box {
+        display: flex;
+        gap: var(--space-10);
+        padding: var(--space-5) var(--space-6);
+        border: 1px solid var(--border);
+        border-left: 3px solid var(--accent);
+        border-radius: var(--radius-sm);
+        background-color: var(--surface);
+        margin-top: var(--space-2);
+    }
+
+    .pricing-item {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-1);
+    }
+
+    .pricing-label {
+        font-size: var(--text-xs);
+        color: var(--fg-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-family: var(--font-display);
+    }
+
+    .pricing-value {
+        font-family: var(--font-display);
+        font-size: var(--text-xl);
+        font-weight: var(--font-bold);
+        color: var(--fg);
+    }
+
+    @media (max-width: 768px) {
+        .pricing-box {
+            flex-direction: column;
+            gap: var(--space-5);
+        }
+    }
+</style>

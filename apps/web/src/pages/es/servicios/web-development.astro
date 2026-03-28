@@ -1,0 +1,275 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import CTABlock from "../../../components/CTABlock.astro";
+
+const lang = "es";
+const title =
+    "Desarrollo Web y CMS | HubSpot CMS, Landing Pages y Sitios Corporativos | Cacao & Avocado";
+const description =
+    "Desarrollo HubSpot CMS, landing pages de alta conversión y sitios corporativos. Desarrollo web orientado al rendimiento con puntuaciones Lighthouse 85+. Stack moderno, código limpio, entrega rápida.";
+---
+
+<Layout title={title} description={description} lang={lang}>
+    <main>
+        <!-- Hero -->
+        <section class="ds-page-hero">
+            <div class="ds-container">
+                <h1 class="ds-h1">Desarrollo Web Construido para Rendimiento y Conversión</h1>
+                <p class="ds-body-lg">
+                    Construimos sitios corporativos, landing pages y sitios
+                    HubSpot CMS que convierten. Cada sitio se entrega con
+                    puntuaciones Lighthouse 85+, SEO semántico y flujos de
+                    contenido que escalan con tu equipo.
+                </p>
+                <p class="ds-body metrics-line">
+                    85+ puntuación Lighthouse promedio · &lt;2s de carga · 100+ páginas lanzadas
+                </p>
+                <div class="ds-btn-group">
+                    <a href={`/${lang}/contacto`} class="ds-btn ds-btn--primary">
+                        Agendar Consulta
+                        <span class="ds-btn__dot" aria-hidden="true">●</span>
+                    </a>
+                    <a href={`/${lang}/proyectos`} class="ds-btn ds-btn--outline">
+                        Ver Nuestro Trabajo
+                        <span class="ds-btn__dot" aria-hidden="true">→</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resumen -->
+        <section class="ds-section ds-section--subtle ds-section--border-b">
+            <div class="ds-container">
+                <span class="ds-label">Qué Construimos</span>
+                <h2 class="ds-h2 section-title">
+                    Tres servicios centrales de desarrollo web. Construidos para rendimiento, diseñados para conversión, optimizados para búsqueda.
+                </h2>
+            </div>
+        </section>
+
+        <!-- Servicio 1: HubSpot CMS -->
+        <section class="ds-section ds-section--border-b">
+            <div class="ds-container service-block">
+                <h3 class="ds-h3 service-title">Desarrollo HubSpot CMS</h3>
+                <div class="service-body">
+                    <div class="service-subsection">
+                        <p class="subsection-label">Qué es</p>
+                        <p class="ds-body">
+                            Sitios web HubSpot CMS personalizados con edición
+                            drag-and-drop para tu equipo de marketing.
+                            Construimos temas modulares, módulos personalizados y
+                            formularios/CTAs integrados para que tu equipo pueda
+                            crear landing pages y contenido sin depender de
+                            desarrolladores.
+                        </p>
+                    </div>
+                    <div class="service-subsection">
+                        <p class="subsection-label">Ideal para</p>
+                        <ul class="ds-check-list">
+                            <li>Empresas que ya usan HubSpot para CRM/marketing</li>
+                            <li>Equipos de marketing que necesitan agilidad de contenido (lanzar páginas rápidamente)</li>
+                            <li>Marcas que quieren analítica unificada (datos de sitio web + CRM en un solo lugar)</li>
+                            <li>Empresas B2B que necesitan captura de leads y seguimiento de atribución</li>
+                        </ul>
+                    </div>
+                    <div class="ds-pill-group">
+                        <span class="ds-pill">HubSpot CMS</span>
+                        <span class="ds-pill">HubL</span>
+                        <span class="ds-pill">JavaScript</span>
+                        <span class="ds-pill">CSS</span>
+                        <span class="ds-pill">Smart Content</span>
+                    </div>
+                    <div class="pricing-box">
+                        <div class="pricing-item">
+                            <span class="pricing-label">Timeline</span>
+                            <span class="pricing-value">5–7 semanas</span>
+                        </div>
+                        <div class="pricing-item">
+                            <span class="pricing-label">Inversión</span>
+                            <span class="pricing-value">$15,000 – $35,000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Servicio 2: Landing Pages -->
+        <section class="ds-section ds-section--subtle ds-section--border-b">
+            <div class="ds-container service-block">
+                <h3 class="ds-h3 service-title">Landing Pages de Alta Conversión</h3>
+                <div class="service-body">
+                    <div class="service-subsection">
+                        <p class="subsection-label">Qué es</p>
+                        <p class="ds-body">
+                            Landing pages independientes construidas para
+                            anuncios pagos, lanzamientos de productos o
+                            generación de leads. Diseñamos para un solo
+                            objetivo: conversión. Configuración de pruebas A/B,
+                            optimización de rendimiento (objetivo &lt;1.5s de
+                            carga) y seguimiento de campaña.
+                        </p>
+                    </div>
+                    <div class="service-subsection">
+                        <p class="subsection-label">Ideal para</p>
+                        <ul class="ds-check-list">
+                            <li>Empresas que ejecutan anuncios pagos (Google, Meta, LinkedIn)</li>
+                            <li>Lanzamientos de productos que necesitan sitios de campaña dedicados</li>
+                            <li>Campañas de generación de leads (ebooks, webinars, demos)</li>
+                            <li>Equipos que quieren iteración rápida (construir, probar, optimizar)</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-box">
+                        <div class="pricing-item">
+                            <span class="pricing-label">Timeline</span>
+                            <span class="pricing-value">2–3 semanas/página</span>
+                        </div>
+                        <div class="pricing-item">
+                            <span class="pricing-label">Inversión</span>
+                            <span class="pricing-value">$3,000 – $8,000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Servicio 3: Sitios Corporativos -->
+        <section class="ds-section ds-section--border-b">
+            <div class="ds-container service-block">
+                <h3 class="ds-h3 service-title">Sitios Corporativos y Plataformas</h3>
+                <div class="service-body">
+                    <div class="service-subsection">
+                        <p class="subsection-label">Qué es</p>
+                        <p class="ds-body">
+                            Sitios corporativos completos construidos con
+                            frameworks modernos (Astro, Next.js, Sanity CMS).
+                            Sitios multipágina con blog, casos de estudio,
+                            páginas de equipo y centros de recursos.
+                            Optimizados para SEO, enfocados en rendimiento.
+                        </p>
+                    </div>
+                    <div class="service-subsection">
+                        <p class="subsection-label">Ideal para</p>
+                        <ul class="ds-check-list">
+                            <li>Empresas que necesitan presencia web completa (10+ páginas)</li>
+                            <li>Marcas que superaron WordPress o CMS legacy</li>
+                            <li>Equipos que quieren stack moderno (React, headless CMS, CI/CD)</li>
+                            <li>Empresas internacionales que necesitan sitios multiidioma</li>
+                        </ul>
+                    </div>
+                    <div class="ds-pill-group">
+                        <span class="ds-pill">Astro</span>
+                        <span class="ds-pill">Next.js</span>
+                        <span class="ds-pill">React</span>
+                        <span class="ds-pill">Sanity CMS</span>
+                        <span class="ds-pill">Vercel</span>
+                    </div>
+                    <div class="pricing-box">
+                        <div class="pricing-item">
+                            <span class="pricing-label">Timeline</span>
+                            <span class="pricing-value">10–14 semanas</span>
+                        </div>
+                        <div class="pricing-item">
+                            <span class="pricing-label">Inversión</span>
+                            <span class="pricing-value">$25,000 – $60,000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <CTABlock
+            title="Construyamos Algo Rápido y Enfocado en Conversión"
+            subtitle="Ya sea que necesites una landing page la próxima semana o un sitio corporativo completo, proporcionaremos un alcance detallado, timeline y propuesta de precio fijo en 48 horas."
+            primaryButtonText="Agendar Consulta"
+            primaryButtonLink={`/${lang}/contacto`}
+            secondaryButtonText="Ver Casos de Estudio"
+            secondaryButtonLink={`/${lang}/proyectos`}
+        />
+    </main>
+</Layout>
+
+<style>
+    .metrics-line {
+        color: var(--fg-muted);
+        margin-bottom: var(--space-8);
+    }
+
+    .section-title {
+        margin-bottom: 0;
+        font-weight: var(--font-normal);
+        color: var(--fg-muted);
+        font-size: var(--text-lg);
+        font-family: var(--font-body);
+        max-width: 700px;
+    }
+
+    .service-block {
+        max-width: 900px;
+    }
+
+    .service-title {
+        margin-bottom: var(--space-8);
+        padding-bottom: var(--space-5);
+        border-bottom: 1px solid var(--border);
+    }
+
+    .service-body {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-6);
+    }
+
+    .service-subsection {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-3);
+    }
+
+    .subsection-label {
+        font-family: var(--font-display);
+        font-size: var(--text-sm);
+        font-weight: var(--font-semibold);
+        color: var(--fg-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+    }
+
+    .pricing-box {
+        display: flex;
+        gap: var(--space-10);
+        padding: var(--space-5) var(--space-6);
+        border: 1px solid var(--border);
+        border-left: 3px solid var(--accent);
+        border-radius: var(--radius-sm);
+        background-color: var(--surface);
+        margin-top: var(--space-2);
+    }
+
+    .pricing-item {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-1);
+    }
+
+    .pricing-label {
+        font-size: var(--text-xs);
+        color: var(--fg-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-family: var(--font-display);
+    }
+
+    .pricing-value {
+        font-family: var(--font-display);
+        font-size: var(--text-xl);
+        font-weight: var(--font-bold);
+        color: var(--fg);
+    }
+
+    @media (max-width: 768px) {
+        .pricing-box {
+            flex-direction: column;
+            gap: var(--space-5);
+        }
+    }
+</style>
