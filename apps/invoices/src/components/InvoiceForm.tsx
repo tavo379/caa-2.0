@@ -296,8 +296,11 @@ export function InvoiceForm({ invoice, clients, userId, invoiceNumber }: Invoice
                                             className="form-input"
                                             min="0"
                                             step="0.01"
-                                            value={item.qty}
-                                            onChange={(e) => handleItemChange(index, 'qty', parseFloat(e.target.value) || 0)}
+                                            value={item.qty || ''} // Allow empty visual state
+                                            onChange={(e) => {
+                                                const val = e.target.value === '' ? 0 : parseFloat(e.target.value)
+                                                handleItemChange(index, 'qty', val)
+                                            }}
                                         />
                                     </td>
                                     <td>
@@ -306,8 +309,11 @@ export function InvoiceForm({ invoice, clients, userId, invoiceNumber }: Invoice
                                             className="form-input"
                                             min="0"
                                             step="0.01"
-                                            value={item.unit_price}
-                                            onChange={(e) => handleItemChange(index, 'unit_price', parseFloat(e.target.value) || 0)}
+                                            value={item.unit_price || ''} // Allow empty visual state
+                                            onChange={(e) => {
+                                                const val = e.target.value === '' ? 0 : parseFloat(e.target.value)
+                                                handleItemChange(index, 'unit_price', val)
+                                            }}
                                         />
                                     </td>
                                     <td className="text-right font-medium">

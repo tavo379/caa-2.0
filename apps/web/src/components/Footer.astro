@@ -6,122 +6,117 @@ const t = ui[lang as keyof typeof ui];
 ---
 
 <footer class="site-footer">
-    <div class="container">
-        <div class="footer-content">
-            <div class="brand">
-                <span class="logo">Cacao & Avocado</span>
-                <p>Shopify & HubSpot Experts</p>
-            </div>
-
-            <div class="links">
-                <a href={`/${lang}`}>{t["nav.home"]}</a>
-                <a href={`/${lang}#${lang === "en" ? "services" : "servicios"}`}
-                    >{t["nav.services"]}</a
-                >
-                <a href={`/${lang}/${lang === "en" ? "projects" : "proyectos"}`}
-                    >{t["nav.projects"]}</a
-                >
-                <a href={`/${lang}/about`}>{t["nav.about"]}</a>
-                <a href={`/${lang}/contact`}>{t["nav.contact"]}</a>
-            </div>
-
-            <div class="social">
-                <a href="#" target="_blank" rel="noopener noreferrer"
-                    >LinkedIn</a
-                >
-                <a href="#" target="_blank" rel="noopener noreferrer"
-                    >Instagram</a
-                >
-            </div>
+    <div class="footer-inner ds-container">
+        <div class="footer-brand">
+            <a href={`/${lang}`} class="footer-logo">
+                <img src="/caa-logo.svg" alt="Cacao & Avocado" />
+            </a>
+            <p class="footer-tagline">
+                {
+                    lang === "en"
+                        ? "Premium E-commerce & Web Development Agency"
+                        : "Agencia Premium de Desarrollo E-commerce y Web"
+                }
+            </p>
         </div>
 
-        <div class="copyright">
-            &copy; {new Date().getFullYear()} Cacao & Avocado. {
+        <nav class="footer-nav">
+            <a href={`/${lang}`}>{t["nav.home"]}</a>
+            <a
+                href={`/${lang}/${lang === "en" ? "services" : "servicios"}`}
+                >{t["nav.services"]}</a
+            >
+            <a
+                href={`/${lang}/${lang === "en" ? "projects" : "proyectos"}`}
+                >{t["nav.projects"]}</a
+            >
+            <a
+                href={lang === "en"
+                    ? `/${lang}/about`
+                    : `/${lang}/nosotros`}>{t["nav.about"]}</a
+            >
+            <a
+                href={lang === "en"
+                    ? `/${lang}/contact`
+                    : `/${lang}/contacto`}>{t["nav.contact"]}</a
+            >
+        </nav>
+    </div>
+
+    <div class="footer-bottom ds-container">
+        <p class="footer-copy">
+            &copy; {new Date().getFullYear()} Cacao &amp; Avocado. {
                 t["footer.rights"]
             }
-        </div>
+        </p>
     </div>
 </footer>
 
 <style>
     .site-footer {
-        background-color: #0f172a;
-        color: white;
-        padding: 4rem 1rem 2rem;
-        margin-top: auto;
+        background-color: var(--bg);
+        border-top: 1px solid var(--border);
+        padding: var(--space-16) 0 var(--space-8);
     }
 
-    .container {
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-
-    .footer-content {
+    .footer-inner {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
-        gap: 2rem;
-        margin-bottom: 3rem;
+        gap: var(--space-12);
+        padding-bottom: var(--space-12);
+        border-bottom: 1px solid var(--border);
+        margin-bottom: var(--space-8);
     }
 
-    .brand .logo {
-        font-weight: 800;
-        font-size: 1.5rem;
+    .footer-logo {
         display: block;
-        margin-bottom: 0.5rem;
+        text-decoration: none;
+        margin-bottom: var(--space-3);
     }
 
-    .brand p {
-        color: #94a3b8;
-        font-size: 0.875rem;
+    .footer-logo img {
+        height: 32px;
+        width: auto;
     }
 
-    .links {
+    .footer-tagline {
+        font-size: var(--text-sm);
+        color: var(--fg-muted);
+        margin: 0;
+    }
+
+    .footer-nav {
         display: flex;
         flex-direction: column;
-        gap: 0.75rem;
+        gap: var(--space-3);
     }
 
-    .links a {
-        color: #cbd5e1;
+    .footer-nav a {
+        font-size: var(--text-sm);
+        color: var(--fg-muted);
         text-decoration: none;
-        transition: color 0.2s;
+        transition: color var(--ease);
     }
 
-    .links a:hover {
-        color: white;
+    .footer-nav a:hover {
+        color: var(--fg);
     }
 
-    .social {
-        display: flex;
-        gap: 1rem;
-    }
-
-    .social a {
-        color: #cbd5e1;
-        text-decoration: none;
-    }
-
-    .social a:hover {
-        color: white;
-    }
-
-    .copyright {
+    .footer-bottom {
         text-align: center;
-        padding-top: 2rem;
-        border-top: 1px solid #1e293b;
-        color: #64748b;
-        font-size: 0.875rem;
     }
 
-    @media (max-width: 768px) {
-        .footer-content {
-            flex-direction: column;
-            text-align: center;
-        }
+    .footer-copy {
+        font-size: var(--text-xs);
+        color: var(--fg-faint);
+        letter-spacing: 0.04em;
+        margin: 0;
+    }
 
-        .social {
-            justify-content: center;
+    @media (max-width: 640px) {
+        .footer-inner {
+            flex-direction: column;
         }
     }
 </style>

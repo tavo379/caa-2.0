@@ -11,49 +11,50 @@ const description =
 
 <Layout title={title} description={description} lang={lang}>
     <main>
-        <section class="hero">
-            <div class="container">
-                <h1>HubSpot CRM & Automation That Actually Drives Growth</h1>
-                <p class="subtitle">
+        <!-- Hero -->
+        <section class="ds-page-hero">
+            <div class="ds-container">
+                <h1 class="ds-h1">HubSpot CRM & Automation That Actually Drives Growth</h1>
+                <p class="ds-body-lg">
                     We implement HubSpot CRM, build marketing automation
                     workflows, and integrate your entire growth stack. Our
                     automations save teams 20+ hours weekly and increase
                     marketing attribution accuracy by 60%.
                 </p>
-                <p class="metrics">
-                    50+ implementations | 200+ automations deployed | 20
-                    hrs/week saved
+                <p class="ds-body metrics-line">
+                    50+ implementations · 200+ automations deployed · 20 hrs/week saved
                 </p>
-                <div class="cta-group">
-                    <a href={`/${lang}/contact`} class="btn btn-primary"
-                        >Schedule HubSpot Consultation</a
-                    >
-                    <a href={`/${lang}/projects`} class="btn btn-secondary"
-                        >View Integration Work</a
-                    >
+                <div class="ds-btn-group">
+                    <a href={`/${lang}/contact`} class="ds-btn ds-btn--primary">
+                        Schedule HubSpot Consultation
+                        <span class="ds-btn__dot" aria-hidden="true">●</span>
+                    </a>
+                    <a href={`/${lang}/projects`} class="ds-btn ds-btn--outline">
+                        View Integration Work
+                        <span class="ds-btn__dot" aria-hidden="true">→</span>
+                    </a>
                 </div>
             </div>
         </section>
 
-        <section class="services-intro">
-            <div class="container">
-                <h2>What We Build</h2>
-                <p class="intro-text">
-                    Three core HubSpot services: CRM implementation, marketing
-                    automation, and system integrations.
-                </p>
+        <!-- Overview -->
+        <section class="ds-section ds-section--subtle ds-section--border-b">
+            <div class="ds-container">
+                <span class="ds-label">What We Build</span>
+                <h2 class="ds-h2 section-title">
+                    Three core HubSpot services: CRM implementation, marketing automation, and system integrations.
+                </h2>
             </div>
         </section>
 
-        <!-- Service 1: CRM Implementation -->
-        <section class="service-detail">
-            <div class="container">
-                <div class="service-card">
-                    <h3>HubSpot CRM Implementation & Migration</h3>
-
-                    <div class="service-section">
-                        <h4>What it is:</h4>
-                        <p>
+        <!-- Service 1: CRM -->
+        <section class="ds-section ds-section--border-b">
+            <div class="ds-container service-block">
+                <h3 class="ds-h3 service-title">HubSpot CRM Implementation & Migration</h3>
+                <div class="service-body">
+                    <div class="service-subsection">
+                        <p class="subsection-label">What it is</p>
+                        <p class="ds-body">
                             Complete HubSpot CRM setup from scratch or migration
                             from Salesforce, Pipedrive, or custom systems. We
                             configure pipelines, custom properties, deal stages,
@@ -61,61 +62,43 @@ const description =
                             your sales process, not HubSpot's default.
                         </p>
                     </div>
-
-                    <div class="service-section">
-                        <h4>Ideal for:</h4>
-                        <ul>
-                            <li>
-                                Companies moving from spreadsheets to proper CRM
-                            </li>
-                            <li>
-                                Teams migrating from Salesforce, Pipedrive, or
-                                legacy systems
-                            </li>
-                            <li>
-                                Businesses needing custom deal pipelines (B2B,
-                                SaaS, agencies)
-                            </li>
-                            <li>
-                                Sales teams wanting better reporting and
-                                forecasting
-                            </li>
+                    <div class="service-subsection">
+                        <p class="subsection-label">Ideal for</p>
+                        <ul class="ds-check-list">
+                            <li>Companies moving from spreadsheets to proper CRM</li>
+                            <li>Teams migrating from Salesforce, Pipedrive, or legacy systems</li>
+                            <li>Businesses needing custom deal pipelines (B2B, SaaS, agencies)</li>
+                            <li>Sales teams wanting better reporting and forecasting</li>
                         </ul>
                     </div>
-
-                    <div class="service-section">
-                        <h4>Tech Stack:</h4>
-                        <div class="tech-pills">
-                            <span>HubSpot CRM</span>
-                            <span>HubSpot API</span>
-                            <span>Data Migration Tools</span>
-                            <span>Salesforce API</span>
-                        </div>
+                    <div class="ds-pill-group">
+                        <span class="ds-pill">HubSpot CRM</span>
+                        <span class="ds-pill">HubSpot API</span>
+                        <span class="ds-pill">Data Migration Tools</span>
+                        <span class="ds-pill">Salesforce API</span>
                     </div>
-
                     <div class="pricing-box">
                         <div class="pricing-item">
-                            <span class="label">Timeline:</span>
-                            <span class="value">4-6 weeks</span>
+                            <span class="pricing-label">Timeline</span>
+                            <span class="pricing-value">4–6 weeks</span>
                         </div>
                         <div class="pricing-item">
-                            <span class="label">Investment:</span>
-                            <span class="value">$8,000 - $20,000</span>
+                            <span class="pricing-label">Investment</span>
+                            <span class="pricing-value">$8,000 – $20,000</span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Service 2: Marketing Automation -->
-        <section class="service-detail alt">
-            <div class="container">
-                <div class="service-card">
-                    <h3>Marketing Automation & Workflows</h3>
-
-                    <div class="service-section">
-                        <h4>What it is:</h4>
-                        <p>
+        <!-- Service 2: Automation -->
+        <section class="ds-section ds-section--subtle ds-section--border-b">
+            <div class="ds-container service-block">
+                <h3 class="ds-h3 service-title">Marketing Automation & Workflows</h3>
+                <div class="service-body">
+                    <div class="service-subsection">
+                        <p class="subsection-label">What it is</p>
+                        <p class="ds-body">
                             Automated lead nurture campaigns, lead scoring,
                             email sequences, and behavioral triggers. We build
                             workflows that qualify leads, route to sales, and
@@ -124,51 +107,37 @@ const description =
                             visibility.
                         </p>
                     </div>
-
-                    <div class="service-section">
-                        <h4>Ideal for:</h4>
-                        <ul>
-                            <li>
-                                Marketing teams doing manual lead qualification
-                            </li>
-                            <li>
-                                Companies with long sales cycles (B2B, SaaS,
-                                high-ticket)
-                            </li>
-                            <li>
-                                Brands running multi-channel campaigns (email,
-                                ads, webinars)
-                            </li>
-                            <li>
-                                Teams wanting better attribution (which
-                                campaigns drive revenue?)
-                            </li>
+                    <div class="service-subsection">
+                        <p class="subsection-label">Ideal for</p>
+                        <ul class="ds-check-list">
+                            <li>Marketing teams doing manual lead qualification</li>
+                            <li>Companies with long sales cycles (B2B, SaaS, high-ticket)</li>
+                            <li>Brands running multi-channel campaigns (email, ads, webinars)</li>
+                            <li>Teams wanting better attribution (which campaigns drive revenue?)</li>
                         </ul>
                     </div>
-
                     <div class="pricing-box">
                         <div class="pricing-item">
-                            <span class="label">Timeline:</span>
-                            <span class="value">5-8 weeks</span>
+                            <span class="pricing-label">Timeline</span>
+                            <span class="pricing-value">5–8 weeks</span>
                         </div>
                         <div class="pricing-item">
-                            <span class="label">Investment:</span>
-                            <span class="value">$10,000 - $25,000</span>
+                            <span class="pricing-label">Investment</span>
+                            <span class="pricing-value">$10,000 – $25,000</span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Service 3: System Integrations -->
-        <section class="service-detail">
-            <div class="container">
-                <div class="service-card">
-                    <h3>HubSpot System Integrations</h3>
-
-                    <div class="service-section">
-                        <h4>What it is:</h4>
-                        <p>
+        <!-- Service 3: Integrations -->
+        <section class="ds-section ds-section--border-b">
+            <div class="ds-container service-block">
+                <h3 class="ds-h3 service-title">HubSpot System Integrations</h3>
+                <div class="service-body">
+                    <div class="service-subsection">
+                        <p class="subsection-label">What it is</p>
+                        <p class="ds-body">
                             Connect HubSpot to your entire tech stack: Shopify,
                             Salesforce, payment processors (Stripe), customer
                             support (Zendesk), and custom APIs. Two-way sync for
@@ -177,47 +146,30 @@ const description =
                             meet your needs.
                         </p>
                     </div>
-
-                    <div class="service-section">
-                        <h4>Ideal for:</h4>
-                        <ul>
-                            <li>
-                                E-commerce brands syncing Shopify orders to
-                                HubSpot
-                            </li>
-                            <li>
-                                Companies using HubSpot + Salesforce (need
-                                bi-directional sync)
-                            </li>
-                            <li>
-                                SaaS products tracking product usage in HubSpot
-                            </li>
-                            <li>
-                                Teams with custom systems needing HubSpot
-                                integration
-                            </li>
+                    <div class="service-subsection">
+                        <p class="subsection-label">Ideal for</p>
+                        <ul class="ds-check-list">
+                            <li>E-commerce brands syncing Shopify orders to HubSpot</li>
+                            <li>Companies using HubSpot + Salesforce (need bi-directional sync)</li>
+                            <li>SaaS products tracking product usage in HubSpot</li>
+                            <li>Teams with custom systems needing HubSpot integration</li>
                         </ul>
                     </div>
-
-                    <div class="service-section">
-                        <h4>Tech Stack:</h4>
-                        <div class="tech-pills">
-                            <span>HubSpot API</span>
-                            <span>Shopify API</span>
-                            <span>Salesforce API</span>
-                            <span>Stripe API</span>
-                            <span>Node.js</span>
-                        </div>
+                    <div class="ds-pill-group">
+                        <span class="ds-pill">HubSpot API</span>
+                        <span class="ds-pill">Shopify API</span>
+                        <span class="ds-pill">Salesforce API</span>
+                        <span class="ds-pill">Stripe API</span>
+                        <span class="ds-pill">Node.js</span>
                     </div>
-
                     <div class="pricing-box">
                         <div class="pricing-item">
-                            <span class="label">Timeline:</span>
-                            <span class="value">3-6 weeks</span>
+                            <span class="pricing-label">Timeline</span>
+                            <span class="pricing-value">3–6 weeks</span>
                         </div>
                         <div class="pricing-item">
-                            <span class="label">Investment:</span>
-                            <span class="value">$5,000 - $18,000</span>
+                            <span class="pricing-label">Investment</span>
+                            <span class="pricing-value">$5,000 – $18,000</span>
                         </div>
                     </div>
                 </div>
@@ -226,7 +178,7 @@ const description =
 
         <CTABlock
             title="Let's Audit Your HubSpot Setup"
-            subtitle="Already using HubSpot? We'll audit your current setup and identify quick wins. Considering HubSpot? We'll assess if it's the right fit and provide implementation roadmap."
+            subtitle="Already using HubSpot? We'll audit your current setup and identify quick wins. Considering HubSpot? We'll assess if it's the right fit and provide an implementation roadmap."
             primaryButtonText="Schedule Free Audit"
             primaryButtonLink={`/${lang}/contact`}
             secondaryButtonText="Tell Us About Your Stack"
@@ -236,225 +188,87 @@ const description =
 </Layout>
 
 <style>
-    .hero {
-        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-        color: white;
-        padding: 6rem 1rem 4rem;
-        text-align: center;
+    .metrics-line {
+        color: var(--fg-muted);
+        margin-bottom: var(--space-8);
     }
 
-    .hero h1 {
-        font-size: 3rem;
-        margin-bottom: 1.5rem;
-        line-height: 1.2;
+    .section-title {
+        margin-bottom: 0;
+        font-weight: var(--font-normal);
+        color: var(--fg-muted);
+        font-size: var(--text-lg);
+        font-family: var(--font-body);
+        max-width: 700px;
     }
 
-    .hero .subtitle {
-        font-size: 1.25rem;
-        color: #cbd5e1;
+    .service-block {
         max-width: 900px;
-        margin: 0 auto 1rem;
-        line-height: 1.7;
     }
 
-    .hero .metrics {
-        font-size: 0.95rem;
-        color: #94a3b8;
-        margin-bottom: 2.5rem;
+    .service-title {
+        margin-bottom: var(--space-8);
+        padding-bottom: var(--space-5);
+        border-bottom: 1px solid var(--border);
     }
 
-    .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 1rem;
-    }
-
-    .cta-group {
+    .service-body {
         display: flex;
-        gap: 1rem;
-        justify-content: center;
-        flex-wrap: wrap;
+        flex-direction: column;
+        gap: var(--space-6);
     }
 
-    .btn {
-        display: inline-block;
-        padding: 1rem 2rem;
-        border-radius: 0.375rem;
-        text-decoration: none;
-        font-weight: 700;
-        transition: all 0.2s;
-    }
-
-    .btn-primary {
-        background-color: #3b82f6;
-        color: white;
-    }
-
-    .btn-primary:hover {
-        background-color: #2563eb;
-    }
-
-    .btn-secondary {
-        background-color: transparent;
-        border: 2px solid white;
-        color: white;
-    }
-
-    .services-intro {
-        padding: 5rem 1rem 3rem;
-        background-color: #f8fafc;
-        text-align: center;
-    }
-
-    .services-intro h2 {
-        font-size: 2.5rem;
-        margin-bottom: 1rem;
-        color: #0f172a;
-    }
-
-    .intro-text {
-        font-size: 1.125rem;
-        color: #64748b;
-        max-width: 800px;
-        margin: 0 auto;
-    }
-
-    .service-detail {
-        padding: 4rem 1rem;
-        background-color: #f8fafc;
-    }
-
-    .service-detail.alt {
-        background-color: white;
-    }
-
-    .service-card {
-        background: white;
-        padding: 3rem;
-        border-radius: 0.5rem;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        max-width: 900px;
-        margin: 0 auto;
-    }
-
-    .service-detail.alt .service-card {
-        background: #f8fafc;
-    }
-
-    .service-card h3 {
-        font-size: 2rem;
-        color: #0f172a;
-        margin-bottom: 2rem;
-        padding-bottom: 1rem;
-        border-bottom: 3px solid #f97316;
-    }
-
-    .service-section {
-        margin-bottom: 2rem;
-    }
-
-    .service-section h4 {
-        font-size: 1.25rem;
-        color: #0f172a;
-        margin-bottom: 0.75rem;
-    }
-
-    .service-section p {
-        color: #475569;
-        line-height: 1.7;
-        font-size: 1.05rem;
-    }
-
-    .service-section ul {
-        list-style: none;
-        padding: 0;
-        margin: 0.5rem 0;
-    }
-
-    .service-section li {
-        padding: 0.5rem 0 0.5rem 1.5rem;
-        position: relative;
-        color: #475569;
-        line-height: 1.6;
-    }
-
-    .service-section li::before {
-        content: "✓";
-        position: absolute;
-        left: 0;
-        color: #f97316;
-        font-weight: bold;
-    }
-
-    .tech-pills {
+    .service-subsection {
         display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        margin-top: 0.5rem;
+        flex-direction: column;
+        gap: var(--space-3);
     }
 
-    .tech-pills span {
-        background-color: #fed7aa;
-        color: #9a3412;
-        padding: 0.5rem 1rem;
-        border-radius: 0.25rem;
-        font-size: 0.875rem;
-        font-weight: 600;
+    .subsection-label {
+        font-family: var(--font-display);
+        font-size: var(--text-sm);
+        font-weight: var(--font-semibold);
+        color: var(--fg-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
     }
 
     .pricing-box {
         display: flex;
-        gap: 2rem;
-        margin-top: 2rem;
-        padding: 1.5rem;
-        background-color: #f1f5f9;
-        border-radius: 0.5rem;
-        border-left: 4px solid #f97316;
-    }
-
-    .service-detail.alt .pricing-box {
-        background-color: #e2e8f0;
+        gap: var(--space-10);
+        padding: var(--space-5) var(--space-6);
+        border: 1px solid var(--border);
+        border-left: 3px solid var(--accent);
+        border-radius: var(--radius-sm);
+        background-color: var(--surface);
+        margin-top: var(--space-2);
     }
 
     .pricing-item {
         display: flex;
         flex-direction: column;
-        gap: 0.25rem;
+        gap: var(--space-1);
     }
 
-    .pricing-item .label {
-        font-size: 0.875rem;
-        color: #64748b;
+    .pricing-label {
+        font-size: var(--text-xs);
+        color: var(--fg-muted);
         text-transform: uppercase;
-        letter-spacing: 0.05em;
+        letter-spacing: 0.08em;
+        font-family: var(--font-display);
     }
 
-    .pricing-item .value {
-        font-size: 1.25rem;
-        font-weight: 700;
-        color: #0f172a;
+    .pricing-value {
+        font-family: var(--font-display);
+        font-size: var(--text-xl);
+        font-weight: var(--font-bold);
+        color: var(--fg);
     }
 
     @media (max-width: 768px) {
-        .hero h1 {
-            font-size: 2rem;
-        }
-
-        .services-intro h2 {
-            font-size: 2rem;
-        }
-
-        .service-card {
-            padding: 2rem 1.5rem;
-        }
-
-        .service-card h3 {
-            font-size: 1.5rem;
-        }
-
         .pricing-box {
             flex-direction: column;
-            gap: 1rem;
+            gap: var(--space-5);
         }
     }
 </style>

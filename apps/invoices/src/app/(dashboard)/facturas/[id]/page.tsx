@@ -47,6 +47,13 @@ export default async function InvoiceDetailPage({ params }: InvoiceDetailPagePro
     // Sort items by sort_order
     const sortedItems = invoice.items?.sort((a: any, b: any) => a.sort_order - b.sort_order) || []
 
+    // Fetch user settings for the invoice creator
+    const { data: settings } = await supabase
+        .from('user_settings')
+        .select('*')
+        .eq('user_id', invoice.user_id)
+        .single()
+
     return (
         <>
             <div className="page-header">
@@ -68,7 +75,11 @@ export default async function InvoiceDetailPage({ params }: InvoiceDetailPagePro
             <div className="invoice-preview">
                 <div className="invoice-header">
                     <div className="invoice-logo">
-                        <img src="/logo.svg" alt="Cacao & Avocado" />
+                        {settings?.logo_url ? (
+                            <img src={settings.logo_url} alt="Logo" style={{ maxHeight: '60px' }} />
+                        ) : (
+                            <div className="text-2xl font-bold">{settings?.business_name || 'Cacao & Avocado'}</div>
+                        )}
                     </div>
                     <div className="invoice-meta">
                         <div className="invoice-number">{invoice.invoice_number}</div>
@@ -86,10 +97,13 @@ export default async function InvoiceDetailPage({ params }: InvoiceDetailPagePro
                 <div className="invoice-parties">
                     <div>
                         <div className="invoice-party-label">{es.pdf.from}</div>
-                        <div className="invoice-party-name">Cacao & Avocado</div>
+                        <div className="invoice-party-name">{settings?.business_name || 'Cacao & Avocado'}</div>
                         <div className="text-muted text-sm">
-                            gustavo.ramirez@cacaoandavocado.co
+                            {settings?.business_address}
                         </div>
+                        {settings?.tax_id && (
+                            <div className="text-muted text-sm">NIT: {settings.tax_id}</div>
+                        )}
                     </div>
                     <div>
                         <div className="invoice-party-label">{es.pdf.billTo}</div>
@@ -154,6 +168,15 @@ export default async function InvoiceDetailPage({ params }: InvoiceDetailPagePro
                         <div className="invoice-notes-label">{es.invoices.notes}</div>
                         <div className="text-muted text-sm" style={{ whiteSpace: 'pre-wrap' }}>
                             {invoice.notes}
+                        </div>
+                    </div>
+                )}
+
+                {settings?.signature_url && (
+                    <div className="invoice-signature" style={{ marginTop: 'var(--space-10)' }}>
+                        <img src={settings.signature_url} alt="Firma Autorizada" style={{ maxHeight: '80px', marginBottom: 'var(--space-2)' }} />
+                        <div style={{ borderTop: '1px solid var(--color-border)', width: '200px', paddingTop: 'var(--space-2)' }}>
+                            <div className="text-sm font-medium">Firma Autorizada</div>
                         </div>
                     </div>
                 )}

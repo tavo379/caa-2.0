@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { createClient } from '@/lib/supabase/client'
 import { es } from '@/i18n/es'
 import type { Client } from '@/lib/supabase/types'
+import { Save } from 'lucide-react'
 
 interface ClientFormProps {
     client?: Client
@@ -158,13 +159,14 @@ export function ClientForm({ client, userId }: ClientFormProps) {
                     </div>
                 )}
 
-                <div className="flex gap-4" style={{ marginTop: 'var(--space-6)' }}>
-                    <button type="submit" className="btn btn-primary" disabled={loading}>
-                        {loading ? es.common.loading : es.clients.save}
-                    </button>
+                <div className="flex gap-4" style={{ marginTop: 'var(--space-6)', justifyContent: 'flex-end' }}>
                     <Link href="/clientes" className="btn btn-secondary">
                         {es.common.cancel}
                     </Link>
+                    <button type="submit" className="btn btn-primary" disabled={loading}>
+                        <Save size={16} />
+                        {loading ? es.common.loading : es.clients.save}
+                    </button>
                 </div>
             </div>
         </form>

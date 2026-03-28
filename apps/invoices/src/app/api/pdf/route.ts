@@ -5,84 +5,91 @@ import { createClient, createAdminClient } from '@/lib/supabase/server'
 // For now, we'll generate a simple HTML-based PDF using a service or browser print
 
 export async function POST(request: NextRequest) {
-    try {
-        const { invoiceId } = await request.json()
+  try {
+    const { invoiceId } = await request.json()
 
-        if (!invoiceId) {
-            return NextResponse.json({ error: 'Invoice ID required' }, { status: 400 })
-        }
+    if (!invoiceId) {
+      return NextResponse.json({ error: 'Invoice ID required' }, { status: 400 })
+    }
 
-        // Verify user is authenticated
-        const supabase = await createClient()
-        const { data: { user } } = await supabase.auth.getUser()
+    // Verify user is authenticated
+    const supabase = await createClient()
+    const { data: { user } } = await supabase.auth.getUser()
 
-        if (!user) {
-            return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-        }
+    if (!user) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
 
-        // Fetch invoice with client and items
-        const { data: invoice, error } = await supabase
-            .from('invoices')
-            .select(`
+    // Fetch invoice with client and items
+    const { data: invoice, error } = await supabase
+      .from('invoices')
+      .select(`
         *,
         client:clients(*),
         items:invoice_items(*)
       `)
-            .eq('id', invoiceId)
-            .single()
+      .eq('id', invoiceId)
+      .single()
 
-        if (error || !invoice) {
-            return NextResponse.json({ error: 'Invoice not found' }, { status: 404 })
-        }
-
-        // Sort items
-        const sortedItems = invoice.items?.sort((a: any, b: any) => a.sort_order - b.sort_order) || []
-
-        // Generate HTML for the invoice
-        const html = generateInvoiceHtml(invoice, sortedItems)
-
-        // For a production implementation, you would:
-        // 1. Use Playwright to render the HTML to PDF
-        // 2. Upload the PDF to Supabase Storage
-        // 3. Return the public URL
-
-        // For now, we'll create a data URL that can be used for printing/downloading
-        // In production, replace this with actual Playwright PDF generation
-
-        // Store the invoice as ready for PDF (you can trigger browser print)
-        const pdfUrl = `/i/${invoice.public_token}?print=true`
-
-        // Update invoice with PDF URL indicator
-        await supabase
-            .from('invoices')
-            .update({
-                pdf_url: pdfUrl,
-                status: invoice.status === 'draft' ? 'sent' : invoice.status
-            })
-            .eq('id', invoiceId)
-
-        return NextResponse.json({
-            success: true,
-            pdfUrl,
-            message: 'PDF ready for download'
-        })
-
-    } catch (error: any) {
-        console.error('PDF generation error:', error)
-        return NextResponse.json({ error: error.message }, { status: 500 })
+    if (error || !invoice) {
+      return NextResponse.json({ error: 'Invoice not found' }, { status: 404 })
     }
+
+    // Sort items
+    const sortedItems = invoice.items?.sort((a: any, b: any) => a.sort_order - b.sort_order) || []
+
+    // Fetch user settings
+    const { data: settings } = await supabase
+      .from('user_settings')
+      .select('*')
+      .eq('user_id', invoice.user_id)
+      .single()
+
+    // Generate HTML for the invoice
+    const html = generateInvoiceHtml(invoice, sortedItems, settings)
+
+    // For a production implementation, you would:
+    // 1. Use Playwright to render the HTML to PDF
+    // 2. Upload the PDF to Supabase Storage
+    // 3. Return the public URL
+
+    // For now, we'll create a data URL that can be used for printing/downloading
+    // In production, replace this with actual Playwright PDF generation
+
+    // Store the invoice as ready for PDF (you can trigger browser print)
+    const pdfUrl = `/i/${invoice.public_token}?print=true`
+
+    // Update invoice with PDF URL indicator - BUT DO NOT CHANGE STATUS
+    await supabase
+      .from('invoices')
+      .update({
+        pdf_url: pdfUrl
+        // Removed: status: invoice.status === 'draft' ? 'sent' : invoice.status
+      })
+      .eq('id', invoiceId)
+
+    return NextResponse.json({
+      success: true,
+      pdfUrl,
+      message: 'PDF ready for download'
+    })
+
+  } catch (error: any) {
+    console.error('PDF generation error:', error)
+    return NextResponse.json({ error: error.message }, { status: 500 })
+  }
 }
 
-function generateInvoiceHtml(invoice: any, items: any[]): string {
-    const formatCurrency = (amount: number) => {
-        return new Intl.NumberFormat('es-CO', {
-            style: 'currency',
-            currency: invoice.currency,
-            minimumFractionDigits: 2
-        }).format(amount)
-    }
+function generateInvoiceHtml(invoice: any, items: any[], settings: any): string {
+  const formatCurrency = (amount: number) => {
+    return new Intl.NumberFormat('es-CO', {
+      style: 'currency',
+      currency: invoice.currency,
+      minimumFractionDigits: 2
+    }).format(amount)
+  }
 
-    const itemRows = items.map(item => `
+  const itemRows = items.map(item => `
     <tr>
       <td style="padding: 12px; border-bottom: 1px solid #e2e8f0;">${item.description}</td>
       <td style="padding: 12px; border-bottom: 1px solid #e2e8f0; text-align: center;">${item.qty}</td>
@@ -91,7 +98,19 @@ function generateInvoiceHtml(invoice: any, items: any[]): string {
     </tr>
   `).join('')
 
-    return `
+  const businessName = settings?.business_name || 'Cacao & Avocado'
+  const logoHtml = settings?.logo_url
+    ? `<img src="${settings.logo_url}" alt="Logo" style="max-height: 60px;" />`
+    : `<h1 style="color: #0f172a; margin: 0; font-size: 24px;">${businessName}</h1>`
+  const signatureHtml = settings?.signature_url
+    ? `
+        <div style="margin-top: 60px;">
+            <img src="${settings.signature_url}" alt="Firma" style="max-height: 80px; margin-bottom: 10px;" />
+            <div style="border-top: 1px solid #e2e8f0; width: 200px; padding-top: 5px; font-size: 14px; font-weight: 500;">Firma Autorizada</div>
+        </div>`
+    : ''
+
+  return `
     <!DOCTYPE html>
     <html>
     <head>
@@ -103,7 +122,7 @@ function generateInvoiceHtml(invoice: any, items: any[]): string {
           .no-print { display: none; }
         }
         body {
-          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+          font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
           color: #0f172a;
           line-height: 1.6;
           max-width: 800px;
@@ -111,12 +130,13 @@ function generateInvoiceHtml(invoice: any, items: any[]): string {
           padding: 40px;
         }
       </style>
+      <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     </head>
     <body>
-      <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 2px solid #0f172a;">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 2px solid #000000;">
         <div>
-          <h1 style="color: #0f172a; margin: 0; font-size: 24px;">Cacao & Avocado</h1>
-          <p style="color: #64748b; margin: 4px 0 0 0;">gustavo.ramirez@cacaoandavocado.co</p>
+          ${logoHtml}
+          ${settings?.business_address ? `<p style="color: #64748b; margin: 4px 0 0 0;">${settings.business_address}</p>` : ''}
         </div>
         <div style="text-align: right;">
           <div style="font-size: 24px; font-weight: bold; color: #0f172a;">${invoice.invoice_number}</div>
@@ -128,8 +148,9 @@ function generateInvoiceHtml(invoice: any, items: any[]): string {
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 40px;">
         <div>
           <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: #64748b; margin-bottom: 8px;">De</div>
-          <div style="font-weight: 600; font-size: 18px;">Cacao & Avocado</div>
-          <div style="color: #64748b;">gustavo.ramirez@cacaoandavocado.co</div>
+          <div style="font-weight: 600; font-size: 18px;">${businessName}</div>
+          ${settings?.tax_id ? `<div style="color: #64748b;">NIT: ${settings.tax_id}</div>` : ''}
+          ${settings?.business_address ? `<div style="color: #64748b;">${settings.business_address}</div>` : ''}
         </div>
         <div>
           <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: #64748b; margin-bottom: 8px;">Facturar a</div>
@@ -179,10 +200,12 @@ function generateInvoiceHtml(invoice: any, items: any[]): string {
         </div>
       ` : ''}
       
+      ${signatureHtml}
+
       <div style="margin-top: 60px; text-align: center; color: #64748b;">
         <p>Gracias por su preferencia</p>
       </div>
     </body>
     </html>
-  `
+    `
 }

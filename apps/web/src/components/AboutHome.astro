@@ -1,4 +1,6 @@
 ---
+import { ArrowRight } from "lucide-astro";
+
 interface Props {
     title: string;
     desc: string;
@@ -9,48 +11,32 @@ interface Props {
 const { title, desc, linkText, lang } = Astro.props;
 ---
 
-<section class="about-home">
-    <div class="container">
-        <div class="content">
-            <h2>{title}</h2>
-            <p>{desc}</p>
-            <a href={`/${lang}/about`} class="link">{linkText} &rarr;</a>
-        </div>
+<section class="ds-section ds-section--border-b">
+    <div class="about-home-inner ds-container">
+        <h2 class="ds-h2">{title}</h2>
+        <p class="ds-body-lg about-desc">{desc}</p>
+        <a
+            href={`/${lang}/${lang === "en" ? "about" : "nosotros"}`}
+            class="ds-btn ds-btn--outline"
+        >
+            {linkText}
+            <span class="ds-btn__dot">
+                <ArrowRight size={12} strokeWidth={2} />
+            </span>
+        </a>
     </div>
 </section>
 
 <style>
-    .about-home {
-        padding: 5rem 1rem;
-        background-color: white;
+    .about-home-inner {
+        max-width: 700px;
     }
 
-    .container {
-        max-width: 800px;
-        margin: 0 auto;
-        text-align: center;
+    .about-home-inner .ds-h2 {
+        margin-bottom: var(--space-6);
     }
 
-    h2 {
-        font-size: 2.5rem;
-        margin-bottom: 1.5rem;
-        color: #0f172a;
-    }
-
-    p {
-        font-size: 1.125rem;
-        color: #475569;
-        margin-bottom: 2rem;
-        line-height: 1.8;
-    }
-
-    .link {
-        color: #3b82f6;
-        text-decoration: none;
-        font-weight: 600;
-    }
-
-    .link:hover {
-        text-decoration: underline;
+    .about-desc {
+        margin-bottom: var(--space-8);
     }
 </style>

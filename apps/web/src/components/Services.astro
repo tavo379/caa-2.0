@@ -1,4 +1,6 @@
 ---
+import { ArrowUpRight } from "lucide-astro";
+
 interface Props {
     title: string;
     shopifyTitle: string;
@@ -7,6 +9,7 @@ interface Props {
     hubspotDesc: string;
     webTitle: string;
     webDesc: string;
+    lang: string;
 }
 
 const {
@@ -17,73 +20,43 @@ const {
     hubspotDesc,
     webTitle,
     webDesc,
+    lang,
 } = Astro.props;
+
+// EN tiene páginas individuales. ES aún no — apunta a las EN (igual que servicios.astro).
+const base = lang === "en" ? "/en/services" : "/en/services";
+
+const services = [
+    {
+        title: shopifyTitle,
+        desc:  shopifyDesc,
+        href:  `${base}/ecommerce-engineering`,
+    },
+    {
+        title: hubspotTitle,
+        desc:  hubspotDesc,
+        href:  `${base}/hubspot-automation`,
+    },
+    {
+        title: webTitle,
+        desc:  webDesc,
+        href:  `${base}/web-development`,
+    },
+];
 ---
 
-<section class="services" id="servicios">
-    <div class="container">
-        <h2>{title}</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>{shopifyTitle}</h3>
-                <p>{shopifyDesc}</p>
-            </div>
-            <div class="card">
-                <h3>{hubspotTitle}</h3>
-                <p>{hubspotDesc}</p>
-            </div>
-            <div class="card">
-                <h3>{webTitle}</h3>
-                <p>{webDesc}</p>
-            </div>
+<section class="ds-section ds-section--border-b" id="servicios">
+    <div class="ds-container">
+        <span class="ds-label">{title}</span>
+        <div class="ds-service-list">
+            {services.map((svc) => (
+                <a href={svc.href} class="ds-service-row">
+                    <span class="ds-service-row__title">{svc.title}</span>
+                    <span class="ds-service-row__icon" aria-hidden="true">
+                        <ArrowUpRight size={20} strokeWidth={1.5} />
+                    </span>
+                </a>
+            ))}
         </div>
     </div>
 </section>
-
-<style>
-    .services {
-        padding: 5rem 1rem;
-        background-color: #f8fafc;
-    }
-
-    .container {
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-
-    h2 {
-        text-align: center;
-        font-size: 2.5rem;
-        margin-bottom: 3rem;
-        color: #0f172a;
-    }
-
-    .grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
-    }
-
-    .card {
-        background: white;
-        padding: 2rem;
-        border-radius: 0.5rem;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        transition: transform 0.2s;
-    }
-
-    .card:hover {
-        transform: translateY(-5px);
-    }
-
-    h3 {
-        font-size: 1.5rem;
-        margin-bottom: 1rem;
-        color: #0f172a;
-    }
-
-    p {
-        color: #475569;
-        line-height: 1.6;
-    }
-</style>

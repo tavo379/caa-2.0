@@ -1,0 +1,837 @@
+/* =============================================================================
+   CACAO & AVOCADO — DESIGN SYSTEM COMPONENTS
+   Cada clase es autónoma, reutilizable y solo usa tokens de theme.css.
+   ============================================================================= */
+
+/* =============================================================================
+   LAYOUT
+   ============================================================================= */
+
+.ds-container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 var(--section-px);
+}
+
+.ds-section {
+  padding: var(--section-py) 0;
+}
+
+.ds-section--sm {
+  padding: var(--space-12) 0;
+}
+
+.ds-section--subtle {
+  background-color: var(--bg-subtle);
+}
+
+.ds-section--border-b {
+  border-bottom: 1px solid var(--border);
+}
+
+.ds-section--border-t {
+  border-top: 1px solid var(--border);
+}
+
+/* =============================================================================
+   GRID
+   ============================================================================= */
+
+.ds-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-8);
+}
+
+.ds-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: var(--space-8);
+}
+
+.ds-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-8);
+}
+
+/* =============================================================================
+   TYPOGRAPHY
+   ============================================================================= */
+
+.ds-label {
+  display: block;
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: var(--font-medium);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  margin-bottom: var(--space-6);
+}
+
+/* Large editorial display heading — uppercase, hero use */
+.ds-display {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 7vw, 5.5rem);
+  font-weight: var(--font-extrabold);
+  line-height: var(--leading-tight);
+  color: var(--fg);
+  letter-spacing: -0.02em;
+}
+
+.ds-display .accent {
+  color: var(--accent);
+}
+
+/* Page-level H1 */
+.ds-h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: var(--font-bold);
+  line-height: var(--leading-tight);
+  color: var(--fg);
+  letter-spacing: -0.01em;
+}
+
+/* Section H2 */
+.ds-h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+  font-weight: var(--font-bold);
+  line-height: var(--leading-snug);
+  color: var(--fg);
+}
+
+/* Card / item H3 */
+.ds-h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: var(--font-semibold);
+  color: var(--fg);
+}
+
+/* Body text */
+.ds-body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--fg-muted);
+}
+
+.ds-body-lg {
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+  color: var(--fg-muted);
+}
+
+/* =============================================================================
+   BUTTONS
+   ============================================================================= */
+
+.ds-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0.65rem 1.25rem;
+  border-radius: var(--radius-full);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  transition: background-color var(--ease), border-color var(--ease), color var(--ease);
+  cursor: pointer;
+  border: 1px solid transparent;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* Primary: transparent bg, muted white border */
+.ds-btn--primary {
+  background-color: transparent;
+  color: var(--fg);
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+.ds-btn--primary:hover {
+  background-color: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.55);
+  color: var(--fg);
+}
+
+/* Outline: idéntico a primary — alias semántico */
+.ds-btn--outline {
+  background-color: transparent;
+  color: var(--fg);
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+.ds-btn--outline:hover {
+  background-color: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.55);
+  color: var(--fg);
+}
+
+/* Accent: filled orange */
+.ds-btn--accent {
+  background-color: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.ds-btn--accent:hover {
+  background-color: var(--accent-hover);
+  border-color: var(--accent-hover);
+  color: #fff;
+}
+
+/* Cuando hay dot: reducir padding derecho para que el dot quede pegado al borde */
+.ds-btn:has(.ds-btn__dot) {
+  padding-right: 0.45rem;
+}
+
+/* Circle dot — círculo blanco con ícono oscuro dentro */
+.ds-btn__dot {
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: var(--radius-full);
+  background-color: rgba(255, 255, 255, 0.92);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background-color var(--ease);
+}
+
+.ds-btn__dot svg {
+  display: block;
+  stroke: var(--bg);
+}
+
+/* Primary/Outline hover: dot va a blanco puro, flecha oscura — siempre visible */
+.ds-btn--primary:hover .ds-btn__dot,
+.ds-btn--outline:hover .ds-btn__dot {
+  background-color: #fff;
+}
+
+/* Accent en reposo: dot semi-transparente blanco, flecha blanca */
+.ds-btn--accent .ds-btn__dot {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+.ds-btn--accent .ds-btn__dot svg {
+  stroke: #fff;
+}
+
+/* Accent en hover: dot ligeramente más opaco — flecha blanca sigue visible */
+.ds-btn--accent:hover .ds-btn__dot {
+  background-color: rgba(255, 255, 255, 0.38);
+}
+
+/* Ghost: sin fondo, sin borde, hover sutil */
+.ds-btn--ghost {
+  background-color: transparent;
+  color: var(--fg-muted);
+  border-color: transparent;
+}
+
+.ds-btn--ghost:hover {
+  background-color: var(--surface);
+  color: var(--fg);
+  border-color: transparent;
+}
+
+/* Size modifiers */
+.ds-btn--sm {
+  padding: 0.4rem 0.85rem;
+  font-size: var(--text-xs);
+}
+
+.ds-btn--lg {
+  padding: 0.85rem 1.75rem;
+  font-size: var(--text-base);
+}
+
+/* Disabled state */
+.ds-btn:disabled,
+.ds-btn--disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Button group layout */
+.ds-btn-group {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* =============================================================================
+   PAGE HERO  (about, services, contact — internal pages)
+   ============================================================================= */
+
+.ds-page-hero {
+  background-color: var(--bg);
+  padding: 7rem var(--section-px) 5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.ds-page-hero h1,
+.ds-page-hero .ds-h1 {
+  max-width: 800px;
+  margin-bottom: var(--space-6);
+}
+
+.ds-page-hero .ds-body-lg {
+  max-width: 680px;
+}
+
+/* =============================================================================
+   DIVIDER
+   ============================================================================= */
+
+.ds-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 0;
+}
+
+/* =============================================================================
+   SERVICE ROWS  (accordion/list style on homepage and services page)
+   ============================================================================= */
+
+.ds-service-list {
+  border-top: 1px solid var(--border);
+}
+
+.ds-service-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-8) 0;
+  border-bottom: 1px solid var(--border);
+  text-decoration: none;
+  transition: padding-left var(--ease);
+  gap: var(--space-6);
+}
+
+.ds-service-row:hover {
+  padding-left: var(--space-4);
+}
+
+.ds-service-row__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, 3.25rem);
+  font-weight: var(--font-bold);
+  color: var(--fg);
+  line-height: var(--leading-tight);
+  transition: color var(--ease);
+}
+
+.ds-service-row:hover .ds-service-row__title {
+  color: var(--accent);
+}
+
+.ds-service-row__icon {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-strong);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--fg-muted);
+  font-size: 1.25rem;
+  font-weight: var(--font-bold);
+  flex-shrink: 0;
+  transition: background-color var(--ease), border-color var(--ease), color var(--ease);
+}
+
+.ds-service-row:hover .ds-service-row__icon {
+  border-color: var(--accent);
+  background-color: var(--accent);
+  color: #fff;
+}
+
+/* =============================================================================
+   METRICS
+   ============================================================================= */
+
+.ds-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--space-4);
+}
+
+.ds-metric {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--space-8) var(--space-4);
+}
+
+.ds-metric__arrow {
+  color: var(--accent);
+  font-size: var(--text-lg);
+  line-height: 1;
+  margin-bottom: var(--space-2);
+}
+
+.ds-metric__number {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 3.75rem);
+  font-weight: var(--font-extrabold);
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: var(--space-3);
+  letter-spacing: -0.02em;
+}
+
+.ds-metric__label {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--fg-muted);
+  line-height: var(--leading-normal);
+  max-width: 160px;
+}
+
+/* =============================================================================
+   TECH GRID
+   ============================================================================= */
+
+.ds-tech-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+  justify-content: center;
+  align-items: center;
+}
+
+.ds-tech-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  opacity: 0.45;
+  transition: opacity var(--ease);
+}
+
+.ds-tech-item:hover {
+  opacity: 1;
+}
+
+.ds-tech-item__name {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: var(--font-semibold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+/* =============================================================================
+   CARDS
+   ============================================================================= */
+
+.ds-card {
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-8);
+  transition: border-color var(--ease);
+}
+
+.ds-card:hover {
+  border-color: var(--border-strong);
+}
+
+.ds-card--link {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  color: inherit;
+}
+
+.ds-card--link:hover {
+  border-color: var(--accent);
+}
+
+/* =============================================================================
+   PROJECT CARD
+   ============================================================================= */
+
+.ds-project-card {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  transition: border-color var(--ease);
+}
+
+.ds-project-card:hover {
+  border-color: var(--border-strong);
+}
+
+.ds-project-card__image {
+  aspect-ratio: 16 / 9;
+  background-color: var(--surface);
+  overflow: hidden;
+}
+
+.ds-project-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--ease-slow);
+  filter: grayscale(15%);
+}
+
+.ds-project-card:hover .ds-project-card__image img {
+  transform: scale(1.04);
+  filter: grayscale(0%);
+}
+
+.ds-project-card__placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--fg-faint);
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.ds-project-card__body {
+  padding: var(--space-6);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.ds-project-card__title {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: var(--font-bold);
+  color: var(--fg);
+  margin: 0;
+}
+
+.ds-project-card__tech {
+  font-size: var(--text-sm);
+  color: var(--fg-muted);
+  margin: 0;
+}
+
+.ds-project-card__cta {
+  margin-top: auto;
+  padding-top: var(--space-4);
+}
+
+/* =============================================================================
+   PRINCIPLE  (about page pillars)
+   ============================================================================= */
+
+.ds-principle {
+  border-left: 2px solid var(--accent);
+  padding-left: var(--space-6);
+}
+
+.ds-principle__title {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: var(--font-bold);
+  color: var(--fg);
+  margin-bottom: var(--space-3);
+}
+
+.ds-principle__body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--fg-muted);
+  line-height: var(--leading-relaxed);
+  margin: 0;
+}
+
+/* =============================================================================
+   PROSE  (long-form body text blocks)
+   ============================================================================= */
+
+.ds-prose p {
+  font-size: var(--text-lg);
+  color: var(--fg-muted);
+  line-height: var(--leading-relaxed);
+  max-width: 72ch;
+  margin-bottom: var(--space-6);
+}
+
+.ds-prose p:last-child {
+  margin-bottom: 0;
+}
+
+/* =============================================================================
+   PROCESS STEP
+   ============================================================================= */
+
+.ds-step {
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius-md);
+  padding: var(--space-8);
+}
+
+.ds-step__number {
+  display: inline-block;
+  background-color: var(--accent);
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: var(--font-bold);
+  font-size: var(--text-xs);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-4);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.ds-step__title {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: var(--font-bold);
+  color: var(--fg);
+  margin-bottom: var(--space-4);
+}
+
+.ds-step__body {
+  color: var(--fg-muted);
+  line-height: var(--leading-relaxed);
+  margin-bottom: var(--space-4);
+}
+
+.ds-step__badge {
+  display: inline-block;
+  background-color: var(--surface);
+  color: var(--fg-muted);
+  font-size: var(--text-xs);
+  font-weight: var(--font-semibold);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-sm);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border: 1px solid var(--border);
+}
+
+/* =============================================================================
+   BENEFIT CARD  (services why-us section)
+   ============================================================================= */
+
+.ds-benefit {
+  text-align: center;
+  padding: var(--space-8) var(--space-4);
+}
+
+.ds-benefit__icon {
+  font-size: 2.25rem;
+  margin-bottom: var(--space-4);
+}
+
+.ds-benefit__title {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: var(--font-bold);
+  color: var(--fg);
+  margin-bottom: var(--space-4);
+}
+
+.ds-benefit__body {
+  color: var(--fg-muted);
+  line-height: var(--leading-relaxed);
+}
+
+/* =============================================================================
+   SERVICE CARD  (detail cards on services page)
+   ============================================================================= */
+
+.ds-service-card {
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color var(--ease);
+}
+
+.ds-service-card:hover {
+  border-color: var(--accent);
+}
+
+.ds-service-card__icon {
+  font-size: 2.5rem;
+  margin-bottom: var(--space-6);
+}
+
+.ds-service-card__title {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: var(--font-bold);
+  color: var(--fg);
+  margin-bottom: var(--space-4);
+}
+
+.ds-service-card__desc,
+.ds-service-card__body {
+  color: var(--fg-muted);
+  line-height: var(--leading-relaxed);
+  margin-bottom: var(--space-6);
+  flex: 1;
+}
+
+.ds-service-card__list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-6) 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.ds-service-card__list li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--fg-muted);
+  line-height: var(--leading-normal);
+}
+
+.ds-service-card__list li::before {
+  content: "✓";
+  color: var(--accent);
+  font-weight: var(--font-bold);
+  flex-shrink: 0;
+}
+
+.ds-service-card__cta {
+  color: var(--accent);
+  font-weight: var(--font-semibold);
+  font-size: var(--text-sm);
+  margin-top: auto;
+  transition: color var(--ease);
+}
+
+.ds-service-card:hover .ds-service-card__cta {
+  color: var(--accent-hover);
+}
+
+/* =============================================================================
+   TECH PILLS  (small tags inside cards)
+   ============================================================================= */
+
+.ds-pill-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-6);
+}
+
+.ds-pill {
+  background-color: var(--surface);
+  color: var(--fg-muted);
+  border: 1px solid var(--border);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+  font-weight: var(--font-semibold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* =============================================================================
+   CHECK LIST  (who we work with, etc.)
+   ============================================================================= */
+
+.ds-check-list {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-6) 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.ds-check-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  color: var(--fg-muted);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+}
+
+.ds-check-list li::before {
+  content: "→";
+  color: var(--accent);
+  font-weight: var(--font-bold);
+  flex-shrink: 0;
+}
+
+/* =============================================================================
+   RESPONSIVE OVERRIDES
+   ============================================================================= */
+
+@media (max-width: 768px) {
+  :root {
+    --section-py: 3rem;
+    --section-px: 1rem;
+  }
+
+  .ds-display {
+    font-size: clamp(2rem, 9vw, 3.5rem);
+  }
+
+  .ds-h1 {
+    font-size: clamp(1.75rem, 7vw, 2.5rem);
+  }
+
+  .ds-h2 {
+    font-size: clamp(1.5rem, 5vw, 2rem);
+  }
+
+  .ds-service-row__title {
+    font-size: clamp(1.25rem, 5vw, 2rem);
+  }
+
+  .ds-btn-group {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .ds-metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .ds-page-hero {
+    padding: 5rem var(--section-px) 3rem;
+  }
+
+  .ds-grid-2,
+  .ds-grid-3,
+  .ds-grid-4 {
+    grid-template-columns: 1fr;
+  }
+}

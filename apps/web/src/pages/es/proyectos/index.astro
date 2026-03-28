@@ -5,9 +5,8 @@ import groq from "groq";
 
 const lang = "es";
 
-// Fetch projects in Spanish
 const projects = await sanityClient.fetch(
-  groq`
+    groq`
   *[_type == "project" && language == $lang] | order(system.publishedAt desc) {
     _id,
     title,
@@ -16,158 +15,83 @@ const projects = await sanityClient.fetch(
     "tech": tech[]
   }
 `,
-  { lang },
+    { lang },
 );
 
 const title = "Proyectos — Cacao & Avocado";
-const description =
-  "Nuestro trabajo reciente en Shopify, HubSpot y Desarrollo Web.";
+const description = "Nuestro trabajo reciente en Shopify, HubSpot y Desarrollo Web.";
 ---
 
 <Layout title={title} description={description} lang={lang}>
-  <section class="projects-page">
-    <div class="container">
-      <h1>Nuestros Proyectos</h1>
-      <p class="intro">Explora nuestros casos de éxito más recientes.</p>
+    <main>
+        <section class="ds-page-hero">
+            <div class="ds-container">
+                <h1 class="ds-h1">Nuestros Proyectos</h1>
+                <p class="ds-body-lg">Explora nuestros casos de éxito más recientes.</p>
+            </div>
+        </section>
 
-      <div class="grid">
-        {
-          projects.length > 0 ? (
-            projects.map((project: any) => (
-              <div class="project-card">
-                <div class="image-container">
-                  {project.imageUrl ? (
-                    <img src={project.imageUrl} alt={project.title} />
-                  ) : (
-                    <div class="placeholder-image">{project.title}</div>
-                  )}
+        <section class="ds-section">
+            <div class="ds-container">
+                <div class="projects-grid">
+                    {
+                        projects.length > 0 ? (
+                            projects.map((project: any) => (
+                                <div class="ds-project-card">
+                                    <div class="ds-project-card__image">
+                                        {project.imageUrl ? (
+                                            <img
+                                                src={project.imageUrl}
+                                                alt={project.title}
+                                            />
+                                        ) : (
+                                            <div class="ds-project-card__placeholder">
+                                                {project.title}
+                                            </div>
+                                        )}
+                                    </div>
+                                    <div class="ds-project-card__body">
+                                        <p class="ds-project-card__title">
+                                            {project.title}
+                                        </p>
+                                        <p class="ds-project-card__tech">
+                                            {project.tech
+                                                ? project.tech.join(", ")
+                                                : "Desarrollo Web"}
+                                        </p>
+                                        <div class="ds-project-card__cta">
+                                            <a
+                                                href={`/${lang}/proyectos/${project.slug}`}
+                                                class="ds-btn ds-btn--outline"
+                                            >
+                                                Ver Proyecto
+                                                <span class="ds-btn__dot" aria-hidden="true">→</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))
+                        ) : (
+                            <p class="empty-state ds-body">Pronto publicaremos nuestros proyectos.</p>
+                        )
+                    }
                 </div>
-                <div class="card-content">
-                  <h3>{project.title}</h3>
-                  <p class="tech">
-                    {project.tech ? project.tech.join(", ") : "Desarrollo Web"}
-                  </p>
-                  <a
-                    href={`/${lang}/proyectos/${project.slug}`}
-                    class="btn-small"
-                  >
-                    Ver Proyecto
-                  </a>
-                </div>
-              </div>
-            ))
-          ) : (
-            <p class="no-projects">Pronto publicaremos nuestros proyectos.</p>
-          )
-        }
-      </div>
-    </div>
-  </section>
+            </div>
+        </section>
+    </main>
 </Layout>
 
 <style>
-  .projects-page {
-    padding: 5rem 1rem;
-    background-color: #f8fafc;
-    min-height: 80vh;
-  }
+    .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: var(--space-6);
+    }
 
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  h1 {
-    text-align: center;
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    color: #0f172a;
-  }
-
-  .intro {
-    text-align: center;
-    color: #64748b;
-    margin-bottom: 4rem;
-    font-size: 1.25rem;
-  }
-
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-  }
-
-  .project-card {
-    background: white;
-    border-radius: 0.5rem;
-    overflow: hidden;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.2s;
-  }
-
-  .project-card:hover {
-    transform: translateY(-5px);
-  }
-
-  .image-container {
-    height: 200px;
-    background-color: #e2e8f0;
-    overflow: hidden;
-  }
-
-  .image-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .placeholder-image {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #94a3b8;
-    font-weight: 600;
-  }
-
-  .card-content {
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-  }
-
-  h3 {
-    font-size: 1.25rem;
-    color: #0f172a;
-    margin-bottom: 0.5rem;
-  }
-
-  .tech {
-    color: #64748b;
-    font-size: 0.875rem;
-    margin-bottom: 1.5rem;
-    flex-grow: 1;
-  }
-
-  .btn-small {
-    display: inline-block;
-    font-size: 0.875rem;
-    color: #3b82f6;
-    text-decoration: none;
-    font-weight: 600;
-  }
-
-  .btn-small:hover {
-    text-decoration: underline;
-  }
-
-  .no-projects {
-    text-align: center;
-    grid-column: 1 / -1;
-    color: #64748b;
-  }
+    .empty-state {
+        grid-column: 1 / -1;
+        text-align: center;
+        padding: var(--space-16) 0;
+        color: var(--fg-muted);
+    }
 </style>

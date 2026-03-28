@@ -2,11 +2,9 @@
 import { ui } from "../i18n/ui";
 
 const { lang = "es" } = Astro.props;
-
 const t = ui[lang as keyof typeof ui];
 
 const navItems = [
-    { label: t["nav.home"], href: `/${lang}` },
     {
         label: t["nav.services"],
         href: `/${lang}/${lang === "en" ? "services" : "servicios"}`,
@@ -27,12 +25,12 @@ const navItems = [
 ---
 
 <header class="site-header">
-    <div class="container">
-        <a href={`/${lang}`} class="logo">
+    <div class="header-inner ds-container">
+        <a href={`/${lang}`} class="header-logo">
             <img src="/caa-logo.svg" alt="Cacao & Avocado" />
         </a>
 
-        <nav class="main-nav">
+        <nav class="header-nav">
             <ul>
                 {
                     navItems.map((item) => (
@@ -44,116 +42,130 @@ const navItems = [
             </ul>
         </nav>
 
-        <div class="lang-toggle">
-            <a href="/es" class={lang === "es" ? "active" : ""}>ES</a>
-            <span class="divider">/</span>
-            <a href="/en" class={lang === "en" ? "active" : ""}>EN</a>
+        <div class="header-right">
+            <div class="lang-toggle">
+                <a href="/es" class={lang === "es" ? "active" : ""}>ES</a>
+                <span>/</span>
+                <a href="/en" class={lang === "en" ? "active" : ""}>EN</a>
+            </div>
+            <button class="mobile-toggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
-
-        <button class="mobile-menu-toggle" aria-label="Menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
     </div>
 </header>
 
 <style>
     .site-header {
-        background-color: white;
-        border-bottom: 1px solid #e2e8f0;
-        padding: 1rem 0;
+        background-color: var(--bg);
+        border-bottom: 1px solid var(--border);
+        padding: var(--space-4) 0;
         position: sticky;
         top: 0;
-        z-index: 50;
+        z-index: var(--z-nav);
     }
 
-    .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 1rem;
+    .header-inner {
         display: flex;
         align-items: center;
         justify-content: space-between;
+        gap: var(--space-8);
     }
 
-    .logo {
+    .header-logo {
         display: flex;
         align-items: center;
+        flex-shrink: 0;
         text-decoration: none;
     }
 
-    .logo img {
-        height: 40px;
+    .header-logo img {
+        height: 36px;
         width: auto;
-        image-rendering: auto;
-        shape-rendering: geometricPrecision;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
     }
 
-    .main-nav ul {
+    .header-nav ul {
         display: flex;
-        gap: 2rem;
+        gap: var(--space-8);
         list-style: none;
         margin: 0;
         padding: 0;
     }
 
-    .main-nav a {
-        color: #475569;
+    .header-nav a {
+        font-family: var(--font-body);
+        font-size: var(--text-xs);
+        font-weight: var(--font-medium);
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+        color: var(--fg);
         text-decoration: none;
-        font-weight: 500;
-        transition: color 0.2s;
+        transition: color var(--ease);
     }
 
-    .main-nav a:hover {
-        color: #3b82f6;
+    .header-nav a:hover {
+        color: var(--accent);
+    }
+
+    .header-right {
+        display: flex;
+        align-items: center;
+        gap: var(--space-6);
     }
 
     .lang-toggle {
         display: flex;
-        gap: 0.5rem;
-        font-weight: 600;
-        font-size: 0.875rem;
-        color: #94a3b8;
-    }
-
-    .lang-toggle .active {
-        color: #0f172a;
+        align-items: center;
+        gap: var(--space-2);
+        font-size: var(--text-xs);
+        font-weight: var(--font-semibold);
+        letter-spacing: 0.06em;
     }
 
     .lang-toggle a {
-        color: #94a3b8;
+        color: var(--fg-muted);
         text-decoration: none;
+        transition: color var(--ease);
+    }
+
+    .lang-toggle a.active {
+        color: var(--fg);
     }
 
     .lang-toggle a:hover {
-        color: #475569;
+        color: var(--fg);
     }
 
-    .mobile-menu-toggle {
+    .lang-toggle span {
+        color: var(--border-strong);
+    }
+
+    .mobile-toggle {
         display: none;
         background: none;
         border: none;
         cursor: pointer;
         flex-direction: column;
-        gap: 4px;
+        gap: var(--space-1);
+        padding: var(--space-2);
     }
 
-    .mobile-menu-toggle span {
+    .mobile-toggle span {
         display: block;
-        width: 24px;
-        height: 2px;
-        background-color: #0f172a;
+        width: 22px;
+        height: 1.5px;
+        background-color: var(--fg);
+        transition: all var(--ease);
     }
 
     @media (max-width: 768px) {
-        .main-nav {
-            display: none; /* Hidden on mobile for now, would need JS for toggle */
+        .header-nav {
+            display: none;
         }
 
-        .mobile-menu-toggle {
+        .mobile-toggle {
             display: flex;
         }
     }

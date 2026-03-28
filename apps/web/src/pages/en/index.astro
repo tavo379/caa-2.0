@@ -13,59 +13,60 @@ const lang = "en";
 const t = ui[lang];
 
 const title =
-    "Cacao & Avocado | Full-Stack Commerce Engineering | Shopify Plus & HubSpot Experts";
+    "Cacao & Avocado | Shopify & Web Development Agency | Colombia & US";
 const description =
-    "E-commerce engineering, headless Shopify, and HubSpot automation for ambitious brands. 11+ years building high-performance commerce infrastructure. Medellín-based, EST/CST compatible.";
+    "Premium e-commerce and web development agency based in Medellín. We build Shopify stores, corporate websites, and HubSpot integrations for brands in Colombia and the United States.";
 ---
 
 <Layout title={title} description={description} lang={lang}>
     <main>
         <Hero
-            title="Full-Stack Commerce Engineering That Scales With Your Business"
-            subtitle="We build high-performance e-commerce infrastructure and growth systems for ambitious brands. From headless Shopify architectures to HubSpot automation that actually converts, we combine deep technical expertise with business-driven engineering."
-            ctaPrimary="Schedule Discovery Call"
-            ctaSecondary="View Our Work"
+            title={`Welcome to the Authenticity of the <span class="accent">Tropics</span>`}
+            subtitle="We build Shopify stores, high-performance websites, and HubSpot integrations for ambitious brands in Colombia and the US. Senior-level engineering, no shortcuts, no fluff."
+            ctaPrimary="Get a Quote"
+            ctaPrimaryHref={`/${lang}/contact`}
+            ctaSecondary="Our Services"
+            ctaSecondaryHref="#servicios"
             lang={lang}
         />
         <Services
             title={t["services.title"]}
-            shopifyTitle="E-commerce Engineering"
-            shopifyDesc="Headless Shopify architectures, checkout extensibility migrations, and React Native mobile apps. We've optimized stores processing $50M+ annually with sub-2s load times and 40%+ checkout improvements."
-            hubspotTitle="HubSpot CRM & Automation"
-            hubspotDesc="Full HubSpot implementations, marketing automation, and system integrations (Shopify, Salesforce, custom APIs). We've deployed 50+ automations that save teams 20+ hours weekly and increase attribution accuracy by 60%."
+            shopifyTitle="E-commerce Development"
+            shopifyDesc="Shopify and WooCommerce stores built to convert. From custom theme development and checkout optimization to headless architecture — we build e-commerce experiences that drive revenue, not just traffic."
+            hubspotTitle="HubSpot & Automation"
+            hubspotDesc="HubSpot CMS development, CRM setup, and marketing automation that connects your website to your sales pipeline. We build the technical side so your team can focus on closing deals."
             webTitle="Web Development & CMS"
-            webDesc="HubSpot CMS sites, high-converting landing pages, and corporate web platforms built for performance and SEO. Clean code, lighthouse scores 85+, and content workflows that scale with your team."
+            webDesc="Corporate websites, creative portfolios, and landing pages built for performance. Fast, clean, and easy for your team to manage — whether you're an architecture firm in Medellín or a startup in Miami."
+            lang={lang}
         />
         <ProjectsHome
             title={t["projects.title"]}
-            intro="Selected work from e-commerce optimization, headless migrations, and growth engineering projects."
+            intro="Some of our recent work in Shopify, web development, and HubSpot."
             viewAll={t["projects.viewAll"]}
             viewProject={t["projects.viewProject"]}
             empty={t["projects.empty"]}
             lang={lang}
         />
         <MetricsSection
-            title="Proven Impact"
+            title="By the Numbers"
             metric1Number="11+"
-            metric1Label="Years Building Commerce Infrastructure"
-            metric2Number="$150M+"
-            metric2Label="Annual GMV Managed"
+            metric1Label="Years of Engineering Experience"
+            metric2Number="20+"
+            metric2Label="Projects Delivered Across Colombia & the US"
             metric3Number="85+"
             metric3Label="Average Lighthouse Score"
-            metric4Number="40%"
-            metric4Label="Average Checkout Improvement"
+            metric4Number="2"
+            metric4Label="Markets. One Standard of Quality."
         />
         <TechStack
             title="Technologies We Work With"
             subtitle="Our multi-specialty approach means we can architect complete solutions, not just pieces. These are the platforms and frameworks we deploy daily."
         />
         <CTABlock
-            title="Ready to Scale Your Commerce Infrastructure?"
-            subtitle="Let's audit your current setup — free, no commitment. We'll identify bottlenecks, optimization opportunities, and provide a technical roadmap within 48 hours."
-            primaryButtonText="Schedule 30-Min Call"
+            title="Ready to Build Something That Actually Performs?"
+            subtitle="Tell us about your project. We'll come back within 24 hours with a technical approach and a clear estimate. No vague proposals, no surprise invoices."
+            primaryButtonText="Start a Project"
             primaryButtonLink={`/${lang}/contact`}
-            secondaryButtonText="View Our Work"
-            secondaryButtonLink={`/${lang}/projects`}
         />
     </main>
 </Layout>

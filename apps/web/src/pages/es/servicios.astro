@@ -3,218 +3,212 @@ import Layout from "../../layouts/Layout.astro";
 import CTABlock from "../../components/CTABlock.astro";
 
 const lang = "es";
-const title =
-    "Servicios | Ingeniería E-commerce, Desarrollo Web y HubSpot | Cacao & Avocado";
+const title = "Servicios de Desarrollo E-commerce y Web | Cacao & Avocado";
 const description =
-    "Desarrollo Shopify Plus, comercio headless, CRM HubSpot y automatización de marketing.  Ingeniería de comercio full-stack para marcas enfocadas en crecimiento. Basados en Medellín, compatibles EST/CST.";
+    "Desarrollo Shopify, builds WooCommerce, sitios corporativos, landing pages e integraciones HubSpot. Ingeniería de nivel senior para marcas en Colombia y EE.UU.";
 ---
 
 <Layout title={title} description={description} lang={lang}>
     <main>
-        <section class="hero">
-            <div class="container">
-                <h1>
-                    Ingeniería de Comercio Para Marcas Enfocadas en Crecimiento
+        <!-- Hero -->
+        <section class="ds-page-hero">
+            <div class="ds-container">
+                <h1 class="ds-h1">
+                    Servicios de Desarrollo E-commerce y Web
                 </h1>
-                <p class="subtitle">
-                    No solo construimos sitios web — arquitectamos
-                    infraestructura de comercio que escala. Ya sea que necesites
-                    una migración headless de Shopify, automatización de
-                    HubSpot, o un stack de crecimiento completo, combinamos 11+
-                    años de profundidad técnica con ingeniería impulsada por el
-                    negocio.
+                <p class="ds-body-lg">
+                    Desde tiendas Shopify y builds WooCommerce hasta sitios
+                    corporativos e integraciones HubSpot — entregamos ingeniería
+                    de nivel senior para marcas en Colombia y Estados Unidos.
                 </p>
-                <p class="supporting">
-                    Sin agencias. Sin gerentes de cuenta. Acceso directo a
-                    ingenieros senior que han trabajado para Disney, Walmart y
-                    50+ marcas de e-commerce.
-                </p>
-                <div class="cta-group">
-                    <a href={`/${lang}/contacto`} class="btn btn-primary"
-                        >Agenda Auditoría Técnica Gratis</a
-                    >
+                <div class="ds-btn-group">
+                    <a href={`/${lang}/contacto`} class="ds-btn ds-btn--primary">
+                        Solicitar Cotización Gratis
+                        <span class="ds-btn__dot" aria-hidden="true">●</span>
+                    </a>
                 </div>
             </div>
         </section>
 
-        <section class="services-grid">
-            <div class="container">
-                <h2>Nuestros Servicios</h2>
-                <p class="intro">
-                    Tres especialidades principales. Un equipo integrado.
+        <!-- Service Cards -->
+        <section class="ds-section ds-section--subtle ds-section--border-b">
+            <div class="ds-container">
+                <span class="ds-label">Nuestros Servicios</span>
+                <h2 class="ds-h2 section-title">Tres especialidades principales. Un equipo integrado.</h2>
+
+                <div class="ds-grid-3">
+                    <div class="ds-service-card">
+                        <p class="ds-service-card__title">Desarrollo Shopify</p>
+                        <p class="ds-service-card__body">
+                            Construimos tiendas Shopify custom desde cero —
+                            desarrollo de temas, integraciones de apps,
+                            personalización de checkout y arquitectura headless
+                            con Hydrogen y Remix. Ya sea que estés lanzando tu
+                            primera tienda o migrando desde otra plataforma,
+                            manejamos el build completo.
+                        </p>
+                        <ul class="ds-check-list">
+                            <li>Desarrollo de tema custom o personalización de tema</li>
+                            <li>Configuración de catálogo y arquitectura de colecciones</li>
+                            <li>Integración de pasarelas de pago y envío</li>
+                            <li>Optimización de checkout y mejoras de conversión</li>
+                            <li>Integraciones de apps (reseñas, suscripciones, fidelidad, etc.)</li>
+                        </ul>
+                        <div class="ds-pill-group">
+                            <span class="ds-pill">Shopify</span>
+                            <span class="ds-pill">Hydrogen</span>
+                            <span class="ds-pill">Remix</span>
+                            <span class="ds-pill">Liquid</span>
+                            <span class="ds-pill">React</span>
+                        </div>
+                        <a href="/en/services/ecommerce-engineering" class="ds-btn ds-btn--outline card-cta">
+                            Ver Servicio
+                            <span class="ds-btn__dot" aria-hidden="true">→</span>
+                        </a>
+                    </div>
+
+                    <div class="ds-service-card">
+                        <p class="ds-service-card__title">Sitios Corporativos y Portafolios</p>
+                        <p class="ds-service-card__body">
+                            Sitios corporativos de alto rendimiento, portafolios
+                            creativos y sitios de presentación construidos con
+                            frameworks modernos. Rápidos, limpios y con CMS que
+                            tu equipo puede manejar independientemente.
+                        </p>
+                        <ul class="ds-check-list">
+                            <li>Firmas de arquitectura, estudios creativos, empresas B2B</li>
+                            <li>Rápido, limpio y fácil de gestionar para tu equipo</li>
+                            <li>Puntuaciones Lighthouse 85+ en cada entrega</li>
+                        </ul>
+                        <div class="ds-pill-group">
+                            <span class="ds-pill">Astro</span>
+                            <span class="ds-pill">Next.js</span>
+                            <span class="ds-pill">WordPress</span>
+                            <span class="ds-pill">Sanity CMS</span>
+                            <span class="ds-pill">React</span>
+                        </div>
+                        <a href="/en/services/web-development" class="ds-btn ds-btn--outline card-cta">
+                            Ver Servicio
+                            <span class="ds-btn__dot" aria-hidden="true">→</span>
+                        </a>
+                    </div>
+
+                    <div class="ds-service-card">
+                        <p class="ds-service-card__title">Desarrollo HubSpot y Automatización</p>
+                        <p class="ds-service-card__body">
+                            Sitios HubSpot CMS, implementaciones CRM y workflows
+                            de automatización de marketing. Conectamos tu sitio
+                            web con tu pipeline de ventas y construimos
+                            automatización que le ahorra horas semanales a tu
+                            equipo.
+                        </p>
+                        <ul class="ds-check-list">
+                            <li>Empresas B2B, marcas SaaS y cualquier negocio que use HubSpot</li>
+                            <li>Setup de CRM, lead scoring y campañas de nurture</li>
+                            <li>Integraciones de sistemas (Shopify, procesadores de pago, APIs)</li>
+                        </ul>
+                        <div class="ds-pill-group">
+                            <span class="ds-pill">HubSpot CMS</span>
+                            <span class="ds-pill">HubL</span>
+                            <span class="ds-pill">HubSpot API</span>
+                            <span class="ds-pill">Node.js</span>
+                        </div>
+                        <a href="/en/services/hubspot-automation" class="ds-btn ds-btn--outline card-cta">
+                            Ver Servicio
+                            <span class="ds-btn__dot" aria-hidden="true">→</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Proceso -->
+        <section class="ds-section ds-section--border-b">
+            <div class="ds-container">
+                <span class="ds-label">Nuestro Proceso</span>
+                <h2 class="ds-h2 section-title">Cómo Funciona un Proyecto</h2>
+                <p class="ds-body-lg process-intro">
+                    Cada proyecto es diferente, pero nuestro enfoque es
+                    consistente: entender el objetivo de negocio primero,
+                    luego diseñar la solución técnica.
                 </p>
-                <div class="grid-3">
-                    <a href="#" class="service-card">
-                        <div class="icon">🛍️</div>
-                        <h3>Ingeniería E-commerce</h3>
-                        <p class="desc">
-                            Arquitecturas headless, optimización de checkout y
-                            aplicaciones móviles para marcas Shopify Plus.
-                            Migramos, optimizamos y escalamos tiendas de alto
-                            tráfico.
+
+                <div class="process-steps">
+                    <div class="ds-step">
+                        <p class="ds-step__number">01</p>
+                        <p class="ds-step__title">Llamada de Discovery (Gratis)</p>
+                        <p class="ds-step__body">
+                            30 minutos para entender tu proyecto, objetivos y
+                            timeline. Te diremos honestamente si somos el
+                            equipo adecuado.
                         </p>
-                        <span class="cta-link">Próximamente →</span>
-                    </a>
-                    <a href="#" class="service-card">
-                        <div class="icon">💻</div>
-                        <h3>Desarrollo Web y CMS</h3>
-                        <p class="desc">
-                            Sitios corporativos de alto rendimiento, landing
-                            pages y implementaciones Hub Spot CMS. Construidos
-                            para conversión, optimizados para SEO.
+                        <span class="ds-step__badge">Gratis</span>
+                    </div>
+
+                    <div class="ds-step">
+                        <p class="ds-step__number">02</p>
+                        <p class="ds-step__title">Propuesta y Alcance</p>
+                        <p class="ds-step__body">
+                            Propuesta detallada con alcance, timeline y precio
+                            fijo. Sin estimados vagos — sabes exactamente qué
+                            estás obteniendo antes de comprometerte.
                         </p>
-                        <span class="cta-link">Próximamente →</span>
-                    </a>
-                    <a href="#" class="service-card">
-                        <div class="icon">⚡</div>
-                        <h3>CRM y Automatización HubSpot</h3>
-                        <p class="desc">
-                            Implementaciones completas de HubSpot, workflows de
-                            automatización de marketing e integraciones de
-                            sistemas.
+                        <span class="ds-step__badge">3–5 días</span>
+                    </div>
+
+                    <div class="ds-step">
+                        <p class="ds-step__number">03</p>
+                        <p class="ds-step__title">Construcción</p>
+                        <p class="ds-step__body">
+                            Desarrollo ágil con actualizaciones semanales,
+                            demos y un tablero de proyecto compartido. Ves el
+                            progreso en tiempo real.
                         </p>
-                        <span class="cta-link">Próximamente →</span>
-                    </a>
+                        <span class="ds-step__badge">4–12 semanas</span>
+                    </div>
+
+                    <div class="ds-step">
+                        <p class="ds-step__number">04</p>
+                        <p class="ds-step__title">Lanzamiento y Soporte</p>
+                        <p class="ds-step__body">
+                            Lanzamiento coordinado con 30 días de soporte
+                            incluido. No desaparecemos después de la entrega.
+                        </p>
+                        <span class="ds-step__badge">Continuo</span>
+                    </div>
                 </div>
             </div>
         </section>
 
         <CTABlock
-            title="¿Listo Para Escalar?"
-            subtitle="Agenda una llamada de 30 minutos para discutir tus necesidades. Proporcionaremos un costo estimado y enfoque técnico."
-            primaryButtonText="Agenda Consulta"
+            title="¿Listo Para Iniciar?"
+            subtitle="Cuéntanos sobre tu proyecto y respondemos en 24 horas con un enfoque técnico y un presupuesto claro."
+            primaryButtonText="Iniciar un Proyecto"
             primaryButtonLink={`/${lang}/contacto`}
+            secondaryButtonText="Agendar una Llamada"
+            secondaryButtonLink={`/${lang}/contacto`}
         />
     </main>
 </Layout>
 
 <style>
-    .hero {
-        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-        color: white;
-        padding: 6rem 1rem 4rem;
-        text-align: center;
+    .section-title {
+        margin-bottom: var(--space-10);
     }
 
-    .hero h1 {
-        font-size: 3rem;
-        margin-bottom: 1.5rem;
-        line-height: 1.2;
+    .process-intro {
+        max-width: 700px;
+        margin-bottom: var(--space-12);
     }
 
-    .hero .subtitle {
-        font-size: 1.25rem;
-        color: #cbd5e1;
-        max-width: 900px;
-        margin: 0 auto 1rem;
-        line-height: 1.7;
-    }
-
-    .hero .supporting {
-        font-size: 1.05rem;
-        color: #94a3b8;
-        max-width: 800px;
-        margin: 0 auto 2.5rem;
-    }
-
-    .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 1rem;
-    }
-
-    .cta-group {
-        display: flex;
-        gap: 1rem;
-        justify-content: center;
-    }
-
-    .btn {
-        display: inline-block;
-        padding: 1rem 2rem;
-        border-radius: 0.375rem;
-        text-decoration: none;
-        font-weight: 700;
-        transition: all 0.2s;
-    }
-
-    .btn-primary {
-        background-color: #3b82f6;
-        color: white;
-    }
-
-    .btn-primary:hover {
-        background-color: #2563eb;
-    }
-
-    .services-grid {
-        padding: 5rem 1rem;
-        background-color: #f8fafc;
-    }
-
-    .services-grid h2 {
-        text-align: center;
-        font-size: 2.5rem;
-        margin-bottom: 1rem;
-        color: #0f172a;
-    }
-
-    .services-grid .intro {
-        text-align: center;
-        font-size: 1.125rem;
-        color: #64748b;
-        margin-bottom: 3rem;
-    }
-
-    .grid-3 {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-        gap: 2rem;
-    }
-
-    .service-card {
-        background: white;
-        padding: 2.5rem;
-        border-radius: 0.5rem;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-        border: 2px solid transparent;
-        transition: all 0.3s;
-        text-decoration: none;
-        color: inherit;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .service-card .icon {
-        font-size: 3rem;
-        margin-bottom: 1.5rem;
-    }
-
-    .service-card h3 {
-        font-size: 1.75rem;
-        color: #0f172a;
-        margin-bottom: 1rem;
-    }
-
-    .service-card .desc {
-        color: #475569;
-        line-height: 1.7;
-        margin-bottom: 1.5rem;
-    }
-
-    .service-card .cta-link {
-        color: #3b82f6;
-        font-weight: 600;
+    .card-cta {
         margin-top: auto;
+        align-self: flex-start;
     }
 
-    @media (max-width: 768px) {
-        .hero h1 {
-            font-size: 2rem;
-        }
-
-        .grid-3 {
-            grid-template-columns: 1fr;
-        }
+    .process-steps {
+        display: grid;
+        gap: var(--space-4);
+        max-width: 800px;
     }
 </style>

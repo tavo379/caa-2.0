@@ -13,6 +13,8 @@
     "@sanity/client": "^7.12.0",
     "astro": "^5.14.7",
     "astro-portabletext": "^0.11.3",
-    "groq": "^4.10.3"
+    "groq": "^4.10.3",
+    "lucide-astro": "^0.556.0",
+    "simple-icons": "^16.11.0"
   }
 }

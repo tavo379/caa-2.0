@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import { es } from '@/i18n/es'
 import { InvoiceForm } from '@/components/InvoiceForm'
+import { Users, Plus } from 'lucide-react'
 
 export default async function NewInvoicePage() {
     const supabase = await createClient()
@@ -29,13 +30,16 @@ export default async function NewInvoicePage() {
             ) : (
                 <div className="card">
                     <div className="empty-state">
-                        <div className="empty-state-icon">👥</div>
+                        <div className="empty-state-icon">
+                            <Users size={48} strokeWidth={1} />
+                        </div>
                         <div className="empty-state-title">Primero crea un cliente</div>
                         <div className="empty-state-description">
                             Necesitas tener al menos un cliente para crear una factura
                         </div>
                         <Link href="/clientes/nuevo" className="btn btn-primary">
-                            + {es.clients.newClient}
+                            <Plus size={16} />
+                            {es.clients.newClient}
                         </Link>
                     </div>
                 </div>
