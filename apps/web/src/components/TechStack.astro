@@ -108,9 +108,19 @@ const techStack = [
         -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
     }
 
+    @keyframes marquee {
+        from { transform: translateX(0); }
+        to   { transform: translateX(-50%); }
+    }
+
     .carousel-track {
         display: flex;
         width: max-content;
+        animation: marquee 22s linear infinite;
+    }
+
+    .carousel-track:hover {
+        animation-play-state: paused;
     }
 
     .carousel-set {
@@ -156,33 +166,3 @@ const techStack = [
     }
 </style>
 
-<script>
-    const wrapper = document.querySelector<HTMLElement>('.carousel-wrapper')!;
-    const track   = document.querySelector<HTMLElement>('.carousel-track')!;
-    const set1    = document.querySelector<HTMLElement>('.carousel-set')!;
-
-    const SPEED = 0.5; // px per frame at 60fps ≈ 30px/s
-
-    // Cache width outside the loop — reading it inside causes layout thrashing every frame
-    let setWidth = set1.offsetWidth;
-    window.addEventListener('resize', () => { setWidth = set1.offsetWidth; }, { passive: true });
-
-    let x = 0;
-    let paused = false;
-
-    wrapper.addEventListener('mouseenter', () => { paused = true; });
-    wrapper.addEventListener('mouseleave', () => { paused = false; });
-
-    function tick() {
-        if (!paused) {
-            x -= SPEED;
-            // When we reach -setWidth the visual position is identical to 0
-            // (Set 2 on screen = Set 1 on screen) — the reset is invisible
-            if (x <= -setWidth) x += setWidth;
-            track.style.transform = `translateX(${x}px)`;
-        }
-        requestAnimationFrame(tick);
-    }
-
-    requestAnimationFrame(tick);
-</script>
