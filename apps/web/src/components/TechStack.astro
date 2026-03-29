@@ -49,36 +49,22 @@ const techStack = [
 
     <div class="carousel-wrapper">
         <div class="carousel-track">
-            <!-- Set 1 -->
-            <div class="carousel-set">
-                {techStack.map((tech) => (
-                    <div class="carousel-item">
-                        <svg
-                            viewBox="0 0 24 24"
-                            class="tech-svg"
-                            aria-label={tech.name}
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path d={tech.icon.path} />
-                        </svg>
-                    </div>
-                ))}
-            </div>
-            <!-- Set 2 — exact copy for seamless loop -->
-            <div class="carousel-set" aria-hidden="true">
-                {techStack.map((tech) => (
-                    <div class="carousel-item">
-                        <svg
-                            viewBox="0 0 24 24"
-                            class="tech-svg"
-                            aria-label={tech.name}
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path d={tech.icon.path} />
-                        </svg>
-                    </div>
-                ))}
-            </div>
+            {[false, true, true, true].map((hidden) => (
+                <div class="carousel-set" aria-hidden={hidden || undefined}>
+                    {techStack.map((tech) => (
+                        <div class="carousel-item">
+                            <svg
+                                viewBox="0 0 24 24"
+                                class="tech-svg"
+                                aria-label={tech.name}
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path d={tech.icon.path} />
+                            </svg>
+                        </div>
+                    ))}
+                </div>
+            ))}
         </div>
     </div>
 </section>
