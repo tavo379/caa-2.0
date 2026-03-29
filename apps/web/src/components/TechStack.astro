@@ -64,7 +64,7 @@ const techStack = [
                     </div>
                 ))}
             </div>
-            <!-- Set 2 — copia exacta para el loop seamless -->
+            <!-- Set 2 — exact copy for seamless loop -->
             <div class="carousel-set" aria-hidden="true">
                 {techStack.map((tech) => (
                     <div class="carousel-item">
@@ -161,9 +161,9 @@ const techStack = [
     const track   = document.querySelector<HTMLElement>('.carousel-track')!;
     const set1    = document.querySelector<HTMLElement>('.carousel-set')!;
 
-    const SPEED = 0.5; // px por frame a 60fps ≈ 30px/s
+    const SPEED = 0.5; // px per frame at 60fps ≈ 30px/s
 
-    // Cachear el ancho fuera del loop — leerlo dentro causa layout thrashing cada frame
+    // Cache width outside the loop — reading it inside causes layout thrashing every frame
     let setWidth = set1.offsetWidth;
     window.addEventListener('resize', () => { setWidth = set1.offsetWidth; }, { passive: true });
 
@@ -176,8 +176,8 @@ const techStack = [
     function tick() {
         if (!paused) {
             x -= SPEED;
-            // Cuando alcanzamos -setWidth la posición visual es idéntica a 0
-            // (Set 2 en pantalla = Set 1 en pantalla) — el salto es invisible
+            // When we reach -setWidth the visual position is identical to 0
+            // (Set 2 on screen = Set 1 on screen) — the reset is invisible
             if (x <= -setWidth) x += setWidth;
             track.style.transform = `translateX(${x}px)`;
         }

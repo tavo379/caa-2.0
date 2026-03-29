@@ -8,7 +8,11 @@
       "Bash(node --input-type=module <<'EOF'\nimport * as si from 'simple-icons';\nconst matches = Object.keys\\(si\\).filter\\(k => k.toLowerCase\\(\\).includes\\('sales'\\) || k.toLowerCase\\(\\).includes\\('node'\\)\\);\nconsole.log\\(matches.join\\(', '\\)\\);\nEOF)",
       "Bash(node --input-type=module <<'EOF'\nimport * as si from 'simple-icons';\nconst all = Object.keys\\(si\\);\nconsole.log\\('Total:', all.length\\);\n// Check for hydrogen and react native\nconst h = all.filter\\(k => k.toLowerCase\\(\\).includes\\('hydrogen'\\) || k.toLowerCase\\(\\).includes\\('graphql'\\) || k.toLowerCase\\(\\).includes\\('firebase'\\) || k.toLowerCase\\(\\).includes\\('typescript'\\)\\);\nconsole.log\\(h.join\\(', '\\)\\);\nEOF)",
       "Bash(head -15 echo \"---\" grep -n \"ds-btn__dot\\\\|ArrowRight\" \"C:/Users/tavor/Desktop/cacao-and-avocado/apps/web/src/pages/en/services/ecommerce-engineering.astro\")",
-      "Bash(python3:*)"
+      "Bash(python3:*)",
+      "Bash(grep -rn \"//\" \"C:/Users/tavor/Desktop/cacao-and-avocado/apps/web/src/components/TechStack.astro\")",
+      "Bash(grep -rn \"//\" \"C:/Users/tavor/Desktop/cacao-and-avocado/apps/web/src/\" --include=\"*.astro\" --include=\"*.ts\" --include=\"*.js\" --include=\"*.css\")",
+      "Bash(grep -v \"xmlns\\\\|http\\\\|node_modules\\\\|://\\\\|//localhost\")",
+      "Bash(node:*)"
     ]
   }
 }
