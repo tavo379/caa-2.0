@@ -161,8 +161,11 @@ const techStack = [
     const track   = document.querySelector<HTMLElement>('.carousel-track')!;
     const set1    = document.querySelector<HTMLElement>('.carousel-set')!;
 
-    // Velocidad en píxeles por frame (60 fps ≈ 30 px/s)
-    const SPEED = 0.5;
+    const SPEED = 0.5; // px por frame a 60fps ≈ 30px/s
+
+    // Cachear el ancho fuera del loop — leerlo dentro causa layout thrashing cada frame
+    let setWidth = set1.offsetWidth;
+    window.addEventListener('resize', () => { setWidth = set1.offsetWidth; }, { passive: true });
 
     let x = 0;
     let paused = false;
@@ -173,12 +176,9 @@ const techStack = [
     function tick() {
         if (!paused) {
             x -= SPEED;
-            // Cuando hemos recorrido exactamente el ancho de un set, reseteamos
-            // a 0 — la posición 0 y -setWidth se ven idénticas porque ambos sets son iguales
-            const setWidth = set1.offsetWidth;
-            if (x <= -setWidth) {
-                x += setWidth;
-            }
+            // Cuando alcanzamos -setWidth la posición visual es idéntica a 0
+            // (Set 2 en pantalla = Set 1 en pantalla) — el salto es invisible
+            if (x <= -setWidth) x += setWidth;
             track.style.transform = `translateX(${x}px)`;
         }
         requestAnimationFrame(tick);

@@ -1,5 +1,6 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
+import { ArrowRight } from "lucide-astro";
 import CTABlock from "../../../components/CTABlock.astro";
 
 const lang = "en";
@@ -27,11 +28,11 @@ const description =
                 <div class="ds-btn-group">
                     <a href={`/${lang}/contact`} class="ds-btn ds-btn--primary">
                         Schedule Consultation
-                        <span class="ds-btn__dot" aria-hidden="true">●</span>
+                        <span class="ds-btn__dot"><ArrowRight size={12} strokeWidth={2} /></span>
                     </a>
                     <a href={`/${lang}/projects`} class="ds-btn ds-btn--outline">
                         View Our Work
-                        <span class="ds-btn__dot" aria-hidden="true">→</span>
+                        <span class="ds-btn__dot"><ArrowRight size={12} strokeWidth={2} /></span>
                     </a>
                 </div>
             </div>

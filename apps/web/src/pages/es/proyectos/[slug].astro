@@ -1,5 +1,6 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
+import { ArrowRight } from "lucide-astro";
 import { sanityClient } from "sanity:client";
 import groq from "groq";
 import { PortableText } from "astro-portabletext";
@@ -86,7 +87,7 @@ const description = project.excerpt || `Proyecto: ${project.title}`;
                                         class="ds-btn ds-btn--primary"
                                     >
                                         Ver Sitio Web
-                                        <span class="ds-btn__dot" aria-hidden="true">●</span>
+                                        <span class="ds-btn__dot"><ArrowRight size={12} strokeWidth={2} /></span>
                                     </a>
                                 )}
                                 {project.links.repoUrl && (
@@ -97,7 +98,7 @@ const description = project.excerpt || `Proyecto: ${project.title}`;
                                         class="ds-btn ds-btn--outline"
                                     >
                                         Ver Repositorio
-                                        <span class="ds-btn__dot" aria-hidden="true">→</span>
+                                        <span class="ds-btn__dot"><ArrowRight size={12} strokeWidth={2} /></span>
                                     </a>
                                 )}
                             </div>

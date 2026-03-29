@@ -1,5 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import { ArrowRight } from "lucide-astro";
 
 const lang = "es";
 const title =
@@ -48,7 +49,7 @@ const description =
                             rel="noopener noreferrer"
                         >
                             Agendar en Calendly
-                            <span class="ds-btn__dot" aria-hidden="true">●</span>
+                            <span class="ds-btn__dot"><ArrowRight size={12} strokeWidth={2} /></span>
                         </a>
                     </div>
 
@@ -107,7 +108,7 @@ const description =
                             </select>
                             <button type="submit" class="ds-btn ds-btn--primary">
                                 Enviar Brief del Proyecto
-                                <span class="ds-btn__dot" aria-hidden="true">●</span>
+                                <span class="ds-btn__dot"><ArrowRight size={12} strokeWidth={2} /></span>
                             </button>
                         </form>
                     </div>
