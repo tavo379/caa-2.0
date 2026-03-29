@@ -110,16 +110,20 @@ const techStack = [
 
     @keyframes marquee {
         from { transform: translateX(0); }
-        to   { transform: translateX(-50%); }
+        to   { transform: translateX(calc(-1 * var(--marquee-set-w, 50%))); }
     }
 
     .carousel-track {
         display: flex;
         width: max-content;
+        will-change: transform;
+    }
+
+    .carousel-track.is-running {
         animation: marquee 22s linear infinite;
     }
 
-    .carousel-track:hover {
+    .carousel-wrapper:hover .carousel-track {
         animation-play-state: paused;
     }
 
@@ -166,3 +170,25 @@ const techStack = [
     }
 </style>
 
+<script>
+    // getBoundingClientRect gives sub-pixel accurate width — avoids the rounding
+    // error that offsetWidth causes with rem-based gaps, which creates the blank gap
+    // on loop. We set the exact pixel value as a CSS custom property so the keyframe
+    // translateX lands on the precise same visual position as translateX(0).
+    const track = document.querySelector<HTMLElement>('.carousel-track')!;
+    const set1  = track.querySelector<HTMLElement>('.carousel-set')!;
+
+    function start() {
+        const w = set1.getBoundingClientRect().width;
+        track.style.setProperty('--marquee-set-w', `${w}px`);
+        track.classList.add('is-running');
+    }
+
+    // Double rAF: first frame commits layout, second reads accurate geometry
+    requestAnimationFrame(() => requestAnimationFrame(start));
+
+    window.addEventListener('resize', () => {
+        const w = set1.getBoundingClientRect().width;
+        track.style.setProperty('--marquee-set-w', `${w}px`);
+    }, { passive: true });
+</script>
