@@ -1,5 +1,6 @@
 ---
 import { ArrowUpRight } from "lucide-astro";
+import { getLocalizedPath, type Lang } from "../lib/i18n/paths";
 
 interface Props {
     title: string;
@@ -9,7 +10,7 @@ interface Props {
     hubspotDesc: string;
     webTitle: string;
     webDesc: string;
-    lang: string;
+    lang: Lang;
 }
 
 const {
@@ -23,7 +24,7 @@ const {
     lang,
 } = Astro.props;
 
-const base = lang === "en" ? "/en/services" : "/es/servicios";
+const base = getLocalizedPath(lang, "services");
 
 const services = [
     {

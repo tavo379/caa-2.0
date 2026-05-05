@@ -1,7 +1,11 @@
 ---
-import { sanityClient } from "sanity:client";
-import groq from "groq";
 import { ArrowRight } from "lucide-astro";
+import { fetchProjectsPreview } from "../lib/sanity/queries";
+import {
+    getLocalizedPath,
+    getLocalizedProjectPath,
+    type Lang,
+} from "../lib/i18n/paths";
 
 interface Props {
     title: string;
@@ -9,23 +13,12 @@ interface Props {
     viewAll: string;
     viewProject: string;
     empty: string;
-    lang: string;
+    lang: Lang;
 }
 
 const { title, intro, viewAll, viewProject, empty, lang } = Astro.props;
 
-const projects = await sanityClient.fetch(
-    groq`
-  *[_type == "project" && language == $lang] | order(system.publishedAt desc)[0...3] {
-    _id,
-    title,
-    "slug": slug.current,
-    "imageUrl": cover.asset->url,
-    "tech": tech[]
-  }
-`,
-    { lang },
-);
+const projects = await fetchProjectsPreview(lang);
 ---
 
 <section class="ds-section ds-section--border-b">
@@ -36,7 +29,7 @@ const projects = await sanityClient.fetch(
         <div class="projects-grid">
             {
                 projects.length > 0 ? (
-                    projects.map((project: any) => (
+                    projects.map((project) => (
                         <div class="ds-project-card">
                             <div class="ds-project-card__image">
                                 {project.imageUrl ? (
@@ -61,7 +54,7 @@ const projects = await sanityClient.fetch(
                                 </p>
                                 <div class="ds-project-card__cta">
                                     <a
-                                        href={`/${lang}/${lang === "en" ? "projects" : "proyectos"}/${project.slug}`}
+                                        href={getLocalizedProjectPath(lang, project.slug)}
                                         class="ds-btn ds-btn--outline ds-btn--sm"
                                     >
                                         {viewProject}
@@ -81,7 +74,7 @@ const projects = await sanityClient.fetch(
 
         <div class="view-all-wrap">
             <a
-                href={`/${lang}/${lang === "en" ? "projects" : "proyectos"}`}
+                href={getLocalizedPath(lang, "projects")}
                 class="ds-btn ds-btn--outline"
             >
                 {viewAll}

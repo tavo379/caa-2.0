@@ -5,6 +5,7 @@ import { schemaTypes } from './schemaTypes'
 import { esESLocale } from '@sanity/locale-es-es'
 import { documentInternationalization } from '@sanity/document-internationalization'
 import Logo from './components/Logo'
+import structure from './structure'
 
 export default defineConfig({
   name: 'default',
@@ -21,7 +22,7 @@ export default defineConfig({
   },
 
   plugins: [
-    structureTool({ structure: (await import('./structure')).default }),
+    structureTool({ structure }),
     documentInternationalization({
       // Required configuration
       supportedLanguages: [

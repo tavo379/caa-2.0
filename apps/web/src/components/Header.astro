@@ -1,32 +1,30 @@
 ---
 import { ui } from "../i18n/ui";
+import {
+    getLocalizedPath,
+    switchLangPath,
+    type Lang,
+} from "../lib/i18n/paths";
 
-const { lang = "es" } = Astro.props;
-const t = ui[lang as keyof typeof ui];
+const { lang = "es" } = Astro.props as { lang?: Lang };
+const currentLang: Lang = lang;
+const t = ui[currentLang];
 
 const navItems = [
-    {
-        label: t["nav.services"],
-        href: `/${lang}/${lang === "en" ? "services" : "servicios"}`,
-    },
-    {
-        label: t["nav.projects"],
-        href: `/${lang}/${lang === "en" ? "projects" : "proyectos"}`,
-    },
-    {
-        label: t["nav.about"],
-        href: `/${lang}/${lang === "en" ? "about" : "nosotros"}`,
-    },
-    {
-        label: t["nav.contact"],
-        href: `/${lang}/${lang === "en" ? "contact" : "contacto"}`,
-    },
+    { label: t["nav.services"], href: getLocalizedPath(currentLang, "services") },
+    { label: t["nav.projects"], href: getLocalizedPath(currentLang, "projects") },
+    { label: t["nav.about"], href: getLocalizedPath(currentLang, "about") },
+    { label: t["nav.contact"], href: getLocalizedPath(currentLang, "contact") },
 ];
+
+const pathname = Astro.url.pathname;
+const esHref = switchLangPath(pathname, "es");
+const enHref = switchLangPath(pathname, "en");
 ---
 
 <header class="site-header">
     <div class="header-inner ds-container">
-        <a href={`/${lang}`} class="header-logo">
+        <a href={`/${currentLang}`} class="header-logo">
             <img src="/caa-logo.svg" alt="Cacao & Avocado" />
         </a>
 
@@ -44,9 +42,9 @@ const navItems = [
 
         <div class="header-right">
             <div class="lang-toggle">
-                <a href="/es" class={lang === "es" ? "active" : ""}>ES</a>
+                <a href={esHref} class={currentLang === "es" ? "active" : ""}>ES</a>
                 <span>/</span>
-                <a href="/en" class={lang === "en" ? "active" : ""}>EN</a>
+                <a href={enHref} class={currentLang === "en" ? "active" : ""}>EN</a>
             </div>
             <button class="mobile-toggle" aria-label="Menu">
                 <span></span>

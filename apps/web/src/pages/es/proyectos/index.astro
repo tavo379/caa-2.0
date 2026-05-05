@@ -1,23 +1,11 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
 import { ArrowRight } from "lucide-astro";
-import { sanityClient } from "sanity:client";
-import groq from "groq";
+import { fetchAllProjects } from "../../../lib/sanity/queries";
+import { getLocalizedProjectPath } from "../../../lib/i18n/paths";
 
-const lang = "es";
-
-const projects = await sanityClient.fetch(
-    groq`
-  *[_type == "project" && language == $lang] | order(system.publishedAt desc) {
-    _id,
-    title,
-    "slug": slug.current,
-    "imageUrl": cover.asset->url,
-    "tech": tech[]
-  }
-`,
-    { lang },
-);
+const lang = "es" as const;
+const projects = await fetchAllProjects(lang);
 
 const title = "Proyectos — Cacao & Avocado";
 const description = "Nuestro trabajo reciente en Shopify, HubSpot y Desarrollo Web.";
@@ -37,7 +25,7 @@ const description = "Nuestro trabajo reciente en Shopify, HubSpot y Desarrollo W
                 <div class="projects-grid">
                     {
                         projects.length > 0 ? (
-                            projects.map((project: any) => (
+                            projects.map((project) => (
                                 <div class="ds-project-card">
                                     <div class="ds-project-card__image">
                                         {project.imageUrl ? (
@@ -62,7 +50,7 @@ const description = "Nuestro trabajo reciente en Shopify, HubSpot y Desarrollo W
                                         </p>
                                         <div class="ds-project-card__cta">
                                             <a
-                                                href={`/${lang}/proyectos/${project.slug}`}
+                                                href={getLocalizedProjectPath(lang, project.slug)}
                                                 class="ds-btn ds-btn--outline"
                                             >
                                                 Ver Proyecto

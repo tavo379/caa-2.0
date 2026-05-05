@@ -1,19 +1,21 @@
 ---
 import { ui } from "../i18n/ui";
+import { getLocalizedPath, type Lang } from "../lib/i18n/paths";
 
-const { lang = "es" } = Astro.props;
-const t = ui[lang as keyof typeof ui];
+const { lang = "es" } = Astro.props as { lang?: Lang };
+const currentLang: Lang = lang;
+const t = ui[currentLang];
 ---
 
 <footer class="site-footer">
     <div class="footer-inner ds-container">
         <div class="footer-brand">
-            <a href={`/${lang}`} class="footer-logo">
+            <a href={`/${currentLang}`} class="footer-logo">
                 <img src="/caa-logo.svg" alt="Cacao & Avocado" />
             </a>
             <p class="footer-tagline">
                 {
-                    lang === "en"
+                    currentLang === "en"
                         ? "Premium E-commerce & Web Development Agency"
                         : "Agencia Premium de Desarrollo E-commerce y Web"
                 }
@@ -21,25 +23,11 @@ const t = ui[lang as keyof typeof ui];
         </div>
 
         <nav class="footer-nav">
-            <a href={`/${lang}`}>{t["nav.home"]}</a>
-            <a
-                href={`/${lang}/${lang === "en" ? "services" : "servicios"}`}
-                >{t["nav.services"]}</a
-            >
-            <a
-                href={`/${lang}/${lang === "en" ? "projects" : "proyectos"}`}
-                >{t["nav.projects"]}</a
-            >
-            <a
-                href={lang === "en"
-                    ? `/${lang}/about`
-                    : `/${lang}/nosotros`}>{t["nav.about"]}</a
-            >
-            <a
-                href={lang === "en"
-                    ? `/${lang}/contact`
-                    : `/${lang}/contacto`}>{t["nav.contact"]}</a
-            >
+            <a href={`/${currentLang}`}>{t["nav.home"]}</a>
+            <a href={getLocalizedPath(currentLang, "services")}>{t["nav.services"]}</a>
+            <a href={getLocalizedPath(currentLang, "projects")}>{t["nav.projects"]}</a>
+            <a href={getLocalizedPath(currentLang, "about")}>{t["nav.about"]}</a>
+            <a href={getLocalizedPath(currentLang, "contact")}>{t["nav.contact"]}</a>
         </nav>
     </div>
 

@@ -1,41 +1,27 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
 import { ArrowRight } from "lucide-astro";
-import { sanityClient } from "sanity:client";
-import groq from "groq";
 import { PortableText } from "astro-portabletext";
+import { fetchProjectBySlug, fetchProjectSlugs } from "../../../lib/sanity/queries";
+import { getLocalizedPath } from "../../../lib/i18n/paths";
+
+const lang = "en" as const;
 
 export async function getStaticPaths() {
-    const rows = await sanityClient.fetch(groq`
-    *[_type=="project" && language=="en"]{ "slug": slug.current }
-  `);
-    return rows.map((x: any) => ({ params: { slug: x.slug } }));
+    const rows = await fetchProjectSlugs("en");
+    return rows.map((x) => ({ params: { slug: x.slug } }));
 }
 
 const { slug } = Astro.params;
-const lang = "en";
-
-const project = await sanityClient.fetch(
-    groq`
-*[_type=="project" && language=="en" && slug.current==$slug][0]{
-  title,
-  excerpt,
-  body,
-  cover{asset->{url}, alt},
-  tech,
-  links,
-  publishedAt
-}
-`,
-    { slug },
-);
+const project = await fetchProjectBySlug(lang, slug!);
 
 if (!project) {
-    return Astro.redirect("/404");
+    throw new Error(`Project not found: ${slug}`);
 }
 
 const title = `${project.title} — Cacao & Avocado`;
 const description = project.excerpt || `Project: ${project.title}`;
+const projectsHref = getLocalizedPath(lang, "projects");
 ---
 
 <Layout title={title} description={description} lang={lang}>
@@ -106,7 +92,7 @@ const description = project.excerpt || `Project: ${project.title}`;
                 }
 
                 <div class="back-link">
-                    <a href={`/${lang}/projects`} class="ds-btn ds-btn--outline">
+                    <a href={projectsHref} class="ds-btn ds-btn--outline">
                         ← Back to Projects
                     </a>
                 </div>

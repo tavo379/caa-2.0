@@ -1,9 +1,11 @@
 ---
+import { getLocalizedPath, type Lang } from "../lib/i18n/paths";
+
 interface Props {
     title: string;
     desc: string;
     cta: string;
-    lang: string;
+    lang: Lang;
 }
 
 const { title, desc, cta, lang } = Astro.props;
@@ -15,7 +17,7 @@ const { title, desc, cta, lang } = Astro.props;
         <h2 class="ds-h2">{title}</h2>
         <p class="ds-body-lg contact-home-desc">{desc}</p>
         <a
-            href={`/${lang}/${lang === "en" ? "contact" : "contacto"}`}
+            href={getLocalizedPath(lang, "contact")}
             class="ds-btn ds-btn--accent"
         >
             {cta}
