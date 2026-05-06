@@ -2,6 +2,9 @@
 
 Tareas accionables vivas. Para el contexto detrás de cada item ver [`docs/reviews/2026-05-05-architecture-review.md`](docs/reviews/2026-05-05-architecture-review.md).
 
+**Guías operativas:**
+- [Bulk import de proyectos al portafolio](docs/guides/bulk-import-projects.md) — cómo añadir/actualizar proyectos vía CSV + scripts.
+
 ---
 
 ## Sprint 0 — Limpieza y bugs (1-2h)

@@ -2,6 +2,10 @@
 
 Helpers para mantener Sanity Studio (bulk import, capturas, etc.).
 
+> **Para el flujo completo paso a paso** (cómo añadir un proyecto nuevo,
+> troubleshooting, gotchas de Sanity, cómo crear/rotar el token, etc.) ver
+> [`docs/guides/bulk-import-projects.md`](../../../docs/guides/bulk-import-projects.md).
+
 ## projects.csv
 
 Fuente de verdad para el bulk import de proyectos. Una fila por proyecto.
