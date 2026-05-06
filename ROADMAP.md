@@ -38,20 +38,24 @@ Refactors que pagan intereses al hacer el import.
 
 ---
 
-## Sprint 2 — Performance + bulk import (2-3d)
+## Sprint 2 — Bulk import + portafolio en producción ✅
 
-- [ ] Instalar `@sanity/image-url` en `apps/web`.
-- [ ] Crear helper `apps/web/src/lib/sanity/image.ts` con `urlForImage`.
-- [ ] Refactor todas las `<img src={cover.asset->url}>` a responsive (cards, hero, gallery, [slug]).
-- [ ] Crear token de write en sanity.io/manage (Editor o Maintainer).
-- [ ] Crear `apps/studio/scripts/import-projects.ts`:
-  - [ ] Lee CSV/JSON local (campos: title_es, title_en, slug, tech, links, body_es, body_en, cover_path).
-  - [ ] Sube imágenes con `client.assets.upload`.
-  - [ ] Crea doc ES + doc EN + `translation.metadata`.
-  - [ ] `client.transaction()` por proyecto (atomicidad).
-  - [ ] Idempotente: `_id` = `project-${slug}` + `createOrReplace`.
-- [ ] Estandarizar covers a 1200×630 (Playwright screenshots o composición manual).
-- [ ] Migrar fonts a `astro:assets` con `<Font>` nativo de Astro 5.7+.
+Lo crítico hecho. Performance opcional movido a Sprint 3.
+
+- [x] Token de write creado en sanity.io/manage y guardado en `apps/studio/.env`.
+- [x] CSV `apps/studio/scripts/projects.csv` con 8 proyectos (Majha, Studio L'marc, Ververa, Pong Studio, MAP & Partners, NODO, Blue Phoenix, Backbone BW).
+- [x] Script `capture-covers.ts` (Playwright + full Chromium) con fallback tipográfico para sitios con bot detection (4xx/5xx).
+- [x] Script `import-projects.ts` idempotente: `_id` determinístico (`project-{slug}-{lang}`) + `createOrReplace`, transaction atómica por proyecto, reuso de cover asset si existe.
+- [x] 8 proyectos × 2 idiomas + 8 metadata docs publicados en Sanity production.
+- [x] Build local validado: 16 páginas de detalle + 2 listados generados.
+- [x] Push a main → Vercel rebuild en curso.
+
+Pendiente (nice-to-have, no bloqueante):
+- [ ] `@sanity/image-url` para que las imágenes se sirvan responsive/WebP en lugar de tamaño original.
+- [ ] Refactor `<img src={cover.asset->url}>` a `urlForImage(cover).width(...).format('webp')` en cards / [slug].
+- [ ] Migrar fonts a `astro:assets <Font>` para self-host + subset automático.
+- [ ] Año / stack / role específico / outcome de cada proyecto (editar en Sanity Studio cuando haya tiempo).
+- [ ] Webhook de Sanity → Vercel deploy hook (rebuild automático cuando cambia contenido).
 
 ---
 
