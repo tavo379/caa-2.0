@@ -30,3 +30,6 @@
 
 # Sanity TypeGen intermediate artifact (regenerated via `npm run typegen`)
 /schema.json
+
+# Generated cover screenshots (regenerated via `npm run capture-covers`)
+/scripts/covers/

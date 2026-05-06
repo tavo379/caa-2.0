@@ -10,7 +10,9 @@
     "build": "sanity build",
     "deploy": "sanity deploy",
     "deploy-graphql": "sanity graphql deploy",
-    "typegen": "sanity schema extract && sanity typegen generate"
+    "typegen": "sanity schema extract && sanity typegen generate",
+    "capture-covers": "node --experimental-strip-types --no-warnings scripts/capture-covers.ts",
+    "import-projects": "node --experimental-strip-types --no-warnings scripts/import-projects.ts"
   },
   "keywords": [
     "sanity"
@@ -26,8 +28,14 @@
   },
   "devDependencies": {
     "@sanity/eslint-config-studio": "^5.0.2",
+    "@types/mime-types": "^3.0.1",
+    "@types/node": "^22.18.12",
     "@types/react": "^19.1",
+    "csv-parse": "^6.2.1",
+    "dotenv": "^16.0.3",
     "eslint": "^9.28",
+    "mime-types": "^3.0.2",
+    "playwright": "^1.59.1",
     "prettier": "^3.5",
     "typescript": "^5.8"
   },
