@@ -14,21 +14,21 @@ Tareas accionables vivas. Para el contexto detrás de cada item ver [`docs/revie
 **Orden recomendado por impacto al goal "captar clientes":**
 
 ### 🔥 Alto impacto
-1. **Verificar deploy en producción** (5 min) — abrir `/es/proyectos` y `/en/projects`, mirar cómo se ven los 8 proyectos. Iterar si algo se ve mal.
-2. **Imágenes responsive con `@sanity/image-url`** (30 min) — hoy las covers se sirven a tamaño original (~6MB en el listado). Mata Lighthouse y mobile.
-3. **Webhook Sanity → Vercel deploy hook** (15 min) — para que ediciones en Studio aparezcan sin push manual.
+- [ ] **Verificar deploy en producción** (5 min) — abrir `/es/proyectos` y `/en/projects`, mirar cómo se ven los 8 proyectos. Iterar si algo se ve mal.
+- [ ] **Imágenes responsive con `@sanity/image-url`** (30 min) — hoy las covers se sirven a tamaño original (~6MB en el listado). Mata Lighthouse y mobile.
+- [ ] **Webhook Sanity → Vercel deploy hook** (15 min) — para que ediciones en Studio aparezcan sin push manual.
 
 ### 🟡 Medio impacto
-4. **Re-screenshot de los 4 sitios con fallback tipográfico** (Studio L'marc, Ververa, MAP & Partners, Backbone BW). Opciones: captura manual + replace en `scripts/covers/{slug}.jpg`, o usar shots.so / screely.com / urlbox.io.
-5. **Editar año / stack / role específico de cada proyecto** en Sanity Studio (`cd apps/studio && npm run dev`). NO requiere código.
+- [ ] **Re-screenshot de los 4 sitios con fallback tipográfico** (Studio L'marc, Ververa, MAP & Partners, Backbone BW). Opciones: captura manual + replace en `scripts/covers/{slug}.jpg`, o usar shots.so / screely.com / urlbox.io.
+- [ ] **Editar año / stack / role específico de cada proyecto** en Sanity Studio (`cd apps/studio && npm run dev`). NO requiere código.
 
 ### 🟢 Bajo impacto (Sprint 3)
-6. Fonts self-hosted con `astro:assets <Font>`.
-7. Localizar schema `category` (añadir `language` field).
-8. Reemplazar `<meta refresh>` de home por `i18n` config nativo de Astro 5.
-9. Configurar lint en `apps/web`.
-10. Singleton lock real en `configurationType.ts`.
-11. Decidir destino de `system.createdAt/updatedAt` (automatizar o borrar).
+- [ ] Fonts self-hosted con `astro:assets <Font>`.
+- [ ] Localizar schema `category` (añadir `language` field).
+- [ ] Reemplazar `<meta refresh>` de home por `i18n` config nativo de Astro 5.
+- [ ] Configurar lint en `apps/web`.
+- [ ] Singleton lock real en `configurationType.ts`.
+- [ ] Decidir destino de `system.createdAt/updatedAt` (automatizar o borrar).
 
 ---
 
