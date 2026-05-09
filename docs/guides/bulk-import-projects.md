@@ -73,12 +73,20 @@ nombre. Si necesitas dejar algo vacío, déjalo en blanco entre comas.
 
 ## Script 1 — `capture-covers.ts`
 
-Toma screenshots a 1280×800 (deviceScaleFactor 2, so output ~2560×1600 JPEG)
-de cada `site_url`. Si el sitio devuelve 4xx/5xx (bot detection típico),
-genera automáticamente un **fallback tipográfico** con la paleta de la
-categoría.
+Toma screenshots a 1280×800 (deviceScaleFactor 2, so output ~2560×1600)
+de cada `site_url`. Cascada de fallbacks cuando el sitio bloquea al bot:
 
-### Cómo se ven los fallbacks
+1. **Playwright + Chrome del sistema** (canal `chrome`, no el chromium
+   bundled — sortea bot detection casual). Fallback automático a
+   `chromium` bundled si Chrome no está instalado.
+2. Si el sitio devuelve **4xx/5xx**, llama a la API gratuita de
+   **Microlink** (`api.microlink.io`) que renderiza con Chrome real
+   desde IPs rotativas — pasa los WAFs estrictos. Free tier: 50 req/día,
+   sin API key.
+3. Si Microlink también falla, genera un **fallback tipográfico** con la
+   paleta de la categoría.
+
+### Cómo se ven los fallbacks tipográficos
 
 ```
 [fondo cacao oscuro]
@@ -92,17 +100,19 @@ categoría.
 Las paletas viven en `capture-covers.ts` en la constante `PALETTES`. Si
 quieres cambiar el look de una categoría, edita ahí.
 
-### Sitios que requieren fallback (bot-bloqueados)
+### Sitios que requieren la API externa (bot-bloqueados)
 
-Al 2026-05-05 estos 4 sitios devuelven 403 a Playwright incluso con full
-Chromium + stealth init scripts:
+Al 2026-05-09 estos 4 sitios devuelven 403 a Playwright incluso con
+Chrome real + stealth init scripts, y son rescatados por el fallback
+de Microlink:
 - `studiolamarc.com`
 - `ververafine.com`
 - `mapandpartners.com`
 - `backbonebw.com`
 
-El script los detecta automáticamente y genera fallback. **No es problema
-del script** — es bot detection del WAF/hosting.
+**No es problema del script** — es bot detection del WAF/hosting. Si
+algún día Microlink también empieza a fallar (rate limit excedido o el
+sitio cambia de WAF más estricto), el typographic fallback se activa.
 
 ### Output
 

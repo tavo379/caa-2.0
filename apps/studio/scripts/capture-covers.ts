@@ -53,6 +53,67 @@ function loadRows(): Row[] {
   return parse(csv, {columns: true, skip_empty_lines: true, trim: true})
 }
 
+// Microlink free tier (50 req/day, no key) renders pages from rotating IPs with
+// real Chrome — sites that 403 our local Playwright usually let it through.
+async function externalScreenshot(siteUrl: string, outPath: string): Promise<boolean> {
+  const params = new URLSearchParams({
+    url: siteUrl,
+    screenshot: 'true',
+    meta: 'false',
+    'viewport.width': '1280',
+    'viewport.height': '800',
+    'viewport.deviceScaleFactor': '2',
+    'screenshot.type': 'jpeg',
+    waitFor: '2500',
+  })
+  const apiUrl = `https://api.microlink.io/?${params.toString()}`
+  console.log(`   ↻ trying microlink fallback`)
+  try {
+    const res = await fetch(apiUrl, {signal: AbortSignal.timeout(60000)})
+    if (!res.ok) {
+      console.log(`   ✗ microlink returned ${res.status}`)
+      return false
+    }
+    const json = (await res.json()) as {
+      status?: string
+      data?: {screenshot?: {url?: string}}
+    }
+    const imgUrl = json?.data?.screenshot?.url
+    if (!imgUrl) {
+      console.log(`   ✗ microlink response missing screenshot.url`)
+      return false
+    }
+    const imgRes = await fetch(imgUrl, {signal: AbortSignal.timeout(30000)})
+    if (!imgRes.ok) {
+      console.log(`   ✗ failed to download screenshot from microlink`)
+      return false
+    }
+    writeFileSync(outPath, Buffer.from(await imgRes.arrayBuffer()))
+    console.log(`   ✓ saved microlink screenshot ${outPath}`)
+    return true
+  } catch (err) {
+    console.log(`   ✗ microlink error: ${(err as Error).message}`)
+    return false
+  }
+}
+
+async function writeTypographicFallback(
+  browser: import('playwright').Browser,
+  client: string,
+  category: string,
+  outPath: string,
+) {
+  const ctx = await browser.newContext({viewport: VIEWPORT, deviceScaleFactor: 2})
+  const page = await ctx.newPage()
+  try {
+    await page.setContent(fallbackHtml(client, category), {waitUntil: 'load'})
+    await page.waitForTimeout(300)
+    await page.screenshot({path: outPath, type: 'jpeg', quality: 92, fullPage: false})
+  } finally {
+    await ctx.close()
+  }
+}
+
 async function dismissCookieBanners(page: import('playwright').Page) {
   const buttons = [
     'button:has-text("Accept")',
@@ -128,11 +189,11 @@ async function captureRow(browser: import('playwright').Browser, row: Row): Prom
 
     const status = response?.status() ?? 0
     if (status >= 400) {
-      console.log(`   ⚠️  ${status} from site — using typographic fallback`)
-      await page.setContent(fallbackHtml(row.client, row.category), {waitUntil: 'load'})
-      await page.waitForTimeout(300)
-      await page.screenshot({path: outPath, type: 'jpeg', quality: 92, fullPage: false})
-      console.log(`   ✓ saved fallback cover ${outPath}`)
+      console.log(`   ⚠️  ${status} from site — trying external service`)
+      if (await externalScreenshot(row.site_url, outPath)) return true
+      console.log(`   ↻ external service failed — using typographic fallback`)
+      await writeTypographicFallback(browser, row.client, row.category, outPath)
+      console.log(`   ✓ saved typographic fallback ${outPath}`)
       return true
     }
 
@@ -156,8 +217,18 @@ async function main() {
   const rows = loadRows()
   console.log(`Loaded ${rows.length} rows from CSV\n`)
 
-  // Use full Chromium (not headless-shell) to avoid bot detection on stricter sites
-  const browser = await chromium.launch({headless: true, channel: 'chromium'})
+  // Prefer the system-installed Chrome over Playwright's bundled Chromium —
+  // strict WAFs (Cloudflare, etc.) treat real Chrome more leniently. Fall back
+  // to bundled chromium if Chrome isn't installed on this machine.
+  let browser: import('playwright').Browser
+  try {
+    browser = await chromium.launch({headless: true, channel: 'chrome'})
+    console.log('Using system Chrome\n')
+  } catch (err) {
+    console.log(`System Chrome unavailable (${(err as Error).message.split('\n')[0]})`)
+    console.log('Falling back to bundled chromium\n')
+    browser = await chromium.launch({headless: true, channel: 'chromium'})
+  }
   const results: Record<string, boolean> = {}
 
   try {
