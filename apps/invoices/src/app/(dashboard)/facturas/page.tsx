@@ -77,10 +77,8 @@ export default async function InvoicesPage({ searchParams }: InvoicesPageProps) 
 
             {/* Filters */}
             <div className="card" style={{ marginBottom: 'var(--space-6)', padding: 'var(--space-4)' }}>
-                {/* Filters */}
-                <div className="card" style={{ marginBottom: 'var(--space-6)', padding: 'var(--space-4)' }}>
-                    {/* FORCE HORIZONTAL FLEX WITH INLINE STYLES */}
-                    <form style={{
+                {/* FORCE HORIZONTAL FLEX WITH INLINE STYLES */}
+                <form style={{
                         display: 'flex',
                         flexDirection: 'row',
                         alignItems: 'flex-end',
