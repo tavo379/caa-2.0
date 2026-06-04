@@ -10,6 +10,9 @@ export type Json =
     | Json[]
 
 export type InvoiceStatus = 'draft' | 'sent' | 'paid' | 'void'
+export type ProjectStatus = 'lead' | 'active' | 'on_hold' | 'completed' | 'cancelled'
+export type ProjectServiceType = 'shopify' | 'hubspot' | 'web' | 'other'
+export type ProjectPriority = 'low' | 'medium' | 'high'
 
 export interface Database {
     public: {
@@ -145,6 +148,82 @@ export interface Database {
                     last_number?: number
                 }
             }
+            projects: {
+                Row: {
+                    id: string
+                    name: string
+                    client_id: string | null
+                    service_type: ProjectServiceType
+                    status: ProjectStatus
+                    priority: ProjectPriority
+                    start_date: string | null
+                    due_date: string | null
+                    budget: number | null
+                    currency: string
+                    description: string | null
+                    created_at: string
+                    user_id: string
+                }
+                Insert: {
+                    id?: string
+                    name: string
+                    client_id?: string | null
+                    service_type?: ProjectServiceType
+                    status?: ProjectStatus
+                    priority?: ProjectPriority
+                    start_date?: string | null
+                    due_date?: string | null
+                    budget?: number | null
+                    currency?: string
+                    description?: string | null
+                    created_at?: string
+                    user_id: string
+                }
+                Update: {
+                    id?: string
+                    name?: string
+                    client_id?: string | null
+                    service_type?: ProjectServiceType
+                    status?: ProjectStatus
+                    priority?: ProjectPriority
+                    start_date?: string | null
+                    due_date?: string | null
+                    budget?: number | null
+                    currency?: string
+                    description?: string | null
+                    created_at?: string
+                    user_id?: string
+                }
+            }
+            project_tasks: {
+                Row: {
+                    id: string
+                    project_id: string
+                    title: string
+                    done: boolean
+                    due_date: string | null
+                    sort_order: number
+                    created_at: string
+                }
+                Insert: {
+                    id?: string
+                    project_id: string
+                    title: string
+                    done?: boolean
+                    due_date?: string | null
+                    sort_order?: number
+                    created_at?: string
+                }
+                Update: {
+                    id?: string
+                    project_id?: string
+                    title?: string
+                    done?: boolean
+                    due_date?: string | null
+                    sort_order?: number
+                    created_at?: string
+                }
+            }
         }
         Functions: {
             generate_invoice_number: {
@@ -167,6 +246,18 @@ export type InvoiceUpdate = Database['public']['Tables']['invoices']['Update']
 export type InvoiceItem = Database['public']['Tables']['invoice_items']['Row']
 export type InvoiceItemInsert = Database['public']['Tables']['invoice_items']['Insert']
 export type InvoiceItemUpdate = Database['public']['Tables']['invoice_items']['Update']
+
+export type Project = Database['public']['Tables']['projects']['Row']
+export type ProjectInsert = Database['public']['Tables']['projects']['Insert']
+export type ProjectUpdate = Database['public']['Tables']['projects']['Update']
+
+export type ProjectTask = Database['public']['Tables']['project_tasks']['Row']
+export type ProjectTaskInsert = Database['public']['Tables']['project_tasks']['Insert']
+export type ProjectTaskUpdate = Database['public']['Tables']['project_tasks']['Update']
+
+export type ProjectWithClient = Project & {
+    client: Client | null
+}
 
 // Extended types with relations
 export type InvoiceWithClient = Invoice & {

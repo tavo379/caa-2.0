@@ -118,6 +118,55 @@ export const es = {
         noItems: 'Agrega al menos un concepto',
     },
 
+    // Projects
+    projects: {
+        title: 'Proyectos',
+        newProject: 'Nuevo Proyecto',
+        editProject: 'Editar Proyecto',
+        name: 'Nombre del proyecto',
+        client: 'Cliente',
+        noClient: 'Sin cliente',
+        serviceType: 'Servicio',
+        status: 'Estado',
+        priority: 'Prioridad',
+        startDate: 'Inicio',
+        dueDate: 'Entrega',
+        budget: 'Presupuesto',
+        currency: 'Moneda',
+        description: 'Descripción',
+        save: 'Guardar',
+        delete: 'Eliminar',
+        deleteConfirm: '¿Eliminar este proyecto y todas sus tareas?',
+        noProjects: 'No hay proyectos',
+        noProjectsDesc: 'Crea tu primer proyecto para empezar a gestionar entregas',
+        // Tasks
+        tasks: 'Tareas',
+        addTask: 'Agregar tarea',
+        taskPlaceholder: 'Nueva tarea…',
+        noTasks: 'Sin tareas todavía',
+        progress: 'Progreso',
+        // Status labels
+        statusLead: 'Prospecto',
+        statusActive: 'En progreso',
+        statusOnHold: 'En pausa',
+        statusCompleted: 'Completado',
+        statusCancelled: 'Cancelado',
+        // Service labels
+        serviceShopify: 'Shopify',
+        serviceHubspot: 'HubSpot',
+        serviceWeb: 'Desarrollo Web',
+        serviceOther: 'Otro',
+        // Priority labels
+        priorityLow: 'Baja',
+        priorityMedium: 'Media',
+        priorityHigh: 'Alta',
+        // Detail
+        overview: 'Resumen',
+        relatedInvoices: 'Facturas del cliente',
+        noRelatedInvoices: 'Sin facturas para este cliente',
+        overdue: 'Vencido',
+    },
+
     // Filters
     filters: {
         all: 'Todos',

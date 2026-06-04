@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { es } from '@/i18n/es'
-import { LayoutDashboard, Users, FileText, LogOut, Settings, BarChart3 } from 'lucide-react'
+import { LayoutDashboard, Users, FileText, LogOut, Settings, BarChart3, FolderKanban } from 'lucide-react'
 
 interface SidebarProps {
     userEmail?: string
@@ -15,6 +15,7 @@ export function Sidebar({ userEmail }: SidebarProps) {
     const navItems = [
         { href: '/', label: es.nav.dashboard, icon: LayoutDashboard },
         { href: '/clientes', label: es.nav.clients, icon: Users },
+        { href: '/proyectos', label: es.projects.title, icon: FolderKanban },
         { href: '/facturas', label: es.nav.invoices, icon: FileText },
         { href: '/analiticas', label: 'Analíticas', icon: BarChart3 },
         { href: '/configuracion', label: 'Configuración', icon: Settings },
