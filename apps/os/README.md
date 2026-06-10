@@ -1,6 +1,6 @@
-# Sistema de Facturas - Cacao & Avocado
+# Cacao OS - Cacao & Avocado
 
-Backoffice privado para gestión de facturas con la marca de Cacao & Avocado.
+Backoffice privado de la agencia: facturas, clientes, proyectos, analíticas y cotizador.
 
 ## Stack Técnico
 
@@ -46,7 +46,7 @@ En Supabase > Authentication > Users:
 ### 4. Instalar Dependencias
 
 ```bash
-cd apps/invoices
+cd apps/os
 npm install
 ```
 
@@ -63,7 +63,7 @@ Abre http://localhost:3001
 1. Crea un nuevo proyecto en Vercel
 2. Conecta al repositorio
 3. Configura:
-   - **Root Directory**: `apps/invoices`
+   - **Root Directory**: `apps/os`
    - **Framework Preset**: Next.js
 4. Agrega las variables de entorno de producción
 5. En **Domains**, agrega `invoices.cacaoandavocado.co`
@@ -86,7 +86,7 @@ Cada factura tiene un enlace público `/i/[token]` que puedes compartir con el c
 ## Estructura de Archivos
 
 ```
-apps/invoices/
+apps/os/
 ├── src/
 │   ├── app/
 │   │   ├── (dashboard)/      # Páginas protegidas
