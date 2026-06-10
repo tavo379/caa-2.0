@@ -7,7 +7,8 @@
         "dev": "next dev --port 3001",
         "build": "next build",
         "start": "next start",
-        "lint": "next lint"
+        "lint": "next lint",
+        "test": "vitest run"
     },
     "dependencies": {
         "@supabase/ssr": "^0.5.2",
@@ -22,6 +23,7 @@
         "@types/node": "^22.0.0",
         "@types/react": "^19.0.0",
         "@types/react-dom": "^19.0.0",
-        "typescript": "^5.7.0"
+        "typescript": "^5.7.0",
+        "vitest": "^4.1.8"
     }
 }
