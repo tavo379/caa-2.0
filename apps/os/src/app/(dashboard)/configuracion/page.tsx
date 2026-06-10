@@ -1,5 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
-import { updateSettings } from './actions'
+import { updateSettings, updateQuoteSettings } from './actions'
+import { getQuoteSettings } from '@/lib/quotes/data'
+import { QuotePresetsEditor } from '@/components/QuotePresetsEditor'
 import { Save } from 'lucide-react'
 
 interface SettingsPageProps {
@@ -18,8 +20,14 @@ export default async function SettingsPage({ searchParams }: SettingsPageProps) 
         .eq('user_id', user?.id)
         .single()
 
+    const quoteSettings = await getQuoteSettings(supabase, user!.id)
+    const { data: presets } = await supabase
+        .from('quote_presets')
+        .select('*')
+        .order('sort_order')
+
     return (
-        <div style={{ maxWidth: '800px' }}>
+        <div style={{ maxWidth: '1000px' }}>
             <div className="page-header">
                 <h1 className="page-title">Configuración</h1>
             </div>
@@ -100,6 +108,130 @@ export default async function SettingsPage({ searchParams }: SettingsPageProps) 
                         </button>
                     </div>
                 </form>
+            </div>
+
+            {/* Cotizador: tarifas, factores y conversión (Reglas 1, 4, 6, 7, 8, 12) */}
+            <div className="card" style={{ marginTop: 'var(--space-6)' }}>
+                <h2 className="card-title" style={{ marginBottom: 'var(--space-6)' }}>
+                    Cotizador — Tarifas y Factores
+                </h2>
+
+                <form action={updateQuoteSettings}>
+                    <div className="form-row form-row-3">
+                        <div className="form-group">
+                            <label className="form-label">Internacional (USD/h)</label>
+                            <input
+                                name="rateInternational"
+                                type="number"
+                                min="0"
+                                step="0.5"
+                                className="form-input"
+                                defaultValue={quoteSettings.rate_international_usd}
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label className="form-label">Local Premium (COP/h)</label>
+                            <input
+                                name="rateLocalPremium"
+                                type="number"
+                                min="0"
+                                step="1000"
+                                className="form-input"
+                                defaultValue={quoteSettings.rate_local_premium_cop}
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label className="form-label">Local Estándar (COP/h)</label>
+                            <input
+                                name="rateLocalStandard"
+                                type="number"
+                                min="0"
+                                step="1000"
+                                className="form-input"
+                                defaultValue={quoteSettings.rate_local_standard_cop}
+                            />
+                        </div>
+                    </div>
+
+                    <div className="form-row form-row-3">
+                        <div className="form-group">
+                            <label className="form-label">Tasa USD → COP</label>
+                            <input
+                                name="usdCopRate"
+                                type="number"
+                                min="0"
+                                step="50"
+                                className="form-input"
+                                defaultValue={quoteSettings.usd_cop_rate}
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label className="form-label">Prima precio cerrado (factor)</label>
+                            <input
+                                name="fixedPriceFactor"
+                                type="number"
+                                min="1"
+                                step="0.05"
+                                className="form-input"
+                                defaultValue={quoteSettings.fixed_price_factor}
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label className="form-label">% QA embebido (10-15)</label>
+                            <input
+                                name="qaPct"
+                                type="number"
+                                min="0"
+                                max="50"
+                                className="form-input"
+                                defaultValue={quoteSettings.qa_pct}
+                            />
+                        </div>
+                    </div>
+
+                    <div className="form-row form-row-3">
+                        <div className="form-group">
+                            <label className="form-label">Mínimo facturable (horas)</label>
+                            <input
+                                name="minBillableHours"
+                                type="number"
+                                min="0"
+                                className="form-input"
+                                defaultValue={quoteSettings.min_billable_hours}
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label className="form-label">Tope dcto. volumen (%)</label>
+                            <input
+                                name="volumeDiscountCap"
+                                type="number"
+                                min="0"
+                                max="100"
+                                className="form-input"
+                                defaultValue={quoteSettings.volume_discount_cap_pct}
+                            />
+                        </div>
+                    </div>
+
+                    <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                        <button type="submit" className="btn btn-primary">
+                            <Save size={16} />
+                            Guardar Cotizador
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            {/* Anclas por entregable: revisar pisos de mercado cada ~6 meses */}
+            <div className="card" style={{ marginTop: 'var(--space-6)' }}>
+                <h2 className="card-title" style={{ marginBottom: 'var(--space-2)' }}>
+                    Cotizador — Anclas por Entregable
+                </h2>
+                <p className="text-muted text-sm" style={{ marginBottom: 'var(--space-4)' }}>
+                    Los pisos de mercado disparan la alerta &quot;estás cotizando bajo mercado&quot;.
+                    Revísalos cada 6 meses.
+                </p>
+                <QuotePresetsEditor presets={presets || []} userId={user!.id} />
             </div>
         </div>
     )
