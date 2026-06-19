@@ -4,12 +4,10 @@ import { es } from '@/i18n/es'
 
 interface PublicInvoicePageProps {
     params: Promise<{ token: string }>
-    searchParams: Promise<{ print?: string }>
 }
 
-export default async function PublicInvoicePage({ params, searchParams }: PublicInvoicePageProps) {
+export default async function PublicInvoicePage({ params }: PublicInvoicePageProps) {
     const { token } = await params
-    const { print } = await searchParams
 
     // Use admin client to bypass RLS for public access
     const supabase = createAdminClient()
@@ -191,17 +189,13 @@ export default async function PublicInvoicePage({ params, searchParams }: Public
             .header { flex-direction: column; gap: 20px; }
           }
         `}} />
-                {print && (
-                    <script dangerouslySetInnerHTML={{ __html: `window.onload = function() { window.print(); }` }} />
-                )}
             </head>
             <body>
                 <div className="actions no-print">
-                    <button id="print-btn" className="btn btn-primary">
+                    <a href={`/api/pdf?token=${inv.public_token}`} className="btn btn-primary">
                         📥 {es.public.downloadPdf}
-                    </button>
+                    </a>
                 </div>
-                <script dangerouslySetInnerHTML={{ __html: `document.getElementById('print-btn').onclick = function() { window.print(); };` }} />
 
                 <div className="invoice-container">
                     <div className="header">

@@ -12,9 +12,34 @@ export async function updateSettings(formData: FormData) {
         throw new Error('Not authenticated')
     }
 
-    const signatureUrl = formData.get('signatureUrl') as string
     const businessName = formData.get('businessName') as string
     const taxId = formData.get('taxId') as string
+
+    // La firma puede venir como archivo subido (preferido) o como URL manual.
+    let signatureUrl = (formData.get('signatureUrl') as string) || ''
+    const file = formData.get('signatureFile') as File | null
+
+    if (file && file.size > 0) {
+        const ext = (file.name.split('.').pop() || 'png').toLowerCase()
+        const path = `${user.id}/firma.${ext}`
+        const bytes = new Uint8Array(await file.arrayBuffer())
+
+        const { error: uploadError } = await supabase.storage
+            .from('signatures')
+            .upload(path, bytes, {
+                contentType: file.type || 'image/png',
+                upsert: true,
+            })
+
+        if (uploadError) {
+            console.error('Error uploading signature:', uploadError)
+            throw new Error('No se pudo subir la firma. Verifica que el bucket "signatures" exista.')
+        }
+
+        const { data: pub } = supabase.storage.from('signatures').getPublicUrl(path)
+        // Cache-busting para que la nueva firma se vea de inmediato (mismo path, upsert).
+        signatureUrl = `${pub.publicUrl}?v=${Date.now()}`
+    }
 
     // Upsert settings
     const { error } = await supabase

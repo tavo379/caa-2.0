@@ -75,20 +75,39 @@ export default async function SettingsPage({ searchParams }: SettingsPageProps) 
                     </div>
 
                     <div className="form-group">
-                        <label className="form-label">URL de la Firma (Imagen)</label>
+                        <label className="form-label">Firma (Imagen)</label>
                         <div style={{ marginBottom: 'var(--space-2)' }}>
+                            <input
+                                name="signatureFile"
+                                type="file"
+                                accept="image/png,image/jpeg,image/webp"
+                                className="form-input"
+                            />
+                        </div>
+                        <p className="text-muted" style={{ fontSize: 'var(--text-xs)' }}>
+                            Sube un PNG con fondo transparente (recomendado). Se guarda en tu propio
+                            almacenamiento y queda lista para los PDFs — no necesitas hosting externo.
+                        </p>
+                    </div>
+
+                    <details style={{ marginBottom: 'var(--space-4)' }}>
+                        <summary className="text-muted" style={{ fontSize: 'var(--text-xs)', cursor: 'pointer' }}>
+                            ¿Prefieres pegar una URL directa? (avanzado)
+                        </summary>
+                        <div style={{ marginTop: 'var(--space-2)' }}>
                             <input
                                 name="signatureUrl"
                                 type="url"
                                 className="form-input"
                                 defaultValue={settings?.signature_url || ''}
-                                placeholder="https://ejemplo.com/mi-firma.png"
+                                placeholder="https://i.ibb.co/XXXX/mi-firma.png"
                             />
+                            <p className="text-muted" style={{ fontSize: 'var(--text-xs)', marginTop: 'var(--space-1)' }}>
+                                Debe ser el enlace <strong>directo</strong> a la imagen (termina en .png/.jpg).
+                                Si subes un archivo arriba, este campo se ignora.
+                            </p>
                         </div>
-                        <p className="text-muted" style={{ fontSize: 'var(--text-xs)' }}>
-                            Por ahora, por favor ingrese la URL directa de su imagen de firma alojada públicamente (Dropbox, Google Drive direct link, o hosting propio).
-                        </p>
-                    </div>
+                    </details>
 
                     {settings?.signature_url && (
                         <div className="form-group" style={{ marginTop: 'var(--space-4)', padding: 'var(--space-4)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)' }}>
