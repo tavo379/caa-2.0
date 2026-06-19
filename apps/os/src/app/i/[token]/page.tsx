@@ -2,6 +2,8 @@ import { notFound } from 'next/navigation'
 import { createAdminClient } from '@/lib/supabase/server'
 import { es } from '@/i18n/es'
 
+export const dynamic = 'force-dynamic'
+
 interface PublicInvoicePageProps {
     params: Promise<{ token: string }>
 }
@@ -25,6 +27,7 @@ export default async function PublicInvoicePage({ params }: PublicInvoicePagePro
       tax,
       total,
       notes,
+      user_id,
       public_token,
       client:clients(name, company, tax_id, email, address),
       items:invoice_items(id, description, qty, unit_price, line_total, sort_order)
@@ -38,6 +41,14 @@ export default async function PublicInvoicePage({ params }: PublicInvoicePagePro
 
     // Cast to any to avoid TypeScript issues with Supabase untyped client
     const inv = invoice as any
+
+    // Misma fuente de verdad que el PDF: la configuración del usuario.
+    const { data: settings } = await supabase
+        .from('user_settings')
+        .select('*')
+        .eq('user_id', inv.user_id)
+        .single()
+    const businessName = settings?.business_name || 'Cacao & Avocado'
 
     const formatCurrency = (amount: number) => {
         return new Intl.NumberFormat('es-CO', {
@@ -66,7 +77,7 @@ export default async function PublicInvoicePage({ params }: PublicInvoicePagePro
                 <meta charSet="UTF-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <meta name="robots" content="noindex, nofollow" />
-                <title>Factura {inv.invoice_number} - Cacao & Avocado</title>
+                <title>Factura {inv.invoice_number} - {businessName}</title>
                 <style dangerouslySetInnerHTML={{
                     __html: `
           @media print {
@@ -199,7 +210,12 @@ export default async function PublicInvoicePage({ params }: PublicInvoicePagePro
 
                 <div className="invoice-container">
                     <div className="header">
-                        <div className="logo">Cacao & Avocado</div>
+                        {settings?.logo_url ? (
+                            // eslint-disable-next-line @next/next/no-img-element
+                            <img src={settings.logo_url} alt={businessName} style={{ maxHeight: 60, objectFit: 'contain' }} />
+                        ) : (
+                            <div className="logo">{businessName}</div>
+                        )}
                         <div style={{ textAlign: 'right' }}>
                             <div className="invoice-number">
                                 {inv.invoice_number}
@@ -221,8 +237,9 @@ export default async function PublicInvoicePage({ params }: PublicInvoicePagePro
                     <div className="parties">
                         <div>
                             <div className="party-label">De</div>
-                            <div className="party-name">Cacao & Avocado</div>
-                            <div className="party-detail">gustavo.ramirez@cacaoandavocado.co</div>
+                            <div className="party-name">{businessName}</div>
+                            {settings?.tax_id && <div className="party-detail">NIT: {settings.tax_id}</div>}
+                            {settings?.business_address && <div className="party-detail">{settings.business_address}</div>}
                         </div>
                         <div>
                             <div className="party-label">Facturar a</div>
@@ -278,6 +295,16 @@ export default async function PublicInvoicePage({ params }: PublicInvoicePagePro
                         <div className="notes">
                             <div className="notes-label">Notas</div>
                             <div style={{ color: '#64748b', whiteSpace: 'pre-wrap' }}>{inv.notes}</div>
+                        </div>
+                    )}
+
+                    {settings?.signature_url && (
+                        <div style={{ marginTop: 48 }}>
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img src={settings.signature_url} alt="Firma" style={{ maxHeight: 70, objectFit: 'contain', marginBottom: 6 }} />
+                            <div style={{ borderTop: '1px solid #0f172a', width: 200, paddingTop: 4, fontWeight: 600, fontSize: 14 }}>
+                                Firma Autorizada
+                            </div>
                         </div>
                     )}
 
