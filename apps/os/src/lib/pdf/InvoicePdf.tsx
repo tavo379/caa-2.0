@@ -66,8 +66,8 @@ const styles = StyleSheet.create({
     logo: { maxHeight: 48, maxWidth: 180, objectFit: 'contain' },
     businessName: { fontSize: 18, fontFamily: 'Helvetica-Bold', color: INK },
     headerRight: { alignItems: 'flex-end' },
-    invoiceNumber: { fontSize: 18, fontFamily: 'Helvetica-Bold' },
-    metaLine: { color: MUTED, fontSize: 10 },
+    invoiceNumber: { fontSize: 18, fontFamily: 'Helvetica-Bold', marginBottom: 6 },
+    metaLine: { color: MUTED, fontSize: 10, marginTop: 2 },
     parties: { flexDirection: 'row', gap: 32, marginBottom: 28 },
     party: { flex: 1 },
     partyLabel: {
