@@ -12,6 +12,8 @@ export const dynamic = 'force-dynamic'
 export async function GET(request: NextRequest) {
     try {
         const token = request.nextUrl.searchParams.get('token')
+        // inline => se muestra en el navegador/iframe (visor); attachment => descarga.
+        const inline = request.nextUrl.searchParams.get('disposition') === 'inline'
 
         if (!token) {
             return NextResponse.json({ error: 'Token required' }, { status: 400 })
@@ -51,7 +53,7 @@ export async function GET(request: NextRequest) {
         return new NextResponse(buffer as any, {
             headers: {
                 'Content-Type': 'application/pdf',
-                'Content-Disposition': `attachment; filename="${filename}"`,
+                'Content-Disposition': `${inline ? 'inline' : 'attachment'}; filename="${filename}"`,
                 'Cache-Control': 'no-store',
             },
         })

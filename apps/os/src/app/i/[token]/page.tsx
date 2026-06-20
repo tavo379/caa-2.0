@@ -14,24 +14,12 @@ export default async function PublicInvoicePage({ params }: PublicInvoicePagePro
     // Use admin client to bypass RLS for public access
     const supabase = createAdminClient()
 
+    // Solo validamos el token y leemos lo mínimo para el título.
+    // El documento se renderiza con el MISMO PDF que se descarga (/api/pdf),
+    // así el visor es idéntico a la descarga byte por byte.
     const { data: invoice, error } = await supabase
         .from('invoices')
-        .select(`
-      id,
-      invoice_number,
-      issue_date,
-      due_date,
-      currency,
-      status,
-      subtotal,
-      tax,
-      total,
-      notes,
-      user_id,
-      public_token,
-      client:clients(name, company, tax_id, email, address),
-      items:invoice_items(id, description, qty, unit_price, line_total, sort_order)
-    `)
+        .select('invoice_number, user_id, public_token')
         .eq('public_token', token)
         .single()
 
@@ -39,37 +27,17 @@ export default async function PublicInvoicePage({ params }: PublicInvoicePagePro
         notFound()
     }
 
-    // Cast to any to avoid TypeScript issues with Supabase untyped client
     const inv = invoice as any
 
-    // Misma fuente de verdad que el PDF: la configuración del usuario.
     const { data: settings } = await supabase
         .from('user_settings')
-        .select('*')
+        .select('business_name')
         .eq('user_id', inv.user_id)
         .single()
     const businessName = settings?.business_name || 'Cacao & Avocado'
 
-    const formatCurrency = (amount: number) => {
-        return new Intl.NumberFormat('es-CO', {
-            style: 'currency',
-            currency: inv.currency,
-            minimumFractionDigits: 2
-        }).format(amount)
-    }
-
-    const getStatusLabel = (status: string) => {
-        const labels: Record<string, string> = {
-            draft: es.invoices.statusDraft,
-            sent: es.invoices.statusSent,
-            paid: es.invoices.statusPaid,
-            void: es.invoices.statusVoid
-        }
-        return labels[status] || status
-    }
-
-    // Sort items
-    const sortedItems = inv.items?.sort((a: any, b: any) => a.sort_order - b.sort_order) || []
+    const pdfInline = `/api/pdf?token=${inv.public_token}&disposition=inline`
+    const pdfDownload = `/api/pdf?token=${inv.public_token}`
 
     return (
         <html lang="es">
@@ -77,40 +45,34 @@ export default async function PublicInvoicePage({ params }: PublicInvoicePagePro
                 <meta charSet="UTF-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <meta name="robots" content="noindex, nofollow" />
-                <title>Factura {inv.invoice_number} - {businessName}</title>
+                <title>{es.public.invoice} {inv.invoice_number} - {businessName}</title>
                 <style dangerouslySetInnerHTML={{
                     __html: `
-          @media print {
-            body { margin: 0; padding: 20px; }
-            .no-print { display: none !important; }
-            .invoice-container { box-shadow: none !important; }
-          }
           * { box-sizing: border-box; }
+          html, body { height: 100%; margin: 0; }
           body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             color: #0f172a;
-            line-height: 1.6;
             background: #f8fafc;
-            margin: 0;
-            padding: 40px 20px;
-          }
-          .invoice-container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-          }
-          .actions {
-            max-width: 800px;
-            margin: 0 auto 20px;
             display: flex;
-            gap: 10px;
+            flex-direction: column;
           }
+          .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 12px 20px;
+            background: white;
+            border-bottom: 1px solid #e2e8f0;
+            flex-shrink: 0;
+          }
+          .title { font-size: 14px; font-weight: 600; }
+          .title span { color: #64748b; font-weight: 400; }
           .btn {
             display: inline-flex;
             align-items: center;
+            gap: 6px;
             padding: 8px 16px;
             font-size: 14px;
             font-weight: 500;
@@ -118,200 +80,27 @@ export default async function PublicInvoicePage({ params }: PublicInvoicePagePro
             border: none;
             cursor: pointer;
             text-decoration: none;
-          }
-          .btn-primary {
             background: #3b82f6;
             color: white;
           }
-          .btn-primary:hover { background: #2563eb; }
-          .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 40px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid #0f172a;
-          }
-          .logo { font-size: 24px; font-weight: bold; }
-          .invoice-number { font-size: 24px; font-weight: bold; }
-          .invoice-date { color: #64748b; font-size: 14px; }
-          .parties {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 40px;
-          }
-          .party-label {
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: #64748b;
-            margin-bottom: 8px;
-          }
-          .party-name { font-weight: 600; font-size: 18px; }
-          .party-detail { color: #64748b; font-size: 14px; }
-          table { width: 100%; border-collapse: collapse; margin-bottom: 40px; }
-          th {
-            padding: 12px;
-            text-align: left;
-            font-size: 12px;
-            text-transform: uppercase;
-            color: #64748b;
-            background: #f8fafc;
-          }
-          td { padding: 12px; border-bottom: 1px solid #e2e8f0; }
-          .text-center { text-align: center; }
-          .text-right { text-align: right; }
-          .totals { display: flex; justify-content: flex-end; }
-          .totals-table { width: 280px; }
-          .totals-table td { padding: 8px; }
-          .total-row { border-top: 2px solid #0f172a; }
-          .total-row td { padding-top: 12px; font-weight: bold; font-size: 18px; }
-          .notes {
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid #e2e8f0;
-          }
-          .notes-label {
-            font-size: 11px;
-            text-transform: uppercase;
-            color: #64748b;
-            margin-bottom: 8px;
-          }
-          .footer {
-            margin-top: 60px;
-            text-align: center;
-            color: #64748b;
-          }
-          .badge {
-            display: inline-block;
-            padding: 4px 8px;
-            font-size: 12px;
-            font-weight: 500;
-            border-radius: 4px;
-            margin-left: 10px;
-          }
-          .badge-draft { background: #f1f5f9; color: #64748b; }
-          .badge-sent { background: #eff6ff; color: #3b82f6; }
-          .badge-paid { background: #ecfdf5; color: #10b981; }
-          .badge-void { background: #fef2f2; color: #ef4444; }
-          @media (max-width: 600px) {
-            .parties { grid-template-columns: 1fr; gap: 20px; }
-            .header { flex-direction: column; gap: 20px; }
-          }
+          .btn:hover { background: #2563eb; }
+          .viewer { flex: 1; border: none; width: 100%; background: #525659; }
         `}} />
             </head>
             <body>
-                <div className="actions no-print">
-                    <a href={`/api/pdf?token=${inv.public_token}`} className="btn btn-primary">
+                <div className="topbar">
+                    <div className="title">
+                        {businessName} <span>· {inv.invoice_number}</span>
+                    </div>
+                    <a href={pdfDownload} className="btn">
                         📥 {es.public.downloadPdf}
                     </a>
                 </div>
-
-                <div className="invoice-container">
-                    <div className="header">
-                        {settings?.logo_url ? (
-                            // eslint-disable-next-line @next/next/no-img-element
-                            <img src={settings.logo_url} alt={businessName} style={{ maxHeight: 60, objectFit: 'contain' }} />
-                        ) : (
-                            <div className="logo">{businessName}</div>
-                        )}
-                        <div style={{ textAlign: 'right' }}>
-                            <div className="invoice-number">
-                                {inv.invoice_number}
-                                <span className={`badge badge-${inv.status}`}>
-                                    {getStatusLabel(inv.status)}
-                                </span>
-                            </div>
-                            <div className="invoice-date">
-                                Fecha: {new Date(inv.issue_date).toLocaleDateString('es-CO')}
-                            </div>
-                            {inv.due_date && (
-                                <div className="invoice-date">
-                                    Vence: {new Date(inv.due_date).toLocaleDateString('es-CO')}
-                                </div>
-                            )}
-                        </div>
-                    </div>
-
-                    <div className="parties">
-                        <div>
-                            <div className="party-label">De</div>
-                            <div className="party-name">{businessName}</div>
-                            {settings?.tax_id && <div className="party-detail">NIT: {settings.tax_id}</div>}
-                            {settings?.business_address && <div className="party-detail">{settings.business_address}</div>}
-                        </div>
-                        <div>
-                            <div className="party-label">Facturar a</div>
-                            <div className="party-name">{inv.client?.name}</div>
-                            {inv.client?.company && <div className="party-detail">{inv.client.company}</div>}
-                            {inv.client?.tax_id && <div className="party-detail">NIT: {inv.client.tax_id}</div>}
-                            {inv.client?.email && <div className="party-detail">{inv.client.email}</div>}
-                            {inv.client?.address && <div className="party-detail">{inv.client.address}</div>}
-                        </div>
-                    </div>
-
-                    <table>
-                        <thead>
-                            <tr>
-                                <th style={{ width: '50%' }}>Descripción</th>
-                                <th className="text-center" style={{ width: '15%' }}>Cantidad</th>
-                                <th className="text-right" style={{ width: '17%' }}>Precio</th>
-                                <th className="text-right" style={{ width: '18%' }}>Total</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {sortedItems.map((item: any) => (
-                                <tr key={item.id}>
-                                    <td>{item.description}</td>
-                                    <td className="text-center">{item.qty}</td>
-                                    <td className="text-right">{formatCurrency(item.unit_price)}</td>
-                                    <td className="text-right">{formatCurrency(item.line_total)}</td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-
-                    <div className="totals">
-                        <table className="totals-table">
-                            <tbody>
-                                <tr>
-                                    <td style={{ color: '#64748b' }}>Subtotal</td>
-                                    <td className="text-right">{formatCurrency(inv.subtotal)}</td>
-                                </tr>
-                                <tr>
-                                    <td style={{ color: '#64748b' }}>Impuesto</td>
-                                    <td className="text-right">{formatCurrency(inv.tax)}</td>
-                                </tr>
-                                <tr className="total-row">
-                                    <td>Total</td>
-                                    <td className="text-right">{formatCurrency(inv.total)}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    {inv.notes && (
-                        <div className="notes">
-                            <div className="notes-label">Notas</div>
-                            <div style={{ color: '#64748b', whiteSpace: 'pre-wrap' }}>{inv.notes}</div>
-                        </div>
-                    )}
-
-                    {settings?.signature_url && (
-                        <div style={{ marginTop: 48 }}>
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img src={settings.signature_url} alt="Firma" style={{ maxHeight: 70, objectFit: 'contain', marginBottom: 6 }} />
-                            <div style={{ borderTop: '1px solid #0f172a', width: 200, paddingTop: 4, fontWeight: 600, fontSize: 14 }}>
-                                Firma Autorizada
-                            </div>
-                        </div>
-                    )}
-
-                    <div className="footer">
-                        <p>Gracias por su preferencia</p>
-                    </div>
-                </div>
+                <iframe
+                    className="viewer"
+                    src={pdfInline}
+                    title={`${es.public.invoice} ${inv.invoice_number}`}
+                />
             </body>
         </html>
     )
