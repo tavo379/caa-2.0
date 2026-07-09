@@ -2,8 +2,11 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
+import { Pencil } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import { es } from '@/i18n/es'
+import { InvoiceDeleteButton } from './InvoiceDeleteButton'
 import type { Invoice, Client, InvoiceItem } from '@/lib/supabase/types'
 
 interface InvoiceActionsProps {
@@ -92,6 +95,12 @@ export function InvoiceActions({ invoice }: InvoiceActionsProps) {
 
     return (
         <div className="flex gap-2" style={{ flexWrap: 'wrap' }}>
+            {/* Edit Button */}
+            <Link href={`/facturas/${invoice.id}/editar`} className="btn btn-secondary">
+                <Pencil size={14} />
+                {es.common.edit}
+            </Link>
+
             {/* PDF Button — descarga directa de un PDF real */}
             <a
                 href={pdfUrl}
@@ -142,6 +151,9 @@ export function InvoiceActions({ invoice }: InvoiceActionsProps) {
                     {loading === 'void' ? '...' : es.invoices.markVoid}
                 </button>
             )}
+
+            {/* Delete Button */}
+            <InvoiceDeleteButton invoiceId={invoice.id} />
         </div>
     )
 }

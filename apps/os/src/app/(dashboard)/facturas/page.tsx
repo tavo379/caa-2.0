@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import { es } from '@/i18n/es'
-import { FileText, Plus, Filter, Eye, AlertCircle } from 'lucide-react'
+import { FileText, Plus, Filter, Eye, Pencil, AlertCircle } from 'lucide-react'
 
 interface InvoicesPageProps {
     searchParams: Promise<{ status?: string; client?: string }>
@@ -181,6 +181,13 @@ export default async function InvoicesPage({ searchParams }: InvoicesPageProps) 
                                                         title="Ver detalle"
                                                     >
                                                         <Eye size={14} />
+                                                    </Link>
+                                                    <Link
+                                                        href={`/facturas/${invoice.id}/editar`}
+                                                        className="btn btn-ghost btn-sm"
+                                                        title="Editar"
+                                                    >
+                                                        <Pencil size={14} />
                                                     </Link>
                                                 </div>
                                             </td>

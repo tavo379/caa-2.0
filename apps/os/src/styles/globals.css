@@ -471,6 +471,12 @@ a:hover {
   margin-top: var(--space-1);
 }
 
+.form-success {
+  font-size: var(--text-sm);
+  color: var(--color-success);
+  margin-top: var(--space-1);
+}
+
 .form-row {
   display: grid;
   gap: var(--space-4);

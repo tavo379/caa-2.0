@@ -38,6 +38,8 @@ interface PdfSettings {
     tax_id?: string | null
     logo_url?: string | null
     signature_url?: string | null
+    payment_info?: string | null
+    legal_disclaimer?: string | null
 }
 
 const INK = '#0f172a'
@@ -124,6 +126,18 @@ const styles = StyleSheet.create({
         paddingTop: 16,
         borderTopWidth: 1,
         borderTopColor: BORDER,
+    },
+    payment: {
+        marginTop: 20,
+        padding: 12,
+        backgroundColor: '#f8fafc',
+        borderRadius: 4,
+    },
+    disclaimer: {
+        marginTop: 20,
+        fontSize: 8,
+        color: MUTED,
+        lineHeight: 1.4,
     },
     signatureBlock: { marginTop: 48 },
     signatureImg: { maxHeight: 70, maxWidth: 200, objectFit: 'contain', marginBottom: 6 },
@@ -263,6 +277,19 @@ export function InvoicePdf({
                         <Text style={styles.partyLabel}>Notas</Text>
                         <Text style={{ color: MUTED }}>{invoice.notes}</Text>
                     </View>
+                ) : null}
+
+                {/* Payment info */}
+                {settings?.payment_info ? (
+                    <View style={styles.payment} wrap={false}>
+                        <Text style={styles.partyLabel}>Forma de pago</Text>
+                        <Text>{settings.payment_info}</Text>
+                    </View>
+                ) : null}
+
+                {/* Legal disclaimer */}
+                {settings?.legal_disclaimer ? (
+                    <Text style={styles.disclaimer}>{settings.legal_disclaimer}</Text>
                 ) : null}
 
                 {/* Signature */}

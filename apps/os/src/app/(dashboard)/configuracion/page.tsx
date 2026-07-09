@@ -4,6 +4,11 @@ import { getQuoteSettings } from '@/lib/quotes/data'
 import { QuotePresetsEditor } from '@/components/QuotePresetsEditor'
 import { Save } from 'lucide-react'
 
+// Standard declaration for natural persons (parágrafo 2, art. 383 ET Colombia).
+// Prefilled on first load; the user checks No/Sí and adjusts to their case.
+const DEFAULT_DISCLAIMER =
+    'En cumplimiento de lo señalado en el parágrafo 2 del artículo 383 del Estatuto Tributario y sus Decretos reglamentarios, manifiesto bajo la gravedad de juramento que para el desarrollo de la actividad realizada No ___ Sí ___ he contratado o vinculado a 2 o más trabajadores.'
+
 interface SettingsPageProps {
     searchParams: Promise<{ saved?: string }>
 }
@@ -72,6 +77,35 @@ export default async function SettingsPage({ searchParams }: SettingsPageProps) 
                             defaultValue={settings?.tax_id || ''}
                             placeholder="Ej. 900.123.456-7"
                         />
+                    </div>
+
+                    <div className="form-group">
+                        <label className="form-label">Forma de Pago (aparece en el PDF)</label>
+                        <textarea
+                            name="paymentInfo"
+                            className="form-textarea"
+                            rows={2}
+                            defaultValue={settings?.payment_info || ''}
+                            placeholder="Ej. Favor consignar a la cuenta de Ahorros No. 77810724636 de Bancolombia."
+                        />
+                        <p className="text-muted" style={{ fontSize: 'var(--text-xs)', marginTop: 'var(--space-1)' }}>
+                            Instrucciones de pago / cuenta bancaria donde el cliente debe consignar.
+                        </p>
+                    </div>
+
+                    <div className="form-group">
+                        <label className="form-label">Declaración Legal (aparece en el PDF)</label>
+                        <textarea
+                            name="legalDisclaimer"
+                            className="form-textarea"
+                            rows={4}
+                            defaultValue={settings?.legal_disclaimer ?? DEFAULT_DISCLAIMER}
+                            placeholder="Texto legal a incluir al pie de la factura"
+                        />
+                        <p className="text-muted" style={{ fontSize: 'var(--text-xs)', marginTop: 'var(--space-1)' }}>
+                            Declaración bajo la gravedad de juramento (parágrafo 2, art. 383 ET). Marca
+                            &quot;No&quot; o &quot;Sí&quot; según tu caso. Déjalo vacío si no quieres incluir ninguna.
+                        </p>
                     </div>
 
                     <div className="form-group">

@@ -28,6 +28,21 @@ export const es = {
         loggingIn: 'Iniciando sesión...',
         loginError: 'Error al iniciar sesión',
         logoutSuccess: 'Sesión cerrada correctamente',
+        // Password recovery
+        forgotPassword: '¿Olvidaste tu contraseña?',
+        sendingResetLink: 'Enviando enlace...',
+        resetEmailPrompt: 'Escribe tu correo arriba y te enviaremos un enlace de recuperación.',
+        resetEmailSent: 'Listo. Te enviamos un enlace a tu correo para restablecer la contraseña.',
+        resetTitle: 'Nueva contraseña',
+        resetSubtitle: 'Escribe la contraseña con la que entrarás de ahora en adelante',
+        newPassword: 'Nueva contraseña',
+        confirmPassword: 'Confirmar contraseña',
+        updatePassword: 'Actualizar contraseña',
+        updatingPassword: 'Actualizando...',
+        passwordTooShort: 'La contraseña debe tener al menos 8 caracteres',
+        passwordMismatch: 'Las contraseñas no coinciden',
+        passwordUpdated: 'Contraseña actualizada. Redirigiendo...',
+        resetLinkInvalid: 'El enlace es inválido o expiró. Solicita uno nuevo desde el login.',
     },
 
     // Dashboard

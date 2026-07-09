@@ -14,6 +14,8 @@ export async function updateSettings(formData: FormData) {
 
     const businessName = formData.get('businessName') as string
     const taxId = formData.get('taxId') as string
+    const paymentInfo = (formData.get('paymentInfo') as string) || null
+    const legalDisclaimer = (formData.get('legalDisclaimer') as string) || null
 
     // La firma puede venir como archivo subido (preferido) o como URL manual.
     let signatureUrl = (formData.get('signatureUrl') as string) || ''
@@ -49,6 +51,8 @@ export async function updateSettings(formData: FormData) {
             signature_url: signatureUrl,
             business_name: businessName,
             tax_id: taxId,
+            payment_info: paymentInfo,
+            legal_disclaimer: legalDisclaimer,
             updated_at: new Date().toISOString()
         })
 

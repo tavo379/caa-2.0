@@ -9,11 +9,14 @@ function LoginForm() {
     const router = useRouter()
     const searchParams = useSearchParams()
     const redirectTo = searchParams.get('redirect') || '/'
+    const linkError = searchParams.get('error') === 'reset'
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState('')
+    const [resetLoading, setResetLoading] = useState(false)
+    const [resetMessage, setResetMessage] = useState('')
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
@@ -35,6 +38,32 @@ function LoginForm() {
 
         router.push(redirectTo)
         router.refresh()
+    }
+
+    const handleForgotPassword = async () => {
+        setError('')
+        setResetMessage('')
+
+        if (!email) {
+            setError(es.auth.resetEmailPrompt)
+            return
+        }
+
+        setResetLoading(true)
+
+        const supabase = createClient()
+        const { error: resetError } = await supabase.auth.resetPasswordForEmail(email, {
+            redirectTo: `${window.location.origin}/auth/callback?next=/auth/reset`,
+        })
+
+        setResetLoading(false)
+
+        if (resetError) {
+            setError(resetError.message)
+            return
+        }
+
+        setResetMessage(es.auth.resetEmailSent)
     }
 
     return (
@@ -81,9 +110,15 @@ function LoginForm() {
                         />
                     </div>
 
-                    {error && (
+                    {(error || (linkError && !resetMessage)) && (
                         <div className="form-error" style={{ marginBottom: 'var(--space-4)' }}>
-                            {error}
+                            {error || es.auth.resetLinkInvalid}
+                        </div>
+                    )}
+
+                    {resetMessage && (
+                        <div className="form-success" style={{ marginBottom: 'var(--space-4)' }}>
+                            {resetMessage}
                         </div>
                     )}
 
@@ -94,6 +129,26 @@ function LoginForm() {
                         disabled={loading}
                     >
                         {loading ? es.auth.loggingIn : es.auth.loginButton}
+                    </button>
+
+                    <button
+                        type="button"
+                        onClick={handleForgotPassword}
+                        disabled={resetLoading}
+                        className="login-forgot-link"
+                        style={{
+                            display: 'block',
+                            width: '100%',
+                            marginTop: 'var(--space-4)',
+                            background: 'none',
+                            border: 'none',
+                            color: 'var(--color-text-muted, #888)',
+                            fontSize: '0.875rem',
+                            cursor: 'pointer',
+                            textAlign: 'center',
+                        }}
+                    >
+                        {resetLoading ? es.auth.sendingResetLink : es.auth.forgotPassword}
                     </button>
                 </form>
             </div>

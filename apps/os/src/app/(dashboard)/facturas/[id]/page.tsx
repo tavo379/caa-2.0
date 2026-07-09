@@ -172,6 +172,21 @@ export default async function InvoiceDetailPage({ params }: InvoiceDetailPagePro
                     </div>
                 )}
 
+                {settings?.payment_info && (
+                    <div style={{ marginTop: 'var(--space-5)', padding: 'var(--space-4)', backgroundColor: 'var(--color-surface, #f8fafc)', borderRadius: 'var(--radius-md)' }}>
+                        <div className="invoice-party-label">Forma de pago</div>
+                        <div className="text-sm" style={{ whiteSpace: 'pre-wrap' }}>
+                            {settings.payment_info}
+                        </div>
+                    </div>
+                )}
+
+                {settings?.legal_disclaimer && (
+                    <div className="text-muted" style={{ marginTop: 'var(--space-5)', fontSize: 'var(--text-xs)', whiteSpace: 'pre-wrap' }}>
+                        {settings.legal_disclaimer}
+                    </div>
+                )}
+
                 {settings?.signature_url && (
                     <div className="invoice-signature" style={{ marginTop: 'var(--space-10)' }}>
                         <img src={settings.signature_url} alt="Firma Autorizada" style={{ maxHeight: '80px', marginBottom: 'var(--space-2)' }} />
