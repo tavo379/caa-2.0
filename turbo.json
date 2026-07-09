@@ -12,7 +12,9 @@
       ],
       "outputs": [
         "dist/**",
-        ".astro/**"
+        ".astro/**",
+        ".next/**",
+        "!.next/cache/**"
       ],
       "env": [
         "SANITY_PROJECT_ID",
