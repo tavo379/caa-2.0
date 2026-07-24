@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab · proyectos sueltos</title>
+<meta name="description" content="Un rincón para guías, herramientas y proyectos personales pequeños — sin conexión entre sí, solo cosas que quería hacer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style is:global>
+  :root{
+    --bg:#121212;
+    --panel:#1B1B1B;
+    --ink:#F2F0EC;
+    --ink-soft:#9C9891;
+    --border:rgba(242,240,236,0.1);
+    --accent:#E8703A;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Hanken Grotesk',system-ui,sans-serif;
+    line-height:1.6;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+  }
+  .wrap{width:100%;max-width:1100px;margin:0 auto;padding-left:24px;padding-right:24px}
+  header{padding:64px 0 56px}
+  .logo{height:20px;width:auto;display:block;opacity:0.92}
+  .kicker{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink-soft);margin-top:24px}
+  h1{font-size:clamp(2rem,5vw,3rem);font-weight:600;margin-top:16px;letter-spacing:-0.01em}
+  .lede{max-width:520px;margin-top:16px;color:var(--ink-soft);font-size:1.02rem}
+
+  main{padding-bottom:96px;flex:1}
+  .projects{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
+  .card{
+    display:block;
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:24px;
+    text-decoration:none;
+    color:inherit;
+    transition:transform .18s ease,border-color .18s ease;
+  }
+  .card:hover{transform:translateY(-3px);border-color:var(--accent)}
+  .card-icon{width:44px;height:44px;border-radius:10px;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:16px}
+  .card h2{font-size:1.15rem;font-weight:600}
+  .card p{color:var(--ink-soft);font-size:0.9rem;margin-top:6px}
+  .card .tag{display:inline-block;margin-top:14px;font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent)}
+
+  footer{padding:32px 0;border-top:1px solid var(--border);text-align:center;color:var(--ink-soft);font-size:0.85rem}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <img class="logo" src="/caa-logo.svg" alt="Cacao & Avocado">
+  <p class="kicker">Lab</p>
+  <h1>Proyectos sueltos</h1>
+  <p class="lede">Guías, herramientas y experimentos personales chicos — sin conexión entre sí, solo cosas que quería hacer.</p>
+</header>
+
+<main class="wrap">
+  <div class="projects">
+    <a class="card" href="/cafe">
+      <span class="card-icon" aria-hidden="true">☕</span>
+      <h2>Guía de café</h2>
+      <p>Calculadora de dosis para seis métodos de preparación, con tres estilos visuales para elegir.</p>
+      <span class="tag">Ver proyecto →</span>
+    </a>
+  </div>
+</main>
+
+<footer>
+  <p>lab.cacaoandavocado</p>
+</footer>
+
+</body>
+</html>

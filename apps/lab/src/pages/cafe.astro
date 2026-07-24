@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guía de métodos de café · Calculadora de dosis</title>
+<meta name="description" content="Guía visual de métodos de preparación de café: V60, Chemex, prensa francesa, AeroPress, moka y cold brew. Calculá café y agua según tus tazas.">
+<script is:inline>document.documentElement.dataset.theme = localStorage.getItem('cafe-theme') || 'blueprint';</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=Besley:ital,wght@0,600;0,700;0,800;1,600&family=Hanken+Grotesk:wght@400;500;600&family=Manrope:wght@500;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style is:global>
+  :root,
+  html[data-theme="blueprint"]{
+    --bg:#071D36;
+    --bg-mid:#0B2A4A;
+    --panel:#0F3157;
+    --ink:#EAF4FF;
+    --ink-soft:#7FA8CE;
+    --border:rgba(234,244,255,0.14);
+    --grid:rgba(234,244,255,0.05);
+    --accent:#FF9D42;
+    --accent-deep:#CC6A1E;
+    --ok:var(--accent);
+    --warn:#E85C4A;
+    --font-display:'IBM Plex Mono',ui-monospace,monospace;
+    --font-body:'IBM Plex Sans',system-ui,sans-serif;
+    --radius:0px;
+    --tick-radius:0px;
+    --tick-width:2px;
+    --card-border:1.5px solid var(--border);
+    --shadow-rest:none;
+    --shadow-hover:none;
+    --hover-lift:0px;
+  }
+  html[data-theme="warm"]{
+    --bg:#F3EAD9;
+    --bg-mid:#EDE0C8;
+    --panel:#FBF6EB;
+    --ink:#2B1D14;
+    --ink-soft:#6B5847;
+    --border:#DECDB4;
+    --grid:transparent;
+    --accent:#C46A2B;
+    --accent-deep:#8F4A1A;
+    --ok:#4A6B3A;
+    --warn:#B4432C;
+    --font-display:'Besley',serif;
+    --font-body:'Hanken Grotesk',system-ui,sans-serif;
+    --radius:18px;
+    --tick-radius:3px;
+    --tick-width:3px;
+    --card-border:1.5px solid var(--border);
+    --shadow-rest:0 4px 0 rgba(43,29,20,0.07);
+    --shadow-hover:0 10px 24px rgba(43,29,20,0.14);
+    --hover-lift:-4px;
+  }
+  html[data-theme="flat"]{
+    --bg:#FCFAF6;
+    --bg-mid:#F5F1E8;
+    --panel:#FFFFFF;
+    --ink:#241F1A;
+    --ink-soft:#5C564D;
+    --border:#EAE4D8;
+    --grid:transparent;
+    --accent:#E8703A;
+    --accent-deep:#C4552A;
+    --ok:#1F7A6C;
+    --warn:#D14D4D;
+    --font-display:'Manrope',system-ui,sans-serif;
+    --font-body:'DM Sans',system-ui,sans-serif;
+    --radius:22px;
+    --tick-radius:4px;
+    --tick-width:4px;
+    --card-border:none;
+    --shadow-rest:none;
+    --shadow-hover:none;
+    --hover-lift:-3px;
+  }
+  :root{
+    /* spacing scale — shared by all three worlds, layout is one skeleton */
+    --space-2xs:4px;
+    --space-xs:8px;
+    --space-sm:16px;
+    --space-md:24px;
+    --space-lg:40px;
+    --space-xl:64px;
+    --space-2xl:96px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  html{scroll-behavior:smooth}
+  body{
+    background-color:var(--bg);
+    background-image:
+      linear-gradient(var(--grid) 1px,transparent 1px),
+      linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+    background-size:24px 24px;
+    color:var(--ink);
+    font-family:var(--font-body);
+    font-size:16px;
+    line-height:1.6;
+  }
+  .wrap{max-width:1040px;margin:0 auto;padding-left:20px;padding-right:20px}
+
+  /* corner registration ticks — blueprint theme only */
+  html[data-theme="blueprint"] .ticked{
+    background-repeat:no-repeat;
+    background-image:
+      linear-gradient(var(--border),var(--border)),linear-gradient(var(--border),var(--border)),
+      linear-gradient(var(--border),var(--border)),linear-gradient(var(--border),var(--border)),
+      linear-gradient(var(--border),var(--border)),linear-gradient(var(--border),var(--border)),
+      linear-gradient(var(--border),var(--border)),linear-gradient(var(--border),var(--border));
+    background-size:9px 1.5px,1.5px 9px, 9px 1.5px,1.5px 9px, 9px 1.5px,1.5px 9px, 9px 1.5px,1.5px 9px;
+    background-position:
+      top 10px left 10px, top 10px left 10px,
+      top 10px right 10px, top 10px right 10px,
+      bottom 10px left 10px, bottom 10px left 10px,
+      bottom 10px right 10px, bottom 10px right 10px;
+  }
+
+  header{padding:var(--space-xl) 0;text-align:center}
+  .doc-meta{font-family:var(--font-display);font-size:11.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-soft)}
+  h1{font-family:var(--font-display);font-weight:700;font-size:clamp(2.1rem,6vw,3.5rem);line-height:1.1;letter-spacing:-0.005em;margin-top:var(--space-md);color:var(--ink)}
+  h1 .measured{border-bottom:2px solid var(--ink);padding-bottom:2px}
+  .lede{max-width:540px;margin:var(--space-md) auto 0;color:var(--ink-soft);font-size:1.02rem}
+
+  .gauge-plate{background-color:var(--panel);border:var(--card-border);border-radius:var(--radius);padding:26px 28px;margin:var(--space-lg) auto 0;max-width:600px;transition:background-color .2s ease,border-color .2s ease}
+  .gauge-label{font-family:var(--font-display);font-size:12.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-soft);text-align:center;margin-bottom:20px}
+  .ticks-row{display:flex;justify-content:space-between;border-bottom:1.5px solid var(--border);padding-bottom:0}
+  .tick{background:none;border:none;cursor:pointer;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:46px;gap:7px;padding:0 2px}
+  .tick-mark{width:var(--tick-width);height:22px;background:var(--border);border-radius:var(--tick-radius);transform:scaleY(0.55);transform-origin:bottom;transition:background .15s ease,transform .15s ease}
+  .tick-num{font-family:var(--font-display);font-size:11.5px;color:var(--ink-soft);transition:color .15s ease}
+  .tick:hover .tick-mark{background:var(--accent-deep)}
+  .tick.on .tick-mark{background:var(--ink);transform:scaleY(0.75)}
+  .tick.current .tick-mark{transform:scaleY(1);background:var(--accent)}
+  .tick.current:hover .tick-mark{background:var(--accent)}
+  .tick.current .tick-num{color:var(--accent);font-weight:700}
+  .tick:focus-visible{outline:1.5px solid var(--accent);outline-offset:3px}
+  .gauge-readout{text-align:center;margin-top:16px;font-family:var(--font-display);font-size:13.5px;color:var(--ink-soft)}
+  .live-num{color:var(--accent);font-weight:700;font-size:1.15em}
+
+  main{padding:0 0 24px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:var(--space-sm)}
+
+  .plate{background-color:var(--plate-bg,var(--panel));border:var(--card-border);border-radius:var(--radius);box-shadow:var(--shadow-rest);padding:24px 24px 20px;position:relative;display:flex;flex-direction:column;transition:background-color .2s ease,border-color .2s ease,transform .18s ease,box-shadow .18s ease}
+  .plate:hover{transform:translateY(var(--hover-lift));box-shadow:var(--shadow-hover)}
+  .fig-label{font-family:var(--font-display);font-size:11.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:14px}
+  .schematic{display:flex;gap:16px;align-items:center;margin-bottom:16px}
+  .schematic-frame{width:68px;height:68px;flex-shrink:0;border-radius:calc(var(--radius) * 0.4);overflow:hidden;background:var(--bg-mid)}
+  .schematic-frame img{width:100%;height:100%;object-fit:cover;display:block}
+  .plate h2{font-family:var(--font-display);font-weight:600;font-size:1.3rem;line-height:1.15;color:var(--ink)}
+  .plate .desc{font-size:0.88rem;color:var(--ink-soft);margin-top:4px}
+
+  .callouts{display:flex;flex-direction:column;gap:7px;margin-bottom:18px}
+  .callout{display:flex;align-items:center;gap:8px;font-family:var(--font-display);font-size:12.5px}
+  .ref{width:14px;height:14px;flex-shrink:0;border:1px solid var(--border);border-radius:var(--tick-radius);color:var(--ink-soft);font-size:9px;display:inline-flex;align-items:center;justify-content:center;line-height:1}
+  .callout-label{color:var(--ink-soft);letter-spacing:0.08em;text-transform:uppercase}
+  .callout-value{color:var(--ink);letter-spacing:0.02em}
+
+  .data{margin-top:auto;border-top:1.5px dashed var(--border);padding-top:14px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;font-family:var(--font-display)}
+  .datum .k{font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft)}
+  .datum .v{font-size:1.25rem;font-weight:600;color:var(--ink)}
+  .datum .v small{font-size:0.7rem;color:var(--ink-soft);font-weight:400}
+  .datum.live .v{color:var(--plate-accent,var(--accent));font-size:1.6rem;font-weight:700}
+  .datum.live .v small{color:var(--plate-accent,var(--accent-deep))}
+  .note{font-size:12.5px;color:var(--ink-soft);margin-top:12px;padding-top:11px;border-top:1px dashed var(--border)}
+
+  .section-title{font-family:var(--font-display);font-weight:700;font-size:1.5rem;margin:var(--space-xl) 0 var(--space-xs);text-align:center;color:var(--ink)}
+  .section-sub{text-align:center;color:var(--ink-soft);margin-bottom:var(--space-md);font-size:0.95rem;max-width:620px;margin-left:auto;margin-right:auto}
+
+  .grind-scale{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:var(--space-sm)}
+  .grind{background-color:var(--panel);border:var(--card-border);border-radius:var(--radius);box-shadow:var(--shadow-rest);padding:18px 16px;text-align:center}
+  .grind .swatch{height:52px;background:var(--bg);border:1px solid var(--border);margin-bottom:12px;position:relative;overflow:hidden}
+  .grind .g-name{font-family:var(--font-display);font-weight:600;font-size:0.95rem;color:var(--ink)}
+  .grind .g-microns{font-family:var(--font-display);font-size:11.5px;color:var(--ink-soft);margin:4px 0 6px;letter-spacing:0.02em}
+  .grind .g-feel{font-size:0.8rem;color:var(--ink-soft);line-height:1.4;font-family:var(--font-body)}
+  .grind .g-methods{font-family:var(--font-display);font-size:11px;letter-spacing:0.04em;color:var(--ink);margin-top:8px;border-top:1px dashed var(--border);padding-top:8px;text-transform:uppercase}
+
+  .diag{background-color:var(--panel);border:var(--card-border);border-radius:var(--radius);box-shadow:var(--shadow-rest);padding:26px 28px;margin-top:var(--space-lg)}
+  .diag h3{font-family:var(--font-display);font-size:1.05rem;font-weight:600;margin-bottom:16px;color:var(--ink)}
+  .diag-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--space-sm)}
+  .diag-item{position:relative;padding-left:22px}
+  .diag-item::before{content:'';position:absolute;left:0;top:5px;width:9px;height:9px;border:1.5px solid var(--ink-soft);transform:rotate(45deg)}
+  .diag-item.ok::before{background:var(--ok);border-color:var(--ok);transform:none;border-radius:50%;top:3px}
+  .diag-item.rule::before{border-color:var(--ink);transform:none;border-radius:0}
+  .diag-item.warn::before{border-color:var(--warn)}
+  .diag-item .d-sign{font-family:var(--font-display);font-size:11.5px;letter-spacing:0.05em;text-transform:uppercase;color:var(--ink-soft)}
+  .diag-item .d-fix{font-size:0.9rem;margin-top:4px;color:var(--ink-soft)}
+  .diag-item .d-fix strong{font-weight:600;color:var(--ink)}
+  .diag-item.ok .d-fix strong{color:var(--ok)}
+
+  .tips{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:var(--space-sm)}
+  .tip{background-color:var(--panel);border:var(--card-border);border-radius:var(--radius);box-shadow:var(--shadow-rest);padding:20px}
+  .tip h3{font-family:var(--font-display);font-size:1rem;font-weight:600;margin-bottom:6px;color:var(--ink)}
+  .tip p{font-size:0.88rem;color:var(--ink-soft)}
+
+  footer{margin-top:var(--space-xl);background-color:var(--bg-mid);border-top:1.5px solid var(--border);padding:26px 0 34px;text-align:center;font-family:var(--font-display);font-size:12.5px;letter-spacing:0.06em;color:var(--ink-soft)}
+
+  body,header,footer{transition:background-color .25s ease,color .25s ease,border-color .25s ease}
+
+  /* flat theme: each brewer plate carries its own flat color block */
+  html[data-theme="flat"] .plate[data-brew="v60"]{--plate-bg:#FFDCC2;--plate-accent:#BA5A2E}
+  html[data-theme="flat"] .plate[data-brew="chemex"]{--plate-bg:#CFEDE6;--plate-accent:#1F7A6C}
+  html[data-theme="flat"] .plate[data-brew="french-press"]{--plate-bg:#FBE8B8;--plate-accent:#A16E17}
+  html[data-theme="flat"] .plate[data-brew="aeropress"]{--plate-bg:#FADCE3;--plate-accent:#D14D71}
+  html[data-theme="flat"] .plate[data-brew="moka"]{--plate-bg:#FBD9D2;--plate-accent:#C4432A}
+  html[data-theme="flat"] .plate[data-brew="cold-brew"]{--plate-bg:#D6E6F5;--plate-accent:#2D6CA6}
+  html[data-theme="flat"] .ref{border-color:var(--plate-accent,var(--ink-soft))}
+
+  /* theme switcher */
+  .theme-switch{position:fixed;top:18px;right:18px;z-index:50;display:flex;flex-direction:column;gap:6px;background-color:var(--panel);border:var(--card-border);border-radius:999px;padding:6px;box-shadow:0 6px 20px rgba(0,0,0,0.18);transition:background-color .25s ease,border-color .25s ease}
+  .theme-btn{width:38px;height:38px;border-radius:50%;border:none;background:transparent;color:var(--ink-soft);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background-color .15s ease,color .15s ease}
+  .theme-btn svg{width:18px;height:18px}
+  .theme-btn:hover{background-color:var(--border)}
+  .theme-btn[aria-pressed="true"]{background-color:var(--accent);color:var(--panel)}
+  .theme-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  @media (max-width:520px){
+    .theme-switch{top:10px;right:10px;flex-direction:row;border-radius:999px}
+    .theme-btn{width:34px;height:34px}
+  }
+
+  @media (max-width:520px){
+    .gauge-plate{padding:20px 16px}
+    .plate{padding:20px 18px 18px}
+    header{padding:var(--space-lg) 0}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none !important}
+    html{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+
+<div class="theme-switch" role="group" aria-label="Elegir estilo visual">
+  <button type="button" class="theme-btn" data-theme-choice="blueprint" aria-pressed="false" title="Plano técnico">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 9h18M9 21V9"/></svg>
+    <span class="sr-only">Estilo plano técnico</span>
+  </button>
+  <button type="button" class="theme-btn" data-theme-choice="warm" aria-pressed="false" title="Café cálido">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V8Z"/><path d="M17 9h1.5a2.5 2.5 0 0 1 0 5H17"/><path d="M8 3c-.5 1 .5 1.5 0 2.5M12 3c-.5 1 .5 1.5 0 2.5"/></svg>
+    <span class="sr-only">Estilo café cálido</span>
+  </button>
+  <button type="button" class="theme-btn" data-theme-choice="flat" aria-pressed="false" title="Flat moderno">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.2" fill="currentColor" stroke="none"/></svg>
+    <span class="sr-only">Estilo flat moderno</span>
+  </button>
+</div>
+
+<header class="wrap">
+  <p class="doc-meta">DOC. Nº CF&#8209;06 — GUÍA DE PREPARACIÓN · SEIS MÉTODOS</p>
+  <h1>Buen café,<br><span class="measured">bien medido</span></h1>
+  <p class="lede">Elegí cuántas tazas vas a preparar y cada método te dice cuánto café moler, cuánta agua usar y a qué temperatura. Taza estándar de 250&nbsp;ml, ratios en peso.</p>
+
+  <div class="gauge-plate ticked">
+    <p class="gauge-label">¿Cuántas tazas?</p>
+    <div class="ticks-row" id="cups" role="radiogroup" aria-label="Número de tazas"></div>
+    <p class="gauge-readout"><span class="live-num" id="cup-count">2</span> tazas · <span class="live-num" id="water-total">500</span> ml de agua</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="grid" id="cards">
+
+    <article class="plate ticked" data-ratio="15" data-brew="v60">
+      <p class="fig-label">FIG. 1 · Ratio 1∶15</p>
+      <div class="schematic">
+        <div class="schematic-frame"><img class="schematic-img" alt="Hario V60" src="/cafe/illustrations/blueprint/v60.png" data-blueprint="/cafe/illustrations/blueprint/v60.png" data-warm="/cafe/illustrations/warm/v60.png" data-flat="/cafe/illustrations/flat/v60.png"></div>
+        <div>
+          <h2>Hario V60</h2>
+          <p class="desc">Limpio y brillante. Resalta acidez y notas frutales.</p>
+        </div>
+      </div>
+      <div class="callouts">
+        <div class="callout"><span class="ref">1</span><span class="callout-label">Molienda</span><span class="callout-value">media-fina</span></div>
+        <div class="callout"><span class="ref">2</span><span class="callout-label">Temp</span><span class="callout-value">92–96 °C</span></div>
+        <div class="callout"><span class="ref">3</span><span class="callout-label">Tiempo</span><span class="callout-value">2:30–3:30 min</span></div>
+      </div>
+      <div class="data">
+        <div class="datum live"><p class="k">Café</p><p class="v"><span class="coffee"></span><small> g</small></p></div>
+        <div class="datum live"><p class="k">Agua</p><p class="v"><span class="water"></span><small> ml</small></p></div>
+        <div class="datum"><p class="k">Vertidos</p><p class="v">4–5<small> fases</small></p></div>
+      </div>
+      <p class="note">Bloom de 45 s con el doble del peso del café en agua, luego vertidos en espiral desde el centro.</p>
+    </article>
+
+    <article class="plate ticked" data-ratio="16" data-brew="chemex">
+      <p class="fig-label">FIG. 2 · Ratio 1∶16</p>
+      <div class="schematic">
+        <div class="schematic-frame"><img class="schematic-img" alt="Chemex" src="/cafe/illustrations/blueprint/chemex.png" data-blueprint="/cafe/illustrations/blueprint/chemex.png" data-warm="/cafe/illustrations/warm/chemex.png" data-flat="/cafe/illustrations/flat/chemex.png"></div>
+        <div>
+          <h2>Chemex</h2>
+          <p class="desc">Taza sedosa y muy limpia. El filtro grueso retiene aceites.</p>
+        </div>
+      </div>
+      <div class="callouts">
+        <div class="callout"><span class="ref">1</span><span class="callout-label">Molienda</span><span class="callout-value">media-gruesa</span></div>
+        <div class="callout"><span class="ref">2</span><span class="callout-label">Temp</span><span class="callout-value">93–96 °C</span></div>
+        <div class="callout"><span class="ref">3</span><span class="callout-label">Tiempo</span><span class="callout-value">4–5 min</span></div>
+      </div>
+      <div class="data">
+        <div class="datum live"><p class="k">Café</p><p class="v"><span class="coffee"></span><small> g</small></p></div>
+        <div class="datum live"><p class="k">Agua</p><p class="v"><span class="water"></span><small> ml</small></p></div>
+        <div class="datum"><p class="k">Ideal</p><p class="v">3+<small> tazas</small></p></div>
+      </div>
+      <p class="note">Enjuagá el filtro con agua caliente antes de usarlo para quitar el sabor a papel y precalentar el vidrio.</p>
+    </article>
+
+    <article class="plate ticked" data-ratio="14" data-brew="french-press">
+      <p class="fig-label">FIG. 3 · Ratio 1∶14</p>
+      <div class="schematic">
+        <div class="schematic-frame"><img class="schematic-img" alt="Prensa francesa" src="/cafe/illustrations/blueprint/french-press.png" data-blueprint="/cafe/illustrations/blueprint/french-press.png" data-warm="/cafe/illustrations/warm/french-press.png" data-flat="/cafe/illustrations/flat/french-press.png"></div>
+        <div>
+          <h2>Prensa francesa</h2>
+          <p class="desc">Cuerpo pleno y textura rica. Inmersión total, cero técnica.</p>
+        </div>
+      </div>
+      <div class="callouts">
+        <div class="callout"><span class="ref">1</span><span class="callout-label">Molienda</span><span class="callout-value">gruesa</span></div>
+        <div class="callout"><span class="ref">2</span><span class="callout-label">Temp</span><span class="callout-value">92–94 °C</span></div>
+        <div class="callout"><span class="ref">3</span><span class="callout-label">Tiempo</span><span class="callout-value">4 min</span></div>
+      </div>
+      <div class="data">
+        <div class="datum live"><p class="k">Café</p><p class="v"><span class="coffee"></span><small> g</small></p></div>
+        <div class="datum live"><p class="k">Agua</p><p class="v"><span class="water"></span><small> ml</small></p></div>
+        <div class="datum"><p class="k">Reposo</p><p class="v">4:00<small> min</small></p></div>
+      </div>
+      <p class="note">Bajá el émbolo sin fuerza y serví de inmediato: si el café queda en la prensa, sigue extrayendo y amarga.</p>
+    </article>
+
+    <article class="plate ticked" data-ratio="13" data-brew="aeropress">
+      <p class="fig-label">FIG. 4 · Ratio 1∶13</p>
+      <div class="schematic">
+        <div class="schematic-frame"><img class="schematic-img" alt="AeroPress" src="/cafe/illustrations/blueprint/aeropress.png" data-blueprint="/cafe/illustrations/blueprint/aeropress.png" data-warm="/cafe/illustrations/warm/aeropress.png" data-flat="/cafe/illustrations/flat/aeropress.png"></div>
+        <div>
+          <h2>AeroPress</h2>
+          <p class="desc">Versátil y rápido. Taza dulce y concentrada, ideal para viajar.</p>
+        </div>
+      </div>
+      <div class="callouts">
+        <div class="callout"><span class="ref">1</span><span class="callout-label">Molienda</span><span class="callout-value">media-fina</span></div>
+        <div class="callout"><span class="ref">2</span><span class="callout-label">Temp</span><span class="callout-value">85–92 °C</span></div>
+        <div class="callout"><span class="ref">3</span><span class="callout-label">Tiempo</span><span class="callout-value">1:30–2 min</span></div>
+      </div>
+      <div class="data">
+        <div class="datum live"><p class="k">Café</p><p class="v"><span class="coffee"></span><small> g</small></p></div>
+        <div class="datum live"><p class="k">Agua</p><p class="v"><span class="water"></span><small> ml</small></p></div>
+        <div class="datum"><p class="k">Presión</p><p class="v">30<small> s</small></p></div>
+      </div>
+      <p class="note">La cámara admite ~250 ml por tanda: para varias tazas, prepará un concentrado fuerte y dilúyelo al servir.</p>
+    </article>
+
+    <article class="plate ticked" data-ratio="10" data-brew="moka">
+      <p class="fig-label">FIG. 5 · Ratio 1∶10</p>
+      <div class="schematic">
+        <div class="schematic-frame"><img class="schematic-img" alt="Moka" src="/cafe/illustrations/blueprint/moka.png" data-blueprint="/cafe/illustrations/blueprint/moka.png" data-warm="/cafe/illustrations/warm/moka.png" data-flat="/cafe/illustrations/flat/moka.png"></div>
+        <div>
+          <h2>Moka (greca)</h2>
+          <p class="desc">Intenso, estilo espresso. El clásico de la estufa.</p>
+        </div>
+      </div>
+      <div class="callouts">
+        <div class="callout"><span class="ref">1</span><span class="callout-label">Molienda</span><span class="callout-value">fina</span></div>
+        <div class="callout"><span class="ref">2</span><span class="callout-label">Fuego</span><span class="callout-value">medio-bajo</span></div>
+        <div class="callout"><span class="ref">3</span><span class="callout-label">Tiempo</span><span class="callout-value">~5 min</span></div>
+      </div>
+      <div class="data">
+        <div class="datum live"><p class="k">Café</p><p class="v"><span class="coffee"></span><small> g</small></p></div>
+        <div class="datum live"><p class="k">Agua</p><p class="v"><span class="water"></span><small> ml</small></p></div>
+        <div class="datum"><p class="k">Canastilla</p><p class="v">Al ras</p></div>
+      </div>
+      <p class="note">En la práctica: agua hasta la válvula, canastilla llena al ras sin compactar. Retirá del fuego cuando gorgotee.</p>
+    </article>
+
+    <article class="plate ticked" data-ratio="8" data-brew="cold-brew">
+      <p class="fig-label">FIG. 6 · Ratio 1∶8</p>
+      <div class="schematic">
+        <div class="schematic-frame"><img class="schematic-img" alt="Cold brew" src="/cafe/illustrations/blueprint/cold-brew.png" data-blueprint="/cafe/illustrations/blueprint/cold-brew.png" data-warm="/cafe/illustrations/warm/cold-brew.png" data-flat="/cafe/illustrations/flat/cold-brew.png"></div>
+        <div>
+          <h2>Cold brew</h2>
+          <p class="desc">Suave, dulce y de baja acidez. Concentrado para diluir.</p>
+        </div>
+      </div>
+      <div class="callouts">
+        <div class="callout"><span class="ref">1</span><span class="callout-label">Molienda</span><span class="callout-value">extra gruesa</span></div>
+        <div class="callout"><span class="ref">2</span><span class="callout-label">Agua</span><span class="callout-value">fría</span></div>
+        <div class="callout"><span class="ref">3</span><span class="callout-label">Tiempo</span><span class="callout-value">12–18 h</span></div>
+      </div>
+      <div class="data">
+        <div class="datum live"><p class="k">Café</p><p class="v"><span class="coffee"></span><small> g</small></p></div>
+        <div class="datum live"><p class="k">Agua</p><p class="v"><span class="water"></span><small> ml</small></p></div>
+        <div class="datum"><p class="k">Diluir</p><p class="v">1:1</p></div>
+      </div>
+      <p class="note">Reposá en la nevera, filtrá y guardá el concentrado hasta 2 semanas. Al servir, mitad concentrado y mitad agua o leche.</p>
+    </article>
+
+  </div>
+
+  <h2 class="section-title">§ Escala de molienda</h2>
+  <p class="section-sub">La regla del tacto: frotá el café molido entre los dedos y compará con la textura de referencia. La molienda controla la velocidad de extracción: más fina extrae más rápido.</p>
+  <div class="grind-scale">
+    <div class="grind ticked">
+      <div class="swatch" data-size="1.6"></div>
+      <p class="g-name">Fina</p>
+      <p class="g-microns">200–400 µm</p>
+      <p class="g-feel">Como harina o sal fina: se apelmaza al apretarla y casi no se sienten granos.</p>
+      <p class="g-methods">moka</p>
+    </div>
+    <div class="grind ticked">
+      <div class="swatch" data-size="2.6"></div>
+      <p class="g-name">Media-fina</p>
+      <p class="g-microns">400–600 µm</p>
+      <p class="g-feel">Como sal de mesa: granos definidos pero pequeños, no se apelmaza.</p>
+      <p class="g-methods">V60 · AeroPress</p>
+    </div>
+    <div class="grind ticked">
+      <div class="swatch" data-size="3.6"></div>
+      <p class="g-name">Media-gruesa</p>
+      <p class="g-microns">600–900 µm</p>
+      <p class="g-feel">Como arena de playa gruesa: se siente rugosa y suelta entre los dedos.</p>
+      <p class="g-methods">Chemex</p>
+    </div>
+    <div class="grind ticked">
+      <div class="swatch" data-size="4.8"></div>
+      <p class="g-name">Gruesa</p>
+      <p class="g-microns">900–1200 µm</p>
+      <p class="g-feel">Como sal gruesa o sal marina: partículas visibles una a una.</p>
+      <p class="g-methods">prensa francesa</p>
+    </div>
+    <div class="grind ticked">
+      <div class="swatch" data-size="6.2"></div>
+      <p class="g-name">Extra gruesa</p>
+      <p class="g-microns">1200–1500 µm</p>
+      <p class="g-feel">Como pimienta recién partida: trozos grandes e irregulares.</p>
+      <p class="g-methods">cold brew</p>
+    </div>
+  </div>
+
+  <div class="diag ticked">
+    <h3>Nota técnica: ¿cómo sé si la molienda está bien? Probá y ajustá</h3>
+    <div class="diag-grid">
+      <div class="diag-item warn">
+        <p class="d-sign">Sabor amargo, seco o quemado</p>
+        <p class="d-fix">Sobreextracción → <strong>molé más grueso</strong> (o bajá 2–3 °C la temperatura).</p>
+      </div>
+      <div class="diag-item warn">
+        <p class="d-sign">Sabor agrio, aguado o salado</p>
+        <p class="d-fix">Subextracción → <strong>molé más fino</strong> (o subí un poco la temperatura).</p>
+      </div>
+      <div class="diag-item">
+        <p class="d-sign">El V60 filtra en menos de 2 min</p>
+        <p class="d-fix">Muy gruesa: el agua pasa sin extraer → <strong>ajustá más fino</strong>.</p>
+      </div>
+      <div class="diag-item">
+        <p class="d-sign">El V60 tarda más de 4 min o se tapa</p>
+        <p class="d-fix">Muy fina: el lecho se compacta → <strong>ajustá más grueso</strong>.</p>
+      </div>
+      <div class="diag-item ok">
+        <p class="d-sign">Dulce, balanceado, con final limpio</p>
+        <p class="d-fix"><strong>Ahí es.</strong> Anotá el número de clics de tu molino y no lo toqués.</p>
+      </div>
+      <div class="diag-item rule">
+        <p class="d-sign">Regla siempre</p>
+        <p class="d-fix">Cambiá <strong>una sola variable a la vez</strong>: molienda, temperatura o tiempo. Nunca dos.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="section-title">§ Cuatro reglas de oro</h2>
+  <p class="section-sub">Antes que cualquier técnica, esto es lo que más cambia la taza.</p>
+  <div class="tips">
+    <div class="tip ticked"><h3>Usá balanza</h3><p>Medir por peso, no por cucharadas. Una cuchara de café puede variar entre 5 y 9 g según la molienda.</p></div>
+    <div class="tip ticked"><h3>Café fresco</h3><p>Comprá en grano y molé justo antes de preparar. El café molido pierde aroma en cuestión de días.</p></div>
+    <div class="tip ticked"><h3>Agua buena</h3><p>El café es 98 % agua. Si el agua de tu llave sabe a cloro, usá filtrada: se nota de inmediato.</p></div>
+    <div class="tip ticked"><h3>Precalentá todo</h3><p>Enjuagá con agua caliente el filtro, el servidor y la taza. Un recipiente frío roba temperatura y corta la extracción.</p></div>
+  </div>
+</main>
+
+<footer>
+  <p>Taza estándar: 250 ml · Ratios en peso (g de café : ml de agua)</p>
+</footer>
+
+<script is:inline>
+(function(){
+  var THEME_KEY = 'cafe-theme';
+
+  function applyTheme(name, persist){
+    document.documentElement.dataset.theme = name;
+    if (persist) localStorage.setItem(THEME_KEY, name);
+    var buttons = document.querySelectorAll('.theme-btn');
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].setAttribute('aria-pressed', buttons[i].dataset.themeChoice === name ? 'true' : 'false');
+    }
+    var imgs = document.querySelectorAll('.schematic-img');
+    for (var j = 0; j < imgs.length; j++) {
+      var src = imgs[j].dataset[name];
+      if (src && imgs[j].getAttribute('src') !== src) imgs[j].setAttribute('src', src);
+    }
+  }
+
+  var themeButtons = document.querySelectorAll('.theme-btn');
+  for (var t = 0; t < themeButtons.length; t++) {
+    themeButtons[t].addEventListener('click', function(){ applyTheme(this.dataset.themeChoice, true); });
+  }
+  applyTheme(document.documentElement.dataset.theme || 'blueprint', false);
+
+  var MAX = 8, current = 2;
+  var cupsEl = document.getElementById('cups');
+
+  for (var i = 1; i <= MAX; i++) {
+    var b = document.createElement('button');
+    b.className = 'tick';
+    b.type = 'button';
+    b.setAttribute('role', 'radio');
+    b.setAttribute('aria-label', i + (i === 1 ? ' taza' : ' tazas'));
+    b.setAttribute('tabindex', '-1');
+    b.dataset.n = i;
+    b.innerHTML = '<span class="tick-mark"></span><span class="tick-num">' + i + '</span>';
+    b.addEventListener('click', function(){ set(parseInt(this.dataset.n, 10)); this.focus(); });
+    cupsEl.appendChild(b);
+  }
+
+  cupsEl.addEventListener('keydown', function(e){
+    if (['ArrowRight','ArrowUp','ArrowLeft','ArrowDown','Home','End'].indexOf(e.key) === -1) return;
+    e.preventDefault();
+    var next = current;
+    if (e.key === 'ArrowRight' || e.key === 'ArrowUp') next = Math.min(MAX, current + 1);
+    else if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') next = Math.max(1, current - 1);
+    else if (e.key === 'Home') next = 1;
+    else if (e.key === 'End') next = MAX;
+    set(next);
+    cupsEl.children[next - 1].focus();
+  });
+
+  function set(n){
+    current = n;
+    var water = n * 250;
+    var ticks = cupsEl.children;
+    for (var i = 0; i < ticks.length; i++) {
+      var idx = i + 1;
+      ticks[i].classList.toggle('on', idx <= n);
+      ticks[i].classList.toggle('current', idx === n);
+      ticks[i].setAttribute('aria-checked', idx === n ? 'true' : 'false');
+      ticks[i].setAttribute('tabindex', idx === n ? '0' : '-1');
+    }
+    document.getElementById('cup-count').textContent = n;
+    document.getElementById('water-total').textContent = water.toLocaleString('es-CO');
+    var cards = document.querySelectorAll('.plate');
+    for (var j = 0; j < cards.length; j++) {
+      var ratio = parseInt(cards[j].dataset.ratio, 10);
+      cards[j].querySelector('.water').textContent = water.toLocaleString('es-CO');
+      cards[j].querySelector('.coffee').textContent = Math.round(water / ratio);
+    }
+  }
+  set(current);
+
+  var swatches = document.querySelectorAll('.grind .swatch');
+  for (var s = 0; s < swatches.length; s++) {
+    var size = parseFloat(swatches[s].dataset.size);
+    var count = Math.round(320 / (size * size));
+    for (var p = 0; p < count; p++) {
+      var d = document.createElement('span');
+      var r = size * (0.75 + Math.random() * 0.5);
+      d.style.cssText = 'position:absolute;border-radius:50%;background:var(--ink);opacity:' + (0.35 + Math.random() * 0.45).toFixed(2) +
+        ';width:' + r.toFixed(1) + 'px;height:' + r.toFixed(1) + 'px;left:' + (Math.random() * 96).toFixed(1) + '%;top:' + (Math.random() * 88).toFixed(1) + '%;';
+      swatches[s].appendChild(d);
+    }
+  }
+})();
+</script>
+</body>
+</html>
