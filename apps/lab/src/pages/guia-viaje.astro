@@ -14,40 +14,96 @@
 html{scroll-behavior:smooth}
 img,table{max-width:100%}
 body{font-family:'Public Sans',system-ui,sans-serif;background:var(--papel);color:var(--tinta);line-height:1.6;font-size:16px;overflow-x:hidden}
-.wrap{max-width:780px;margin:0 auto;padding:0 18px}
+.wrap{max-width:740px;margin:0 auto;padding:0 18px}
 
-header{background:var(--azul-osc);color:#fff;padding:42px 0 34px;position:relative;overflow:hidden}
-header::after{content:"";position:absolute;right:-40px;top:-40px;width:220px;height:220px;
-  background:radial-gradient(circle at 60% 40%, rgba(240,180,41,.25), transparent 65%)}
+/* ===== PAGE GRID — sidebar nav on desktop, stacked on mobile ===== */
+body{
+  display:grid;
+  grid-template-areas:"header" "nav" "main" "footer";
+  grid-template-columns:1fr;
+}
+header{grid-area:header}
+nav{grid-area:nav}
+main{grid-area:main}
+footer{grid-area:footer}
+@media (min-width:960px){
+  body{
+    grid-template-areas:"header header" "nav main" "footer footer";
+    grid-template-columns:216px minmax(0,1fr);
+    max-width:1280px;
+    margin:0 auto;
+    column-gap:40px;
+  }
+  .wrap{max-width:900px;margin:0;padding:0}
+  .lead,.sub{max-width:62ch}
+  header .wrap,footer .wrap{max-width:none}
+}
+
+/* ===== HERO ===== */
+header{position:relative;overflow:hidden;isolation:isolate;color:#fff;padding:56px 0 40px}
+.hero-photo{position:absolute;inset:0;z-index:0}
+.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center 62%;animation:heroZoom 22s ease-out forwards}
+@keyframes heroZoom{from{transform:scale(1.08)}to{transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){.hero-photo img{animation:none}html{scroll-behavior:auto}}
+.hero-scrim{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(16,48,79,.5) 0%,rgba(16,48,79,.68) 55%,var(--azul-osc) 100%)}
+header .wrap{position:relative;z-index:2}
 .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--amarillo);margin-bottom:10px}
-h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(32px,7vw,50px);line-height:1.05;margin-bottom:14px}
-.sub{color:#C9D6E4;max-width:58ch;font-size:15px}
-.hero-datos{display:flex;flex-wrap:wrap;gap:9px;margin-top:20px}
-.dato{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:999px;padding:6px 13px;font-family:'IBM Plex Mono',monospace;font-size:12px}
+h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(34px,7vw,58px);line-height:1.03;margin-bottom:14px;text-wrap:balance}
+.sub{color:#DCE7F5;max-width:56ch;font-size:15.5px}
+.hero-datos{display:flex;flex-wrap:wrap;gap:9px;margin-top:22px}
+.dato{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:6px 13px;font-family:'IBM Plex Mono',monospace;font-size:12px;backdrop-filter:blur(2px)}
 .dato b{color:var(--amarillo);font-weight:500}
+@media (min-width:960px){header{padding:72px 0 52px;border-radius:0 0 22px 22px}}
 
+/* ===== NAV — pill strip on mobile, sticky sidebar on desktop ===== */
 nav{position:sticky;top:0;z-index:50;background:var(--papel);border-bottom:2px solid var(--azul);overflow-x:auto;-webkit-overflow-scrolling:touch}
 nav .wrap{display:flex;gap:2px;padding:0 10px}
-nav a{flex:0 0 auto;padding:12px 12px;font-size:13px;font-weight:600;color:var(--azul);text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent}
+nav a{flex:0 0 auto;padding:12px 12px;font-size:13px;font-weight:600;color:var(--azul);text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent;transition:border-color .15s,color .15s}
 nav a:hover{border-bottom-color:var(--amarillo)}
+nav a.active{color:var(--azul-osc);border-bottom-color:var(--amarillo)}
+@media (min-width:960px){
+  nav{position:sticky;top:20px;align-self:start;height:fit-content;background:none;border-bottom:none;overflow:visible;padding-top:72px}
+  nav .wrap{flex-direction:column;gap:2px;padding:0}
+  nav a{padding:9px 14px;border-bottom:none;border-left:3px solid transparent;border-radius:0 8px 8px 0}
+  nav a:hover{background:var(--blanco);border-left-color:var(--amarillo)}
+  nav a.active{background:var(--blanco);border-left-color:var(--azul);color:var(--azul);box-shadow:0 1px 3px rgba(16,48,79,.08)}
+}
 
 section{padding:38px 0 8px}
 h2{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(24px,5vw,31px);color:var(--azul-osc);margin-bottom:6px}
 .kicker{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--gris);margin-bottom:4px}
-.lead{color:#42505E;margin-bottom:20px;max-width:62ch}
+.lead{color:#42505E;margin-bottom:22px;max-width:62ch}
 h3{font-family:'Fraunces',serif;font-weight:700;font-size:19px;color:var(--azul);margin:24px 0 8px}
 p{margin-bottom:12px}
 ul{margin:0 0 14px 20px}
 li{margin-bottom:7px}
 strong{color:var(--azul-osc)}
 .card{background:var(--blanco);border:1px solid #E4DFD2;border-radius:14px;padding:20px 20px 14px;margin-bottom:16px}
-.nota{background:#FDF6E3;border-left:4px solid var(--amarillo);border-radius:0 10px 10px 0;padding:13px 15px;margin:15px 0;font-size:14.5px}
+.nota,.alerta,.ok{position:relative;background:#FDF6E3;border-radius:12px;padding:12px 15px 12px 28px;margin:15px 0;font-size:14.5px}
+.nota::before,.alerta::before,.ok::before{content:"";position:absolute;left:14px;top:17px;width:8px;height:8px;border-radius:50%;background:var(--amarillo)}
 .nota b{color:#8a6410}
-.alerta{background:#EDF3FA;border-left:4px solid var(--azul);border-radius:0 10px 10px 0;padding:13px 15px;margin:15px 0;font-size:14.5px}
-.ok{background:#E9F2EA;border-left:4px solid var(--verde);border-radius:0 10px 10px 0;padding:13px 15px;margin:15px 0;font-size:14.5px}
+.alerta{background:#EDF3FA}
+.alerta::before{background:var(--azul)}
+.ok{background:#E9F2EA}
+.ok::before{background:var(--verde)}
 .ok b{color:var(--verde)}
 
-/* itinerario */
+/* ===== ITINERARIO agrupado por tramo ===== */
+.leg{border:1px solid #E4DFD2;border-radius:16px;margin-bottom:14px;background:var(--blanco);overflow:hidden}
+.leg + .leg{margin-top:0}
+.leg summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:12px;padding:15px 18px;font-family:'Fraunces',serif;font-weight:700;font-size:17px;color:var(--azul-osc)}
+.leg summary::-webkit-details-marker{display:none}
+.leg summary .dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.leg-espana .dot{background:var(--amarillo)}
+.leg-camino .dot{background:var(--verde)}
+.leg-francia .dot{background:var(--azul)}
+.leg-italia .dot{background:var(--terra)}
+.leg summary .rango{font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:11.5px;color:var(--gris);margin-left:auto;white-space:nowrap}
+.leg summary .chev{width:9px;height:9px;border-right:2px solid var(--gris);border-bottom:2px solid var(--gris);transform:rotate(45deg);transition:transform .2s;flex-shrink:0}
+.leg:not([open]) summary .chev{transform:rotate(-45deg)}
+@media (prefers-reduced-motion:reduce){.leg summary .chev{transition:none}}
+.leg-body{padding:0 18px 8px}
+
 .dia{display:grid;grid-template-columns:76px 1fr;gap:12px;padding:11px 0;border-bottom:1px dashed #DDD6C6}
 .dia:last-child{border-bottom:none}
 .dia .d{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--gris);padding-top:2px}
@@ -70,41 +126,60 @@ strong{color:var(--azul-osc)}
 .etapa .km{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--verde);font-weight:500}
 .etapa p{font-size:14px;color:#4A5763;margin:2px 0 0}
 
-/* ciudad */
-.ciudad{background:var(--blanco);border:1px solid #E4DFD2;border-left:5px solid var(--amarillo);border-radius:14px;overflow:hidden;margin-bottom:24px}
-.ciudad-head{background:linear-gradient(100deg,var(--azul-osc),var(--azul));color:#fff;padding:15px 20px}
+/* ===== CIUDADES — foto + pestañas ===== */
+.ciudades-grid{display:grid;grid-template-columns:1fr;gap:22px}
+@media (min-width:860px){.ciudades-grid{grid-template-columns:1fr 1fr}}
+.ciudad{background:var(--blanco);border:1px solid #E4DFD2;border-radius:16px;overflow:hidden}
+.ciudad-media{position:relative;height:210px}
+.ciudad-media img{width:100%;height:100%;object-fit:cover;display:block}
+.ciudad-scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,48,79,0) 38%,rgba(16,48,79,.88) 100%)}
+.ciudad-head{position:absolute;left:0;right:0;bottom:0;padding:14px 18px;color:#fff}
+.ciudad-head .cd{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--amarillo);letter-spacing:.12em;text-transform:uppercase;display:block;margin-bottom:2px}
 .ciudad-head h3{margin:0;color:#fff;font-size:21px}
-.ciudad-head .cd{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--amarillo);letter-spacing:.1em;text-transform:uppercase}
-.ciudad-body{padding:16px 20px 10px}
-.bloque{margin-bottom:15px}
-.bloque h5{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px}
-.b-ver h5{color:var(--azul)}
-.b-local h5{color:var(--verde)}
-.b-comer h5{color:var(--terra)}
-.b-calle h5{color:var(--vino)}
-.bloque ul{margin-left:18px;margin-bottom:4px}
-.bloque li{font-size:14px;margin-bottom:6px}
-.bloque li b{font-weight:600;color:var(--tinta)}
+
+.tabs{display:flex;gap:2px;padding:10px 14px 0;flex-wrap:wrap;border-bottom:1px solid #EEE9DC}
+.tab-input{position:absolute;opacity:0;width:1px;height:1px;overflow:hidden}
+.tab-label{cursor:pointer;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;padding:8px 10px;border-radius:8px 8px 0 0;color:var(--gris);transition:color .15s,background .15s}
+.tab-input:checked + .tab-label{color:var(--tinta);background:#F7F4EC}
+.tab-input:focus-visible + .tab-label{outline:2px solid var(--amarillo);outline-offset:-1px}
+.tab-ver:checked + .tab-label{color:var(--azul)}
+.tab-local:checked + .tab-label{color:var(--verde)}
+.tab-mesa:checked + .tab-label{color:var(--terra)}
+.tab-calle:checked + .tab-label{color:var(--vino)}
+.tab-panel{display:none;padding:16px 18px 8px}
+.tab-ver:checked ~ .panel-ver{display:block}
+.tab-local:checked ~ .panel-local{display:block}
+.tab-mesa:checked ~ .panel-mesa{display:block}
+.tab-calle:checked ~ .panel-calle{display:block}
+.tab-panel h5{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--gris);margin-bottom:8px}
+.tab-panel ul{margin-left:18px;margin-bottom:2px}
+.tab-panel li{font-size:14px;margin-bottom:7px}
+.tab-panel li b{font-weight:600;color:var(--tinta)}
 
 table{width:100%;border-collapse:collapse;font-size:14px;margin:12px 0 18px;background:var(--blanco);border-radius:12px;overflow:hidden}
 th{background:var(--azul);color:#fff;text-align:left;padding:9px 12px;font-size:12.5px;font-family:'IBM Plex Mono',monospace;font-weight:500}
 td{padding:9px 12px;border-bottom:1px solid #EEE9DC;vertical-align:top}
 tr:last-child td{border-bottom:none}
 
-footer{background:var(--azul-osc);color:#9FB3C8;text-align:center;padding:28px 18px;font-size:13px;margin-top:40px}
+footer{background:var(--azul-osc);color:#9FB3C8;text-align:center;padding:28px 18px 32px;font-size:13px;margin-top:40px}
 footer b{color:var(--amarillo);font-family:'Fraunces',serif}
+.credits{max-width:640px;margin:18px auto 0;font-family:'IBM Plex Mono',monospace;font-size:10.5px;line-height:1.9;color:#6E85A0;text-align:left}
+.credits summary{cursor:pointer;text-align:center;color:#9FB3C8;list-style:none}
+.credits summary::-webkit-details-marker{display:none}
+.credits a{color:#9FB3C8}
+@media (min-width:960px){footer{border-radius:22px 22px 0 0}}
 
 @media (max-width:640px){
   body{font-size:15.5px}
   .wrap{padding:0 14px}
-  header{padding:32px 0 28px}
+  header{padding:36px 0 30px}
   .dia{grid-template-columns:1fr;gap:3px}
   .dia .d{display:flex;gap:7px;align-items:baseline}
   .dia .d b{display:inline}
   .etapa{padding-left:46px}
   .etapas::before{left:15px}
   .mojon{width:33px;height:33px;font-size:11px}
-  .card,.ciudad-body{padding:15px 14px 10px}
+  .card,.leg-body{padding-left:14px;padding-right:14px}
   table{background:none}
   thead,th{display:none}
   tr{display:block;background:var(--blanco);border:1px solid #E4DFD2;border-radius:12px;padding:11px 13px;margin-bottom:10px}
@@ -116,6 +191,8 @@ footer b{color:var(--amarillo);font-family:'Fraunces',serif}
 <body>
 
 <header>
+  <div class="hero-photo"><img src="/viaje/photos/hero-valdorcia.jpg" alt="Colinas de cipreses del Val d'Orcia al amanecer, con niebla entre los viñedos" loading="eager"></div>
+  <div class="hero-scrim"></div>
   <div class="wrap">
     <div class="eyebrow">Guía definitiva · Gustavo y su papá</div>
     <h1>Camino, Alpes<br>y Toscana.</h1>
@@ -136,7 +213,6 @@ footer b{color:var(--amarillo);font-family:'Fraunces',serif}
     <a href="#ciudades">Ciudad por ciudad</a>
     <a href="#calle">Comida callejera</a>
     <a href="#equipo">Equipo</a>
-    <a href="#pendiente">Qué falta</a>
   </div>
 </nav>
 
@@ -145,36 +221,57 @@ footer b{color:var(--amarillo);font-family:'Fraunces',serif}
 <!-- ITINERARIO -->
 <section id="dias">
   <div class="kicker">01 · El plan</div>
-  <h2>Los 24 días, uno por uno</h2>
-  <p class="lead">Los traslados van siempre en los bordes del día: de noche, al amanecer o al final de la tarde. Lo marcado en verde ya está comprado.</p>
+  <h2>Los 25 días, por tramo</h2>
+  <p class="lead">Los traslados van siempre en los bordes del día: de noche, al amanecer o al final de la tarde. Lo marcado en verde ya está comprado. Cierra el tramo que no te interese ahora mismo.</p>
 
-  <div class="card">
-    <div class="dia"><div class="d">Dom 6<b>Vuelo</b></div><div class="txt"><b>AV16 Medellín → Madrid, 22:35.</b> Se duerme en el avión.<span class="hecho">✔</span><span class="tag t-es">España</span></div></div>
-    <div class="dia"><div class="d">Lun 7<b>Llegada</b></div><div class="txt"><b>Aterrizan 15:20 en Barajas T4S.</b> Bus Exprés Aeropuerto (5 €) al centro, check-in y paseo suave por Plaza Mayor y Sol. <b>El Prado es gratis de 18:00 a 20:00</b> — si el cuerpo aguanta, es el mejor uso posible de esa tarde. Primera caña con tapa y a dormir temprano.</div></div>
-    <div class="dia"><div class="d">Mar 8<b>Toledo</b></div><div class="txt"><b>Bus Alsa desde Plaza Elíptica, 8:30</b> (directo, 50 min, 15 €). Día completo en la ciudad de las tres culturas. Regreso en el bus de las 20:30 o 21:00 tras el atardecer en el Mirador del Valle.</div></div>
-    <div class="dia"><div class="d">Mié 9<b>Madrid</b></div><div class="txt"><b>Mañana:</b> Decathlon a comprar toda la ropa técnica (allá cuesta la mitad). Después Retiro, Palacio Real o lo que quede pendiente. <b>Almuerzo temprano y a Chamartín a las 16:30.</b><br><b>Tren 17:10 → Sarria 21:02</b> (AVE + Media Distancia, enlace de 13 min en Ourense). Compren algo de comer en la estación: el tren no tiene restauración.<span class="hecho">✔</span></div></div>
-    <div class="dia"><div class="d">Jue 10<b>Etapa 1</b></div><div class="txt"><b>Sarria → Portomarín, 22 km.</b> Compren la credencial (2-3 €) antes de salir y sellen en Sarria. 🥾</div></div>
-    <div class="dia"><div class="d">Vie 11<b>Etapa 2</b></div><div class="txt"><b>Portomarín → Palas de Rei, 25 km.</b> Arranca con la subida más sostenida del tramo.</div></div>
-    <div class="dia"><div class="d">Sáb 12<b>Etapa 3</b></div><div class="txt"><b>Palas de Rei → Arzúa, 29 km.</b> La etapa reina. Almuerzo de pulpo en Melide a mitad de camino. Si alguien revienta, el taxi a Arzúa cuesta ~20 € y no afecta la Compostela.</div></div>
-    <div class="dia"><div class="d">Dom 13<b>Etapa 4</b></div><div class="txt"><b>Arzúa → O Pedrouzo, 19 km.</b> La amable: plana y entre eucaliptos.</div></div>
-    <div class="dia"><div class="d">Lun 14<b>Llegada</b></div><div class="txt"><b>O Pedrouzo → Santiago, 20 km.</b> Salgan 6:30 para entrar a la <b>Misa del Peregrino de las 12:00</b> recién llegados, con mochila y todo. Esa tarde tramitan la <b>Compostela</b> en Rúa Carretas 33.</div></div>
-    <div class="dia"><div class="d">Mar 15<b>Vuelo</b></div><div class="txt"><b>Mañana en Santiago:</b> mercado de Abastos y casco viejo. <b>Vuelo Vueling 11:25 vía Barcelona → Burdeos 17:45.</b><span class="hecho">✔</span><span class="tag t-fr">Francia</span></div></div>
-    <div class="dia"><div class="d">Mié 16<b>Burdeos</b></div><div class="txt">Día completo: Marché des Capucins, Place de la Bourse y el Miroir d'eau, Chartrons, Cité du Vin, atardecer en los muelles del Garona.</div></div>
-    <div class="dia"><div class="d">Jue 17<b>Arcachon</b></div><div class="txt"><b>Day trip desde Burdeos</b> (tren 50 min desde Gare Saint-Jean, la estación al lado del hotel). Playa Pereire, Ville d'Hiver, ostras en el puerto y <b>atardecer desde la Dune du Pilat</b>. Regreso en tren de noche.</div></div>
-    <div class="dia"><div class="d">Vie 18<b>A París</b></div><div class="txt">Mañana libre en Burdeos y consigna del hotel. <b>Tren 16:58 → Paris Montparnasse 19:18.</b> Noche: Trocadéro y la Torre iluminada (destella a las 21 y 22 en punto).<span class="hecho">✔</span></div></div>
-    <div class="dia"><div class="d">Sáb 19<b>París 1</b></div><div class="txt"><b>Louvre a la apertura</b> (reservado, 32 € c/u + audioguía). Tullerías, Sainte-Chapelle, Île de la Cité, Notre-Dame y Barrio Latino.</div></div>
-    <div class="dia"><div class="d">Dom 20<b>París 2</b></div><div class="txt"><b>Montmartre a las 8 am</b>, cuando todavía es un pueblo. Canal Saint-Martin de picnic, Le Marais y el Marché des Enfants Rouges, Coulée Verte.</div></div>
-    <div class="dia"><div class="d">Lun 21<b>A Milán</b></div><div class="txt"><b>Mañana intensa</b> (Orsay o lo pendiente), almuerzo temprano, salida del hotel 13:30. <b>easyJet 17:25 CDG → Milán Linate 18:55.</b> Noche: Duomo iluminado por fuera.<span class="tag t-it">Italia</span></div></div>
-    <div class="dia"><div class="d">Mar 22<b>Lago de Como</b></div><div class="txt">Tren regional desde Milano Centrale a <b>Varenna-Esino</b> (1h03, 7-9 €, se compra el mismo día). Pueblo, <b>ferry a Bellagio</b>, almuerzo mirando el lago, Alpes cayendo al agua. Regreso en la tarde.</div></div>
-    <div class="dia"><div class="d">Mié 23<b>Florencia</b></div><div class="txt"><b>Frecciarossa 7:30 → Florencia 9:20.</b> Día entero: cúpula de Brunelleschi, Ponte Vecchio, Oltrarno, y atardecer en <b>San Miniato al Monte</b> con canto gregoriano a las 17:30.</div></div>
-    <div class="dia"><div class="d">Jue 24<b>Florencia 2</b></div><div class="txt">Uffizi o la Academia por el David — uno solo, bien hecho. Mercado de Sant'Ambrogio, buchette del vino, gelato.</div></div>
-    <div class="dia"><div class="d">Vie 25<b>Toscana</b></div><div class="txt"><b>Florencia → Siena → Val d'Orcia.</b> Siena y su Piazza del Campo, y de ahí a las colinas de cipreses. <b>Noche en Montepulciano, Pienza o San Quirico.</b></div></div>
-    <div class="dia"><div class="d">Sáb 26<b>A Roma</b></div><div class="txt">Mañana entre viñedos —amanecer con niebla sobre las colinas— y en la tarde a <b>Roma</b>. Noche en Trastevere.</div></div>
-    <div class="dia"><div class="d">Dom 27<b>Roma 1</b></div><div class="txt"><b>Vaticano GRATIS</b> — último domingo de mes, 9:00 a 14:00, última entrada 12:30, sin reserva online. <b>Estén en la fila a las 7:30.</b> Tarde: Castel Sant'Angelo y el Aventino con su ojo de la cerradura. Es domingo: la <b>Via Appia Antica cierra a los carros</b>.</div></div>
-    <div class="dia"><div class="d">Lun 28<b>Roma 2</b></div><div class="txt"><b>Coliseo + Foro + Palatino</b> con franja de las 8:30 (reservado). Panteón, Piazza Navona, almuerzo en el mercado de Testaccio.</div></div>
-    <div class="dia"><div class="d">Mar 29<b>Roma 3</b></div><div class="txt">Galleria Borghese o Termas de Caracalla, lo que quede pendiente, Fontana di Trevi de despedida. <b>Vuelo de la noche Roma → Madrid.</b><span class="tag t-es">España</span></div></div>
-    <div class="dia"><div class="d">Mié 30<b>Regreso</b></div><div class="txt">Mañana tranquila en Madrid — churros en San Ginés. Al aeropuerto a las <b>13:00</b> para el <b>AV17 de las 16:40</b>. Llegan a Medellín 20:05.<span class="hecho">✔</span></div></div>
-  </div>
+  <details class="leg leg-espana" open>
+    <summary><span class="dot"></span> España <span class="rango">6–9 sep · 4 días</span><span class="chev"></span></summary>
+    <div class="leg-body"><div class="card">
+      <div class="dia"><div class="d">Dom 6<b>Vuelo</b></div><div class="txt"><b>AV16 Medellín → Madrid, 22:35.</b> Se duerme en el avión.<span class="hecho">✔</span><span class="tag t-es">España</span></div></div>
+      <div class="dia"><div class="d">Lun 7<b>Llegada</b></div><div class="txt"><b>Aterrizan 15:20 en Barajas T4S.</b> Bus Exprés Aeropuerto (5 €) al centro, check-in y paseo suave por Plaza Mayor y Sol. <b>El Prado es gratis de 18:00 a 20:00</b> — si el cuerpo aguanta, es el mejor uso posible de esa tarde. Primera caña con tapa y a dormir temprano.</div></div>
+      <div class="dia"><div class="d">Mar 8<b>Toledo</b></div><div class="txt"><b>Bus Alsa desde Plaza Elíptica, 8:30</b> (directo, 50 min, 15 €). Día completo en la ciudad de las tres culturas. Regreso en el bus de las 20:30 o 21:00 tras el atardecer en el Mirador del Valle.</div></div>
+      <div class="dia"><div class="d">Mié 9<b>Madrid</b></div><div class="txt"><b>Mañana:</b> Decathlon a comprar toda la ropa técnica (allá cuesta la mitad). Después Retiro, Palacio Real o lo que quede pendiente. <b>Almuerzo temprano y a Chamartín a las 16:30.</b><br><b>Tren 17:10 → Sarria 21:02</b> (AVE + Media Distancia, enlace de 13 min en Ourense). Compren algo de comer en la estación: el tren no tiene restauración.<span class="hecho">✔</span></div></div>
+    </div></div>
+  </details>
+
+  <details class="leg leg-camino" open>
+    <summary><span class="dot"></span> El Camino <span class="rango">10–14 sep · 5 días</span><span class="chev"></span></summary>
+    <div class="leg-body"><div class="card">
+      <div class="dia"><div class="d">Jue 10<b>Etapa 1</b></div><div class="txt"><b>Sarria → Portomarín, 22 km.</b> Compren la credencial (2-3 €) antes de salir y sellen en Sarria. 🥾</div></div>
+      <div class="dia"><div class="d">Vie 11<b>Etapa 2</b></div><div class="txt"><b>Portomarín → Palas de Rei, 25 km.</b> Arranca con la subida más sostenida del tramo.</div></div>
+      <div class="dia"><div class="d">Sáb 12<b>Etapa 3</b></div><div class="txt"><b>Palas de Rei → Arzúa, 29 km.</b> La etapa reina. Almuerzo de pulpo en Melide a mitad de camino. Si alguien revienta, el taxi a Arzúa cuesta ~20 € y no afecta la Compostela.</div></div>
+      <div class="dia"><div class="d">Dom 13<b>Etapa 4</b></div><div class="txt"><b>Arzúa → O Pedrouzo, 19 km.</b> La amable: plana y entre eucaliptos.</div></div>
+      <div class="dia"><div class="d">Lun 14<b>Llegada</b></div><div class="txt"><b>O Pedrouzo → Santiago, 20 km.</b> Salgan 6:30 para entrar a la <b>Misa del Peregrino de las 12:00</b> recién llegados, con mochila y todo. Esa tarde tramitan la <b>Compostela</b> en Rúa Carretas 33.</div></div>
+    </div></div>
+  </details>
+
+  <details class="leg leg-francia" open>
+    <summary><span class="dot"></span> Francia <span class="rango">15–20 sep · 6 días</span><span class="chev"></span></summary>
+    <div class="leg-body"><div class="card">
+      <div class="dia"><div class="d">Mar 15<b>Vuelo</b></div><div class="txt"><b>Mañana en Santiago:</b> mercado de Abastos y casco viejo. <b>Vuelo Vueling 11:25 vía Barcelona → Burdeos 17:45.</b><span class="hecho">✔</span><span class="tag t-fr">Francia</span></div></div>
+      <div class="dia"><div class="d">Mié 16<b>Burdeos</b></div><div class="txt">Día completo: Marché des Capucins, Place de la Bourse y el Miroir d'eau, Chartrons, Cité du Vin, atardecer en los muelles del Garona.</div></div>
+      <div class="dia"><div class="d">Jue 17<b>Arcachon</b></div><div class="txt"><b>Day trip desde Burdeos</b> (tren 50 min desde Gare Saint-Jean, la estación al lado del hotel). Playa Pereire, Ville d'Hiver, ostras en el puerto y <b>atardecer desde la Dune du Pilat</b>. Regreso en tren de noche.</div></div>
+      <div class="dia"><div class="d">Vie 18<b>A París</b></div><div class="txt">Mañana libre en Burdeos y consigna del hotel. <b>Tren 16:58 → Paris Montparnasse 19:18.</b> Noche: Trocadéro y la Torre iluminada (destella a las 21 y 22 en punto).<span class="hecho">✔</span></div></div>
+      <div class="dia"><div class="d">Sáb 19<b>París 1</b></div><div class="txt"><b>Louvre a la apertura</b> (reservado, 32 € c/u + audioguía). Tullerías, Sainte-Chapelle, Île de la Cité, Notre-Dame y Barrio Latino.</div></div>
+      <div class="dia"><div class="d">Dom 20<b>París 2</b></div><div class="txt"><b>Montmartre a las 8 am</b>, cuando todavía es un pueblo. Canal Saint-Martin de picnic, Le Marais y el Marché des Enfants Rouges, Coulée Verte.</div></div>
+    </div></div>
+  </details>
+
+  <details class="leg leg-italia" open>
+    <summary><span class="dot"></span> Italia <span class="rango">21–30 sep · 10 días</span><span class="chev"></span></summary>
+    <div class="leg-body"><div class="card">
+      <div class="dia"><div class="d">Lun 21<b>A Milán</b></div><div class="txt"><b>Mañana intensa</b> (Orsay o lo pendiente), almuerzo temprano, salida del hotel 13:30. <b>easyJet 17:25 CDG → Milán Linate 18:55.</b> Noche: Duomo iluminado por fuera.<span class="tag t-it">Italia</span></div></div>
+      <div class="dia"><div class="d">Mar 22<b>Lago de Como</b></div><div class="txt">Tren regional desde Milano Centrale a <b>Varenna-Esino</b> (1h03, 7-9 €, se compra el mismo día). Pueblo, <b>ferry a Bellagio</b>, almuerzo mirando el lago, Alpes cayendo al agua. Regreso en la tarde.</div></div>
+      <div class="dia"><div class="d">Mié 23<b>Florencia</b></div><div class="txt"><b>Frecciarossa 7:30 → Florencia 9:20.</b> Día entero: cúpula de Brunelleschi, Ponte Vecchio, Oltrarno, y atardecer en <b>San Miniato al Monte</b> con canto gregoriano a las 17:30.</div></div>
+      <div class="dia"><div class="d">Jue 24<b>Florencia 2</b></div><div class="txt">Uffizi o la Academia por el David — uno solo, bien hecho. Mercado de Sant'Ambrogio, buchette del vino, gelato.</div></div>
+      <div class="dia"><div class="d">Vie 25<b>Toscana</b></div><div class="txt"><b>Florencia → Siena → Val d'Orcia.</b> Siena y su Piazza del Campo, y de ahí a las colinas de cipreses. <b>Noche en Montepulciano, Pienza o San Quirico.</b></div></div>
+      <div class="dia"><div class="d">Sáb 26<b>A Roma</b></div><div class="txt">Mañana entre viñedos —amanecer con niebla sobre las colinas— y en la tarde a <b>Roma</b>. Noche en Trastevere.</div></div>
+      <div class="dia"><div class="d">Dom 27<b>Roma 1</b></div><div class="txt"><b>Vaticano GRATIS</b> — último domingo de mes, 9:00 a 14:00, última entrada 12:30, sin reserva online. <b>Estén en la fila a las 7:30.</b> Tarde: Castel Sant'Angelo y el Aventino con su ojo de la cerradura. Es domingo: la <b>Via Appia Antica cierra a los carros</b>.</div></div>
+      <div class="dia"><div class="d">Lun 28<b>Roma 2</b></div><div class="txt"><b>Coliseo + Foro + Palatino</b> con franja de las 8:30 (reservado). Panteón, Piazza Navona, almuerzo en el mercado de Testaccio.</div></div>
+      <div class="dia"><div class="d">Mar 29<b>Roma 3</b></div><div class="txt">Galleria Borghese o Termas de Caracalla, lo que quede pendiente, Fontana di Trevi de despedida. <b>Vuelo de la noche Roma → Madrid.</b><span class="tag t-es">España</span></div></div>
+      <div class="dia"><div class="d">Mié 30<b>Regreso</b></div><div class="txt">Mañana tranquila en Madrid — churros en San Ginés. Al aeropuerto a las <b>13:00</b> para el <b>AV17 de las 16:40</b>. Llegan a Medellín 20:05.<span class="hecho">✔</span></div></div>
+    </div></div>
+  </details>
 
   <div class="ok"><b>Ya comprado:</b> los dos vuelos transatlánticos, el seguro, el tren a Sarria, el vuelo Santiago–Burdeos, las 5 noches del Camino, Burdeos (3 noches, MEININGER Gare Saint-Jean), París (3 noches, MEININGER Porte de Vincennes) y el tren Burdeos–París.</div>
 </section>
@@ -215,254 +312,364 @@ footer b{color:var(--amarillo);font-family:'Fraunces',serif}
 <section id="ciudades">
   <div class="kicker">03 · Dónde y qué comer</div>
   <h2>Ciudad por ciudad</h2>
-  <p class="lead">Cada parada en cuatro capas: lo que hay que ver, el plan que hacen los locales, qué pedir en la mesa y la comida de calle.</p>
+  <p class="lead">Cada parada, en cuatro pestañas: lo que hay que ver, el plan que hacen los locales, qué pedir en la mesa y la comida de calle.</p>
+
+  <div class="ciudades-grid">
 
   <!-- MADRID -->
   <div class="ciudad">
-    <div class="ciudad-head"><span class="cd">7, 9 y 30 sep · España</span><h3>Madrid</h3></div>
-    <div class="ciudad-body">
-      <div class="bloque b-ver"><h5>■ Lo imperdible</h5><ul>
-        <li><b>Museo del Prado</b> — Velázquez (Las Meninas), Goya (las Pinturas Negras), El Bosco. <b>Gratis de lunes a sábado, 18:00 a 20:00.</b> Lleguen sobre las 18:45 y la fila es más corta.</li>
-        <li><b>Reina Sofía</b> por el Guernica, también con franja gratuita al final del día.</li>
-        <li><b>El Retiro</b> y su Palacio de Cristal, <b>Palacio Real</b> y la Almudena por fuera, Plaza Mayor y Gran Vía de noche.</li>
-      </ul></div>
-      <div class="bloque b-local"><h5>◆ El plan local</h5><ul>
-        <li><b>Tapeo por la Cava Baja</b>, La Latina: se pide una caña, la tapa llega sola, y se cambia de bar cada dos rondas. Así se cena en Madrid.</li>
-        <li><b>Atardecer en el Templo de Debod</b> — un templo egipcio auténtico regalado por Egipto, con la mejor puesta de sol de la ciudad. Gratis.</li>
-        <li><b>Vermut de grifo</b> antes de almorzar, en cualquier taberna vieja de La Latina o Malasaña.</li>
-        <li><b>Mercado de San Fernando o Antón Martín</b> en vez del de San Miguel, que ya es de turistas.</li>
-      </ul></div>
-      <div class="bloque b-comer"><h5>▲ La mesa</h5><ul>
-        <li><b>Cocido madrileño</b> (Malacatín o La Bola), <b>huevos rotos con jamón</b> en Casa Lucio, <b>tortilla de patatas</b> jugosa en la Bodega de la Ardosa, que lleva de barra desde 1892.</li>
-      </ul></div>
-      <div class="bloque b-calle"><h5>● De calle</h5><ul>
-        <li><b>Bocadillo de calamares</b> en la Plaza Mayor — La Campana o La Ideal. Es EL bocadillo de Madrid, 4-5 €.</li>
-        <li><b>Churros con chocolate en San Ginés</b>, abierto desde 1894 y mejor de noche.</li>
-        <li><b>Oreja a la plancha</b> y <b>patatas bravas</b> de barra, en cualquier bar de La Latina.</li>
-      </ul></div>
+    <div class="ciudad-media">
+      <img src="/viaje/photos/madrid.jpg" alt="Plaza Mayor de Madrid al atardecer" loading="lazy" decoding="async">
+      <div class="ciudad-scrim"></div>
+      <div class="ciudad-head"><span class="cd">7, 9 y 30 sep · España</span><h3>Madrid</h3></div>
     </div>
+    <input class="tab-input tab-ver" type="radio" name="tabs-madrid" id="madrid-ver" checked>
+    <input class="tab-input tab-local" type="radio" name="tabs-madrid" id="madrid-local">
+    <input class="tab-input tab-mesa" type="radio" name="tabs-madrid" id="madrid-mesa">
+    <input class="tab-input tab-calle" type="radio" name="tabs-madrid" id="madrid-calle">
+    <div class="tabs">
+      <label class="tab-label" for="madrid-ver">■ Ver</label>
+      <label class="tab-label" for="madrid-local">◆ Local</label>
+      <label class="tab-label" for="madrid-mesa">▲ Mesa</label>
+      <label class="tab-label" for="madrid-calle">● Calle</label>
+    </div>
+    <div class="tab-panel panel-ver"><h5>Lo imperdible</h5><ul>
+      <li><b>Museo del Prado</b> — Velázquez (Las Meninas), Goya (las Pinturas Negras), El Bosco. <b>Gratis de lunes a sábado, 18:00 a 20:00.</b> Lleguen sobre las 18:45 y la fila es más corta.</li>
+      <li><b>Reina Sofía</b> por el Guernica, también con franja gratuita al final del día.</li>
+      <li><b>El Retiro</b> y su Palacio de Cristal, <b>Palacio Real</b> y la Almudena por fuera, Plaza Mayor y Gran Vía de noche.</li>
+    </ul></div>
+    <div class="tab-panel panel-local"><h5>El plan local</h5><ul>
+      <li><b>Tapeo por la Cava Baja</b>, La Latina: se pide una caña, la tapa llega sola, y se cambia de bar cada dos rondas. Así se cena en Madrid.</li>
+      <li><b>Atardecer en el Templo de Debod</b> — un templo egipcio auténtico regalado por Egipto, con la mejor puesta de sol de la ciudad. Gratis.</li>
+      <li><b>Vermut de grifo</b> antes de almorzar, en cualquier taberna vieja de La Latina o Malasaña.</li>
+      <li><b>Mercado de San Fernando o Antón Martín</b> en vez del de San Miguel, que ya es de turistas.</li>
+    </ul></div>
+    <div class="tab-panel panel-mesa"><h5>La mesa</h5><ul>
+      <li><b>Cocido madrileño</b> (Malacatín o La Bola), <b>huevos rotos con jamón</b> en Casa Lucio, <b>tortilla de patatas</b> jugosa en la Bodega de la Ardosa, que lleva de barra desde 1892.</li>
+    </ul></div>
+    <div class="tab-panel panel-calle"><h5>De calle</h5><ul>
+      <li><b>Bocadillo de calamares</b> en la Plaza Mayor — La Campana o La Ideal. Es EL bocadillo de Madrid, 4-5 €.</li>
+      <li><b>Churros con chocolate en San Ginés</b>, abierto desde 1894 y mejor de noche.</li>
+      <li><b>Oreja a la plancha</b> y <b>patatas bravas</b> de barra, en cualquier bar de La Latina.</li>
+    </ul></div>
   </div>
 
   <!-- TOLEDO -->
   <div class="ciudad">
-    <div class="ciudad-head"><span class="cd">Martes 8 sep · España</span><h3>Toledo</h3></div>
-    <div class="ciudad-body">
-      <div class="bloque b-ver"><h5>■ Lo imperdible</h5><ul>
-        <li><b>La Catedral Primada</b>, de las góticas más impresionantes de Europa, con una sacristía llena de El Grecos.</li>
-        <li><b>El entierro del Conde de Orgaz</b> en la iglesia de Santo Tomé — la obra maestra de El Greco, en el sitio para el que fue pintada hace 440 años.</li>
-        <li><b>Sinagogas del Tránsito y Santa María la Blanca</b>, esta última con arcos de herradura blancos, única en el mundo. Y la <b>mezquita del Cristo de la Luz</b>, del año 999.</li>
-        <li><b>Mirador del Valle al atardecer</b>: cruzar el Tajo (bus 71 o taxi, 15 min) para la panorámica de la ciudad dorada sobre el río. La foto del viaje en España.</li>
-      </ul></div>
-      <div class="bloque b-local"><h5>◆ El plan local</h5><ul>
-        <li><b>Perderse sin mapa</b>: cobertizos, patios entreabiertos, talleres de damasquinado — el oficio árabe de incrustar oro en acero.</li>
-        <li><b>Escaleras mecánicas públicas</b> desde la estación de buses hasta el casco: no suban la cuesta a pie por gusto.</li>
-        <li>Café en la <b>plaza de Zocodover</b> viendo pasar la vida.</li>
-      </ul></div>
-      <div class="bloque b-comer"><h5>▲ La mesa</h5><ul>
-        <li><b>Carcamusas</b> — el plato de la ciudad: guiso de cerdo con tomate y guisantes, en cazuela de barro. El clásico es <b>Bar Ludeña</b>, en la Plaza de la Magdalena.</li>
-        <li><b>Perdiz estofada</b> si quieren caza, <b>migas manchegas</b> y <b>queso manchego</b> de la región.</li>
-        <li>Busquen el <b>menú del día</b>: dos platos, postre, pan y bebida por 12-15 €.</li>
-      </ul></div>
-      <div class="bloque b-calle"><h5>● De calle</h5><ul>
-        <li><b>Mazapán</b>, que lo inventaron los conventos de Toledo. La marca clásica es Santo Tomé, pero lo bueno es comprarlo en un <b>convento de clausura por el torno giratorio</b>, sin ver a las monjas. Eso solo vale el rato.</li>
-      </ul></div>
+    <div class="ciudad-media">
+      <img src="/viaje/photos/toledo.jpg" alt="Vista de Toledo sobre el río Tajo" loading="lazy" decoding="async">
+      <div class="ciudad-scrim"></div>
+      <div class="ciudad-head"><span class="cd">Martes 8 sep · España</span><h3>Toledo</h3></div>
     </div>
+    <input class="tab-input tab-ver" type="radio" name="tabs-toledo" id="toledo-ver" checked>
+    <input class="tab-input tab-local" type="radio" name="tabs-toledo" id="toledo-local">
+    <input class="tab-input tab-mesa" type="radio" name="tabs-toledo" id="toledo-mesa">
+    <input class="tab-input tab-calle" type="radio" name="tabs-toledo" id="toledo-calle">
+    <div class="tabs">
+      <label class="tab-label" for="toledo-ver">■ Ver</label>
+      <label class="tab-label" for="toledo-local">◆ Local</label>
+      <label class="tab-label" for="toledo-mesa">▲ Mesa</label>
+      <label class="tab-label" for="toledo-calle">● Calle</label>
+    </div>
+    <div class="tab-panel panel-ver"><h5>Lo imperdible</h5><ul>
+      <li><b>La Catedral Primada</b>, de las góticas más impresionantes de Europa, con una sacristía llena de El Grecos.</li>
+      <li><b>El entierro del Conde de Orgaz</b> en la iglesia de Santo Tomé — la obra maestra de El Greco, en el sitio para el que fue pintada hace 440 años.</li>
+      <li><b>Sinagogas del Tránsito y Santa María la Blanca</b>, esta última con arcos de herradura blancos, única en el mundo. Y la <b>mezquita del Cristo de la Luz</b>, del año 999.</li>
+      <li><b>Mirador del Valle al atardecer</b>: cruzar el Tajo (bus 71 o taxi, 15 min) para la panorámica de la ciudad dorada sobre el río. La foto del viaje en España.</li>
+    </ul></div>
+    <div class="tab-panel panel-local"><h5>El plan local</h5><ul>
+      <li><b>Perderse sin mapa</b>: cobertizos, patios entreabiertos, talleres de damasquinado — el oficio árabe de incrustar oro en acero.</li>
+      <li><b>Escaleras mecánicas públicas</b> desde la estación de buses hasta el casco: no suban la cuesta a pie por gusto.</li>
+      <li>Café en la <b>plaza de Zocodover</b> viendo pasar la vida.</li>
+    </ul></div>
+    <div class="tab-panel panel-mesa"><h5>La mesa</h5><ul>
+      <li><b>Carcamusas</b> — el plato de la ciudad: guiso de cerdo con tomate y guisantes, en cazuela de barro. El clásico es <b>Bar Ludeña</b>, en la Plaza de la Magdalena.</li>
+      <li><b>Perdiz estofada</b> si quieren caza, <b>migas manchegas</b> y <b>queso manchego</b> de la región.</li>
+      <li>Busquen el <b>menú del día</b>: dos platos, postre, pan y bebida por 12-15 €.</li>
+    </ul></div>
+    <div class="tab-panel panel-calle"><h5>De calle</h5><ul>
+      <li><b>Mazapán</b>, que lo inventaron los conventos de Toledo. La marca clásica es Santo Tomé, pero lo bueno es comprarlo en un <b>convento de clausura por el torno giratorio</b>, sin ver a las monjas. Eso solo vale el rato.</li>
+    </ul></div>
   </div>
 
   <!-- CAMINO / GALICIA -->
   <div class="ciudad">
-    <div class="ciudad-head"><span class="cd">10–15 sep · Galicia</span><h3>El Camino y Santiago</h3></div>
-    <div class="ciudad-body">
-      <div class="bloque b-ver"><h5>■ Lo imperdible</h5><ul>
-        <li><b>Iglesia-fortaleza de San Nicolás</b>, Portomarín: la desmontaron piedra por piedra y la reconstruyeron arriba cuando inundaron el pueblo viejo para el embalse. Si el agua está baja, se ven las ruinas del pueblo original bajo el río.</li>
-        <li><b>Catedral de Santiago y el Pórtico de la Gloria</b> (se reserva aparte, y es LA obra del románico).</li>
-        <li><b>Misa del Peregrino</b> a las 12:00. El botafumeiro no vuela todos los días, pero cuando vuela la gente llora.</li>
-        <li><b>Cubiertas de la catedral</b>: Santiago desde los tejados, poca gente lo sabe.</li>
-      </ul></div>
-      <div class="bloque b-local"><h5>◆ El plan local</h5><ul>
-        <li><b>Mercado de Abastos</b> de Santiago: compran el marisco en los puestos y en el local del fondo se lo cocinan al momento. Así almuerzan los santiagueses.</li>
-        <li><b>Parque da Alameda</b>: el mirador clásico de la catedral entre robles, donde pasean las familias el domingo.</li>
-        <li>En Rúa do Franco todo es turístico pero rico; <b>una calle más allá, en Rúa da Raíña, mejora</b>.</li>
-      </ul></div>
-      <div class="bloque b-comer"><h5>▲ La mesa</h5><ul>
-        <li><b>Pulpo á feira</b> en Melide — cortado con tijera sobre plato de madera, con aceite, sal gorda y pimentón. Melide es la capital del pulpo del Camino.</li>
-        <li><b>Caldo gallego</b> (la sopa de peregrino), <b>empanada gallega</b>, <b>pimientos de Padrón</b> ("unos pican y otros no"), <b>queso de Arzúa</b>.</li>
-        <li><b>Mariscada</b> de celebración en Santiago: nécoras, navajas, percebes si el bolsillo aguanta.</li>
-        <li>Para beber: <b>albariño</b> o <b>ribeiro</b>, los blancos gallegos. Y de postre, <b>tarta de Santiago</b> de almendra con la cruz espolvoreada.</li>
-        <li>El <b>menú del peregrino</b> cuesta 12-15 € con dos platos, postre, pan y vino. Es la mejor relación del viaje.</li>
-      </ul></div>
-      <div class="bloque b-calle"><h5>● De calle</h5><ul>
-        <li><b>Empanada por porciones</b> en cualquier panadería de aldea — de atún, de zorza, de bacalao con pasas. Perfecta para el morral.</li>
-        <li><b>Bocadillo de tortilla</b> en el bar del pueblo a las 7 am, rodeado de peregrinos. Es parte de la experiencia.</li>
-      </ul></div>
+    <div class="ciudad-media">
+      <img src="/viaje/photos/camino.jpg" alt="Fachada barroca de la Catedral de Santiago de Compostela" loading="lazy" decoding="async" style="object-position:center 20%">
+      <div class="ciudad-scrim"></div>
+      <div class="ciudad-head"><span class="cd">10–15 sep · Galicia</span><h3>El Camino y Santiago</h3></div>
     </div>
+    <input class="tab-input tab-ver" type="radio" name="tabs-camino" id="camino-ver" checked>
+    <input class="tab-input tab-local" type="radio" name="tabs-camino" id="camino-local">
+    <input class="tab-input tab-mesa" type="radio" name="tabs-camino" id="camino-mesa">
+    <input class="tab-input tab-calle" type="radio" name="tabs-camino" id="camino-calle">
+    <div class="tabs">
+      <label class="tab-label" for="camino-ver">■ Ver</label>
+      <label class="tab-label" for="camino-local">◆ Local</label>
+      <label class="tab-label" for="camino-mesa">▲ Mesa</label>
+      <label class="tab-label" for="camino-calle">● Calle</label>
+    </div>
+    <div class="tab-panel panel-ver"><h5>Lo imperdible</h5><ul>
+      <li><b>Iglesia-fortaleza de San Nicolás</b>, Portomarín: la desmontaron piedra por piedra y la reconstruyeron arriba cuando inundaron el pueblo viejo para el embalse. Si el agua está baja, se ven las ruinas del pueblo original bajo el río.</li>
+      <li><b>Catedral de Santiago y el Pórtico de la Gloria</b> (se reserva aparte, y es LA obra del románico).</li>
+      <li><b>Misa del Peregrino</b> a las 12:00. El botafumeiro no vuela todos los días, pero cuando vuela la gente llora.</li>
+      <li><b>Cubiertas de la catedral</b>: Santiago desde los tejados, poca gente lo sabe.</li>
+    </ul></div>
+    <div class="tab-panel panel-local"><h5>El plan local</h5><ul>
+      <li><b>Mercado de Abastos</b> de Santiago: compran el marisco en los puestos y en el local del fondo se lo cocinan al momento. Así almuerzan los santiagueses.</li>
+      <li><b>Parque da Alameda</b>: el mirador clásico de la catedral entre robles, donde pasean las familias el domingo.</li>
+      <li>En Rúa do Franco todo es turístico pero rico; <b>una calle más allá, en Rúa da Raíña, mejora</b>.</li>
+    </ul></div>
+    <div class="tab-panel panel-mesa"><h5>La mesa</h5><ul>
+      <li><b>Pulpo á feira</b> en Melide — cortado con tijera sobre plato de madera, con aceite, sal gorda y pimentón. Melide es la capital del pulpo del Camino.</li>
+      <li><b>Caldo gallego</b> (la sopa de peregrino), <b>empanada gallega</b>, <b>pimientos de Padrón</b> ("unos pican y otros no"), <b>queso de Arzúa</b>.</li>
+      <li><b>Mariscada</b> de celebración en Santiago: nécoras, navajas, percebes si el bolsillo aguanta.</li>
+      <li>Para beber: <b>albariño</b> o <b>ribeiro</b>, los blancos gallegos. Y de postre, <b>tarta de Santiago</b> de almendra con la cruz espolvoreada.</li>
+      <li>El <b>menú del peregrino</b> cuesta 12-15 € con dos platos, postre, pan y vino. Es la mejor relación del viaje.</li>
+    </ul></div>
+    <div class="tab-panel panel-calle"><h5>De calle</h5><ul>
+      <li><b>Empanada por porciones</b> en cualquier panadería de aldea — de atún, de zorza, de bacalao con pasas. Perfecta para el morral.</li>
+      <li><b>Bocadillo de tortilla</b> en el bar del pueblo a las 7 am, rodeado de peregrinos. Es parte de la experiencia.</li>
+    </ul></div>
   </div>
 
   <!-- BURDEOS -->
   <div class="ciudad">
-    <div class="ciudad-head"><span class="cd">15–18 sep · Francia</span><h3>Burdeos y Arcachon</h3></div>
-    <div class="ciudad-body">
-      <div class="bloque b-ver"><h5>■ Lo imperdible</h5><ul>
-        <li><b>Place de la Bourse y el Miroir d'eau</b>: el espejo de agua más grande del mundo reflejando la fachada del s. XVIII. Al atardecer es de postal.</li>
-        <li><b>La Cité du Vin</b>: museo del vino espectacular, arquitectura incluida, y termina con copa en el mirador del piso 8.</li>
-        <li><b>Dune du Pilat</b> (Arcachon, día 17): entre 100 y 118 metros de altura, 2,7 km de largo, 60 millones de m³ de arena. Océano de un lado, bosque de pinos del otro. <b>Está viva</b>: avanza unos 4 metros al año y se va tragando el bosque. Bus línea 1 desde la estación, 1 €.</li>
-        <li><b>Cabanes tchanquées</b> de la Île aux Oiseaux, las casetas de ostricultores sobre pilotes que son el símbolo de la bahía.</li>
-      </ul></div>
-      <div class="bloque b-local"><h5>◆ El plan local</h5><ul>
-        <li><b>Marché des Capucins</b>: el desayuno bordelés de verdad son <b>ostras con vino blanco a las 10 de la mañana</b>, en Chez Jean-Mi. Suena raro, es glorioso.</li>
-        <li><b>Barrio Chartrons</b>: la vieja zona de los comerciantes de vino — anticuarios, cavas y cafés por la rue Notre-Dame. Cero buses de turismo.</li>
-        <li><b>Darwin Écosystème</b>: cuartel militar convertido en ecobarrio con food hall, skatepark y grafitis, cruzando el puente de piedra.</li>
-        <li><b>Ville d'Hiver</b> en Arcachon: barrio de villas Belle Époque en la colina de pinos donde veraneaba la burguesía del s. XIX.</li>
-      </ul></div>
-      <div class="bloque b-comer"><h5>▲ La mesa</h5><ul>
-        <li><b>Entrecôte à la bordelaise</b>: solomillo con salsa de vino tinto y tuétano. El plato de la ciudad.</li>
-        <li><b>Ostras del banco de Arcachon</b> en cabaña ostrícola sobre el muelle, con pan, limón y vino blanco. Famosas internacionalmente.</li>
-        <li><b>Moules-frites</b> frente al mar, y quesos con una copa de Saint-Émilion o Médoc en cualquier bar à vin de Chartrons.</li>
-        <li>El <b>menú "formule"</b> de almuerzo (entrada+plato o plato+postre, 15-20 €) es la forma inteligente de comer bistró.</li>
-      </ul></div>
-      <div class="bloque b-calle"><h5>● De calle</h5><ul>
-        <li><b>Cannelés</b>: el pastelito bordelés de corteza caramelizada y centro cremoso. Los de <b>La Toque Cuivrée</b> —la marca local barata— le ganan a los famosos.</li>
-        <li><b>Baguette de boulangerie</b> con queso del mercado: el picnic en los muelles del Garona, que es lo que hacen los bordeleses al atardecer.</li>
-      </ul></div>
+    <div class="ciudad-media">
+      <img src="/viaje/photos/burdeos.jpg" alt="Place de la Bourse y su espejo de agua en Burdeos" loading="lazy" decoding="async">
+      <div class="ciudad-scrim"></div>
+      <div class="ciudad-head"><span class="cd">15–18 sep · Francia</span><h3>Burdeos y Arcachon</h3></div>
     </div>
+    <input class="tab-input tab-ver" type="radio" name="tabs-burdeos" id="burdeos-ver" checked>
+    <input class="tab-input tab-local" type="radio" name="tabs-burdeos" id="burdeos-local">
+    <input class="tab-input tab-mesa" type="radio" name="tabs-burdeos" id="burdeos-mesa">
+    <input class="tab-input tab-calle" type="radio" name="tabs-burdeos" id="burdeos-calle">
+    <div class="tabs">
+      <label class="tab-label" for="burdeos-ver">■ Ver</label>
+      <label class="tab-label" for="burdeos-local">◆ Local</label>
+      <label class="tab-label" for="burdeos-mesa">▲ Mesa</label>
+      <label class="tab-label" for="burdeos-calle">● Calle</label>
+    </div>
+    <div class="tab-panel panel-ver"><h5>Lo imperdible</h5><ul>
+      <li><b>Place de la Bourse y el Miroir d'eau</b>: el espejo de agua más grande del mundo reflejando la fachada del s. XVIII. Al atardecer es de postal.</li>
+      <li><b>La Cité du Vin</b>: museo del vino espectacular, arquitectura incluida, y termina con copa en el mirador del piso 8.</li>
+      <li><b>Dune du Pilat</b> (Arcachon, día 17): entre 100 y 118 metros de altura, 2,7 km de largo, 60 millones de m³ de arena. Océano de un lado, bosque de pinos del otro. <b>Está viva</b>: avanza unos 4 metros al año y se va tragando el bosque. Bus línea 1 desde la estación, 1 €.</li>
+      <li><b>Cabanes tchanquées</b> de la Île aux Oiseaux, las casetas de ostricultores sobre pilotes que son el símbolo de la bahía.</li>
+    </ul></div>
+    <div class="tab-panel panel-local"><h5>El plan local</h5><ul>
+      <li><b>Marché des Capucins</b>: el desayuno bordelés de verdad son <b>ostras con vino blanco a las 10 de la mañana</b>, en Chez Jean-Mi. Suena raro, es glorioso.</li>
+      <li><b>Barrio Chartrons</b>: la vieja zona de los comerciantes de vino — anticuarios, cavas y cafés por la rue Notre-Dame. Cero buses de turismo.</li>
+      <li><b>Darwin Écosystème</b>: cuartel militar convertido en ecobarrio con food hall, skatepark y grafitis, cruzando el puente de piedra.</li>
+      <li><b>Ville d'Hiver</b> en Arcachon: barrio de villas Belle Époque en la colina de pinos donde veraneaba la burguesía del s. XIX.</li>
+    </ul></div>
+    <div class="tab-panel panel-mesa"><h5>La mesa</h5><ul>
+      <li><b>Entrecôte à la bordelaise</b>: solomillo con salsa de vino tinto y tuétano. El plato de la ciudad.</li>
+      <li><b>Ostras del banco de Arcachon</b> en cabaña ostrícola sobre el muelle, con pan, limón y vino blanco. Famosas internacionalmente.</li>
+      <li><b>Moules-frites</b> frente al mar, y quesos con una copa de Saint-Émilion o Médoc en cualquier bar à vin de Chartrons.</li>
+      <li>El <b>menú "formule"</b> de almuerzo (entrada+plato o plato+postre, 15-20 €) es la forma inteligente de comer bistró.</li>
+    </ul></div>
+    <div class="tab-panel panel-calle"><h5>De calle</h5><ul>
+      <li><b>Cannelés</b>: el pastelito bordelés de corteza caramelizada y centro cremoso. Los de <b>La Toque Cuivrée</b> —la marca local barata— le ganan a los famosos.</li>
+      <li><b>Baguette de boulangerie</b> con queso del mercado: el picnic en los muelles del Garona, que es lo que hacen los bordeleses al atardecer.</li>
+    </ul></div>
   </div>
 
   <!-- PARÍS -->
   <div class="ciudad">
-    <div class="ciudad-head"><span class="cd">18–21 sep · Francia</span><h3>París</h3></div>
-    <div class="ciudad-body">
-      <div class="bloque b-ver"><h5>■ Lo imperdible</h5><ul>
-        <li><b>Louvre</b> a la apertura con entrada reservada (32 € no-UE). Regla de oro: <b>elijan 5 obras antes de entrar</b> o el museo se los come. Y paguen la audioguía de 6 € — el museo es un laberinto y la consola lleva mapa.</li>
-        <li><b>Sainte-Chapelle</b>: una caja de vitrales del s. XIII. Chiquita, barata, deja mudo. Lo más subestimado de París.</li>
-        <li><b>Notre-Dame restaurada</b> (gratis, reservando franja), <b>Torre Eiffel desde Trocadéro</b> y de noche con el destello de cada hora.</li>
-        <li><b>Musée d'Orsay</b>: los impresionistas. Más fácil de disfrutar que el Louvre.</li>
-      </ul></div>
-      <div class="bloque b-local"><h5>◆ El plan local</h5><ul>
-        <li><b>Montmartre a las 8 am</b>: suben cuando todavía es un pueblo — Place du Tertre vacía, Villa Léandre, el viñedo de Montmartre — y bajan cuando llegan los buses.</li>
-        <li><b>Canal Saint-Martin</b>: donde los parisinos hacen picnic con baguette y vino en las esclusas. Compren lo suyo y hagan lo mismo.</li>
-        <li><b>Coulée Verte</b>: parque elevado sobre un viaducto de tren — el original que inspiró el High Line de Nueva York.</li>
-        <li><b>Palais-Royal</b> y su patio de columnas, gratis y en pleno centro. Casi nadie lo mete en el itinerario.</li>
-      </ul></div>
-      <div class="bloque b-comer"><h5>▲ La mesa</h5><ul>
-        <li><b>Marché des Enfants Rouges</b> (Le Marais), el mercado cubierto más viejo de París, de 1615: puestos marroquíes, japoneses y libaneses en mesas compartidas. El mejor almuerzo de la ciudad por el precio.</li>
-        <li><b>Soupe à l'oignon</b> gratinada, <b>steak frites</b> de bistró clásico, <b>confit de canard</b>.</li>
-        <li>Una <b>fromagerie</b> de barrio: pidan tres quesos "del más suave al más bravo" y cena de picnic resuelta.</li>
-        <li>El <b>menú "formule"</b> de mediodía es la clave para comer bien sin arruinarse.</li>
-      </ul></div>
-      <div class="bloque b-calle"><h5>● De calle</h5><ul>
-        <li><b>Croissant de boulangerie artesanal</b> cada mañana — busquen el letrero "artisan boulanger", que significa que lo hornean ahí.</li>
-        <li><b>Falafel de L'As du Fallafel</b> en el Marais: la fila vale la pena, 8 € y es enorme.</li>
-        <li><b>Crêpe de puesto callejero</b>, la simple con azúcar y mantequilla.</li>
-        <li><b>Jambon-beurre</b>: el sándwich parisino de toda la vida — baguette, mantequilla y jamón. Nada más. 5 €.</li>
-      </ul></div>
+    <div class="ciudad-media">
+      <img src="/viaje/photos/paris.jpg" alt="La Torre Eiffel desde el Campo de Marte" loading="lazy" decoding="async" style="object-position:center 58%">
+      <div class="ciudad-scrim"></div>
+      <div class="ciudad-head"><span class="cd">18–21 sep · Francia</span><h3>París</h3></div>
     </div>
+    <input class="tab-input tab-ver" type="radio" name="tabs-paris" id="paris-ver" checked>
+    <input class="tab-input tab-local" type="radio" name="tabs-paris" id="paris-local">
+    <input class="tab-input tab-mesa" type="radio" name="tabs-paris" id="paris-mesa">
+    <input class="tab-input tab-calle" type="radio" name="tabs-paris" id="paris-calle">
+    <div class="tabs">
+      <label class="tab-label" for="paris-ver">■ Ver</label>
+      <label class="tab-label" for="paris-local">◆ Local</label>
+      <label class="tab-label" for="paris-mesa">▲ Mesa</label>
+      <label class="tab-label" for="paris-calle">● Calle</label>
+    </div>
+    <div class="tab-panel panel-ver"><h5>Lo imperdible</h5><ul>
+      <li><b>Louvre</b> a la apertura con entrada reservada (32 € no-UE). Regla de oro: <b>elijan 5 obras antes de entrar</b> o el museo se los come. Y paguen la audioguía de 6 € — el museo es un laberinto y la consola lleva mapa.</li>
+      <li><b>Sainte-Chapelle</b>: una caja de vitrales del s. XIII. Chiquita, barata, deja mudo. Lo más subestimado de París.</li>
+      <li><b>Notre-Dame restaurada</b> (gratis, reservando franja), <b>Torre Eiffel desde Trocadéro</b> y de noche con el destello de cada hora.</li>
+      <li><b>Musée d'Orsay</b>: los impresionistas. Más fácil de disfrutar que el Louvre.</li>
+    </ul></div>
+    <div class="tab-panel panel-local"><h5>El plan local</h5><ul>
+      <li><b>Montmartre a las 8 am</b>: suben cuando todavía es un pueblo — Place du Tertre vacía, Villa Léandre, el viñedo de Montmartre — y bajan cuando llegan los buses.</li>
+      <li><b>Canal Saint-Martin</b>: donde los parisinos hacen picnic con baguette y vino en las esclusas. Compren lo suyo y hagan lo mismo.</li>
+      <li><b>Coulée Verte</b>: parque elevado sobre un viaducto de tren — el original que inspiró el High Line de Nueva York.</li>
+      <li><b>Palais-Royal</b> y su patio de columnas, gratis y en pleno centro. Casi nadie lo mete en el itinerario.</li>
+    </ul></div>
+    <div class="tab-panel panel-mesa"><h5>La mesa</h5><ul>
+      <li><b>Marché des Enfants Rouges</b> (Le Marais), el mercado cubierto más viejo de París, de 1615: puestos marroquíes, japoneses y libaneses en mesas compartidas. El mejor almuerzo de la ciudad por el precio.</li>
+      <li><b>Soupe à l'oignon</b> gratinada, <b>steak frites</b> de bistró clásico, <b>confit de canard</b>.</li>
+      <li>Una <b>fromagerie</b> de barrio: pidan tres quesos "del más suave al más bravo" y cena de picnic resuelta.</li>
+      <li>El <b>menú "formule"</b> de mediodía es la clave para comer bien sin arruinarse.</li>
+    </ul></div>
+    <div class="tab-panel panel-calle"><h5>De calle</h5><ul>
+      <li><b>Croissant de boulangerie artesanal</b> cada mañana — busquen el letrero "artisan boulanger", que significa que lo hornean ahí.</li>
+      <li><b>Falafel de L'As du Fallafel</b> en el Marais: la fila vale la pena, 8 € y es enorme.</li>
+      <li><b>Crêpe de puesto callejero</b>, la simple con azúcar y mantequilla.</li>
+      <li><b>Jambon-beurre</b>: el sándwich parisino de toda la vida — baguette, mantequilla y jamón. Nada más. 5 €.</li>
+    </ul></div>
   </div>
 
   <!-- MILÁN Y COMO -->
   <div class="ciudad">
-    <div class="ciudad-head"><span class="cd">21–23 sep · Italia</span><h3>Milán y el Lago de Como</h3></div>
-    <div class="ciudad-body">
-      <div class="bloque b-ver"><h5>■ Lo imperdible</h5><ul>
-        <li><b>Lago de Como</b> (día 22): tren regional directo desde Milano Centrale a <b>Varenna-Esino</b>, 1h03, billete de 7-9 €. Ferry a <b>Bellagio</b>. Villas ribereñas al pie de los Alpes italianos — montaña cayendo al agua.</li>
-        <li><b>Duomo de Milán</b> por fuera, iluminado de noche: 135 agujas de mármol. La noche del 21 basta para verlo.</li>
-        <li><b>Galleria Vittorio Emanuele II</b> al lado — giren el talón sobre el toro del mosaico, dicen que da suerte.</li>
-      </ul></div>
-      <div class="bloque b-local"><h5>◆ El plan local</h5><ul>
-        <li><b>Aperitivo</b>: de 18:30 a 20:30, un spritz viene con tabla de picada. Es ritual sagrado milanés y en Navigli —los canales que diseñó Leonardo— es donde mejor se hace.</li>
-        <li>En Varenna, subir a la <b>Villa Monastero</b> y sus jardines botánicos a la orilla, o simplemente sentarse en el paseo del lago.</li>
-      </ul></div>
-      <div class="bloque b-comer"><h5>▲ La mesa</h5><ul>
-        <li><b>Risotto alla milanese</b> con azafrán, <b>cotoletta</b> (la milanesa original, con hueso), <b>ossobuco</b> si hace fresco.</li>
-        <li>En el lago: <b>pescado de agua dulce</b> — lavarello o perca — con polenta, mirando el agua.</li>
-      </ul></div>
-      <div class="bloque b-calle"><h5>● De calle</h5><ul>
-        <li><b>Panzerotto de Luini</b>, a una cuadra del Duomo y funcionando desde 1888: la empanada frita rellena de mozzarella y tomate que la gente come de pie en la calle. Fila rápida, 3 €.</li>
-        <li><b>Primer gelato del viaje.</b> La regla: si tiene montañas de colores neón, huyan. El bueno es opaco, mate y va tapado en cubetas de metal.</li>
-      </ul></div>
+    <div class="ciudad-media">
+      <img src="/viaje/photos/como.jpg" alt="Vista general de Bellagio a orillas del Lago de Como" loading="lazy" decoding="async">
+      <div class="ciudad-scrim"></div>
+      <div class="ciudad-head"><span class="cd">21–23 sep · Italia</span><h3>Milán y el Lago de Como</h3></div>
     </div>
+    <input class="tab-input tab-ver" type="radio" name="tabs-como" id="como-ver" checked>
+    <input class="tab-input tab-local" type="radio" name="tabs-como" id="como-local">
+    <input class="tab-input tab-mesa" type="radio" name="tabs-como" id="como-mesa">
+    <input class="tab-input tab-calle" type="radio" name="tabs-como" id="como-calle">
+    <div class="tabs">
+      <label class="tab-label" for="como-ver">■ Ver</label>
+      <label class="tab-label" for="como-local">◆ Local</label>
+      <label class="tab-label" for="como-mesa">▲ Mesa</label>
+      <label class="tab-label" for="como-calle">● Calle</label>
+    </div>
+    <div class="tab-panel panel-ver"><h5>Lo imperdible</h5><ul>
+      <li><b>Lago de Como</b> (día 22): tren regional directo desde Milano Centrale a <b>Varenna-Esino</b>, 1h03, billete de 7-9 €. Ferry a <b>Bellagio</b>. Villas ribereñas al pie de los Alpes italianos — montaña cayendo al agua.</li>
+      <li><b>Duomo de Milán</b> por fuera, iluminado de noche: 135 agujas de mármol. La noche del 21 basta para verlo.</li>
+      <li><b>Galleria Vittorio Emanuele II</b> al lado — giren el talón sobre el toro del mosaico, dicen que da suerte.</li>
+    </ul></div>
+    <div class="tab-panel panel-local"><h5>El plan local</h5><ul>
+      <li><b>Aperitivo</b>: de 18:30 a 20:30, un spritz viene con tabla de picada. Es ritual sagrado milanés y en Navigli —los canales que diseñó Leonardo— es donde mejor se hace.</li>
+      <li>En Varenna, subir a la <b>Villa Monastero</b> y sus jardines botánicos a la orilla, o simplemente sentarse en el paseo del lago.</li>
+    </ul></div>
+    <div class="tab-panel panel-mesa"><h5>La mesa</h5><ul>
+      <li><b>Risotto alla milanese</b> con azafrán, <b>cotoletta</b> (la milanesa original, con hueso), <b>ossobuco</b> si hace fresco.</li>
+      <li>En el lago: <b>pescado de agua dulce</b> — lavarello o perca — con polenta, mirando el agua.</li>
+    </ul></div>
+    <div class="tab-panel panel-calle"><h5>De calle</h5><ul>
+      <li><b>Panzerotto de Luini</b>, a una cuadra del Duomo y funcionando desde 1888: la empanada frita rellena de mozzarella y tomate que la gente come de pie en la calle. Fila rápida, 3 €.</li>
+      <li><b>Primer gelato del viaje.</b> La regla: si tiene montañas de colores neón, huyan. El bueno es opaco, mate y va tapado en cubetas de metal.</li>
+    </ul></div>
   </div>
 
   <!-- FLORENCIA -->
   <div class="ciudad">
-    <div class="ciudad-head"><span class="cd">23–25 sep · Italia</span><h3>Florencia</h3></div>
-    <div class="ciudad-body">
-      <div class="bloque b-ver"><h5>■ Lo imperdible</h5><ul>
-        <li><b>Cúpula de Brunelleschi</b>: subir por dentro entre las dos cáscaras del domo, 463 escalones. Reserva obligatoria con semanas de antelación.</li>
-        <li><b>Uffizi</b> (Botticelli, la Primavera) <b>o</b> Galleria dell'Accademia (el David). Con dos días, elijan uno y háganlo bien.</li>
-        <li><b>Ponte Vecchio</b> temprano o de noche, cuando cierran las joyerías y queda el puente solo.</li>
-      </ul></div>
-      <div class="bloque b-local"><h5>◆ El plan local</h5><ul>
-        <li><b>Atardecer en San Miniato al Monte</b>, no en el Piazzale Michelangelo: está 5 minutos más arriba, misma vista, mil personas menos, y <b>a las 17:30 los monjes cantan gregoriano en la cripta</b>. De lo más memorable de Italia.</li>
-        <li><b>Oltrarno y San Frediano</b>: la orilla artesana del Arno — talleres de marroquinería, marquetería y orfebrería de generaciones. <b>Aquí es donde se compran los mocasines</b>, no en San Lorenzo.</li>
-        <li><b>Buchette del vino</b>: ventanitas del s. XVI en los palacios por donde vendían vino. Varias reabrieron y sirven copas por el hueco. Búsquenlas por el Oltrarno.</li>
-        <li><b>Mercado de Sant'Ambrogio</b>, donde compran los florentinos. El Mercato Centrale ya es de turistas.</li>
-      </ul></div>
-      <div class="bloque b-comer"><h5>▲ La mesa</h5><ul>
-        <li><b>Bistecca alla fiorentina</b>: se pide por peso, una para los dos, término único (al sangue). Es el plato de la ciudad.</li>
-        <li><b>Ribollita</b> (sopa de pan y verduras) si refresca, <b>pappa al pomodoro</b>, <b>crostini de hígado</b>.</li>
-        <li>Chianti de la casa, que en Florencia el vino de mesa ya es bueno.</li>
-      </ul></div>
-      <div class="bloque b-calle"><h5>● De calle</h5><ul>
-        <li><b>Panino de lampredotto</b>: el street food florentino de verdad — callos de ternera en pan mojado en el caldo, con salsa verde. Unos 5 € en los carritos "trippaio". Suena raro, es lo que come el florentino a mediodía.</li>
-        <li><b>Schiacciata</b>: la focaccia toscana rellena de embutidos y queso, de cualquier panadería.</li>
-        <li><b>Gelato</b> en La Sorbettiera o Gelateria della Passera, ambas en el Oltrarno.</li>
-      </ul></div>
+    <div class="ciudad-media">
+      <img src="/viaje/photos/florencia.jpg" alt="Florencia vista desde el Piazzale Michelangelo" loading="lazy" decoding="async">
+      <div class="ciudad-scrim"></div>
+      <div class="ciudad-head"><span class="cd">23–25 sep · Italia</span><h3>Florencia</h3></div>
     </div>
+    <input class="tab-input tab-ver" type="radio" name="tabs-florencia" id="florencia-ver" checked>
+    <input class="tab-input tab-local" type="radio" name="tabs-florencia" id="florencia-local">
+    <input class="tab-input tab-mesa" type="radio" name="tabs-florencia" id="florencia-mesa">
+    <input class="tab-input tab-calle" type="radio" name="tabs-florencia" id="florencia-calle">
+    <div class="tabs">
+      <label class="tab-label" for="florencia-ver">■ Ver</label>
+      <label class="tab-label" for="florencia-local">◆ Local</label>
+      <label class="tab-label" for="florencia-mesa">▲ Mesa</label>
+      <label class="tab-label" for="florencia-calle">● Calle</label>
+    </div>
+    <div class="tab-panel panel-ver"><h5>Lo imperdible</h5><ul>
+      <li><b>Cúpula de Brunelleschi</b>: subir por dentro entre las dos cáscaras del domo, 463 escalones. Reserva obligatoria con semanas de antelación.</li>
+      <li><b>Uffizi</b> (Botticelli, la Primavera) <b>o</b> Galleria dell'Accademia (el David). Con dos días, elijan uno y háganlo bien.</li>
+      <li><b>Ponte Vecchio</b> temprano o de noche, cuando cierran las joyerías y queda el puente solo.</li>
+    </ul></div>
+    <div class="tab-panel panel-local"><h5>El plan local</h5><ul>
+      <li><b>Atardecer en San Miniato al Monte</b>, no en el Piazzale Michelangelo: está 5 minutos más arriba, misma vista, mil personas menos, y <b>a las 17:30 los monjes cantan gregoriano en la cripta</b>. De lo más memorable de Italia.</li>
+      <li><b>Oltrarno y San Frediano</b>: la orilla artesana del Arno — talleres de marroquinería, marquetería y orfebrería de generaciones. <b>Aquí es donde se compran los mocasines</b>, no en San Lorenzo.</li>
+      <li><b>Buchette del vino</b>: ventanitas del s. XVI en los palacios por donde vendían vino. Varias reabrieron y sirven copas por el hueco. Búsquenlas por el Oltrarno.</li>
+      <li><b>Mercado de Sant'Ambrogio</b>, donde compran los florentinos. El Mercato Centrale ya es de turistas.</li>
+    </ul></div>
+    <div class="tab-panel panel-mesa"><h5>La mesa</h5><ul>
+      <li><b>Bistecca alla fiorentina</b>: se pide por peso, una para los dos, término único (al sangue). Es el plato de la ciudad.</li>
+      <li><b>Ribollita</b> (sopa de pan y verduras) si refresca, <b>pappa al pomodoro</b>, <b>crostini de hígado</b>.</li>
+      <li>Chianti de la casa, que en Florencia el vino de mesa ya es bueno.</li>
+    </ul></div>
+    <div class="tab-panel panel-calle"><h5>De calle</h5><ul>
+      <li><b>Panino de lampredotto</b>: el street food florentino de verdad — callos de ternera en pan mojado en el caldo, con salsa verde. Unos 5 € en los carritos "trippaio". Suena raro, es lo que come el florentino a mediodía.</li>
+      <li><b>Schiacciata</b>: la focaccia toscana rellena de embutidos y queso, de cualquier panadería.</li>
+      <li><b>Gelato</b> en La Sorbettiera o Gelateria della Passera, ambas en el Oltrarno.</li>
+    </ul></div>
   </div>
 
   <!-- TOSCANA -->
   <div class="ciudad">
-    <div class="ciudad-head"><span class="cd">25–26 sep · Toscana</span><h3>Siena y el Val d'Orcia</h3></div>
-    <div class="ciudad-body">
-      <div class="bloque b-ver"><h5>■ Lo imperdible</h5><ul>
-        <li><b>Siena</b>: la Piazza del Campo en forma de concha, donde corre el Palio, y una de las catedrales más espectaculares de Italia, a rayas blancas y negras.</li>
-        <li><b>Val d'Orcia</b>: las colinas con cipreses que son la postal de Italia y Patrimonio UNESCO. Amanecer con niebla sobre los viñedos.</li>
-        <li><b>Pienza</b>, la "ciudad ideal" del Renacimiento, diseñada entera por un papa. <b>Montepulciano</b>, colgado sobre los viñedos. <b>San Quirico d'Orcia</b>, el más tranquilo.</li>
-      </ul></div>
-      <div class="bloque b-local"><h5>◆ El plan local</h5><ul>
-        <li>Dormir en un <b>agriturismo</b> — finca agrícola convertida en alojamiento. Suelen incluir desayuno con productos de la casa y a veces cena.</li>
-        <li>Cata de vino en una bodega familiar, no en las grandes: <b>Vino Nobile</b> en Montepulciano, <b>Brunello</b> en Montalcino.</li>
-        <li>La carretera entre San Quirico y Pienza es de las más fotografiadas del mundo — vayan despacio y paren donde quieran.</li>
-      </ul></div>
-      <div class="bloque b-comer"><h5>▲ La mesa</h5><ul>
-        <li><b>Pici</b>: el espagueti gordo hecho a mano de la zona, con ragú de jabalí (<i>cinghiale</i>) o all'aglione (ajo y tomate).</li>
-        <li><b>Pecorino de Pienza</b>, el queso de oveja de la región, en sus tres versiones: fresco, semi y curado. Con miel o con peras.</li>
-        <li><b>Ribollita</b>, <b>panzanella</b> (ensalada de pan) y embutidos de la finca.</li>
-        <li>El <b>pan toscano no lleva sal</b> — no está malo, es así desde la Edad Media. Se come con el embutido salado.</li>
-      </ul></div>
+    <div class="ciudad-media">
+      <img src="/viaje/photos/toscana.jpg" alt="Panorámica de San Quirico d'Orcia entre las colinas de la Toscana" loading="lazy" decoding="async">
+      <div class="ciudad-scrim"></div>
+      <div class="ciudad-head"><span class="cd">25–26 sep · Toscana</span><h3>Siena y el Val d'Orcia</h3></div>
     </div>
+    <input class="tab-input tab-ver" type="radio" name="tabs-toscana" id="toscana-ver" checked>
+    <input class="tab-input tab-local" type="radio" name="tabs-toscana" id="toscana-local">
+    <input class="tab-input tab-mesa" type="radio" name="tabs-toscana" id="toscana-mesa">
+    <div class="tabs">
+      <label class="tab-label" for="toscana-ver">■ Ver</label>
+      <label class="tab-label" for="toscana-local">◆ Local</label>
+      <label class="tab-label" for="toscana-mesa">▲ Mesa</label>
+    </div>
+    <div class="tab-panel panel-ver"><h5>Lo imperdible</h5><ul>
+      <li><b>Siena</b>: la Piazza del Campo en forma de concha, donde corre el Palio, y una de las catedrales más espectaculares de Italia, a rayas blancas y negras.</li>
+      <li><b>Val d'Orcia</b>: las colinas con cipreses que son la postal de Italia y Patrimonio UNESCO. Amanecer con niebla sobre los viñedos.</li>
+      <li><b>Pienza</b>, la "ciudad ideal" del Renacimiento, diseñada entera por un papa. <b>Montepulciano</b>, colgado sobre los viñedos. <b>San Quirico d'Orcia</b>, el más tranquilo.</li>
+    </ul></div>
+    <div class="tab-panel panel-local"><h5>El plan local</h5><ul>
+      <li>Dormir en un <b>agriturismo</b> — finca agrícola convertida en alojamiento. Suelen incluir desayuno con productos de la casa y a veces cena.</li>
+      <li>Cata de vino en una bodega familiar, no en las grandes: <b>Vino Nobile</b> en Montepulciano, <b>Brunello</b> en Montalcino.</li>
+      <li>La carretera entre San Quirico y Pienza es de las más fotografiadas del mundo — vayan despacio y paren donde quieran.</li>
+    </ul></div>
+    <div class="tab-panel panel-mesa"><h5>La mesa</h5><ul>
+      <li><b>Pici</b>: el espagueti gordo hecho a mano de la zona, con ragú de jabalí (<i>cinghiale</i>) o all'aglione (ajo y tomate).</li>
+      <li><b>Pecorino de Pienza</b>, el queso de oveja de la región, en sus tres versiones: fresco, semi y curado. Con miel o con peras.</li>
+      <li><b>Ribollita</b>, <b>panzanella</b> (ensalada de pan) y embutidos de la finca.</li>
+      <li>El <b>pan toscano no lleva sal</b> — no está malo, es así desde la Edad Media. Se come con el embutido salado.</li>
+    </ul></div>
   </div>
 
   <!-- ROMA -->
   <div class="ciudad">
-    <div class="ciudad-head"><span class="cd">26–29 sep · Italia</span><h3>Roma</h3></div>
-    <div class="ciudad-body">
-      <div class="bloque b-ver"><h5>■ Lo imperdible</h5><ul>
-        <li><b>Vaticano GRATIS el domingo 27</b> — último domingo de mes, de 9:00 a 14:00, última entrada 12:30. No se reserva online, así que <b>estén en la fila a las 7:30</b>. Museos, Capilla Sixtina y San Pedro.</li>
-        <li><b>Coliseo + Foro + Palatino</b>, entrada única con franja de las 8:30. Caminar el Foro es caminar 2.500 años.</li>
-        <li><b>Panteón</b>: la cúpula intacta más antigua del mundo, con el óculo abierto al cielo.</li>
-        <li><b>Fontana di Trevi</b> después de las 22, cuando baja la marea humana. Moneda con la mano derecha sobre el hombro izquierdo.</li>
-      </ul></div>
-      <div class="bloque b-local"><h5>◆ El plan local</h5><ul>
-        <li><b>Aventino</b>: el Giardino degli Aranci entre naranjos y el famoso <b>ojo de la cerradura de los Caballeros de Malta</b>, que enmarca la cúpula de San Pedro perfecta. A 15 min del Circo Massimo y casi sin turistas.</li>
-        <li><b>Basílica de San Clemente</b>: una iglesia del s. XII sobre una del s. IV sobre un templo pagano del s. I. Roma en corte transversal, bajando escaleras.</li>
-        <li><b>Termas de Caracalla</b>: ruinas colosales sin filas.</li>
-        <li><b>Trastevere de noche</b>: callejones con hiedra y trattorias con mantel de papel. La Roma que uno se imagina.</li>
-      </ul></div>
-      <div class="bloque b-comer"><h5>▲ La mesa</h5><ul>
-        <li>La santísima trinidad de pastas romanas: <b>carbonara</b> (huevo, guanciale y pecorino — sin crema jamás), <b>cacio e pepe</b> (queso y pimienta, y ya) y <b>amatriciana</b> (tomate y guanciale).</li>
-        <li><b>Carciofi alla giudia</b>: alcachofas fritas enteras del gueto judío, si ya empezó la temporada.</li>
-        <li><b>Saltimbocca alla romana</b> y <b>coda alla vaccinara</b> (rabo de toro) en Testaccio, el barrio de la cocina romana de verdad.</li>
-        <li>Regla infalible: <b>trattoria con menú corto escrito a mano &gt; restaurante con fotos en la puerta</b>.</li>
-      </ul></div>
-      <div class="bloque b-calle"><h5>● De calle</h5><ul>
-        <li><b>Supplì</b>: croqueta de arroz frita con mozzarella derretida adentro, 2 €. El snack romano por excelencia.</li>
-        <li><b>Trapizzino</b> en el mercado de Testaccio: cono de masa de pizza relleno de guisos romanos — pollo alla cacciatora, lengua con salsa verde. Invención reciente y genial.</li>
-        <li><b>Pizza al taglio</b>, cortada con tijera y vendida al peso. Se pide señalando y diciendo cuánto.</li>
-        <li><b>Maritozzo</b> de desayuno: brioche abierto y relleno de crema batida.</li>
-        <li><b>Café al banco</b>: se paga en caja, se pone el recibo en la barra y se toma de pie en 40 segundos. Sentarse cuesta el triple por lo mismo.</li>
-      </ul></div>
+    <div class="ciudad-media">
+      <img src="/viaje/photos/roma.jpg" alt="El Coliseo de Roma al atardecer" loading="lazy" decoding="async">
+      <div class="ciudad-scrim"></div>
+      <div class="ciudad-head"><span class="cd">26–29 sep · Italia</span><h3>Roma</h3></div>
     </div>
+    <input class="tab-input tab-ver" type="radio" name="tabs-roma" id="roma-ver" checked>
+    <input class="tab-input tab-local" type="radio" name="tabs-roma" id="roma-local">
+    <input class="tab-input tab-mesa" type="radio" name="tabs-roma" id="roma-mesa">
+    <input class="tab-input tab-calle" type="radio" name="tabs-roma" id="roma-calle">
+    <div class="tabs">
+      <label class="tab-label" for="roma-ver">■ Ver</label>
+      <label class="tab-label" for="roma-local">◆ Local</label>
+      <label class="tab-label" for="roma-mesa">▲ Mesa</label>
+      <label class="tab-label" for="roma-calle">● Calle</label>
+    </div>
+    <div class="tab-panel panel-ver"><h5>Lo imperdible</h5><ul>
+      <li><b>Vaticano GRATIS el domingo 27</b> — último domingo de mes, de 9:00 a 14:00, última entrada 12:30. No se reserva online, así que <b>estén en la fila a las 7:30</b>. Museos, Capilla Sixtina y San Pedro.</li>
+      <li><b>Coliseo + Foro + Palatino</b>, entrada única con franja de las 8:30. Caminar el Foro es caminar 2.500 años.</li>
+      <li><b>Panteón</b>: la cúpula intacta más antigua del mundo, con el óculo abierto al cielo.</li>
+      <li><b>Fontana di Trevi</b> después de las 22, cuando baja la marea humana. Moneda con la mano derecha sobre el hombro izquierdo.</li>
+    </ul></div>
+    <div class="tab-panel panel-local"><h5>El plan local</h5><ul>
+      <li><b>Aventino</b>: el Giardino degli Aranci entre naranjos y el famoso <b>ojo de la cerradura de los Caballeros de Malta</b>, que enmarca la cúpula de San Pedro perfecta. A 15 min del Circo Massimo y casi sin turistas.</li>
+      <li><b>Basílica de San Clemente</b>: una iglesia del s. XII sobre una del s. IV sobre un templo pagano del s. I. Roma en corte transversal, bajando escaleras.</li>
+      <li><b>Termas de Caracalla</b>: ruinas colosales sin filas.</li>
+      <li><b>Trastevere de noche</b>: callejones con hiedra y trattorias con mantel de papel. La Roma que uno se imagina.</li>
+    </ul></div>
+    <div class="tab-panel panel-mesa"><h5>La mesa</h5><ul>
+      <li>La santísima trinidad de pastas romanas: <b>carbonara</b> (huevo, guanciale y pecorino — sin crema jamás), <b>cacio e pepe</b> (queso y pimienta, y ya) y <b>amatriciana</b> (tomate y guanciale).</li>
+      <li><b>Carciofi alla giudia</b>: alcachofas fritas enteras del gueto judío, si ya empezó la temporada.</li>
+      <li><b>Saltimbocca alla romana</b> y <b>coda alla vaccinara</b> (rabo de toro) en Testaccio, el barrio de la cocina romana de verdad.</li>
+      <li>Regla infalible: <b>trattoria con menú corto escrito a mano &gt; restaurante con fotos en la puerta</b>.</li>
+    </ul></div>
+    <div class="tab-panel panel-calle"><h5>De calle</h5><ul>
+      <li><b>Supplì</b>: croqueta de arroz frita con mozzarella derretida adentro, 2 €. El snack romano por excelencia.</li>
+      <li><b>Trapizzino</b> en el mercado de Testaccio: cono de masa de pizza relleno de guisos romanos — pollo alla cacciatora, lengua con salsa verde. Invención reciente y genial.</li>
+      <li><b>Pizza al taglio</b>, cortada con tijera y vendida al peso. Se pide señalando y diciendo cuánto.</li>
+      <li><b>Maritozzo</b> de desayuno: brioche abierto y relleno de crema batida.</li>
+      <li><b>Café al banco</b>: se paga en caja, se pone el recibo en la barra y se toma de pie en 40 segundos. Sentarse cuesta el triple por lo mismo.</li>
+    </ul></div>
+  </div>
+
   </div>
 </section>
 
@@ -512,32 +719,38 @@ footer b{color:var(--amarillo);font-family:'Fraunces',serif}
   </div>
 </section>
 
-<!-- PENDIENTE -->
-<section id="pendiente">
-  <div class="kicker">06 · Manos a la obra</div>
-  <h2>Qué falta comprar</h2>
-  <table>
-    <tr><th>Qué</th><th>Cuándo</th><th>Urgencia</th></tr>
-    <tr><td><strong>Frecciarossa Milán → Florencia</strong>, 7:30 del 23</td><td>trenitalia.com, tarifa Super Economy</td><td>Ya — se agota</td></tr>
-    <tr><td><strong>Vuelo Roma → Madrid</strong>, noche del 29</td><td>Tiquete aparte del AV17</td><td>Ya</td></tr>
-    <tr><td><strong>Transporte Florencia → Siena → Val d'Orcia</strong></td><td>Bus, o carro alquilado 2 días</td><td>Ya</td></tr>
-    <tr><td><strong>Alojamiento Milán</strong>, 21 y 22</td><td>Cerca de Milano Centrale</td><td>Pronto</td></tr>
-    <tr><td><strong>Alojamiento Florencia</strong>, 23 y 24</td><td>Santa Croce u Oltrarno</td><td>Pronto</td></tr>
-    <tr><td><strong>Alojamiento Val d'Orcia</strong>, 25</td><td>Agriturismo o pueblo</td><td>Pronto</td></tr>
-    <tr><td><strong>Alojamiento Roma</strong>, 26 al 29</td><td>Monti o Trastevere</td><td>Pronto</td></tr>
-    <tr><td><strong>Alojamiento Madrid</strong>, 29</td><td>Centro o Barajas</td><td>Pronto</td></tr>
-    <tr><td><strong>Entradas</strong></td><td>Cúpula de Brunelleschi, Uffizi o Accademia, Coliseo</td><td>Pronto</td></tr>
-    <tr><td><strong>Trenes del Lago de Como</strong></td><td>El mismo día en la estación</td><td>Allá</td></tr>
-  </table>
-  <div class="alerta"><b>Antes de reservar cualquier alojamiento:</b> busca el nombre en Google Maps y compara la nota con la de Booking. Si difieren mucho, los problemas suelen aparecer <em>después</em> de reservar — con los cobros, el check-in o los reembolsos. Y si el nombre en la URL de Booking no se parece al nombre del alojamiento, es anuncio reciclado: sigue de largo.</div>
-</section>
-
 </main>
 
 <footer>
   <b>¡Buen Camino!</b><br>
   Guía definitiva · 6 al 30 de septiembre de 2026 · Precios y horarios son estimados: verificar al reservar.
+  <details class="credits">
+    <summary>Créditos de fotos</summary>
+    <p>Val d'Orcia: Carlo Cattaneo (CC BY-SA 4.0) · Madrid: Jorge Franganillo (CC BY 2.0) · Toledo: Dmitry Dzhus (CC BY 2.0) · Santiago: Fernando (CC BY-SA 4.0) · Burdeos: Phillip Maiwald (CC BY-SA 3.0) · Torre Eiffel: Benh Lieu Song (dominio público) · Bellagio: Library of Congress (sin restricciones) · Florencia: Giorgio Galeotti (CC BY 4.0) · San Quirico d'Orcia: LigaDue (CC BY 3.0) · Coliseo: FeaturedPics (CC BY-SA 4.0). Todas vía Wikimedia Commons.</p>
+  </details>
 </footer>
+
+<script is:inline>
+document.addEventListener('DOMContentLoaded', () => {
+  var links = document.querySelectorAll('nav a[href^="#"]');
+  var map = new Map();
+  links.forEach(function(a){
+    var id = a.getAttribute('href').slice(1);
+    var el = document.getElementById(id);
+    if (el) map.set(el, a);
+  });
+  if (!('IntersectionObserver' in window) || !map.size) return;
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      var link = map.get(entry.target);
+      if (!link || !entry.isIntersecting) return;
+      links.forEach(function(l){ l.classList.remove('active'); });
+      link.classList.add('active');
+    });
+  }, { rootMargin: '-35% 0px -55% 0px', threshold: 0 });
+  map.forEach(function(_, el){ obs.observe(el); });
+});
+</script>
 
 </body>
 </html>
