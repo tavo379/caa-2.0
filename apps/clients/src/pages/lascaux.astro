@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lascaux · Guía de Contenido</title>
+<meta name="description" content="Cómo cargar artistas y productos, armar colecciones y conectar cada pieza con su artista.">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Public+Sans:wght@400;500;600;700;800&display=swap');
+
+  :root {
+    --cream: #F4F0EF;
+    --blush: #EEE7E3;
+    --ink: #14110F;
+    --charcoal: #423F3D;
+    --line: #DFD8D3;
+    --accent: #425BE9;
+    --good: #3C8A5B;
+
+    --bg: var(--cream);
+    --panel: #FFFFFF;
+    --panel-soft: var(--blush);
+    --fg: var(--ink);
+    --fg-muted: color-mix(in srgb, var(--ink) 55%, transparent);
+    --border: var(--line);
+    --accent-soft: color-mix(in srgb, var(--accent) 10%, var(--cream));
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #17140F;
+      --panel: #211D18;
+      --panel-soft: #26221C;
+      --fg: #F4F0EF;
+      --fg-muted: color-mix(in srgb, #F4F0EF 58%, transparent);
+      --border: #3A342C;
+      --accent: #8598F7;
+      --accent-soft: color-mix(in srgb, var(--accent) 14%, #211D18);
+      --good: #6CBB8C;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'Public Sans', system-ui, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { font-family: 'Fraunces', Georgia, serif; text-wrap: balance; }
+  .pill { font-weight: 700; }
+
+  .page { max-width: 760px; margin: 0 auto; padding: 3.5rem 1.5rem 6rem; }
+
+  /* ---------- header ---------- */
+  header.top { margin-bottom: 2.75rem; }
+  .kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  header.top h1 { font-size: clamp(1.9rem, 4vw, 2.5rem); font-weight: 600; margin: 0 0 1rem; }
+  header.top p { color: var(--fg-muted); font-size: 1.05rem; max-width: 56ch; }
+
+  /* ---------- section cards ---------- */
+  section.card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 2rem clamp(1.25rem, 4vw, 2.25rem);
+    margin-bottom: 1.75rem;
+  }
+  .card-head { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 0.9rem; }
+  .card-num {
+    flex: none;
+    width: 2.5rem; height: 2.5rem;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1.15rem;
+  }
+  .card-head h2 { font-size: 1.4rem; font-weight: 600; margin: 0.15rem 0 0; }
+  .card-head .why { color: var(--fg-muted); font-size: 0.98rem; margin: 0.35rem 0 0; }
+
+  .where {
+    display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;
+    background: var(--panel-soft);
+    border-radius: 10px;
+    padding: 0.7rem 1rem;
+    margin: 1.25rem 0 1.4rem;
+    font-size: 0.92rem;
+  }
+  .where .lbl { color: var(--fg-muted); font-weight: 600; }
+  .where .step-chain { display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; }
+  .where .crumb { font-weight: 600; }
+  .where .arrow { color: var(--fg-muted); }
+
+  ol.steps { list-style: none; counter-reset: step; margin: 0; padding: 0; display: grid; gap: 0.75rem; }
+  ol.steps > li {
+    counter-increment: step;
+    display: flex;
+    gap: 0.85rem;
+    align-items: baseline;
+    font-size: 0.98rem;
+  }
+  ol.steps > li::before {
+    content: counter(step) ".";
+    flex: none;
+    font-weight: 700;
+    color: var(--accent);
+    min-width: 1.1rem;
+  }
+
+  .fields-grid { display: grid; gap: 0.9rem; margin-top: 1.1rem; }
+  .field-row {
+    display: grid;
+    grid-template-columns: minmax(140px, 1fr) minmax(150px, 1fr) 2fr;
+    gap: 0.5rem 1.25rem;
+    align-items: center;
+    padding: 0.85rem 1rem;
+    background: var(--panel-soft);
+    border-radius: 10px;
+    font-size: 0.92rem;
+  }
+  .field-row .fname { font-weight: 700; }
+  .field-row .ftype { color: var(--fg-muted); }
+  .field-row .fexact {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    justify-self: start;
+  }
+  .field-row .fexact .pill-code {
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-radius: 6px;
+    padding: 0.15rem 0.55rem;
+    font-weight: 700;
+    font-size: 0.86rem;
+  }
+  .field-hint { grid-column: 1 / -1; color: var(--fg-muted); font-size: 0.86rem; margin-top: -0.2rem; }
+
+  .fields-legend { display: flex; gap: 1.5rem; font-size: 0.78rem; color: var(--fg-muted); margin: 0.9rem 0 0; text-transform: uppercase; letter-spacing: 0.04em; padding-left: 1rem; }
+  @media (max-width: 620px) {
+    .field-row { grid-template-columns: 1fr; }
+    .fields-legend { display: none; }
+  }
+
+  .tip {
+    display: flex; gap: 0.75rem;
+    background: var(--accent-soft);
+    border-radius: 12px;
+    padding: 0.9rem 1.1rem;
+    margin-top: 1.25rem;
+    font-size: 0.92rem;
+  }
+  .tip .icon { flex: none; }
+
+  .group-title { font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--fg-muted); margin: 1.6rem 0 0.6rem; }
+  .group-title:first-of-type { margin-top: 1.1rem; }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <header class="top">
+    <span class="kicker">🎨 Guía sin tecnicismos</span>
+    <h1>Cargar el contenido de Lascaux, de a un paso</h1>
+    <p>El diseño, los metafields y la página de artistas ya están creados. Lo único que falta: cargar artistas y productos, crear colecciones cuando haga falta y conectar cada producto con su artista.</p>
+  </header>
+
+  <!-- 1 -->
+  <section class="card">
+    <div class="card-head">
+      <span class="card-num">1</span>
+      <div>
+        <h2>Carga los artistas</h2>
+        <p class="why">La ficha de "Artista" ya está creada. Solo falta agregar una entrada por cada artista real — al guardarla, su página se arma sola con foto, biografía y sus piezas.</p>
+      </div>
+    </div>
+
+    <div class="where">
+      <span class="lbl">Dónde:</span>
+      <span class="step-chain">
+        <span class="crumb">Contenido</span><span class="arrow">→</span>
+        <span class="crumb">Artista</span><span class="arrow">→</span>
+        <span class="crumb">Agregar entrada</span>
+      </span>
+    </div>
+
+    <div class="fields-grid">
+      <div class="field-row">
+        <span class="fname">Nombre</span>
+        <span class="ftype">Texto corto</span>
+      </div>
+      <div class="field-row">
+        <span class="fname">Fotografía</span>
+        <span class="ftype">Imagen</span>
+      </div>
+      <div class="field-row">
+        <span class="fname">Biografía</span>
+        <span class="ftype">Texto largo con formato</span>
+      </div>
+      <div class="field-row">
+        <span class="fname">Productos relacionados</span>
+        <span class="ftype">Enlace a productos (varios)</span>
+      </div>
+    </div>
+
+    <div class="tip">
+      <span class="icon">💡</span>
+      <span>El campo <b>"Productos relacionados"</b> conviene dejarlo para el final — recién en la tarjeta 4 vas a tener los productos ya cargados para enlazarlos.</span>
+    </div>
+
+    <ol class="steps" style="margin-top:1.4rem;">
+      <li>Crea una entrada por cada artista, con su nombre, foto y biografía.</li>
+    </ol>
+  </section>
+
+  <!-- 2 -->
+  <section class="card">
+    <div class="card-head">
+      <span class="card-num">2</span>
+      <div>
+        <h2>Crea y arma las colecciones</h2>
+        <p class="why">Piénsalas como carpetas de productos. Primero se crea la colección y se le eligen los productos; después se le da estilo desde el editor visual.</p>
+      </div>
+    </div>
+
+    <div class="where">
+      <span class="lbl">Dónde:</span>
+      <span class="step-chain">
+        <span class="crumb">Productos</span><span class="arrow">→</span>
+        <span class="crumb">Colecciones</span><span class="arrow">→</span>
+        <span class="crumb">Crear colección</span>
+      </span>
+    </div>
+
+    <div class="fields-grid">
+      <div class="field-row">
+        <span class="fname">Colección "Lascaux Five"</span>
+        <span class="ftype">Portada propia</span>
+        <span class="fexact">Theme template: <span class="pill-code">collection.lascaux-five</span></span>
+      </div>
+      <div class="field-row">
+        <span class="fname">Colección "X5"</span>
+        <span class="ftype">Portada propia</span>
+        <span class="fexact">Theme template: <span class="pill-code">collection.x5</span></span>
+      </div>
+    </div>
+    <p class="field-hint" style="margin-top:0.7rem;">Cualquier otra colección no necesita nada especial — se ve bien con el diseño de fábrica, deja el Theme template en blanco.</p>
+
+    <ol class="steps" style="margin-top:1.4rem;">
+      <li>Crea la colección, ponle nombre y agrega los productos que van dentro.</li>
+      <li>Si es Lascaux Five o X5: en el panel de la derecha, "Theme template" → elige el que corresponde de la tabla de arriba. Guarda.</li>
+    </ol>
+
+    <div class="group-title">Ahora dale estilo a la portada</div>
+    <div class="where" style="margin-top:0.4rem;">
+      <span class="lbl">Dónde:</span>
+      <span class="step-chain">
+        <span class="crumb">Tienda online</span><span class="arrow">→</span>
+        <span class="crumb">Personalizar tema</span><span class="arrow">→</span>
+        <span class="crumb">selector de arriba: elige esa colección</span>
+      </span>
+    </div>
+    <p class="field-hint">A la izquierda vas a ver 4 secciones apiladas. Clickea cada una para editar sus textos, imagen y colores.</p>
+
+    <div class="fields-grid">
+      <div class="field-row"><span class="fname">Portada (Hero)</span><span class="ftype">Heading, Subheading, Background color, Background texture (imagen, opcional)</span></div>
+      <div class="field-row"><span class="fname">Grilla de productos</span><span class="ftype">Heading, Background (Cream / Blush / Charcoal), Products per page</span></div>
+      <div class="field-row"><span class="fname">Sección "About"</span><span class="ftype">Heading, Image, Image position, Text, Button label, Button link, Background</span></div>
+    </div>
+
+    <div class="tip">
+      <span class="icon">ℹ️</span>
+      <span>Vas a ver también controles de fuente, tamaño y espaciado en cada sección — ya vienen configurados con el diseño, no hace falta tocarlos.</span>
+    </div>
+
+    <ol class="steps" style="margin-top:1.4rem;">
+      <li>Completa el Heading y Subheading de la portada.</li>
+      <li>Elige el color o la imagen de fondo de la portada.</li>
+      <li>Revisa el texto de "About" y ajusta la imagen si hace falta.</li>
+      <li>Guarda los cambios del editor.</li>
+    </ol>
+  </section>
+
+  <!-- 3 -->
+  <section class="card">
+    <div class="card-head">
+      <span class="card-num">3</span>
+      <div>
+        <h2>Usa la sección "Featured collection"</h2>
+        <p class="why">Es una grilla chica que muestra productos de UNA colección puntual, metida dentro de otra página. Se puede usar en 4 lugares: la portada de Home, la de X5, la de Lascaux Five, y cualquier colección genérica — en cada una aparece en la lista de secciones con el nombre "Featured collection".</p>
+      </div>
+    </div>
+
+    <div class="tip">
+      <span class="icon">⏳</span>
+      <span>Hoy está apagada (o vacía) en los 4 lugares porque todavía no hay suficientes productos como para armar una colección destacada aparte. Actívala más adelante, cuando tengas stock de sobra.</span>
+    </div>
+
+    <div class="where">
+      <span class="lbl">Dónde:</span>
+      <span class="step-chain">
+        <span class="crumb">Tienda online</span><span class="arrow">→</span>
+        <span class="crumb">Personalizar tema</span><span class="arrow">→</span>
+        <span class="crumb">elige Home, X5, Lascaux Five o una colección</span>
+      </span>
+    </div>
+
+    <div class="fields-grid">
+      <div class="field-row"><span class="fname">Heading</span><span class="ftype">Título que aparece arriba de la grilla</span></div>
+      <div class="field-row"><span class="fname">Collection</span><span class="ftype">Elige a qué colección de Shopify apunta — esos son los productos que muestra</span></div>
+      <div class="field-row"><span class="fname">Columns</span><span class="ftype">3 o 4 columnas</span></div>
+      <div class="field-row"><span class="fname">Products to show</span><span class="ftype">Cuántos productos entran</span></div>
+      <div class="field-row"><span class="fname">Button label / Button link</span><span class="ftype">Texto y enlace del botón de abajo</span></div>
+    </div>
+
+    <ol class="steps" style="margin-top:1.4rem;">
+      <li>En Personalizar tema, en la lista de secciones de la izquierda, busca "Featured collection".</li>
+      <li>Clickea el ícono de ojo para activarla (si está apagada).</li>
+      <li>Elige la Collection que va a mostrar y completa Heading, Columns, Products to show y el botón.</li>
+      <li>Guarda.</li>
+    </ol>
+  </section>
+
+  <!-- 4 -->
+  <section class="card">
+    <div class="card-head">
+      <span class="card-num">4</span>
+      <div>
+        <h2>Sube los productos</h2>
+        <p class="why">Igual que siempre, pero al final completas los campos extra que ya vienen en la ficha del producto, bajo "Metafields".</p>
+      </div>
+    </div>
+
+    <div class="where">
+      <span class="lbl">Dónde:</span>
+      <span class="step-chain">
+        <span class="crumb">Productos</span><span class="arrow">→</span>
+        <span class="crumb">Agregar producto</span>
+      </span>
+    </div>
+
+    <ol class="steps">
+      <li>Carga título, fotos, precio y descripción, como en cualquier producto.</li>
+      <li>Si es una pieza de "Corner Five", en "Theme template" elige <span class="pill-code">product.corner-five</span>. Si no, déjalo en blanco.</li>
+      <li>Agrégalo a su colección (Lascaux Five o X5) en la sección "Organización".</li>
+    </ol>
+
+    <div class="group-title">Completa estos campos en "Metafields"</div>
+
+    <div class="group-title" style="margin-top:0.9rem;">Sobre el artista</div>
+    <div class="fields-grid">
+      <div class="field-row"><span class="fname">Artista</span><span class="ftype">Enlace a un Artista</span></div>
+    </div>
+
+    <div class="group-title">Sobre el "making of"</div>
+    <div class="fields-grid">
+      <div class="field-row"><span class="fname">Descripción</span><span class="ftype">Texto largo</span></div>
+      <div class="field-row"><span class="fname">Proceso</span><span class="ftype">Texto largo con formato</span></div>
+      <div class="field-row"><span class="fname">Galería de fotos</span><span class="ftype">Varias imágenes</span></div>
+    </div>
+
+    <div class="group-title">Ficha técnica</div>
+    <div class="fields-grid">
+      <div class="field-row"><span class="fname">Colección (etiqueta)</span><span class="ftype">Texto corto</span></div>
+      <div class="field-row"><span class="fname">Piezas</span><span class="ftype">Texto corto</span></div>
+      <div class="field-row"><span class="fname">Dimensiones</span><span class="ftype">Texto corto</span></div>
+      <div class="field-row"><span class="fname">Peso</span><span class="ftype">Texto corto</span></div>
+      <div class="field-row"><span class="fname">Materiales</span><span class="ftype">Texto corto</span></div>
+      <div class="field-row"><span class="fname">Aplicación</span><span class="ftype">Texto corto</span></div>
+    </div>
+
+    <div class="tip">
+      <span class="icon">ℹ️</span>
+      <span>Estos NO son lo mismo que los textos que editas en "Personalizar tema" (como "Signature Collection" o "Join the Waitlist"). Esos se cambian desde ahí; estos son solo lo que varía producto por producto.</span>
+    </div>
+
+    <ol class="steps" style="margin-top:1.4rem;">
+      <li>Completa los campos de arriba en "Metafields" y guarda.</li>
+    </ol>
+  </section>
+
+  <!-- 5 -->
+  <section class="card">
+    <div class="card-head">
+      <span class="card-num">5</span>
+      <div>
+        <h2>Conecta cada producto con su artista</h2>
+        <p class="why">Son dos enlaces separados, en dos lugares distintos — cada uno controla dónde aparece la conexión. Conviene hacer los dos.</p>
+      </div>
+    </div>
+
+    <div class="fields-grid">
+      <div class="field-row">
+        <span class="fname">En el producto</span>
+        <span class="ftype">Metafield "Artista" → elige el artista</span>
+        <span class="fexact">Hace que el artista aparezca en la ficha del producto</span>
+      </div>
+      <div class="field-row">
+        <span class="fname">En el artista</span>
+        <span class="ftype">Campo "Productos relacionados" → agrega el producto</span>
+        <span class="fexact">Hace que el producto aparezca en la página del artista</span>
+      </div>
+    </div>
+
+    <ol class="steps" style="margin-top:1.4rem;">
+      <li>En el producto, bajo "Metafields", completa el campo Artista con el artista correspondiente.</li>
+      <li>Ve a la ficha de ese mismo artista (Contenido → Artista) y agrega el producto en "Productos relacionados".</li>
+    </ol>
+  </section>
+</div>
+</body>
+</html>
