@@ -4,20 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tracker de compras · Europa 6–30 sep 2026</title>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style is:global>
 :root{
-  --azul:#1D4E89;--azul-osc:#10304F;--amarillo:#F0B429;--papel:#F7F4EC;
+  --azul:#1D4E89;--azul-osc:#10304F;--amarillo:#F0B429;--papel:#F7F4EC;--negro:#1f2528;
   --tinta:#22303C;--verde:#3E6B4F;--rojo:#B4432D;--gris:#6B7580;--blanco:#fff;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Public Sans',system-ui,sans-serif;background:var(--papel);color:var(--tinta);line-height:1.5;font-size:15px;overflow-x:hidden}
+body{font-family:'Archivo',system-ui,sans-serif;background:var(--papel);color:var(--tinta);line-height:1.5;font-size:15px;overflow-x:hidden}
 .wrap{max-width:820px;margin:0 auto;padding:0 14px}
 
 /* ===== HERO / MASTHEAD ===== */
 header{background:var(--azul-osc);color:#fff;padding:44px 0 40px}
 .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--amarillo);margin-bottom:8px}
-h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(26px,6vw,36px);line-height:1.05}
+h1{font-family:'Big Shoulders Display',sans-serif;font-weight:900;text-transform:uppercase;font-size:clamp(30px,7vw,44px);line-height:1}
 
 /* ===== LAYOUT — sidebar (panel + filtros) junto a la lista en desktop ===== */
 main{padding:36px 0 60px}
@@ -43,7 +43,7 @@ main.wrap{display:block}
 
 /* FILTROS — la acción principal, con más presencia */
 .filtros{margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:7px}
-.fbtn{background:var(--blanco);border:1.5px solid #D8D2C4;color:var(--tinta);font-family:'Public Sans',sans-serif;font-size:13px;font-weight:700;padding:12px 10px;border-radius:11px;cursor:pointer;line-height:1.25;text-align:left;transition:transform .12s,border-color .12s,background .12s,color .12s}
+.fbtn{background:var(--blanco);border:1.5px solid #D8D2C4;color:var(--tinta);font-family:'Archivo',sans-serif;font-size:13px;font-weight:700;padding:12px 10px;border-radius:11px;cursor:pointer;line-height:1.25;text-align:left;transition:transform .12s,border-color .12s,background .12s,color .12s}
 .fbtn .fcount{display:block;font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:500;opacity:.65;margin-top:2px}
 .fbtn:hover{border-color:var(--azul);transform:translateY(-1px)}
 .fbtn:focus-visible{outline:2px solid var(--amarillo);outline-offset:2px}
