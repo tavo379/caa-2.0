@@ -168,10 +168,7 @@ tr:last-child td{border-bottom:none}
 
 footer{background:var(--negro);color:#B8BEC2;text-align:center;padding:56px 18px 44px;font-size:13px;margin-top:72px}
 footer b{color:var(--amarillo);font-family:'Oswald',sans-serif;font-weight:700;font-size:20px}
-.credits{max-width:640px;margin:26px auto 0;font-family:'IBM Plex Mono',monospace;font-size:10.5px;line-height:1.9;color:#8B9296;text-align:left}
-.credits summary{cursor:pointer;text-align:center;color:#B8BEC2;list-style:none}
-.credits summary::-webkit-details-marker{display:none}
-.credits a{color:#B8BEC2}
+.credits-note{margin-top:18px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#8B9296}
 @media (min-width:960px){footer{padding:72px 18px 56px}}
 
 @media (max-width:640px){
@@ -203,7 +200,7 @@ footer b{color:var(--amarillo);font-family:'Oswald',sans-serif;font-weight:700;f
 </svg>
 
 <header>
-  <div class="hero-photo"><img src="/viaje/photos/hero-paris.jpg" alt="Vista aérea de París al atardecer desde la Torre Montparnasse, con la Torre Eiffel iluminada" loading="eager"></div>
+  <div class="hero-photo"><img src="/viaje/photos/hero-paris.jpg" alt="Vista aérea de París al atardecer, con el Louvre, las Tullerías y el Sena" loading="eager"></div>
   <div class="wrap">
     <div class="eyebrow">Guía definitiva · Gustavo y su papá</div>
     <h1>Camino, Alpes<br>y Toscana.</h1>
@@ -333,7 +330,7 @@ footer b{color:var(--amarillo);font-family:'Oswald',sans-serif;font-weight:700;f
   <!-- MADRID -->
   <div class="ciudad">
     <div class="ciudad-media">
-      <img src="/viaje/photos/madrid.jpg" alt="Plaza Mayor de Madrid al atardecer" loading="lazy" decoding="async">
+      <img src="/viaje/photos/madrid.jpg" alt="Plaza Mayor de Madrid con la estatua ecuestre de Felipe III" loading="lazy" decoding="async">
     </div>
     <div class="ciudad-meta"><span class="cd">7, 9 y 30 sep · España</span><h3>Madrid</h3></div>
     <input class="tab-input tab-ver" type="radio" name="tabs-madrid" id="madrid-ver" checked>
@@ -407,7 +404,7 @@ footer b{color:var(--amarillo);font-family:'Oswald',sans-serif;font-weight:700;f
   <!-- CAMINO / GALICIA -->
   <div class="ciudad">
     <div class="ciudad-media">
-      <img src="/viaje/photos/camino.jpg" alt="Fachada barroca de la Catedral de Santiago de Compostela" loading="lazy" decoding="async" style="object-position:center 20%">
+      <img src="/viaje/photos/camino.jpg" alt="Fachada barroca de la Catedral de Santiago de Compostela al atardecer" loading="lazy" decoding="async" style="object-position:center 25%">
     </div>
     <div class="ciudad-meta"><span class="cd">10–15 sep · Galicia</span><h3>El Camino y Santiago</h3></div>
     <input class="tab-input tab-ver" type="radio" name="tabs-camino" id="camino-ver" checked>
@@ -447,7 +444,7 @@ footer b{color:var(--amarillo);font-family:'Oswald',sans-serif;font-weight:700;f
   <!-- BURDEOS -->
   <div class="ciudad">
     <div class="ciudad-media">
-      <img src="/viaje/photos/burdeos.jpg" alt="Place de la Bourse y su espejo de agua en Burdeos" loading="lazy" decoding="async">
+      <img src="/viaje/photos/burdeos.jpg" alt="Fachada de piedra clásica con balcones de hierro en el centro de Burdeos" loading="lazy" decoding="async">
     </div>
     <div class="ciudad-meta"><span class="cd">15–18 sep · Francia</span><h3>Burdeos y Arcachon</h3></div>
     <input class="tab-input tab-ver" type="radio" name="tabs-burdeos" id="burdeos-ver" checked>
@@ -487,7 +484,7 @@ footer b{color:var(--amarillo);font-family:'Oswald',sans-serif;font-weight:700;f
   <!-- PARÍS -->
   <div class="ciudad">
     <div class="ciudad-media">
-      <img src="/viaje/photos/paris.jpg" alt="La Torre Eiffel desde el Campo de Marte" loading="lazy" decoding="async" style="object-position:center 58%">
+      <img src="/viaje/photos/paris.jpg" alt="La Torre Eiffel a contraluz desde Trocadéro al atardecer" loading="lazy" decoding="async">
     </div>
     <div class="ciudad-meta"><span class="cd">18–21 sep · Francia</span><h3>París</h3></div>
     <input class="tab-input tab-ver" type="radio" name="tabs-paris" id="paris-ver" checked>
@@ -529,7 +526,7 @@ footer b{color:var(--amarillo);font-family:'Oswald',sans-serif;font-weight:700;f
   <!-- MILÁN Y COMO -->
   <div class="ciudad">
     <div class="ciudad-media">
-      <img src="/viaje/photos/como.jpg" alt="Vista general de Bellagio a orillas del Lago de Como" loading="lazy" decoding="async">
+      <img src="/viaje/photos/como.jpg" alt="Villa junto al agua en el Lago de Como con los Alpes al fondo" loading="lazy" decoding="async">
     </div>
     <div class="ciudad-meta"><span class="cd">21–23 sep · Italia</span><h3>Milán y el Lago de Como</h3></div>
     <input class="tab-input tab-ver" type="radio" name="tabs-como" id="como-ver" checked>
@@ -564,7 +561,7 @@ footer b{color:var(--amarillo);font-family:'Oswald',sans-serif;font-weight:700;f
   <!-- FLORENCIA -->
   <div class="ciudad">
     <div class="ciudad-media">
-      <img src="/viaje/photos/florencia.jpg" alt="Florencia vista desde el Piazzale Michelangelo" loading="lazy" decoding="async">
+      <img src="/viaje/photos/florencia.jpg" alt="El Duomo de Florencia iluminado al anochecer" loading="lazy" decoding="async">
     </div>
     <div class="ciudad-meta"><span class="cd">23–25 sep · Italia</span><h3>Florencia</h3></div>
     <input class="tab-input tab-ver" type="radio" name="tabs-florencia" id="florencia-ver" checked>
@@ -603,7 +600,7 @@ footer b{color:var(--amarillo);font-family:'Oswald',sans-serif;font-weight:700;f
   <!-- TOSCANA -->
   <div class="ciudad">
     <div class="ciudad-media">
-      <img src="/viaje/photos/toscana.jpg" alt="Panorámica de San Quirico d'Orcia entre las colinas de la Toscana" loading="lazy" decoding="async">
+      <img src="/viaje/photos/toscana.jpg" alt="Colinas del Val d'Orcia entre Pienza y Montepulciano al amanecer" loading="lazy" decoding="async">
     </div>
     <div class="ciudad-meta"><span class="cd">25–26 sep · Toscana</span><h3>Siena y el Val d'Orcia</h3></div>
     <input class="tab-input tab-ver" type="radio" name="tabs-toscana" id="toscana-ver" checked>
@@ -635,7 +632,7 @@ footer b{color:var(--amarillo);font-family:'Oswald',sans-serif;font-weight:700;f
   <!-- ROMA -->
   <div class="ciudad">
     <div class="ciudad-media">
-      <img src="/viaje/photos/roma.jpg" alt="El Coliseo de Roma al atardecer" loading="lazy" decoding="async">
+      <img src="/viaje/photos/roma.jpg" alt="El Coliseo de Roma bajo un cielo despejado" loading="lazy" decoding="async">
     </div>
     <div class="ciudad-meta"><span class="cd">26–29 sep · Italia</span><h3>Roma</h3></div>
     <input class="tab-input tab-ver" type="radio" name="tabs-roma" id="roma-ver" checked>
@@ -730,10 +727,7 @@ footer b{color:var(--amarillo);font-family:'Oswald',sans-serif;font-weight:700;f
 <footer>
   <b>¡Buen Camino!</b><br>
   Guía definitiva · 6 al 30 de septiembre de 2026 · Precios y horarios son estimados: verificar al reservar.
-  <details class="credits">
-    <summary>Créditos de fotos</summary>
-    <p>París (portada): Benh Lieu Song (CC BY-SA 4.0) · Madrid: Jorge Franganillo (CC BY 2.0) · Toledo: Dmitry Dzhus (CC BY 2.0) · Santiago: Fernando (CC BY-SA 4.0) · Burdeos: Phillip Maiwald (CC BY-SA 3.0) · Torre Eiffel: Benh Lieu Song (dominio público) · Bellagio: Library of Congress (sin restricciones) · Florencia: Giorgio Galeotti (CC BY 4.0) · San Quirico d'Orcia: LigaDue (CC BY 3.0) · Coliseo: FeaturedPics (CC BY-SA 4.0). Todas vía Wikimedia Commons.</p>
-  </details>
+  <p class="credits-note">Fotos vía Unsplash.</p>
 </footer>
 
 <script is:inline>
