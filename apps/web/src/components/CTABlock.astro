@@ -9,6 +9,8 @@ interface Props {
     secondaryButtonText?: string;
     secondaryButtonLink?: string;
     variant?: "default" | "dark" | "light";
+    // Opens the links in a new tab (used for external booking links)
+    external?: boolean;
 }
 
 const {
@@ -18,7 +20,10 @@ const {
     primaryButtonLink,
     secondaryButtonText,
     secondaryButtonLink,
+    external = false,
 } = Astro.props;
+
+const linkAttrs = external ? { target: "_blank", rel: "noopener noreferrer" } : {};
 ---
 
 <section class="cta-section ds-section">
@@ -26,7 +31,7 @@ const {
         <h2 class="ds-h2">{title}</h2>
         <p class="ds-body-lg cta-subtitle">{subtitle}</p>
         <div class="ds-btn-group cta-buttons">
-            <a href={primaryButtonLink} class="ds-btn ds-btn--primary">
+            <a href={primaryButtonLink} class="ds-btn ds-btn--primary" {...linkAttrs}>
                 {primaryButtonText}
                 <span class="ds-btn__dot">
                     <ArrowRight size={12} strokeWidth={2} />
@@ -34,7 +39,7 @@ const {
             </a>
             {
                 secondaryButtonText && secondaryButtonLink && (
-                    <a href={secondaryButtonLink} class="ds-btn ds-btn--outline">
+                    <a href={secondaryButtonLink} class="ds-btn ds-btn--outline" {...linkAttrs}>
                         {secondaryButtonText}
                         <span class="ds-btn__dot">
                             <ArrowRight size={12} strokeWidth={2} />

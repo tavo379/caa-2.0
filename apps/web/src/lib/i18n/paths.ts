@@ -24,6 +24,17 @@ export function getLocalizedProjectPath(lang: Lang, slug: string): string {
     return `${getLocalizedPath(lang, "projects")}/${slug}`;
 }
 
+// Page slugs that differ between languages. Each entry maps one language's
+// slug to the other, so the language switcher lands on the translated page.
+const slugPairs: Record<Lang, string>[] = [
+    { es: "auditoria-checkout-tracking", en: "checkout-tracking-audit" },
+];
+
+function translateSlug(segment: string, fromLang: Lang, targetLang: Lang): string {
+    const pair = slugPairs.find((p) => p[fromLang] === segment);
+    return pair ? pair[targetLang] : segment;
+}
+
 export function switchLangPath(currentPath: string, targetLang: Lang): string {
     const match = currentPath.match(/^\/(es|en)(\/.*)?$/);
     if (!match) return `/${targetLang}`;
@@ -44,7 +55,9 @@ export function switchLangPath(currentPath: string, targetLang: Lang): string {
     if (!matchedKey) return `/${targetLang}`;
 
     const translated = routes[matchedKey][targetLang];
-    const tailPath = tail.length ? `/${tail.join("/")}` : "";
+    const tailPath = tail.length
+        ? `/${tail.map((seg) => translateSlug(seg, fromLang, targetLang)).join("/")}`
+        : "";
     return translated
         ? `/${targetLang}/${translated}${tailPath}`
         : `/${targetLang}${tailPath}`;

@@ -1,0 +1,260 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import { ArrowRight } from "lucide-astro";
+import CTABlock from "../../../components/CTABlock.astro";
+import { BOOKING_URL } from "../../../config/booking";
+
+const lang = "es";
+const title = "Auditoría de Checkout y Tracking para Shopify | Cacao & Avocado";
+const description =
+    "¿Tu tienda Shopify está midiendo bien sus ventas? Revisamos checkout, pixels y conversiones en GA4, Meta y Google Ads. Precio fijo, informe en 5 días hábiles.";
+
+const external = { target: "_blank", rel: "noopener noreferrer" };
+
+const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "Auditoría de Checkout y Tracking para Shopify",
+    serviceType: "Auditoría de checkout y tracking",
+    description,
+    provider: {
+        "@type": "Organization",
+        name: "Cacao & Avocado",
+        url: "https://cacaoandavocado.co",
+    },
+    areaServed: ["CO", "US"],
+    url: Astro.url.href,
+    offers: {
+        "@type": "Offer",
+        price: "800",
+        priceCurrency: "USD",
+        availability: "https://schema.org/InStock",
+        url: Astro.url.href,
+    },
+};
+---
+
+<Layout title={title} description={description} lang={lang} jsonLd={jsonLd}>
+    <main>
+        <!-- Hero -->
+        <section class="ds-page-hero">
+            <div class="ds-container">
+                <span class="ds-label">Auditoría de precio fijo · Shopify</span>
+                <h1 class="ds-h1">Tu tienda puede estar vendiendo más de lo que tus reportes muestran</h1>
+                <p class="ds-body-lg">
+                    El 26 de agosto de 2026, Shopify actualizó de forma automática la página de agradecimiento y la de estado del pedido en las tiendas que no son Plus. Los scripts de tracking que vivían en Additional Scripts dejaron de ejecutarse, y en muchos casos nadie lo notó: los dashboards se siguen viendo normales, pero las compras no llegan a GA4, Meta o Google Ads, o llegan incompletas.
+                </p>
+                <p class="ds-body metrics-line">
+                    Si tus campañas optimizan con datos rotos, estás pagando para aprender lo equivocado. Lo revisamos en 5 días hábiles y te decimos exactamente qué arreglar.
+                </p>
+                <p class="pricing-box">Precio: USD 800 · precio fijo · informe en 5 días hábiles</p>
+                <div class="ds-btn-group">
+                    <a href={BOOKING_URL} class="ds-btn ds-btn--primary" {...external}>
+                        Reservar auditoría
+                        <span class="ds-btn__dot"><ArrowRight size={12} strokeWidth={2} /></span>
+                    </a>
+                    <a href={BOOKING_URL} class="ds-btn ds-btn--outline" {...external}>
+                        ¿No sabes si te afecta? Pide un diagnóstico gratuito
+                        <span class="ds-btn__dot"><ArrowRight size={12} strokeWidth={2} /></span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Signs -->
+        <section class="ds-section ds-section--subtle ds-section--border-b">
+            <div class="ds-container">
+                <h2 class="ds-h2 section-title">Señales de que necesitas esta auditoría</h2>
+                <ul class="ds-check-list signs-list">
+                    <li>GA4 registra menos compras que Shopify en el mismo periodo.</li>
+                    <li>Tu ROAS en Meta o Google Ads cayó desde agosto sin un cambio claro en las ventas.</li>
+                    <li>Tenías código en Additional Scripts o en los archivos liquid del checkout.</li>
+                    <li>Instalaste o cambiaste apps de tracking y nadie verificó los eventos de compra.</li>
+                    <li>No sabes con certeza qué pixels están activos en tu tienda ni qué datos reciben.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- What we review -->
+        <section class="ds-section ds-section--border-b">
+            <div class="ds-container">
+                <h2 class="ds-h2 section-title">Qué revisamos</h2>
+                <ol class="review-list">
+                    <li>
+                        <strong>Conciliación de ventas:</strong> Comparamos los pedidos de Shopify de los últimos 30 días con las compras que registran GA4, Meta y Google Ads, y cuantificamos la brecha en cada plataforma.
+                    </li>
+                    <li>
+                        <strong>Pixels y eventos:</strong> Revisamos los pixels personalizados y de apps en Customer events, qué eventos disparan, con qué datos y si se duplican o se pierden.
+                    </li>
+                    <li>
+                        <strong>Página de agradecimiento y estado del pedido:</strong> Verificamos que la compra se registre después del upgrade y que no quede código heredado que ya no se ejecuta.
+                    </li>
+                    <li>
+                        <strong>Checkout:</strong> Revisamos las extensiones, apps y personalizaciones del checkout que pueden afectar la conversión o la medición.
+                    </li>
+                    <li>
+                        <strong>Apps de tracking:</strong> Si usas Elevar, Stape, Littledata u otra, verificamos que esté bien configurada y no compita con otras implementaciones.
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- What you get -->
+        <section class="ds-section ds-section--subtle ds-section--border-b">
+            <div class="ds-container">
+                <h2 class="ds-h2 section-title">Qué recibes</h2>
+                <ul class="ds-check-list">
+                    <li>Un informe priorizado con cada hallazgo, su impacto y cómo arreglarlo.</li>
+                    <li>La brecha de tracking cuantificada por plataforma.</li>
+                    <li>Una videollamada de 45 minutos para recorrer los resultados.</li>
+                    <li>Un plan de corrección con precio fijo, por si quieres que lo hagamos nosotros. Si lo contratas en los siguientes 30 días, descontamos el valor de la auditoría.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- How it works -->
+        <section class="ds-section ds-section--border-b">
+            <div class="ds-container">
+                <h2 class="ds-h2 section-title">Cómo funciona</h2>
+                <div class="process-steps">
+                    <div class="ds-step">
+                        <p class="ds-step__number">01</p>
+                        <p class="ds-step__title">Agendas</p>
+                        <p class="ds-step__body">Reservas una llamada de 20 minutos, confirmamos el alcance y te enviamos la factura.</p>
+                    </div>
+                    <div class="ds-step">
+                        <p class="ds-step__number">02</p>
+                        <p class="ds-step__title">Nos das acceso</p>
+                        <p class="ds-step__body">Acceso de colaborador en Shopify y de lectura en GA4 y en tus cuentas de anuncios. No modificamos nada en tu tienda.</p>
+                    </div>
+                    <div class="ds-step">
+                        <p class="ds-step__number">03</p>
+                        <p class="ds-step__title">Auditamos</p>
+                        <p class="ds-step__body">En 5 días hábiles revisamos todo y armamos el informe.</p>
+                    </div>
+                    <div class="ds-step">
+                        <p class="ds-step__number">04</p>
+                        <p class="ds-step__title">Te lo explicamos</p>
+                        <p class="ds-step__body">Recorremos los hallazgos contigo en una llamada y te dejamos el plan de acción.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="ds-section ds-section--subtle ds-section--border-b">
+            <div class="ds-container">
+                <h2 class="ds-h2 section-title">Preguntas frecuentes</h2>
+                <dl class="faq-list">
+                    <div class="faq-item">
+                        <dt>¿Necesito Shopify Plus?</dt>
+                        <dd>No. La auditoría aplica a cualquier plan. Las tiendas que no son Plus fueron las más afectadas por el upgrade de agosto.</dd>
+                    </div>
+                    <div class="faq-item">
+                        <dt>¿Van a cambiar algo en mi tienda?</dt>
+                        <dd>No. La auditoría es solo de lectura. Cualquier corrección se hace aparte y solo si tú la apruebas.</dd>
+                    </div>
+                    <div class="faq-item">
+                        <dt>Ya uso una app de tracking. ¿Igual la necesito?</dt>
+                        <dd>Puede ser. Muchas brechas vienen de configuraciones duplicadas o incompletas entre apps y código heredado. Lo revisamos todo junto.</dd>
+                    </div>
+                    <div class="faq-item">
+                        <dt>¿Qué pasa si no encuentran problemas?</dt>
+                        <dd>Te entregamos el informe con la confirmación de que tu medición está bien. Saber que puedes confiar en tus datos también tiene valor.</dd>
+                    </div>
+                    <div class="faq-item">
+                        <dt>¿Trabajan con tiendas en Colombia?</dt>
+                        <dd>Sí. Trabajamos con marcas en Colombia y Estados Unidos. Para tiendas colombianas también podemos facturar en pesos.</dd>
+                    </div>
+                </dl>
+            </div>
+        </section>
+
+        <CTABlock
+            title="Deja de optimizar con datos rotos"
+            subtitle="En 5 días hábiles sabrás exactamente qué está midiendo tu tienda y qué no."
+            primaryButtonText="Reservar auditoría · USD 800"
+            primaryButtonLink={BOOKING_URL}
+            secondaryButtonText="Pedir diagnóstico gratuito"
+            secondaryButtonLink={BOOKING_URL}
+            external
+        />
+    </main>
+</Layout>
+
+<style>
+    .metrics-line {
+        color: var(--fg-muted);
+        margin-bottom: var(--space-8);
+    }
+
+    .section-title {
+        margin-bottom: var(--space-10);
+    }
+
+    .signs-list {
+        max-width: 700px;
+    }
+
+    .pricing-box {
+        padding: var(--space-5) var(--space-6);
+        border: 1px solid var(--border);
+        border-left: 3px solid var(--accent);
+        border-radius: var(--radius-sm);
+        background-color: var(--surface);
+        margin-bottom: var(--space-8);
+        font-family: var(--font-display);
+        font-size: var(--text-lg);
+        font-weight: var(--font-bold);
+        color: var(--fg);
+    }
+
+    /* Long hero button labels must wrap on narrow screens */
+    .ds-btn {
+        max-width: 100%;
+        white-space: normal;
+        line-height: 1.3;
+    }
+
+    .review-list {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-4);
+        max-width: 800px;
+        padding-left: var(--space-6);
+        color: var(--fg-muted);
+        line-height: 1.6;
+    }
+
+    .review-list strong {
+        color: var(--fg);
+    }
+
+    .process-steps {
+        display: grid;
+        gap: var(--space-4);
+        max-width: 800px;
+    }
+
+    .faq-list {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-6);
+        max-width: 800px;
+        margin: 0;
+    }
+
+    .faq-item dt {
+        font-family: var(--font-display);
+        font-weight: var(--font-semibold);
+        color: var(--fg);
+        margin-bottom: var(--space-2);
+    }
+
+    .faq-item dd {
+        margin: 0;
+        color: var(--fg-muted);
+        line-height: 1.6;
+    }
+
+</style>

@@ -8,9 +8,10 @@ interface Props {
     title: string;
     description?: string;
     lang?: string;
+    jsonLd?: Record<string, unknown>;
 }
 
-const { title, description = "Cacao & Avocado", lang = "es" } = Astro.props;
+const { title, description = "Cacao & Avocado", lang = "es", jsonLd } = Astro.props;
 ---
 
 <!doctype html>
@@ -28,6 +29,7 @@ const { title, description = "Cacao & Avocado", lang = "es" } = Astro.props;
         />
         <meta name="generator" content={Astro.generator} />
         <title>{title}</title>
+        {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
     </head>
     <body>
         <Header lang={lang} />

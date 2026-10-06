@@ -119,6 +119,32 @@ const description =
                             <span class="ds-btn__dot"><ArrowRight size={12} strokeWidth={2} /></span>
                         </a>
                     </div>
+
+                    <div class="ds-service-card card-wide">
+                        <p class="ds-service-card__title">Auditoría de Checkout y Tracking</p>
+                        <p class="ds-service-card__body">
+                            Revisamos checkout, pixels y conversiones en GA4,
+                            Meta y Google Ads para confirmar que tu tienda Shopify
+                            mide bien sus ventas. Precio fijo de USD 800 e informe
+                            en 5 días hábiles.
+                        </p>
+                        <ul class="ds-check-list">
+                            <li>Conciliación de ventas de Shopify contra GA4, Meta y Google Ads</li>
+                            <li>Pixels, eventos de compra y apps de tracking</li>
+                            <li>Página de agradecimiento y estado del pedido</li>
+                            <li>Informe priorizado y plan de corrección opcional</li>
+                        </ul>
+                        <div class="ds-pill-group">
+                            <span class="ds-pill">Shopify</span>
+                            <span class="ds-pill">GA4</span>
+                            <span class="ds-pill">Meta</span>
+                            <span class="ds-pill">Google Ads</span>
+                        </div>
+                        <a href="/es/servicios/auditoria-checkout-tracking" class="ds-btn ds-btn--outline card-cta">
+                            Ver Servicio
+                            <span class="ds-btn__dot"><ArrowRight size={12} strokeWidth={2} /></span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -211,5 +237,10 @@ const description =
         display: grid;
         gap: var(--space-4);
         max-width: 800px;
+    }
+
+    /* Fourth card spans the full row so it doesn't sit alone in the grid */
+    .card-wide {
+        grid-column: 1 / -1;
     }
 </style>

@@ -2,6 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import Hero from "../../components/Hero.astro";
 import Services from "../../components/Services.astro";
+import AuditBanner from "../../components/AuditBanner.astro";
 import ProjectsHome from "../../components/ProjectsHome.astro";
 import MetricsSection from "../../components/MetricsSection.astro";
 import TechStack from "../../components/TechStack.astro";
@@ -37,6 +38,13 @@ const description =
             webTitle="Desarrollo Web y CMS"
             webDesc="Sitios corporativos, portafolios creativos y landing pages construidos para rendir. Rápidos, limpios y fáciles de manejar para tu equipo — ya seas una firma de arquitectura en Medellín o una startup en Miami."
             lang={lang}
+        />
+        <AuditBanner
+            label="Auditoría de precio fijo · USD 800"
+            title="Tu tienda puede estar vendiendo más de lo que tus reportes muestran"
+            description="Revisamos checkout, pixels y conversiones en GA4, Meta y Google Ads. Informe en 5 días hábiles."
+            ctaText="Ver auditoría"
+            href={`/${lang}/servicios/auditoria-checkout-tracking`}
         />
         <ProjectsHome
             title={t["projects.title"]}
