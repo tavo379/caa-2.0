@@ -1,0 +1,26 @@
+# Backup keepalive independent of Vercel: hits the Supabase REST API directly
+# every 2 days so the free-tier project never reaches 7 days of inactivity.
+name: Supabase keepalive
+
+on:
+  schedule:
+    - cron: '0 14 */2 * *'
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Supabase REST
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        run: |
+          status=$(curl -s -o /dev/null -w "%{http_code}" \
+            "$SUPABASE_URL/rest/v1/clients?select=id&limit=1" \
+            -H "apikey: $SUPABASE_KEY" \
+            -H "Authorization: Bearer $SUPABASE_KEY")
+          echo "Supabase responded $status"
+          test "$status" -lt 500
+      - name: Ping Vercel keepalive route
+        run: curl -s https://os.cacaoandavocado.co/api/keepalive || true
